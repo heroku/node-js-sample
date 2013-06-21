@@ -1,0 +1,4 @@
+.*.sw?
+nohup.out
+.DS_Store
+developemnt.sqlite3
