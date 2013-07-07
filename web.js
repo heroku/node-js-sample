@@ -4,7 +4,7 @@ var fs = require ("fs");
 var express = require('express');
 
 var inputfile = "index.html";
-var webout = fs.readFileSync('index.html');
+var webout = fs.readFileSync('index.html', 'utf8');
 
  console.log(webout);
 
