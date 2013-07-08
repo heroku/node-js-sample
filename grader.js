@@ -47,14 +47,18 @@ var loadChecks = function(checksfile) {
 
 var checkHtmlFile = function(htmlfile, checksfile) {
     $ = cheerioHtmlFile(htmlfile);
-    var checks = loadChecks(checksfile).sort();
+    return checkCheerioFile(checksfile);
+};
+
+var checkCheerioFile = function(checksFile){
+    var checks = loadChecks(checksFile).sort();
     var out = {};
-    for(var ii in checks) {
-        var present = $(checks[ii]).length > 0;
-        out[checks[ii]] = present;
+    for(var ii in checks){
+	var present = $(checks[ii]).length > 0;
+	out[checks[ii]] = present;
     }
     return out;
-};
+}
 
 var clone = function(fn) {
     // Workaround for commander.js issue.
@@ -62,18 +66,38 @@ var clone = function(fn) {
     return fn.bind({});
 };
 
-var grabURL = function(url){
-    
+
+
+var grabURL = function(url, checksFile){
+    rest.get(url).on('complete', function(result){
+	if(result instanceof Error){
+	    console.log('Error: ' + result.message);
+	} else{
+	    $ = cheerio.load(result);
+	    var results = checkCheerioFile(checksFile);
+	    console.log(JSON.stringify(results, null, 4));
+	}
+    });
 };
+	
+ 
+
 
 if(require.main == module) {
     program
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
+	.option('-u, --url <file_url>', 'URL of file to check', null) 
         .parse(process.argv);
-    var checkJson = checkHtmlFile(program.file, program.checks);
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
+    console.log('Program.url: ' + program.url);
+	if(program.url === null){
+	    var checkJson = checkHtmlFile(program.file, program.checks);
+	    var outJson = JSON.stringify(checkJson, null, 4);
+	    console.log(outJson);
+	}
+	else{
+	    grabURL(program.url, program.checks);
+	}
 } else {
     exports.checkHtmlFile = checkHtmlFile;
 }
