@@ -5,9 +5,9 @@ var buffer = new Buffer(index,"utf-8");
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-		response.writeHeader(200, {"Content-Type": "text/html"});
-		response.write(buffer.toString('utf-8'));
-		response.end();
+//		response.writeHeader(200, {"Content-Type": "text/html"});
+		response.send(buffer.toString('utf-8'));
+//		response.end();
 });
 
 var port = process.env.PORT || 5000;
