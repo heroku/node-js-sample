@@ -32,7 +32,7 @@ var graded_file = [];
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
-console.log('assertFileExists for %s', instr);
+//console.log('assertFileExists for %s', instr);
     if(!fs.existsSync(instr)) {
         console.log("%s does not exist. Exiting.", instr);
         process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
@@ -42,7 +42,7 @@ console.log('assertFileExists for %s', instr);
 
 var assertUrlExists = function(infile) {
     var instr = infile.toString();
-console.log('assertUrlExists for %s', instr);
+//console.log('assertUrlExists for %s', instr);
     HTMLFILE_DEFAULT = '+' + HTMLFILE_DEFAULT;
     if (fs.existsSync(HTMLFILE_DEFAULT)) {
         fs.unlinkSync(HTMLFILE_DEFAULT);
@@ -58,7 +58,7 @@ console.log('assertUrlExists for %s', instr);
             console.log('rest.get file %s', HTMLFILE_DEFAULT);
 	    fs.writeFileSync(HTMLFILE_DEFAULT, data);
             program.file = HTMLFILE_DEFAULT;
-            console.log("html file %s check file %s", program.file, program.checks);
+//            console.log("html file %s check file %s", program.file, program.checks);
             var checkJson = checkHtmlFile(program.file, program.checks);
             var outJson = JSON.stringify(checkJson, null, 4);
             console.log(outJson);
@@ -97,23 +97,16 @@ var clone = function(fn) {
 
 if(require.main == module) {
     program.option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT);
-        program.option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT);
-        program.option('-u  --url <url>', 'url to get', clone(assertUrlExists), URLFILE_DEFAULT);
+    program.option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT);
+    program.option('-u  --url <url>', 'url to get', clone(assertUrlExists), URLFILE_DEFAULT);
 
-console.log('program.file %s', program.file);
-console.log('program.checks %s', program.checks);
-console.log('program.url %s', program.url);
- 
-        program.parse(process.argv);
-console.log('program.file %s', program.file);
-console.log('program.checks %s', program.checks);
-console.log('program.url %s', program.url);
+    program.parse(process.argv);
     if (program.url.length == 0) {
-    var checkJson = checkHtmlFile(program.file, program.checks);
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
+        var checkJson = checkHtmlFile(program.file, program.checks);
+        var outJson = JSON.stringify(checkJson, null, 4);
+        console.log(outJson);
     } else {
-    exports.checkHtmlFile = checkHtmlFile;
+        exports.checkHtmlFile = checkHtmlFile;
     }
 
 }
