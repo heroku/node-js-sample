@@ -76,7 +76,7 @@ if(require.main == module) {
         if(program.url) {
           rest.get(program.url).on('complete', function(result) {
             if (result instanceof Error) {
-              console.log(program.url + "does not exist. Exiting.");
+              console.log(program.url + " does not exist. Exiting.");
               process.exit(1); 
             }
             var checkJson = checkHtml(result, program.checks, program.url);
