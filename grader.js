@@ -82,7 +82,7 @@ if(require.main == module) {
       var outJson = JSON.stringify(checkJson, null, 4);
       console.log(outJson);
     }
-    if (!program.file &&  program.url) console.log('  - url, but no file');
+    if (!program.file &&  program.url) console.log('url, but no file');
 } else {
     exports.checkHtmlFile = checkHtmlFile;
 }
