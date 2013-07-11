@@ -4,6 +4,7 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 //  response.send('Hello World 2!');
+  var fs = require('fs');
   var index_buffer = fs.readFile('/index.html', function (err, data) {
     if (err) throw err;
     console.log(data);
