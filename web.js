@@ -2,7 +2,10 @@ var express = require('express');
 
 var app = express.createServer(express.logger());
 
+var fs = require('fs');:wq
+
 app.get('/', function(request, response) {
+  
   data = fs.readFileSync('index.html');
   strdata = data.toString('utf8');	
  // response.send('Hello World! from krishna prasad');
