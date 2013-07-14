@@ -7,7 +7,7 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
      
-     var my_index = new Buffer (fs.readFileSync("/index.html");
+     var my_index = new Buffer (fs.readFileSync("/index.html"));
     
      response.send(my_index.toString(utf-8));
 });
