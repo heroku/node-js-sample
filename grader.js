@@ -26,10 +26,13 @@ References:
 
 //require statements and global variables
 var fs = require('fs');
+var sys = require('util');
+var rest = require('restler');
 var program = require('commander');
 var cheerio = require('cheerio');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
+var URL_DEFAULT = "http://google.com";
 
 
 /*takes an infile PATH and returns true if it exists, otherwise
@@ -45,6 +48,19 @@ var assertFileExists = function(infile) {
     return instr;
 };
 
+/*takes a URL and returns true if it exists, otherwise exits*/
+
+var assertURLExists = function(url) {
+  url = url.toString()
+  rest.get(url).on('complete', function(result) {
+  if (result instanceof Error) {
+    console.log("URL doesn't exist, exiting");
+  } else {
+    return url;
+  }
+});
+}
+
 /*runs cheerio.load on the contents of htmlfile*/
 var cheerioHtmlFile = function(htmlfile) {
     return cheerio.load(fs.readFileSync(htmlfile));
@@ -54,7 +70,10 @@ var loadChecks = function(checksfile) {
     return JSON.parse(fs.readFileSync(checksfile));
 };
 
-var checkHtmlFile = function(htmlfile, checksfile) {
+var checkHtmlFile = function(htmlfile, checksfile, url) {
+    if (htmlfile=null) {
+      htmlfile=url;
+    }
     $ = cheerioHtmlFile(htmlfile);
     var checks = loadChecks(checksfile).sort();
     var out = {};
@@ -75,8 +94,9 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
+        .option('-u, --url <url>', 'URL', clone(assertURLExists), URL_DEFAULT)
         .parse(process.argv);
-    var checkJson = checkHtmlFile(program.file, program.checks);
+    var checkJson = checkHtmlFile(program.file, program.checks, program.url);
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
 } else {

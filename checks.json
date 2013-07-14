@@ -2,5 +2,16 @@
 ".navigation",
 ".logo",
 ".blank",
-".about"
+".about",
+".heading",
+".subheading",
+".pitch",
+".video",
+".thermometer",
+".order",
+".social",
+".section1",
+".section2",
+".faq",
+".footer"
 ]
