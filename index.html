@@ -6,6 +6,7 @@
     <meta name="viewport" content="width-device-width, initial-scale-1.0">
     <link type="text/css" rel ="stylesheet" 
 	  href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+    <lin type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,700italic,300,400,600,700,800">
     <style type="text/css">
       /* Large desktop*/
      @media (min-width:980px)
@@ -17,12 +18,28 @@
        
       }
 
-      .container{
-      width:960px;
+      
+      /* All form factors */
+
+      /* Main body & Headings */
+
+      body{
+       font-family: 'Open Sans',Helvatica,Arial,sans-serif;
+      }
+
+      .heading, .subheading{
+       font-family: 'Ubuntu',Helvatica,Arial,sans-serif;
       }
 
       p.lead{
-      padding-top:15px;
+       padding-top:1.5%;
+       font-size:24px;
+       line-height:30px;      
+      }
+      
+      p{
+       font-size:18px;
+       line-height:24px;
       }
 
       .navigation,.pitch,.section1,.section2,.faq,.footer{
@@ -75,20 +92,9 @@
      </div>
        
      <div class="container">
-       <div class="row navigation">
-	 <div class="span2 logo">
-	   Logo
-	 </div>
-	 <div class="span6 blank">
-	   Blank
-	 </div>
-	 <div class="span4 about">
-	   About
-	 </div>
-	</div>
-       <div class="row heading">
+       <div class="row-fluid heading">
 	 <div class="span12">
-	   <h1>Bitstarter Title</h1>
+	   <h1>Product</h1>
 	 </div>
        </div>
        
