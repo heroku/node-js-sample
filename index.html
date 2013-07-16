@@ -9,14 +9,37 @@
     <lin type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,700italic,300,400,600,700,800">
     <style type="text/css">
       /* Large desktop*/
-     @media (min-width:980px)
-      {
+    @media (min-width:980px)
+    {
        body{
        padding-top:60px;
        }
        
-       
+      .linediv-l{
+       border-right: 1px white solid;
       }
+
+      .linediv-r{
+       border-left: 1px white solid;
+      }
+       
+    }
+
+      /* Landscape phones & down */
+      @media (max-width:480px){
+        .copy{
+           padding:2.5% 10%;
+           }
+
+      .linediv-l{
+       border-right: 1px white solid;
+      }
+
+      .linediv-r{
+       border-left: 1px white solid;
+      }
+              
+   }
 
       
       /* All form factors */
@@ -43,27 +66,28 @@
        line-height:24px;
       }
 
-      .navigation,.pitch,.section1,.section2,.faq,.footer{
-      padding: 10px 0px 10px 0px;
-      }      
+      /*video pitch and action*/
 
-      .video,.thermometer,.order,.social{
-      border:1px dotted;
+      .pitch{
+       padding: 2.5% 0%;
+      }
+
+      .order{
+       padding: 2% 0%;
+      }
+
+      .actions{
+       background-color: #343434;
+       padding: 3% 0%;
+      }
+
+      
+      .video,.thermometer,.order,.social,.statistics{
       text-align:center;
       }
 
-      .video{
-       /* Internal borders have 1px width, thus need to add 4 x 1px to 120px. */
-        height: 124px;
-        line-height: 124px;
-      }
-      .thermometer, .order, .social {
-        /* line-height to vertically center: http://phrogz.net/css/vertical-align/index.html */
-        height: 40px;
-        line-height: 40px;
-      }
-      div.row {
-        border: 1px solid;
+      .statistics h3, .statistics p{
+      color:white;
       }
     </style>
    </head>
@@ -105,11 +129,35 @@
 	 </div>
        </div>
 
-       <div class="row pitch">
-
-	 <div class="span6 video">
+       <div class="row-fluid pitch">
+	 <div class="span5 offset1 video">
+	   <img class="img-polaroid" src="http://placehold.it/480x300">
 	   Video
 	 </div>
+
+	 <!-- We define a new 'actions' div to contain statistics, order and share buttons-->
+	 <div class="span5 actions">
+	   <div class="span8 offset2">
+	     <div class="statistics">
+	       <div class="span4">
+		 <!--linediv -l and linediv-r give dividing lines hat look different in horizontan and vertical layouts, illustrating media queries-->
+		 <div class="linediv-l">
+		   <h3>1000</h3><p>backers</p>
+		   </div>
+		 </div>
+	       <div class="span4">
+		  <div class="linediv-c">
+		    <h3>$6000</h3><p>of $10,000</p>
+		    </div>		    
+		 </div>
+	       <div class="span4">
+		 <div class="linediv-r">
+		   <h3>10</h3><p>days left</p>
+		   </div>
+		 </div>
+	       </div>
+	     </div>
+	   </div>
 	 
  	 <div class="span6">
 	   <div class="Thermometer">
