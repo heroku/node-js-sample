@@ -24,6 +24,7 @@ References:
 var fs = require('fs');
 var program = require('commander');
 var cheerio = require('cheerio');
+var rest = require('restler');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
 
@@ -65,10 +66,44 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
+        .option('-u, --url <url>', 'URL')//todo:define url and add clone(assert) call and add URL_DEFAULT
         .parse(process.argv);
-    var checkJson = checkHtmlFile(program.file, program.checks);
+    if (program.url) {
+      saveHtmlToFile(program.url, 'temp.html');
+      var checkJson = checkHtmlFile('temp.html', program.checks);
+    } else {
+      var checkJson = checkHtmlFile(program.file, program.checks);
+    }
     var outJson = JSON.stringify(checkJson, null, 4);
+
+
     console.log(outJson);
 } else {
     exports.checkHtmlFile = checkHtmlFile;
 }
+
+function saveHtmlToFile (url, filename) {
+  rest.get(url).on('complete', function(result) {
+    if (result instanceof Error) {
+      sys.puts('Error: ' + result.message);
+      this.retry(5000); // try again after 5 sec
+    } else {    
+      fs.writeFile(filename, result);
+    }
+  });
+}
+
+/*The program can take a file.  I can get the html from a URL, then save
+it as a local file or somehow pass the contents of the file into the 
+preexisting file processing function. Keep it simple.
+
+get URL option working
+grader.js  -c checks.json -u http://google.com
+
+use restler to get html
+getHTML(url) {
+  
+}
+
+
+*/
