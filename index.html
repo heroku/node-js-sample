@@ -1,101 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
     <title>My First Bitstarter</title>
-    <link type="text/css" rel="stylesheet" 
-          href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-2.3.2.css">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
     <style type="text/css">
-      body {
-        padding-top: 20px;
-        padding-bottom: 40px;
+      
+      /* Large desktop */
+      @media (min-width:980px) {
+      
+        body {
+          padding-top: 60px;
+        }
+        .linediv-l {
+          border-right: 1px white solid;
+        }
+        .linediv-r {
+          border-left: 1px white solid;
+        }
+      
       }
-      .container {
-        width: 960px;
+      
+      /* Landscape phones and down */
+      @media (max-width: 480px) {
+        .copy {
+          padding: 2.5% 10%;
+        }
+      
+        .linediv-l {
+          border-bottom: 1px white solid;
+        }
+        .linediv-r {
+          border-top: 1px white solid;
+        }
+      }
+
+      /* All form factors */
+      
+      /* Main body and headings */
+      body {
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      }
+      .heading, .subheading {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        text-align:center;
       }
       p.lead {
-        padding-top: 15px;
+        padding-top: 1.5%;
+        font-size: 24px;
+        line-height: 30px;
       }
-      .navigation, .pitch, .section1, .section2, .faq, .footer {
-        padding: 10px 0px 10px 0px;
+      p {
+        font-size: 18px;
+        line-height: 24px;
       }
-      .video, .thermometer, .order, .social {
-        border: 1px dotted;
+      
+      /* Video pitch and Action */
+      .pitch {
+        padding: 2.5% 0%;
+      }
+      .order {
+        padding: 2% 0%;
+      }
+      .actions {
+        background-color: #343434;
+        padding: 3% 0%;
+      }
+      .video, .thermometer, .order, .social, .statistics {
         text-align: center;
+        font-weight:bold;
+
       }
-      .video {
-        /* Internal borders have 1px width, thus need to add 4 x 1px to 120px. */
-        height: 124px;
-        line-height: 124px;
-      }
-      .thermometer, .order, .social {
-        /* line-height to vertically center: http://phrogz.net/css/vertical-align/index.html */
-        height: 40px;
-        line-height: 40px;
-      }
-      div.row {
-        border: 1px solid;
+      .statistics h3, .statistics p{
+        color: white;
       }
     </style>
   </head>
   <body>
+
+    <!-- Mobile-friendly navbar adapted from example. -->
+    <!-- http://twitter.github.io/bootstrap/examples/starter-tempate.html -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+	<div class="container">
+	  <button type="button" class="btn btn-navbar"
+		  data-toggle="collapse" data-target=".nav-collapse">
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="brand" href="#">Bitstarter</a>
+	  <div class="nav-collapse collapse">
+	    <ul class="nav">
+	      <li class="active"><a href="#">Home</a></li>
+	      <li><a href="#about">About</a></li>
+	      <li><a href="#contact">Contact</a></li>
+	    </ul>
+	  </div><!--/.nav-collapse -->
+	</div>
+      </div>
+    </div>
+
+    <!-- We use row-fluid inside containers to achieve a resizable layout. -->
+    <!-- blogs.endjin.com/2013/04-tips-for-implementing-responsive-designs-using-bootstrap/ -->
+    <!-- http://stackoverflow.com/a/12270322 -->
+
     <div class="container">
-      <div class="row navigation">
-        <div class="span2 logo">
-          Logo
-        </div>
-        <div class="span6 blank">
-          Blank
-        </div>
-        <div class="span4 about">
-          About
-        </div>
+      <!-- Font and paired font of .heading/.subheading and body from Google Fonts -->
+      <!-- www.google.com/fonts/specimen/Ubuntu -->
+      <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
+      <div class="row-fluid heading">
+	<div class="span12">
+	  <h1>Products</h1>
+	</div>
       </div>
-      <div class="row heading">
-        <div class="span12">
-          <h1>Bitstarter Title</h1>
-        </div>
-      </div> 
-     <div class="row subheading">
-        <div class="span12">
-          <p class="lead">This is my first bitstarter project.</p>
-        </div>
+      
+      <div class="row-fluid subheading">
+	<div class="span12">
+	  <!-- Special typography from Boostrap for lead paragraph. -->
+	  <!-- http://twitter.github.io/boostrap/base-css.html#typography -->
+	  <p class="lead">One sentence description.</p>
+	</div>
       </div>
-      <div class="row pitch">
-        <div class="span6 video">
-          Video
-        </div>
-        <div class="span6">
-          <div class="thermometer">
-            Thermometer
+      
+      <div class="row-fluid pitch">
+	<div class="span5 offset1 video">
+	  <img class="img-polaroid" src="http://placehold.it/480x300">
+	</div>
+	
+	<!-- We define a new "actions" div to contain statistics, order, and share buttons. -->
+	<div class="span5 actions">
+	  <div class="span8 offset2">
+            <div class="statistics">
+              <div class="span4">
+                <!-- linediv-l and linediv-r give dividing lines
+                     that look different in horizontal and vertical layouts, illustrating media queries. -->
+                <div class="linediv-l">
+                  <h3>1000</h3> <p>backers</p>
+                </div>
+              </div>
+
+              <div class="span4">
+                <div class="linediv-c">
+                  <h3>$6000</h3> <p>of $10,000</p>
+                </div>
+              </div>
+
+              <div class="span4">
+                <div class="linediv-r">
+                  <h3>10</h3> <p>days left</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="order">
-            Order
+	  <div class="span10 offset1">
+            <!-- Boostrap progress bar -->
+            <!-- http://twitter.github.io/bootstrap/components.html#progress -->
+            <div class="thermometer progress active">
+              <div class="bar bar-success" style="width: 60%;"></div>
+              <div class="bar bar-warning" style="width: 40%;"></div>
+            </div>
           </div>
-          <div class="social">
-            Social
+          <div class="span6 offset3 order">
+            <!-- Standard Boostrap button. -->
+            <!-- http://twitter.github.io/boostrap/base-css.html#buttons -->
+            <button class="btn btn-success btn-large">Preorder</button>
+          </div>
+          <div class="span8 offset2 social">
+            <!-- Social buttons are not included in default Bootstrap. -->
+            <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
+            <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
+            <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
           </div>
         </div>
-      </div>
-      <div class="row section1">
-        <div class="span12">
-          Marketing Section 1
-        </div>
-      </div>
-      <div class="row section2">
-        <div class="span12">
-          Marketing Section 2
-        </div>
-      </div>
-      <div class="row faq">
-        <div class="span12">
-          FAQ
-        </div>
-      </div>
-      <div class="row footer">
-        <div class="span12">
-          Footer
-        </div>
+
       </div>
     </div>
   </body>
