@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <title>My First Bitstarter</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Bootstrap --> 
-   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
     <link type="text/css" rel="stylesheet" 
-          href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-2.3.2.css">
+      href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-2.3.2.css">
     <style type="text/css">
       body {
         padding-top: 20px;
