@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTOAYPE html>
 <html lang = "en">
   <head>
     <meta charset = "utf-8">
@@ -6,7 +6,9 @@
     <meta name="viewport" content="width-device-width, initial-scale-1.0">
     <link type="text/css" rel ="stylesheet" 
 	  href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
-    <lin type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,700italic,300,400,600,700,800">
+    <link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">    
+      <link type="text/css" rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic">    
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,700italic,300,400,600,700,800">
     <style type="text/css">
       /* Large desktop*/
     @media (min-width:980px)
@@ -89,6 +91,17 @@
       .statistics h3, .statistics p{
       color:white;
       }
+
+      /* Marketing Copy and Footer */
+      .copy{
+       padding-top: 2.5%;
+       padding-bottom:2.5%;
+       text-align:justify;
+      }
+
+      .asset{
+      padding : 2.5% 0%;
+      }
     </style>
    </head>
    <body>
@@ -132,8 +145,8 @@
        <div class="row-fluid pitch">
 	 <div class="span5 offset1 video">
 	   <img class="img-polaroid" src="http://placehold.it/480x300">
-	   Video
 	 </div>
+
 
 	 <!-- We define a new 'actions' div to contain statistics, order and share buttons-->
 	 <div class="span5 actions">
@@ -153,34 +166,50 @@
 	       <div class="span4">
 		 <div class="linediv-r">
 		   <h3>10</h3><p>days left</p>
-		   </div>
 		 </div>
 	       </div>
 	     </div>
 	   </div>
 	 
- 	 <div class="span6">
-	   <div class="Thermometer">
-	     Thermometer
+ 	 <div class="span10 offset1">
+	   <!-- Bootstrap progress bar -->
+	   <!-- http://twitter.github.io/bootstrap/components.html#progress-->
+	   <div class="thermometer progress active">
+	     <div class="bar bar-success" style="width: 60%;"></div>
+	     <div class="bar bar-warning" style="width: 40%;"></div>
 	    </div>
-   	   <div class="Order">
-	     Order
+	   </div>
+   	   <div class="span6 offset3 order">
+	     <!-- Standard bootstrap button -->
+	     <!-- http://twitter.github.io/bootstrap/base-css.html#buttons-->
+	     <button class="btn btn-success btn-large">Preorder</button>
 	    </div>
-	   <div class="Social">
-	     Social
+	   <div class="span8 offset2 social">
+	     <!--Social buttons are not included in default bootstrap.-->
+	     <!-- see http://noizwaves.github.io/bootstrap-social-buttons-->
+	     <button class="btn btn-twitter"><i class-"icon-twitter"></i> | Twitter </button>
+	       <button class="btn btn-facebook"><i class-"icon-facebook"></i> | Facebook </button>
 	    </div>
 	 </div>
        </div>
-       <div class="row section1">
-        <div class="span12">
-          Marketing Section 1
+
+       <div class="row-fluid section1">
+        <div class="asset offset1 span5">
+          <img class="img-polaroid" src="http://placehold.it/480x300">
         </div>
+
+	<div class="copy span5"><p>Dog is dog. Yes Dog is dog Dog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dog Dog is dog. Yes Dog is dog Dog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. dog dog dog dog dog dog is doooog. </p> 	
       </div>
-      <div class="row section2">
-        <div class="span12">
-          Marketing Section 2
+     </div>
+
+      <div class="row-fluid section2">
+        <div class="span5 offset1 copy copy-right">
+          <p>Dog is dog. Yes Dog is dog Dog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dog Dog is dog. Yes Dog is dog Dog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. Yes Dog is dogDog is dog. dog dog dog dog dog dog is doooog.  </p>
         </div>
-      </div>
+	<div class="span5 asset">
+	  <img class="img-polaroid" src="http://placehold.it/480x300">
+	</div>
+     </div>
       <div class="row faq">
         <div class="span12">
           FAQ
@@ -195,4 +224,3 @@
   </body>
 </html>
 
-       
