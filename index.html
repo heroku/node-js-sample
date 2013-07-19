@@ -11,37 +11,116 @@
     <script type="text/javascript" src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
     <script type="text/javascript" src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
     <style type="text/css">
+      @media (min-width: 980px){
+        body {
+          padding-top: 60px;
+        }
+        .linediv-l {
+          border-right: 1px white solid;
+        }
+        .linediv-r {
+          border-left: 1px white solid;
+        }
+      }
+      @media (max-width: 480px){
+        body {
+          padding-top: 2.5% 10%;
+        }
+        .linediv-l {
+          border-right: 1px white solid;
+        }
+        .linediv-r {
+          border-left: 1px white solid;
+        }
+      }
       body {
-      padding-top: 20px;
-      padding-bottom: 40px;
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      }
+      .heading, .subheading{
+       font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+       text-align: center;
       }
       .container {
-      width: 960px;
+       width: 960px;
       }
       p.lead {
-      padding-top: 15px;
+        padding-top: 1.5%;
+        font-size: 24px;
+        line-height: 30px;
       }
-      .navigation, .pitch, .section1, .section2, .faq, .footer {
-      padding: 10px 0px 10px 0px;
+      p {
+        font-size: 18px;
+        line-height: 24px;
       }
-      .video, .thermometer, .order, .social {
-      border: 1px dotted;
-      text-align: center;
+      .pitch {
+        padding: 2.5% 0%;
       }
-      .video {
-      height: 124px;
-      line-height: 124px; 
+      .order {
+        padding: 2% 0%;
       }
-      .thermometer, .order, .social {
-      height: 40px;
-      line-height: 40px;
+      .actions {
+        background-color: #343434;
+        padding: 3% 0%;
       }
-      div.row {
-      border: 1px solid;
+      .video, .thermometer, .order, .social, .statistics {
+       text-align: center;
+      }
+      .statistics h3, .statistics p {
+        color: white;
+      }
+      .copy {
+        padding-top: 2.5%;
+        padding-bottom: 2.5%;
+        text-align: justify;
+      }
+      .asset {
+        padding: 2.5% 0%;
+      }
+
+      .footer {
+        color: #cccccc;
+        text-align: center;
+      }
+      .footer p {
+        font-size: 11px;
+      }
+      .footer a {
+        color: #ccccff;
       }
     </style>
   </head>
   <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-targer=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Bitstarter</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact></a></li>
+            </ul>
+          </div>  
+        </div>  
+      </div>
+    </div>
+<div class="container">
+  <div class="row-fluid-heading">
+    <div class="span12">
+      <h1>Product</h1>
+    </div>
+  </div>
+  <div class="row-fluid-subheading">
+    <div class="span12">
+      <p class="lead">One sentence description.</p>
+    </div>
+  </div>
+</div>
     <div class="container">
       <div class="row navigation">
 	<div class="span2 logo">
