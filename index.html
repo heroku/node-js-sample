@@ -28,12 +28,23 @@
         border-right: 1px white solid;
     } 
       .linediv-r {
-        border-right: 1px white solid; 
+        border-left: 1px white solid; 
      }
     }
+/*Landscape phones and down */
 
+@media (max-width: 480px) {
+.copy {
+.padding: 2.5% 10%;
+}
+.linediv-l {
+border-bottom: 1px white solid;
+}
+.linediv-r {
+border-top: 1px white solid;
+}
+}
 
-    
 /* all form factors */
 
 /* Main body and headings */
@@ -57,26 +68,35 @@ p {
 }
 
 
-      .navigation, .pitch, .section1, .section2, .faq, .footer {
-        padding: 10px 0px 10px 0px;
-      }
-      .video, .thermometer, .order, .social {
-        border: 1px dotted;
+/* Video pitch and actions */
+
+.pitch {
+   padding: 2.5% 0%;
+}
+.order {
+padding: 2% o%;
+}
+.actions {
+background-color: #343434;
+padding: 3% 0%;
+}
+
+.video, .thermometer, .order, .social, .statistics {
         text-align: center;
-      }
-      .video {
-        /* Internal borders have 1px width, thus need to add 4 x 1px to 120px. */
-        height: 124px;
-        line-height: 124px;
-      }
-      .thermometer, .order, .social {
-        /* line-height to vertically center: http://phrogz.net/css/vertical-align/index.html */
-        height: 40px;
-        line-height: 40px;
-      }
-      div.row {
-        border: 1px solid;
-      }
+}
+
+.statistics h3, .statistics p {
+    color: white;
+}
+
+
+*/ Marketing copy and Footer */
+
+
+
+     
+
+
     </style>
   </head>
   <body>
@@ -103,18 +123,45 @@ p {
 
 <div class="container">
 
-<div class="row-fluid heading">
-<div class="span12">
-<h1>Product</h1>
-</div>
-</div>
-<div class="row-fluid subheading">
-<div class="span12">
-<p class="lead">One sentence description</p>
-</div>
+  <div class="row-fluid heading">
+   <div class="span12">
+    <h1>Product</h1>
+   </div>
+  </div>
+  <div class="row-fluid subheading">
+   <div class="span12">
+    <p class="lead">One sentence description</p>
+   </div>
+  </div>
+
+  <div class="row-fluid pitch"> 
+   <div class="span5 offset1 video">
+    <img class="img-polaroid" src="http://placehold.it/480x300">
+   </div>
+
+  <div class="span5 actions">
+   <div class="span8 offset2">
+    <div class="statistics">
+     <div class="span4">
+      <div class="linediv-l">
+       <h3>1000</h3> <p>backers</p>
+      </div>
+     </div>
+     <div class="span4">
+<div class="linediv-c">
+       <h3>$6000</h3> <p>of$10,000</p>
+      </div>
+     </div>
+    <div class="span4">
+     <div class="linediv-r">
+      <h3>10</h3> <p>days left</p>
+      
+
+    </div>
+     </div>
+    </div> 
 </div>
 
 
 </div>
-
 </html>   
