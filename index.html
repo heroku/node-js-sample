@@ -12,10 +12,45 @@
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800">
 
 <style type="text/css">
-      body {
-        padding-top: 20px;
-        padding-bottom: 40px;
+/* Large desktop */
+@media(min-width:980px){      
+body {
+        padding-top: 60px;        
       }
+.linediv-l{
+border-right:1px white solid;
+}
+.linediv-r{
+border-left:1px white solid;
+}
+}
+
+/*Landscape phones and down */
+@media(max-width:480px){
+.copy{
+padding: 2.5% 10%;
+}
+.linediv-l{
+border-bottom: 1px white solid;
+}
+.linediv-r{
+border-top: 1px white solid; 
+}
+}
+/* All form factors*/
+
+/* Main body and headings */
+body{
+font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+}
+.heading, .subheading{
+font-family: 'Ubuntu',Helvetica,Arial,sans-serif;
+}
+p.lead{
+padding-top:1.5%;
+font-size:24px;
+line-height:30px;
+}
       .container {
         width: 960px;
       }
@@ -48,7 +83,7 @@
     <div class="container">
       <div class="row navigation">
         <div class="span2 logo">
-          Logo1
+          Logo2
         </div>
         <div class="span6 blank">
           Blank
