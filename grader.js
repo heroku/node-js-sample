@@ -56,23 +56,30 @@ var checkHtmlFile = function(htmlfile, checksfile) {
     return out;
 };
 
-var checkUrl = function(url, checksfile) {
-
-console.log(url);
-    $ = cheerio.load(url);
-    var checks = loadChecks(checksfile).sort();
-    var out = {};
-    for(var ii in checks) {
-        var present = $(checks[ii]).length > 0;
-        out[checks[ii]] = present;
-    }
-    return out;
-}
 var clone = function(fn) {
     // Workaround for commander.js issue.
     // http://stackoverflow.com/a/6772648
     return fn.bind({});
 };
+
+var buildfn = function(checksfile){
+    var checkUrl = function(result, response){
+	if (result instanceof Error) {
+            console.error('Error: ' + util.format(response.message));
+        } else {
+            $ = cheerio.load(result);
+	    var checks = loadChecks(checksfile).sort();
+    	    var out = {};
+    	    for(var ii in checks) {
+        	var present = $(checks[ii]).length > 0;
+        	out[checks[ii]] = present;
+    	    }
+    	    var outJson = JSON.stringify(out, null, 4);
+	    console.log(outJson);
+	}
+    };
+    return checkUrl;
+}
 
 if(require.main == module) {
     program
@@ -82,12 +89,12 @@ if(require.main == module) {
         .parse(process.argv);
     if(program.url==null){
         var checkJson = checkHtmlFile(program.file, program.checks);
+        var outJson = JSON.stringify(checkJson, null, 4);
+        console.log(outJson);
     }else{
-	var url = restler.json(program.url);
-	var checkJson = checkUrl(url, program.checks);
+	var checkUrl = buildfn(program.checks);
+	restler.json(program.url).on('complete', checkUrl);	
     } 
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
 } else {
     exports.checkHtmlFile = checkHtmlFile;
 }
