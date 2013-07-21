@@ -7,7 +7,9 @@
 <!-- Bootstrap --> 
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/social-buttons.css">
-
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,700,600,400,800'
        rel='stylesheet' type='text/css'>
@@ -90,11 +92,29 @@ padding: 3% 0%;
 
 
 */ Marketing copy and Footer */
-
-    </style>
+.copy {
+padding-top: 2.5%;
+padding-bottom: 2.5%;
+text-align: justify;
+}
+.asset {
+padding: 2.5% 0%;
+}
+.footer {
+color: #cccccc;
+text-align: center;
+}
+.footer p {
+font-size: 11px;
+}
+.footer a {
+color: #ccccff;
+}
+  </style>
   </head>
-
   <body>
+
+
   <div class="navbar navbar-inverse navbar-fixed-top">
 <div class="navbar-inner">
  <div class="container">
@@ -171,6 +191,65 @@ padding: 3% 0%;
 </div>
 </div>
 
+<div class="row-fluid section1">
+<div class="span5 offset1 asset">
+ <img class="img-polaroid" src="http://placehold.it/480x300">
+</div>
+<div class="span5 copy">
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod aliquet hendrerit. Suspendisse dignissim massa at nisl ultricies suscpit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam non urna eget libero hendrerit rutrum eget quis ante. Vestibulum id tellus vel nulla euismod tempor. Nullam blandit arcu nec lorem euismod mollis. Nunc laoreet eros metus. Aenean ac arcu non dolor molestie tincidunt ut at nulla. Phasellus et sem ut libero viverra sagittis auctor sed dui. Morbi nec felis lorem. 
+</p>
+</div>
+</div>
+
+<div class="row-fluid section2">
+<div class="span5 offset1 copy copy-right">
+ 
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod aliquet hendrerit. Suspendisse dignissim massa at nisl ultricies susci
+pit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam non urna eget libero hendrerit rutru
+m eget quis ante. Vestibulum id tellus vel nulla euismod tempor. Nullam blandit arcu nec lorem euismod mollis. Nunc laoreet eros metus. Aenea
+n ac arcu non dolor molestie tincidunt ut at nulla. Phasellus et sem ut libero viverra sagittis auctor sed dui. Morbi nec felis lorem. Praese
+nt quam lorem, egestas nec tortor quis, consequat tincidunt augue. Praesent ut mi lacus. Donec sed aliquet odio. Nulla facilisi.
+</p>
+</div>
+<div class="span5 asset">
+<img class="img-polaroid" src="http://placehold.it/480x300">
+</div>
+</div>
 
 
-</html>   
+<div class="row-fluid faq">
+<div class="span10 offset1">
+<h3>FAQ</h3>
+<div class="accordion" id="accordion2">
+<div class="accordion-group">
+<div class="accordion-heading">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+What does FAQ stand for
+</a>
+</div>
+<div id="collapseOne" class="accordion-body collapse">
+<div class="accordion-inner">
+Frequently Asked Question.
+</div>
+</div>
+</div>
+<div class="accordion-group">
+<div class="accordion-heading">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+What a frequently asked question
+</a>
+</div>
+<div id="collapseTwo" class="accordion-body collapse">
+<div class="accordion-inner">
+A question commonly asked by users
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</Html>   
