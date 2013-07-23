@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
   <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">    
-  <link type="text/css" rel="stylesheet"
-        href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-2.3.2.css">    
   <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
   <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
   <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
@@ -89,9 +87,15 @@
     .asset {
       padding: 2.5% 0%;
     }
-
-    div.row {
-      border: 1px solid;
+    .footer {
+      color: #cccccc;
+      text-align: center;
+    }
+    .footer p {
+      font-size: 11px;
+    }
+    .footer a {
+      color: #ccccff;
     }
   </style>
  </head>
@@ -272,13 +276,20 @@
             </div>
           </div>
         </div>
-     </div>
-   </div>
-   <div class="row footer">
-    <div class="span12">
-     Footer
+      </div>
     </div>
-   </div>
+
+    <!-- Not crucial, but we put this under a CC By-SA 3.0 license. -->
+    <!-- http://creativecommons.org/licenses/ -->
+    <div class="row-fluid footer">
+      <div class="span12">
+        <p>This work is licensed under
+          the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC
+            By-SA 3.0
+          </a>, without all the cruft that would otherwise be
+          put at the bottom of the page.</p>
+      </div>
+    </div>   
   </div>
  </body>
 </html>
