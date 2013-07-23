@@ -79,33 +79,16 @@
       color: white;
     }
 
-    body {
-      padding-top: 20px;
-      padding-bottom: 40px;
+    /* Marketing Copy and Footer */
+    .copy {
+      padding-top: 2.5%;
+      padding-bottom: 2.5%;
+      text-align: justify;
     }
-    .container {
-      width: 960px;
+    .asset {
+      padding: 2.5% 0%;
     }
-    p.lead {
-      padding-top: 15px;
-    }
-    .navigation, .pitch, .section1, .section2, .faq, .footer {
-      padding: 10px 0px 10px 0px;
-    }
-    .video, .thermometer, .order, .social {
-      border: 1px dotted;
-      text-align: center;
-    }
-    .video {
-     /* Internal borders have 1px width, thus need to add 4 x 1px to 120px. */
-     height: 124px;
-     line-heighht: 40px;
-    }
-    .thermometer, .order, .social {
-     /* line-height to vertically center: http://phrogz.net/css/vertical-align/index.html */
-     height: 40px;
-     line-height: 40px;
-    }
+
     div.row {
       border: 1px solid;
     }
@@ -207,53 +190,52 @@
       </div>
     </div>
 
-  <div class="container">
-   <div class="row navigation">
-    <div class="span2 logo">
-     Logo
+    <!-- Beyond this part the marketing copy begins. -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->
+    <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
+    <!-- http://placehold.it -->
+    <div class="row-fluid section1">
+      <div class="span5 offset1 asset">
+        <img class="img-polaroid" src="http://placehold.it/480x300">
+      </div>
+      <div class="span5 copy">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          porta, dui sagittis hendrerit rutrum, nunc leo tempus nisl, eu
+          mollis justo velit at nunc. Fusce nec egestas sem. Donec
+          fringilla ante lectus, a pellentesque lacus dignissim ac. Sed
+          volutpat lorem ut congue malesuada. In facilisis scelerisque
+          turpis sed lacinia. Donec in orci lectus. Donec auctor semper
+          quam, eget rhoncus purus fringilla id. Phasellus id nibh eu
+          risus ultrices adipiscing.  Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Donec porta, dui sagittis hendrerit
+          rutrum, nunc leo tempus nisl, eu mollis justo velit at
+          nunc. Fusce nec egestas sem. Donec fringilla.
+        </p>
+      </div>
     </div>
-    <div class="span6 blank">
-     Blank
+
+    <div class="row-fluid section2">
+      <div class="span5 offset1 copy copy-right">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+          porta, dui sagittis hendrerit rutrum, nunc leo tempus nisl, eu
+          mollis justo velit at nunc. Fusce nec egestas sem. Donec
+          fringilla ante lectus, a pellentesque lacus dignissim ac. Sed
+          volutpat lorem ut congue malesuada. In facilisis scelerisque
+          turpis sed lacinia. Donec in orci lectus. Donec auctor semper
+          quam, eget rhoncus purus fringilla id. Phasellus id nibh eu
+          risus ultrices adipiscing.  Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Donec porta, dui sagittis hendrerit
+          rutrum, nunc leo tempus nisl, eu mollis justo velit at
+          nunc. Fusce nec egestas sem. Donec fringilla.
+        </p>
+      </div>
+      <div class="span5 asset">
+        <img class="img-polaroid" src="http://placehold.it/480x300">
+      </div>
     </div>
-    <div class="span4 about">
-     About
-    </div>
-   </div>
-   <div class="row heading">
-    <div class="span12">
-     <h1>Bitstarter Title</h1>
-    </div>
-   </div>
-   <div class="row subheading">
-    <div class="span12">
-     <p class="lead">This is my first bitstarter project.</p>
-    </div>
-   </div>
-   <div class="row pitch">
-    <div class="span6 video">
-     Video
-    </div>
-    <div class="span 6">
-     <div class="thermometer">
-      Thermometer
-     </div>
-     <div class="order">
-      Order
-     </div>
-     <div class="social">
-      Social
-     </div>
-    </div>
-   </div>
-   <div class="row section1">
-    <div class="span12">
-     Marketing Section 1
-    </div>
-   </div>
-   <div class="row section2">
-    <div class="span12">
-     Marketing Section 2
-    </div>
+
    </div>
    <div class="row faq">
     <div class="span12">
