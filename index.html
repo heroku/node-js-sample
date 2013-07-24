@@ -1,105 +1,279 @@
 <!Doctype html>
 <html lang="eng">
-   <head>
-   <meta charset="utf-8">
-   <title>My First Bitstarter</title>
-   <link type="text/css" rel="stylesheet"
-         href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-2.3.2.css">
-   <style type="text/css">
-    body {
-     padding-top: 20px;
-     padding-bottom: 40px;
-    }
-    .container {
-        width: 960px;
-    }
-     p.lead {
-         padding-top: 15px;
+<head>
+    <meta charset="utf-8">
+    <title>My First Bitstarter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> 
+   
+      <style type="text/css">
 
-     }
-       .navigation, .pitch, .section1, .section2, .faq, .footer {
-           padding: 10px 0px 10px 0px;
-       }
-       .video, .thermometer, .order, .social {
-           border: 1px dotted;
-           text-align: center;
-       }
-        .video {
-          /* Internal borders have 1px width, thus we need to add 4 x 1px to 120px */
-           height: 124px;
-           line-height: 124px;
+            /* Large Desktop */
+
+        @media (min-width: 980px) {
+            body {
+                padding-top: 60px;
+            }
+            .linediv-l {
+                border-right: 1px white solid;
+
+            }
+
+            .linediv-r {
+                border-right: 1px white solid;
+            }
+           
+
         }
-         .thermometer, .order, .social {
-             /* line-height to vertically center: http://phrogz.net/css/vertical-align/index.html */
-           height: 40px;
-           line-height: 40px;
-         }
-         div.row {
-           border: 1px solid;
-         }
-   </style>
- </head>
+ 
 
- <body>
-   <div class="container">
-     <div class="row navigation">
-       <div class="span 2 logo">
-        Logo
-       </div>
-    <div class="span 6 blank"> 
-       Blank
-      </div>
-    <div class="span 4 about">
-       About
-      </div>
+
+            /* Landscape phones and down*/
+        @media (max-width: 480px) {
+            .copy {
+                padding: 2.5% 10%;
+            }
+            .linediv -l {
+                border-bottom: 1px white solid;
+            }
+            .linediv-r {
+                border-top: 1px white solid;
+
+            }
+
+        }
+
+
+            /* All form factors */
+
+            /* Main body and headings*/
+        body{
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+
+        }
+        .heading, .subheading {
+            font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+            text-align: center;
+
+        }
+        p.lead {
+            padding-top: 1.5%;
+            font-size: 24px;
+            line-height: 30px;
+
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 24px;
+        }
+
+
+            /* Video pitch and Action */
+        .pitch {
+            padding: 2.5% 0;
+        }
+        .order {
+            padding: 2% 0;
+        }
+        .actions {
+            background-color: #343434;
+            padding: 3% 0;
+        }
+
+        .video, .thermometer, .order, .social, .statistics {
+            text-align: center;
+        }
+
+        .statistics h3, .statistics p {
+            color: white;
+        }
+            /* Marketing Copy and Footer */
+        .copy {
+            padding-top: 2.5%;
+            padding-bottom: 2.5%;
+            text-align: justify;
+        }
+        .asset {
+            padding: 2.5% 0;
+        }
+        .footer {
+            color: #cccccc;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 11px;
+
+        }
+        .footer a {
+            color: #ccccff;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!--Mobile-friendly navbar adapted from expample. -->
+<!-- http://twitter.github.io/bootstrap/examples/starter-template.html-->
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Bitstarter</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div> <!--/.nav-collapse -->
+        </div>
     </div>
-    <div class="row heading">
-      <div class="span12">
-        <h1>Bitstarter Title</h1>
-       </div>
-       </div>
-      <div class="row subheading">
+</div>
+
+<div class="container">
+    <!--Used row-fluid inside containers to achieve a resizable layout.-->
+
+    <div class="row-fluid heading">
         <div class="span12">
-         <p class="lead">This is my first bitstarter project.</p>              
-         </div>
-       </div>
-     <div class="row pitch">
-       <div class="span6 video">
-         Video
-       </div>
-       <div class="span6">
-        <div class="thermometer">
-         Thermometer
+            <h1>Product</h1>
         </div>
-        <div class="order">
-          Order
-       </div>
-       <div class="social">
-          Social
-        </div>
-       </div>
-      </div>
-      <div class="row section1">
+    </div>
+
+
+    <div class="row-fluid subheading">
         <div class="span12">
-          Marketing Section 1
+            <!--Typography from Bootstrap for lead paragraph. -->
+            <!-- http://twitter.github.io/bootstrap/base-css.html#typography-->
+            <p class="lead">One sentence description.</p>
+        </div>
+    </div>
+    <div class="row-fluid pitch">
+        <div class="span5 offset1 video">
+            <img class="img-polaroid" src="http://placehold.it/480x300">
+        </div>
+
+        <!-- Define a new 'actions' div to contain statistics, order, and share buttons. -->
+        <div class="span5 actions">
+            <div class="span8 offset2">
+                <div class="statistics">
+                    <div class="span4">
+                        <!-- linediv-l and linediv-r give divding that look different in horizontal and vertical
+                             layouts, illustrating media queries. -->
+                        <div class="linediv-l">
+                            <h3>1000</h3> <p>backers</p>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="linediv-c">
+                            <h3>$6000</h3> <p>of $10,000</p>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="linediv-r">
+                            <h3>10</h3> <p>days left</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+
+            <div class="span10 offset1">
+                <!--Bootstrap progress bar -->
+                <!-- http://twitter.github.io/bootstrap/components.html#progress -->
+                <div class="thermometer progress active">
+                    <div class="bar bar-success" style="width: 60%;"></div>
+                    <div class="bar bar-warning" style="width: 40%;"></div>
+                 </div>
+            </div>
+            <div class="span6 offset3 order">
+                <!-- Standard Bootstrap button. -->
+                <!-- http://twitter.github.io/bootstrap/base-css.html#buttons-->
+                <button class="btn btn-success btn-large">Preorder</button>
+                <div class="span8 offset2 social">
+                    <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
+                    <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
+           </div>
          </div>
         </div>
-        <div class="row section2">
-         <div class="span12">
-           Marketing Section 2
-         </div>
+       </div>
+
+        <div class="row-fluid section1">
+            <div class="span5 offset1 asset">
+                <img class="img-polaroid" src="http://placehold.it/480x300">
+            </div>
+            <div class="span5 copy">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
         </div>
-        <div class="row faq">
-          <div class="span12"> 
-            FAQ
+
+        <div class="row-fluid section2">
+        <div class="span5 offset1 copy copy-right">
+            <p>
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+            </p>
+        </div>
+        <div class="span5 asset">
+            <img class="img-polaroid" src="http://placehold.it/480x300">
+
+        </div>
           </div>
-         </div>
-       <div class="row footer">
-         <div class="span12">
-           Footer
+    </div>
+
+    <div class="row-fluid faq">
+        <div class="span10 offset1">
+            <h3>FAQ</h3>
+            <div class="accordion" id="accordion2">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse"
+                           data-parent="#accordion2" href="#collapseOne">
+                            What does FAQ stand for?
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body-collapse">
+                        <div class="accordion-inner">
+                            Frequently Asked Question.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse"
+                           data-parent="accordion2" href="#collapseTwo">
+                            What's a frequently asked question?
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body-collapse">
+                        <div class="accordion-inner">
+                            A question which is commonly asked by users.
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-       </div>
-      </div>
-            
-     </body>
-    </html> 
+    </div>
+
+    <div class="row-fluid footer">
+        <div class="span12">
+            <p>This work is licensed uner the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC By-SA 3.0
+            </a>, without all the cruft that would otherwise be put at the bottom of the page.</p>
+
+        </div>
+    </div>
+</body>
+</html>
