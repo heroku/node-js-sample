@@ -209,6 +209,9 @@ n? We pass around tracked changes in Word Document, share Google Docs, and open 
 	Try it out!
       </p>
     </div>
+    <div class="span5 asset">
+      <img class="img-polaroid" src="http://placehold.it/480x300">
+    </div>
   </div>
 
   <!-- For the FAQ, we introduce a little bit of JS, using the accordion. --> 
@@ -221,16 +224,22 @@ n? We pass around tracked changes in Word Document, share Google Docs, and open 
 	<div class="accordion-group">
 	  <div class="accordion-heading">
 	    <a class="accordion-toggle" data-toggle="collapse"
-	       data-parent-"#accordion2" href="#collapseOne">
+	       data-parent="#accordion2" href="#collapseOne">
 	      What does FAQ stand for?
 	    </a>
 	  </div>
 	</div>
-	<div class="accordion-group">
+	<div id="collapseOne" class="accordion-body collapse">
+	  <div class="accordion-inner">
+	      Frequently Asked Question.
+	    </div>
+	  </div>
+	</div>
+        <div class="accordion-group">
 	  <div class="accordion-heading">
 	    <a class="accordion-toggle" data-toggle="collapse"
 	       data-parent="#accordion2" href="#collapseTwo">
-	      Frequently Asked Question.
+	      What's a Frequently Asked Question?
 	    </a>
 	  </div>
 	  <div id="collapseTwo" class="accordion-body collapse">
