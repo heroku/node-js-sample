@@ -15,82 +15,73 @@
        rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic'
        rel='stylesheet' type='text/css'>
-    <style type="text/css">
+ <style type="text/css">
 
-/*large desktop */
-
-@media (min-width: 980px) {
-
-      body {
-      padding-top: 60px;
-
+      /* Large desktop */
+      @media (min-width: 980px) { 
+        body {
+         padding-top: 60px;
+        }
+       .linediv-l {
+         border-right: 1px white solid;
+        }
+       .linediv-r {
+         border-left: 1px white solid;
+       }
       }
-      .linediv-l {
-        border-right: 1px white solid;
-    } 
-      .linediv-r {
-        border-left: 1px white solid; 
-     }
-    }
-/*Landscape phones and down */
 
-@media (max-width: 480px) {
-.copy {
-.padding: 2.5% 10%;
-}
-.linediv-l {
-border-bottom: 1px white solid;
-}
-.linediv-r {
-border-top: 1px white solid;
-}
-}
+      /* Landscape phones and down */
+      @media (max-width: 480px) { 
+       .copy {
+         padding: 2.5% 10%;
+       }
+       .linediv-l {
+         border-bottom: 1px white solid;
+       }
+       .linediv-r {
+         border-top: 1px white solid;
+       }
+      }
 
-/* all form factors */
+      /* All form factors */
 
-/* Main body and headings */
-    body {
-v    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-    }
-.heading, .subheading {
-   font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
-   text-align: center;
-}
-
-p.lead {
-   padding-top: 1.5%;
-   font-size: 24px;
-   line-height: 30px;
-}
-
-p { 
-  font-size: 18px;
-  line-height: 24px;
-}
-
-
-/* Video pitch and actions */
-
-.pitch {
-   padding: 2.5% 0%;
-}
-.order {
-padding: 2% 0%;
-}
-.actions {
-background-color: #343434;
-padding: 3% 0%;
-}
-
-.video, .thermometer, .order, .social, .statistics {
+      /* Main body and headings */
+      body{
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      }
+      .heading, .subheading {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
         text-align: center;
-}
+      }
+      p.lead {
+        padding-top: 1.5%;
+        font-size: 24px;
+        line-height: 30px;
+      }
+      p {
+        font-size: 18px;
+        line-height: 24px;
+      }
 
-.statistics h3, .statistics p {
-    color: white;
-}
+      /* Video pitch and Action */
+      .pitch {
+        padding: 2.5% 0%;
+      }
+      .order {
+        padding: 2% 0%;
+      }
+      .actions {
+        background-color: #343434;
+        padding: 3% 0%;
+      }
+      .video, .thermometer, .order, .social, .statistics {
+        text-align: center;
+      }
+      .statistics h3, .statistics p {
+        color: white;
+      }
 
- /* Marketing Copy and Footer */
+      /* Marketing Copy and Footer */
       .copy {
         padding-top: 2.5%;
         padding-bottom: 2.5%;
@@ -109,170 +100,206 @@ padding: 3% 0%;
       .footer a {
         color: #ccccff;
       }
-
-  </style>
+    </style>
   </head>
   <body>
 
-
-  <div class="navbar navbar-inverse navbar-fixed-top">
-<div class="navbar-inner">
- <div class="container">
-<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
- <span class="icon-bar"></span>
+    <!-- Mobile-friendly navbar adapted from example. -->
+    <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar"
+                  data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-<a class="brand" href="#">zabumba</a>
-<div class="nav-collapse collapse">
-<ul class="nav">
-   <li class="active"><a href="#">Home</a></li>
-       <li><a href="#about">About</a></li>
-       <li><a href="#contact">Contact</a></li>
-       </ul>
-
-</div><!--/.nav-collapse -->
-</div>
-</div>  
-</div>
-
-<div class="container">
-
-  <div class="row-fluid heading">
-   <div class="span12">
-   <h1>Zabumba</h1>
-   </div>
-  </div>
-  <div class="row-fluid subheading">
-   <div class="span12">
-    <p class="lead">Simple and Fun way to share presents with friends</p>
-   </div>
-  </div>
-
-  <div class="row-fluid pitch"> 
-   <div class="span5 offset1 video">
-    <img class="img-polaroid" src="http://placehold.it/480x300">
-   </div>
-
-  <div class="span5 actions">
-   <div class="span8 offset2">
-    <div class="statistics">
-     <div class="span4">
-      <div class="linediv-l">
-       <h3>1000</h3> <p>backers</p>
+          <a class="brand" href="#">Bitstarter</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
       </div>
-     </div>
-     <div class="span4">
-<div class="linediv-c">
-       <h3>$6000</h3> <p>of $10,000</p>
+    </div>
+
+    <!-- We use row-fluid inside containers to achieve a resizable layout. -->
+    <!-- blogs.endjin.com/2013/04/tips-for-implementing-responsive-designs-using-bootstrap/ -->
+    <!-- http://stackoverflow.com/a/12270322 -->
+    <div class="container">
+      <!-- Font and paired font of .heading/.subheading and body from Google Fonts -->
+      <!-- www.google.com/fonts/specimen/Ubuntu -->
+      <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
+      <div class="row-fluid heading">
+        <div class="span12">
+          <h1>Product: Development Version</h1>
+        </div>
+      </div> 
+      <div class="row-fluid subheading">
+        <div class="span12">
+          <!-- Special typography from Bootstrap for lead paragraph. -->
+          <!-- http://twitter.github.io/bootstrap/base-css.html#typography -->
+          <p class="lead">One sentence description.</p>
+        </div>
       </div>
-     </div>
-    <div class="span4">
-     <div class="linediv-r">
-      <h3>10</h3> <p>days left</p>
+      <div class="row-fluid pitch">
+        <div class="span5 offset1 video">
+          <img class="img-polaroid" alt="Placeholder" src="http://placehold.it/480x300">
+        </div>
+
+        <!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
+        <div class="span5 actions">
+          <div class="row-fluid">
+          <div class="span8 offset2">
+            <div class="row-fluid statistics">
+              <div class="span4">
+                <!-- linediv-l and linediv-r give dividing lines that look
+                different in horizontal and vertical layouts, illustrating
+                media queries. -->
+                <div class="linediv-l">
+                <h3>1000</h3> <p>backers</p>
+                </div>
+              </div>
+              <div class="span4">
+                <div class="linediv-c">
+                  <h3>$6000</h3> <p>of $10,000</p>
+                </div>
+              </div>
+              <div class="span4">
+                <div class="linediv-r">
+                <h3>10</h3> <p>days left</p>
+                </div>
+              </div>
+            </div>
           </div>
-     </div>
-    </div> 
-</div>
-<div class="span10 offset1">
-<div class="thermometer progress active">
-<div class="bar bar-success" style="width: 60%;"></div>
-<div class="bar bar-warning" style="width: 40%;"></div>
-</div>
-</div>
-<div class="span6 offset3 order">
-<button class="btn btn-success btn-large">Preorder</button>
-</div>
+          <div class="row-fluid">
+          <div class="span10 offset1">
+            <!-- Bootstrap progress bar -->
+            <!-- http://twitter.github.io/bootstrap/components.html#progress -->
+            <div class="thermometer progress active">
+              <div class="bar bar-success" style="width: 60%;"></div>
+              <div class="bar bar-warning" style="width: 40%;"></div>
+            </div>
+          </div>
+          </div>
+          <div class="row-fluid">
+          <div class="span6 offset3 order">
+            <!-- Standard Bootstrap button. -->
+            <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
+            <button class="btn btn-success btn-large">Preorder</button>
+          </div>
+          </div>
+          <div class="row-fluid">
+          <div class="span8 offset2 social">
+            <!-- Social buttons are not included in default Bootstrap. -->
+            <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
+            <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
+            <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
 
-<div class="span8 offset2 social">
-<button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
-<button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
-</div>
-</div>
-</div>
-
-    <!-- Beyond this part the marketing copy begins. -->
+      <!-- Beyond this part the marketing copy begins. -->
       <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->
       <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
       <!-- http://placehold.it -->
       <div class="row-fluid section1">
         <div class="span5 offset1 asset">
-          <img class="img-polaroid" src="http://placehold.it/480x300">
+          <img class="img-polaroid"  alt="Placeholder" src="http://placehold.it/480x300">
         </div>
         <div class="span5 copy">
           <p>
-In bullet points our technology means to state at all times:
-<ul>- Stay simple, easy to use;</ul>
-<ul>- Connect, not disrupt;</ul>
- <ul>- Act local, think global (sorry Marketing Management Consulting for this one..)</ul>
- <ul>- Environmentally responsible</ul>
-            
-
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            porta, dui sagittis hendrerit rutrum, nunc leo tempus nisl, eu
+            mollis justo velit at nunc. Fusce nec egestas sem. Donec
+            fringilla ante lectus, a pellentesque lacus dignissim ac. Sed
+            volutpat lorem ut congue malesuada. In facilisis scelerisque
+            turpis sed lacinia. Donec in orci lectus. Donec auctor semper
+            quam, eget rhoncus purus fringilla id. Phasellus id nibh eu
+            risus ultrices adipiscing.  Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Donec porta, dui sagittis hendrerit
+            rutrum, nunc leo tempus nisl, eu mollis justo velit at
+            nunc. Fusce nec egestas sem. Donec fringilla.
+          </p>
         </div>
       </div>
 
       <div class="row-fluid section2">
         <div class="span5 offset1 copy copy-right">
           <p>
-           We want to be the leader in the potentially HUGE, but, yet, incipient Gift Card Market in Brazil and we need your collaboration on that, being sharing our brand or sending us likes, bitcoins, money, or just feedback. That`s so exciting! See u!, or not :D.
-
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            porta, dui sagittis hendrerit rutrum, nunc leo tempus nisl, eu
+            mollis justo velit at nunc. Fusce nec egestas sem. Donec
+            fringilla ante lectus, a pellentesque lacus dignissim ac. Sed
+            volutpat lorem ut congue malesuada. In facilisis scelerisque
+            turpis sed lacinia. Donec in orci lectus. Donec auctor semper
+            quam, eget rhoncus purus fringilla id. Phasellus id nibh eu
+            risus ultrices adipiscing.  Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Donec porta, dui sagittis hendrerit
+            rutrum, nunc leo tempus nisl, eu mollis justo velit at
+            nunc. Fusce nec egestas sem. Donec fringilla.
           </p>
         </div>
         <div class="span5 asset">
-          <img class="img-polaroid" src="http://placehold.it/480x300">
+          <img class="img-polaroid"  alt="Placeholder" src="http://placehold.it/480x300">
         </div>
       </div>
 
+      <!-- For the FAQ, we introduce a little bit of JS, using the accordion. -->
+      <!-- This brings in jquery.js and bootstrap.js as dependencies. -->
+      <!-- http://twitter.github.io/bootstrap/javascript.html#collapse -->
+      <div class="row-fluid faq">
+          <div class="span10 offset1">
+            <h3>FAQ</h3>
+            <div class="accordion" id="accordion2">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseOne">
+                    What does FAQ stand for?
+                  </a>
+                </div>
+                <div id="collapseOne" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    Frequently Asked Question.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseTwo">
+                    What's a Frequently Asked Question?
+                  </a>
+                </div>
+                <div id="collapseTwo" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    A question which is commonly asked by users.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<div class="row-fluid faq">
-<div class="span10 offset1">
-<h3>FAQ</h3>
-<div class="accordion" id="accordion2">
-<div class="accordion-group">
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-What will be your Marketing Channels
-</a>
-</div>
-<div id="collapseOne" class="accordion-body collapse">
-<div class="accordion-inner">
-FB campaign; Google Adwords; Sales phone calls; 
-</div>
-</div>
-</div>
-<div class="accordion-group">
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-How will you distribute gifts
-</a>
-</div>
-<div id="collapseTwo" class="accordion-body collapse">
-<div class="accordion-inner">
-Through mobile app and by mail
-</div>
-</div>
-</div>
-<div class="accordion-group">
-<div class="accordion-heading">
-<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-Who will be your clients
-</a>
-</div>
-<div id="collapseTwo" class="accordion-body collapse">
-<div class="accordion-inner">
-End users in general and companies for new year.
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+      </div>
 
-<div class="row-fluid footer">
-<div class="span12">
-<p>This work is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC By-SA 3.0 </a>, qithout all the cruftl...</p>
-</div>
-</div>
-</div>
-</body>
-</Html>   
+      <!-- Not crucial, but we put this under a CC By-SA 3.0 license. -->
+      <!-- http://creativecommons.org/licenses/ -->
+      <div class="row-fluid footer">
+        <div class="span12">
+          <p>This work is licensed under
+            the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC
+              By-SA 3.0
+            </a>, without all the cruft that would otherwise be
+            put at the bottom of the page.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
