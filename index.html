@@ -97,11 +97,12 @@
       .footer a {
         color: #ccccff;
       }
-      p
-      {
-      text-indent:30px;
-      }      
-    </style>
+      /* http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */      
+      div.addthis_toolbox {
+      width:180px;
+      margin: 0 auto;
+      }
+     </style>
   </head>
   <body>
 
@@ -196,10 +197,16 @@
           </div>
           <div class="row-fluid">
           <div class="span8 offset2 social">
-            <!-- Social buttons are not included in default Bootstrap. -->
-            <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
-            <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
-            <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
+	    <!-- AddThis Button BEGIN -->
+	    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+	      <a class="addthis_button_preferred_1"></a>
+	      <a class="addthis_button_preferred_2"></a>
+	      <a class="addthis_button_compact"></a>
+	      <a class="addthis_counter addthis_bubble_style"></a>
+	    </div>
+	    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+	    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fa55ff40c1be2d"></script>
+	    <!-- AddThis Button END -->
           </div>
           </div>
         </div>
@@ -218,7 +225,7 @@
           <p>
             Víte z čeho se maturitní zkouška skládá? Kolik času budete
             mít na přípravu u zkoušky z českého jazyka? Kolik z matematiky?
-            Víte jaké pomůcky si můžete vzít sebou? Na co vlstně máte nárok?
+            Víte jaké pomůcky si můžete vzít sebou? Na co vlastně máte nárok?
             Nebuďte nepříjemně zaskočeni!
           </p>
           <p>  
