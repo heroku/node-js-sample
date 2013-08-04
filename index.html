@@ -97,6 +97,10 @@
       .footer a {
         color: #ccccff;
       }
+      .addthis_toolbox {
+      width: 180px;
+      margin: 0 atuo;
+      }
     </style>
   </head>
   <body>
@@ -194,8 +198,17 @@
           <div class="span8 offset2 social">
             <!-- Social buttons are not included in default Bootstrap. -->
             <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
-            <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
-            <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
+           
+
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+            <a class="addthis_button_facebook"></a>
+            <a class="addthis_button_twitter"></a>
+            <a class="addthis_button_google_plusone_share"></a>
+            </div>
+            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fde7045610962a"></script>
+            <!--button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button-->
+            <!--button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button-->
           </div>
           </div>
         </div>
