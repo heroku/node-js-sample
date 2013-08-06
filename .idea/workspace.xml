@@ -7,7 +7,7 @@
     <ignored path="bitstarter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375816103373" ignored="false" />
-    <file path="/index.html" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375820068528" ignored="false" />
+    <file path="/index.html" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375820795236" ignored="false" />
     <file path="/.gitignore" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375817066557" ignored="false" />
     <file path="$USER_HOME$/Documents/Proyectos/sps_portal/Gemfile" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375819870449" ignored="false" />
     <file path="$USER_HOME$/Documents/Proyectos/sps_portal/app/models/usuario.rb" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375819870449" ignored="false" />
@@ -33,7 +33,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="18" selection-start="4283" selection-end="4283" vertical-scroll-proportion="0.7993311">
+            <state line="145" column="16" selection-start="6206" selection-end="6206" vertical-scroll-proportion="0.77424747">
               <folding />
             </state>
           </provider>
@@ -226,7 +226,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="18" selection-start="4283" selection-end="4283" vertical-scroll-proportion="0.7993311">
+        <state line="145" column="16" selection-start="6206" selection-end="6206" vertical-scroll-proportion="0.77424747">
           <folding />
         </state>
       </provider>
