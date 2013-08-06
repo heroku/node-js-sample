@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b17aa91-a878-464f-809d-c1642a6d3006" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bitstarter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375816103373" ignored="false" />
     <file path="/index.html" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375816981262" ignored="false" />
+    <file path="/.gitignore" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375817066557" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,10 +29,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="8" selection-start="311" selection-end="311" vertical-scroll-proportion="0.17184943">
+            <state line="7" column="8" selection-start="311" selection-end="311" vertical-scroll-proportion="-4.375">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="6" selection-start="17" selection-end="17" vertical-scroll-proportion="0.023622047">
               <folding />
             </state>
           </provider>
@@ -55,6 +66,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -215,7 +227,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="8" selection-start="311" selection-end="311" vertical-scroll-proportion="0.17184943">
+        <state line="7" column="8" selection-start="311" selection-end="311" vertical-scroll-proportion="-4.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="6" selection-start="17" selection-end="17" vertical-scroll-proportion="0.023622047">
           <folding />
         </state>
       </provider>
