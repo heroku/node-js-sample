@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6b17aa91-a878-464f-809d-c1642a6d3006" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bitstarter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375816103373" ignored="false" />
-    <file path="/index.html" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375818151600" ignored="false" />
+    <file path="/index.html" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375818586662" ignored="false" />
     <file path="/.gitignore" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375817066557" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +32,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="18" selection-start="1369" selection-end="1369" vertical-scroll-proportion="1.0801964">
+            <state line="20" column="51" selection-start="1282" selection-end="1282" vertical-scroll-proportion="0.50167227">
               <folding />
             </state>
           </provider>
@@ -224,7 +225,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="18" selection-start="1369" selection-end="1369" vertical-scroll-proportion="1.0801964">
+        <state line="20" column="51" selection-start="1282" selection-end="1282" vertical-scroll-proportion="0.50167227">
           <folding />
         </state>
       </provider>
