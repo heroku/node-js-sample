@@ -100,7 +100,36 @@ font-size: 11px;
 .footer a {
 color: #ccccff;
 }
+<div class="span8 offset2 social">
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52002111543358e7"></script>
+<!-- AddThis Button END -->
+</div>
 </style>
+<!-- Google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-41058406-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- End Google analytics -->
   </head>
   <body>
     <!-- Mobile-friendly navbar adapted from example. -->
@@ -189,13 +218,18 @@ media queries. -->
           <div class="span6 offset3 order">
             <!-- Standard Bootstrap button. -->
             <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
-            <button class="btn btn-success btn-large">Preorder</button>
+            <!-- <button class="btn btn-success btn-large">Preorder</button> -->
+			<a class="coinbase-button" data-code="12ea954563f3f36ea8ddbb2accb52375" 
+            href="https://coinbase.com/checkouts/12ea954563f3f36ea8ddbb2accb52375">
+            Pay With Bitcoin</a>
+          <script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
           </div>
           <div class="span8 offset2 social">
           <!-- Social buttons are not included in default Bootstrap. -->
           <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
-          <button class="btn btn-twitter"> I Twitter</button> 
-          <button class="btn btn-facebook"> I Facebook</button></div>
+          <!-- <button class="btn btn-twitter"> I Twitter</button> -->
+          <!-- <button class="btn btn-facebook"> I Facebook</button> -->
+		  </div>
         </div>
       </div>
       <!-- Beyond this part the marketing copy begins. -->
@@ -265,5 +299,6 @@ media queries. -->
         </div>
       </div>
     </div>
+</script>
   </body>
 </html>
