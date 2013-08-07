@@ -28,7 +28,17 @@
             .linediv-r {
                 border-right: 1px white solid;
             }
-           
+            #twitter-btn {
+	      background: #0271bf;
+	      color: #ffffff;
+	      
+            }         
+            
+            #fb-btn {
+              background: #133783;
+	      background-opacity: 50%
+	      color: #ffffff;
+            } 
 
         }
  
@@ -39,7 +49,7 @@
             .copy {
                 padding: 2.5% 10%;
             }
-            .linediv -l {
+            .linediv-l {
                 border-bottom: 1px white solid;
             }
             .linediv-r {
@@ -199,13 +209,19 @@
                     <div class="bar bar-warning" style="width: 40%;"></div>
                  </div>
             </div>
+           <div class="row-fluid">  
             <div class="span6 offset3 order">
                 <!-- Standard Bootstrap button. -->
                 <!-- http://twitter.github.io/bootstrap/base-css.html#buttons-->
                 <button class="btn btn-success btn-large">Preorder</button>
+           </div>
+          </div>
+
+		<div class="row-fluid">
                 <div class="span8 offset2 social">
-                    <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
-                    <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
+                    <button class="btn btn-facebook" id="fb-btn"><i class="icon-facebook"></i> | Facebook</button>
+                    <button class="btn btn-twitter" id="twitter-btn"><i class="icon-twitter"></i> | Twitter</button>
+	       <div> 	    
            </div>
          </div>
         </div> 
@@ -214,7 +230,7 @@
 
         <div class="row-fluid section1">
             <div class="span5 offset1 asset">
-                <img class="img-polaroid" src="http://www.ingenieur.de/var/storage/images/media/images/bitcoins-akzepiert/2092481-1-ger-DE/Bitcoins-akzepiert.png">
+                <img class="img-polaroid" alt="Accept Payments Via Bitcoin!"src="http://www.ingenieur.de/var/storage/images/media/images/bitcoins-akzepiert/2092481-1-ger-DE/Bitcoins-akzepiert.png">
             </div>
             <div class="span5 copy">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -229,7 +245,7 @@
             </p>
         </div>
         <div class="span5 asset">
-            <img class="img-polaroid" src="http://ih3.redbubble.net/image.11036966.5844/fig,grass_green,mens,ffffff.jpg">
+            <img class="img-polaroid" alt="Promote on Kickstarter as well as have your own crowdfund."src="http://ih3.redbubble.net/image.11036966.5844/fig,grass_green,mens,ffffff.jpg">
 
         </div>
           </div>
