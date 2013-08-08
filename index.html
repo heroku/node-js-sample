@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My First Bitstarter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">    
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" 
+          rel="stylesheet" type="text/css">
+    <style type="text/css">
+
+      /* Large desktop */
+      @media (min-width: 980px) { 
+        body {
+         padding-top: 60px;
+        }
+       .linediv-l {
+         border-right: 1px white solid;
+        }
+       .linediv-r {
+         border-left: 1px white solid;
+       }
+      }
+
+      /* Landscape phones and down */
+      @media (max-width: 480px) { 
+       .copy {
+         padding: 2.5% 10%;
+       }
+       .linediv-l {
+         border-bottom: 1px white solid;
+       }
+       .linediv-r {
+         border-top: 1px white solid;
+       }
+      }
+
+      /* All form factors */
+
+      /* Main body and headings */
+      body{
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      }
+      .heading, .subheading {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        text-align: center;
+      }
+      p.lead {
+        padding-top: 1.5%;
+        font-size: 24px;
+        line-height: 30px;
+      }
+      p {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      /* Video pitch and Action */
+      .pitch {
+        padding: 2.5% 0%;
+      }
+      .order {
+        padding: 2% 0%;
+      }
+      .actions {
+        background-color: #343434;
+        padding: 3% 0%;
+      }
+      .video, .thermometer, .order, .social, .statistics {
+        text-align: center;
+      }
+      .statistics h3, .statistics p {
+        color: white;
+      }
+
+      /* Marketing Copy and Footer */
+      .copy {
+        padding-top: 2.5%;
+        padding-bottom: 2.5%;
+        text-align: justify;
+      }
+      .asset {
+        padding: 2.5% 0%;
+      }
+      .footer {
+        color: #cccccc;
+        text-align: center;
+      }
+      .footer p {
+        font-size: 11px;
+      }
+      .footer a {
+        color: #ccccff;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Mobile-friendly navbar adapted from example. -->
+    <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar"
+                  data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Bitstarter</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <!-- We use row-fluid inside containers to achieve a resizable layout. -->
+    <!-- blogs.endjin.com/2013/04/tips-for-implementing-responsive-designs-using-bootstrap/ -->
+    <!-- http://stackoverflow.com/a/12270322 -->
+    <div class="container">
+      <!-- Font and paired font of .heading/.subheading and body from Google Fonts -->
+      <!-- www.google.com/fonts/specimen/Ubuntu -->
+      <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
+      <div class="row-fluid heading">
+        <div class="span12">
+          <h1>eM Platform</h1>
+        </div>
+      </div> 
+      <div class="row-fluid subheading">
+        <div class="span12">
+          <!-- Special typography from Bootstrap for lead paragraph. -->
+          <!-- http://twitter.github.io/bootstrap/base-css.html#typography -->
+          <p class="lead">Pay money,earn eM.</p>
+        </div>
+      </div>
+      <div class="row-fluid pitch">
+        <div class="span5 offset1 video">
+          <img class="img-polaroid" src="http://t2.gstatic.com/images?q=tbn:ANd9GcSQHuPEr5WXAwzxc9CzXhT9cWHf2LOp_vzmasa2B3fSIdwOgu23xA" width="480" height="300">
+        </div>
+
+        <!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
+        <div class="span5 actions">
+          <div class="span8 offset2">
+            <div class="statistics">
+              <div class="span4">
+                <!-- linediv-l and linediv-r give dividing lines that look
+                different in horizontal and vertical layouts, illustrating
+                media queries. -->
+                <div class="linediv-l">
+                <h3>1</h3> <p>backers</p>
+                </div>
+              </div>
+              <div class="span4">
+                <div class="linediv-c">
+                  <h3>$0</h3> <p>of $10,000</p>
+                </div>
+              </div>
+              <div class="span4">
+                <div class="linediv-r">
+                <h3>100</h3> <p>days left</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="span10 offset1">
+            <!-- Bootstrap progress bar -->
+            <!-- http://twitter.github.io/bootstrap/components.html#progress -->
+            <div class="thermometer progress active">
+              <div class="bar bar-success" style="width: 0%;"></div>
+              <div class="bar bar-warning" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div class="span6 offset3 order">
+            <!-- Standard Bootstrap button. -->
+            <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
+            <button class="btn btn-success btn-large">Preorder</button>
+          </div>
+          <div class="span8 offset2 social">
+            <!-- Social buttons are not included in default Bootstrap. -->
+            <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
+            <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
+            <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beyond this part the marketing copy begins. -->
+      <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->
+      <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
+      <!-- http://placehold.it -->
+      <div class="row-fluid section1">
+        <div class="span5 offset1 asset">
+          <img class="img-polaroid" src="http://t1.gstatic.com/images?q=tbn:ANd9GcRslSyanIj-9IbyVY-_bUVKvS9Q9P4VcTw1SryHJC4A-_RND7nj" width="480" height="300">
+        </div>
+        <div class="span5 copy">
+          <p>
+  	  Introduction<hr size=1>
+            Nowadays,we have a new world which called online world. There are so many activities in this world. However most of these activities are not valuable to the economic approach, why? Because there is no mechanism or system to change the activities to be valued. The eM is a new medium of exchange to an online world that have more than billion of people living there.
+          </p>
+        </div>
+      </div>
+
+      <div class="row-fluid section2">
+        <div class="span5 offset1 copy copy-right">
+          <p>
+	  		 The eM Platform concept<hr size=1>
+            The conceptual idea of eM Platform is same and different from reality money concept. Some concepts of eM are different from real money <br> 
+			Briefly say eM Platform look like PayPal+eBAY+Forbes in an online world<br>
+			&nbsp;&nbsp;&nbsp;1) Earn eM by pay real money<br>
+			People can convert receipt paper to be eM by taking a photo and upload from eM app. How many they paid that show the number on receipt can convert to be eM.
+			<br>
+			&nbsp;&nbsp;&nbsp;	2) Get eM by doing online activities <br>
+			People can generate eM by do a lot activities in online world that eM support to do such as post, like, share and change their activities to be eM.
+			<br>
+			&nbsp;&nbsp;&nbsp;	3) Future idea<br>
+			People can generate eM by doing something that I don't know today,may be platform provide API to thrid party. In case you have an idea please let me know. Thank you in advance.
+
+          </p>
+        </div>
+        <div class="span5 asset">
+          <img class="img-polaroid" src="http://images.fastcompany.com/upload/Receipts.jpg" width="480" height="300">
+        </div>
+      </div>
+
+	     <div class="row-fluid section1">
+        <div class="span5 offset1 asset">
+          <img class="img-polaroid" src="http://www.ibm.com/developerworks/opensource/tutorials/os-wtpclient/manageAuctionsScreenShot.jpg" width="480" height="300">
+        </div>
+        <div class="span5 copy">
+          <p>
+  		  Use of eM<hr size=1>
+			Exercise eM to exchange commodity, products, or service etc.
+			Based on supply and demand theory (<a href=http://www.investopedia.com/university/economics/economics3.asp>learn more</a>) 
+			Thus a market on the eM Platform is using an auction. Assume that we have iPad mini, how much of iPad mini in eM price. The law supply and demand will tell us. People will bid for iPad mini may be 10,000 eM or up to 10 M eM. 
+			Any products from sponsors or we push it to the market will be responded by supply and demand, and these activities drive people to live in our platform.
+          </p>
+        </div>
+      </div>
+
+      <div class="row-fluid section2">
+        <div class="span5 offset1 copy copy-right">
+          <p>
+  		  Online Millionaires, Billionaires<hr size=1>
+            Supporting activities in eM platform such as  funny ranking like a Forbes <br> 
+
+          </p>
+        </div>
+        <div class="span5 asset">
+          <img class="img-polaroid" src="http://blogs-images.forbes.com/tomiogeron/files/2013/01/Forbes_cover012113.jpg" width="480" height="615">
+        </div>
+      </div>
+
+
+	     <div class="row-fluid section1">
+        <div class="span5 offset1 asset">
+            <p>
+  		  Talking Business <hr size=1>
+			Let us guess how many percent of online people want to convert their activities to be a valuable.
+			We have no suspect that is there online people to join our platform but we suspect that how many percent.
+			Based on 18 millions Thailand facebook users (<a href="http://www.techinasia.com/thailand-18-million-social-media-users-in-2013/">Ref</a>). In case we can get more than 1 million users to join eM platform we can generate revenue form sponsor more than THB 100 Million per year that enough to be a listed company in MAI,alternative stock exchange in Thailand. However, I hope more than 1 million users to join, and also we can scale up to global in soon. Let's sing I dreamed a dream.
+
+          </p>
+
+        </div>
+        <div class="span5 copy">
+          <p>
+  		  Revenue Model<hr size=1>
+			1) B2B Model : Sell eM to business <br>
+			Like a coupon but this is eM. When client pay for bill seller give eM QR code to buyer and then buyer take smart phone to scan eM QR code to earn eM.
+			This is a promotion for many SME shop. they do not messy with system. eM is their answer for a promotion.<br>
+			Example we sell 10 M eM for THB 100,000<br>
+			<i>Please note that in the begining may be we have to take eM for free to seller.</i>
+			<br>
+			2) Ad revenue model <br>
+			There are many chanel to promote your product push it to our Market for auction, or buy a banner to show on eM app and website.
+
+          </p>
+        </div>
+      </div>
+
+      <div class="row-fluid section2">
+        <div class="span5 offset1 copy copy-right">
+          <p>
+  		  A lot things to talk<hr size=1>
+          There are many things to share with you, but we want to take action more than talking. However, we know that may be you want to know the action plan.
+		  and how it is possible to implement. Let us talk in next chance.
+
+          </p>
+        </div>
+        <div class="span5 asset">
+          <img class="img-polaroid" src="http://t3.gstatic.com/images?q=tbn:ANd9GcT2umb_scIKsUUWnRe97XVZxTHWtNReHq87VW-U1K4fHSNHqiiV" width="480" height="300">
+        </div>
+      </div>
+
+      <!-- For the FAQ, we introduce a little bit of JS, using the accordion. -->
+      <!-- This brings in jquery.js and bootstrap.js as dependencies. -->
+      <!-- http://twitter.github.io/bootstrap/javascript.html#collapse -->
+      <div class="row-fluid faq">
+          <div class="span10 offset1">
+            <h3>FAQ</h3>
+            <div class="accordion" id="accordion2">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseOne">
+                    What does FAQ stand for?
+                  </a>
+                </div>
+                <div id="collapseOne" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    Frequently Asked Question.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseTwo">
+                    What's a Frequently Asked Question?
+                  </a>
+                </div>
+                <div id="collapseTwo" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    A question which is commonly asked by users.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+      <!-- Not crucial, but we put this under a CC By-SA 3.0 license. -->
+      <!-- http://creativecommons.org/licenses/ -->
+      <div class="row-fluid footer">
+        <div class="span12">
+          <p>This work is licensed under
+            the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC
+              By-SA 3.0
+            </a>, without all the cruft that would otherwise be
+            put at the bottom of the page.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
