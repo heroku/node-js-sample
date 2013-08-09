@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6b17aa91-a878-464f-809d-c1642a6d3006" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bitstarter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1376015251706" ignored="false" />
-    <file path="/index.html" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1376017548713" ignored="false" />
+    <file path="/index.html" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1376060894952" ignored="false" />
     <file path="/.gitignore" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375817066557" ignored="false" />
     <file path="$USER_HOME$/Documents/Proyectos/sps_portal/Gemfile" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375822208016" ignored="false" />
     <file path="$USER_HOME$/Documents/Proyectos/sps_portal/app/models/usuario.rb" changelist="6b17aa91-a878-464f-809d-c1642a6d3006" time="1375819870449" ignored="false" />
@@ -34,10 +33,11 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="282" column="15" selection-start="13052" selection-end="13052" vertical-scroll-proportion="0.8039216">
+            <state line="247" column="29" selection-start="10548" selection-end="10548" vertical-scroll-proportion="0.12798634">
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#0;n#div#7;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -227,6 +227,7 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#0;n#div#7;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -238,10 +239,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="282" column="15" selection-start="13052" selection-end="13052" vertical-scroll-proportion="0.8039216">
+        <state line="247" column="29" selection-start="10548" selection-end="10548" vertical-scroll-proportion="0.12798634">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#0;n#div#7;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

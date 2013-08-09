@@ -19,16 +19,28 @@
                         padding-top: 60px;
                     }
                     .linediv-l {
-                        border-right: 1px white solid;
+                        border-bottom: 1px white solid;
                     }
-                    .linediv-r {
-                        border-left: 1px white solid;
+                    .linediv-c {
+                        border-bottom: 1px white solid;
                     }
+
                 }
 
                 /*
                 ** All from factors
                 */
+
+                /* Header */
+
+                .container .image_c .col_flag{
+                    float: right;
+                    width: 2%;
+                    padding-top: 1%;
+                }
+                .h_right{
+                    padding-left: 450px;
+                }
 
                 /* Main body and headings */
                 body{
@@ -40,15 +52,28 @@
                     text-align: center;
                 }
 
+                .heading .span12 .logo{
+                    float: left;
+                    width: 440px;
+                    height: 180px;
+                }
+
                 p.lead{
                     padding-top: 1.5%;
                     font-size: 24px;
                     line-height: 30px;
+                    float: right;
+                    margin-top: -5%;
                 }
 
                 p{
                     font-size: 18px;
                     line-height: 24px;
+                }
+
+                .row-fluid .specific_sp4{
+                    width: 100%;
+                    margin-left: 0;
                 }
 
                 /* Video pitch and Action */
@@ -88,6 +113,7 @@
                 .footer a {
                     color: #ccccff;
                 }
+
 			</style>
 	</head>	
 	<body>
@@ -103,14 +129,25 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="#">Bitstarter</a>
+                    <a class="brand" href="#">SocialBike</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#profile">Profile</a></li>
+                            <li><a href="#events">Events</a></li>
+                            <li><a href="#users">Users</a></li>
+                            <li><a href="#users">Feed</a></li>
                         </ul>
-                    </div><!-- /.nav-collapse-->
+                    </div>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav h_right">
+                            <li><a href="#login">Login</a></li>
+                            <li><a href="#signin">Sign in</a></li>
+                        </ul>
+                    </div>
+                    <div class="image_c">
+                        <img class="col_flag" src="colombian_flag.png">
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,7 +161,7 @@
             <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
             <div class="row-fluid heading">
                 <div class="span12">
-                    <h1>Product</h1>
+                    <img class="logo" src="sb_logo.png">
                 </div>
             </div>
 
@@ -132,33 +169,40 @@
                 <div class="span12">
                     <!-- Special typography from Bootstrap for lead paragraph. -->
                     <!-- http://twitter.github.io/bootstrap/base-css.html#typography -->
-                    <p class="lead">One sentence description</p>
+                    <p class="lead">Do you want to get out for biking ride and don't have with who?</p>
                 </div>
             </div>
 
             <div class="row-fluid pitch">
                 <div class="span5 offset1 video">
-                    <img class="img-polaroid" src="http://placehold.it/480x300">
+
+                    <iframe width="480" height="300" src="http://www.youtube.com/embed/5CX2RAIyu3I?rel=0" frameborder="0" allowfullscreen>
+                    </iframe>
+
                 </div>
 
                 <!-- We define a new 'actions' div to contain statistics, order, and share buttons. -->
                 <div class="span5 actions">
                     <div class="span8 offset2">
                         <div class="statistics">
-                            <div class="span4">
+                            <div class="span4 specific_sp4">
                                 <!-- linediv-l and linediv-r give dividing lines that look
                                 different in horizontal and vertical layouts, illustrating
                                 media queries. -->
-                                <div class="linediv-l">
-                                    <h3>1000</h3><p>backers</p>
+                                <div class="linediv-l ">
+                                    <h3>
+                                        <abbr title="Approximately">Aprox.</abbr> 2M in Medellín
+                                    </h3>
                                 </div>
                             </div>
-                            <div class="span4">
+                            <div class="span4 specific_sp4">
                                 <div class="linediv-c">
-                                    <h3>6000</h3><p>of $10,000</p>
+                                    <h3>
+                                        <abbr title="Approximately">Aprox.</abbr> 50.000 have a bycycle
+                                    </h3>
                                 </div>
                             </div>
-                            <div class="span4">
+                            <div class="span4 specific_sp4">
                                 <div class="linediv-r">
                                     <h3>10</h3><p> days left</p>
                                 </div>
@@ -195,38 +239,25 @@
             <!-- http://placehold.it -->
             <div class="row-fluid section1">
                 <div class="span5 offset1 asset">
-                    <img class="img-polaroid" src="http://placehold.it/480x300">
+                    <img class="img-polaroid" src="map.gif">
                 </div>
                 <div class="span5 copy">
                     <p>
-                        Lorem bla bla bla bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla bla bla bla bla bla bla.
+                        has come a social network where you can find friends,
+                        create events, create blogs, invitations to events, etc.
+                        .....
                     </p>
                 </div>
             </div>
             <div class="row-fluid section2">
                 <div class="span5 offset1 copy copy-right">
                     <p>
-                        Lorem bla bla bla bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla ...................
-                        ............. bla bla bla bla bla bla bla bla bla.
+                        you can have a healthy life...
+                        .........
                     </p>
                 </div>
                 <div class="span5 asset">
-                    <img class="img-polaroid" src="http://placehold.it/480x300">
+                    <img class="img-polaroid" src="bikelife.jpg">
                 </div>
             </div>
 
@@ -267,16 +298,28 @@
                 </div>
             </div>
 
+            <div class="row-fluid">
+                <p class="text-center">
+                    <small>
+                        <a href="#about">About</a> | <a href="#contact">Contact</a>
+                    </small>
+                </p>
+            </div>
+
             <!-- Not crucial, but we put this under a CC By-SA 3.0 license -->
             <!-- http://creativecommons.org/licenses/ -->
             <div class="row-fluid footer">
                 <div class="span12">
                     <p>
-                        This work is licensed under
-                        the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC
-                        By-SA 3.0
-                        </a>, without all the cruft that would otherwise be
-                        put at the bottom of the page.
+                        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es_ES">
+                            <img alt="Licencia de Creative Commons"
+                                 style="border-width:0"
+                                 src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" />
+                        </a>
+                        <br />
+                        <span xmlns:dct="http://purl.org/dc/terms/"
+                              property="dct:title">SocialBike</span> is licensed under a <a rel="license"
+                                                                                            href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es_ES">Creative Commons Reconocimiento-NoComercial-CompartirIgual 3.0 Unported License</a>.
                     </p>
                 </div>
             </div>
