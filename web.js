@@ -28,7 +28,7 @@ app.get('/orders', function(request, response) {
     // Uses views/orders.ejs
     response.render("orders", {orders: orders_json});
   }).error(function(err) {
-    console.log(e);
+    console.log(err);
     response.send("error retrieving orders");
   });
 });
