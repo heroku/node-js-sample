@@ -10,5 +10,5 @@ module.exports = function(sequelize, DataTypes) {
     coinbase_id: {type: DataTypes.STRING, unique: true, allowNull: false},
     amount: {type: DataTypes.FLOAT},
     time: {type: DataTypes.STRING, allowNull: false}
-  })
-}
+  });
+};
