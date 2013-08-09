@@ -23,11 +23,13 @@
                     }
                     .linediv-r {
                         border-left: 1px white solid;
-
                     }
                 }
 
-                /* All from factors */
+                /*
+                ** All from factors
+                */
+
                 /* Main body and headings */
                 body{
                     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -65,6 +67,26 @@
                 }
                 .statistics h3, .statistics p{
                     color: white;
+                }
+
+                /* Marketing Copy and Footer*/
+                .copy{
+                    padding-top: 2.5%;
+                    padding-bottom: 2.5%;
+                    text-align: justify;
+                }
+                .asset{
+                    padding: 2.5% 0%;
+                }
+                .footer{
+                    color: #cccccc;
+                    text-align: center;
+                }
+                .footer p {
+                    font-size: 11px;
+                }
+                .footer a {
+                    color: #ccccff;
                 }
 			</style>
 	</head>	
@@ -143,7 +165,30 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="span10 offset1">
+                    <!-- Bootstrap progress bar -->
+                    <!-- http://twitter.github.io/bootstrap/components.html#progress -->
+                    <div class="thermometer progress active">
+                        <div class="bar bar-success" style="width: 60%;"></div>
+                        <div class="bar bar-warning" style="width: 40%;"></div>
+                    </div>
+                </div>
+
+                <div class="span6 offset3 order">
+                    <!-- Standard Bootstrap button. -->
+                    <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
+                    <button class="btn btn-success btn-large"></button>
+                </div>
+
+                <div class="span8 offset2 social">
+                    <!-- Social buttons are not included in default Bootstrap -->
+                    <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
+                    <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
+                    <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
+                </div>
             </div>
         </div>
+
 	</body>
 </html>
