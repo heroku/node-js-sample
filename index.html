@@ -9,7 +9,7 @@
     <title>Bitstarter</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
@@ -20,6 +20,13 @@
      <!-- Latest compiled and minified JavaScript -->
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
     
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
+
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" 
+          rel="stylesheet" type="text/css">
+
     <style type="text/css">
 
       body {
@@ -42,6 +49,34 @@
       .video, .thermometer, .order, .social, .statistics {
         text-align: center;
       }
+
+      .statistics h3, .statistics p {
+        color: white;
+      }
+
+       /* Large desktop */
+      @media (min-width: 980px) { 
+       .linediv-l {
+         border-right: 1px white solid;
+        }
+       .linediv-r {
+         border-left: 1px white solid;
+       }
+      }
+
+      /* Landscape phones and down */
+      @media (max-width: 480px) { 
+       .copy {
+         padding: 2.5% 10%;
+       }
+       .linediv-l {
+         border-bottom: 1px white solid;
+       }
+       .linediv-r {
+         border-top: 1px white solid;
+       }
+      }
+
 
     </style>
   </head>
@@ -67,18 +102,72 @@
     </div>
 
     <div class="container">
+
       <div class="heading">
       <h1><b> Product </b> </h1>
-
       <h3>A short product description</h3>
       </div>
 
       <div class="row top">
-	<div class="col-lg-6 video"> <img align="center" class="img-responsive" alt="Responsive image" src="http://placehold.it/480x300"> </div>
-	<div class="col-lg-5 actions"></div>
-      </Div>
+	<div class="col-md-5 col-md-offset-1 video"><img class="img-responsive" alt="Responsive image" src="http://placehold.it/480x300"></div>
+	<div class="col-md-5 actions">
+	  <div class="row">
+	    <div class="col-md-8 col-md-offset-2">
+	      <div class="statistics">
+		<div class="row">
+		  <div class="col-md-4">
+		    <div class="linediv-l">
+                      <h3>1000</h3> <p>backers</p>
+		    </div>
+		  </div>
+		  <div class="col-md-4">
+                    <div class="linediv-c">
+		      <h3>$6000</h3> <p>of $10,000</p>
+                    </div>
+		  </div>
+		  <div class="col-md-4">
+                    <div class="linediv-r">
+		      <h3>10</h3> <p>days left</p>
+                    </div>
+		  </div>
+		</div>
+	      </div>
+	      <div class="row">
+		<div class="col-md-10 col-md-offset-1">
+		  <!-- Bootstrap progress bar -->
+		  <!-- http://twitter.github.io/bootstrap/components.html#progress -->
+		  <div class="thermometer progress active">
+		    <div class="bar bar-success" style="width: 60%;"></div>
+		    <div class="bar bar-warning" style="width: 40%;"></div>
+		  </div>
+		</div>
+	      </div>
+	      <div class="row">
+		<div class="col-md-6 col-md-offset-3 order">
+		  <!-- Standard Bootstrap button. -->
+		  <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
+		  <button class="btn btn-success btn-large">Preorder</button>
+		</div>
+	      </div>
+	      <div class="row top">
+		<div class="col-md-4 col-md-offset-2 social">
+		  <!-- Social buttons are not included in default Bootstrap. -->
+		  <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
+		  <button class="btn btn-facebook"><i class="icon-facebook"></i> | Facebook</button>
+		</div>
+		<div class="col-md-4  social">
+		  <button class="btn btn-twitter"><i class="icon-twitter"></i> | Twitter</button>
+		</div>
+	      </div>
+            </div>
+	  </div>
+	  </div>
+	</div>
+      </div>
+    </div>
 
     </Div><!-- /.Container -->
 
   </body>
 </html>
+
