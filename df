@@ -1,0 +1,155 @@
+commit 86299dadbe74f39d8305ed277729d978032049fb
+Author: mponnada <kuldeep@unixell.in>
+Date:   Mon Aug 12 11:04:59 2013 +0000
+
+    Coinbase bitcoin added
+
+commit 80ce318bf0933ae2d29e8b47cec0776521be373c
+Author: mponnada <kuldeep@unixell.in>
+Date:   Mon Aug 12 08:10:30 2013 +0000
+
+    Added GA code
+
+commit 4234be177f43873dbedac5b7bc43eff61ba2f11c
+Author: mponnada <kuldeep@unixell.in>
+Date:   Mon Aug 12 07:40:13 2013 +0000
+
+    Added AddThis and styled it
+
+commit b1a802d2674e24418a477bee3f5d426bbbaeacf6
+Author: mponnada <kuldeep@unixell.in>
+Date:   Mon Aug 12 07:16:18 2013 +0000
+
+    adding placeholders and row-fluid
+
+commit ad70ba43ca79acd4814131bf0ff46867d92c1280
+Author: mponnada <kuldeep@unixell.in>
+Date:   Mon Jul 29 13:21:08 2013 +0000
+
+    whatever npm is left, restler etc
+
+commit be0f703a3b05d807e259aa82c492b58a6d6d84e7
+Author: mponnada <kuldeep@unixell.in>
+Date:   Mon Jul 29 13:01:33 2013 +0000
+
+    Fixed staging bugs in develop branch
+
+commit b3f4592441f5964310ae42d605b1aea312ce91ba
+Author: mponnada <kuldeep@unixell.in>
+Date:   Mon Jul 29 12:51:16 2013 +0000
+
+    Edited title in index.html
+
+commit 2b956c320847cf2113289344c8cfd2d9b4661f0b
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Sat Jul 20 10:29:03 2013 +0000
+
+    modified version for digitizr complete with Hero unit, subhero units, and content. Need to add images & other collateral
+
+commit 22159337e7f6cc99dc28160be9c7d227a55b6255
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Fri Jul 19 15:24:29 2013 +0000
+
+    Added hero unit and modified for digitizr
+
+commit 2993b71223a7f79630fb65998d802a112ba92b42
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Thu Jul 18 18:58:45 2013 +0000
+
+    fixed DOCTYPE up top
+
+commit 6e8759f454710ab9d45252dc7260d44a6a7b414d
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Thu Jul 18 18:45:35 2013 +0000
+
+    Added JS and completed page , tested for web & mobile
+
+commit db9322e4b7c0b83b0a2983278d58ba7e9cdaa53c
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Thu Jul 18 17:47:21 2013 +0000
+
+    added thermometer, preorder, social and pitch components
+
+commit 6b7b9fac16bc2f72b86f27cd9d3ed0af0a56a8ee
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Tue Jul 16 09:49:05 2013 +0000
+
+    Added style and code for video and other actions
+
+commit 9107965fa4a3f421c2c309f2e980a3dba0ce48ae
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Mon Jul 15 18:09:59 2013 +0000
+
+    center align
+
+commit ace52879bbf2bcf04286e17a274997f2729038f9
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Mon Jul 15 18:06:36 2013 +0000
+
+    Added subheading fluid
+
+commit 9f3f1360446d286a8fe022cd1ae8832e49203123
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Mon Jul 15 18:02:25 2013 +0000
+
+    Added topHeading & Styles
+
+commit 4ba8fcaeb61b89938b351b6688702ade6007d2cf
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Mon Jul 15 17:38:12 2013 +0000
+
+    Navbar added
+
+commit 0eadf9d03fcc9b088a10a8f752a3a9dd2a144de1
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Mon Jul 15 08:19:37 2013 +0000
+
+    Completed step 0
+
+commit 093cf759bdf8eb463d0760e68b572b04c7f92ee4
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Mon Jul 8 15:13:56 2013 +0000
+
+    modified grader.js to work with --url
+
+commit 4baa34a2c1a874ebdb2d1e0541c10804974df198
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Mon Jul 8 10:42:07 2013 +0000
+
+    Adding grader.js & checks.json, removing par1&part2 csv
+
+commit 12d0b0a6159e5f03f7754043c05c99d8ac63a1f6
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Mon Jul 8 10:40:22 2013 +0000
+
+    Added grader.js and checks.json
+
+commit 58818802d9d2b44aa57d3b2ae4bf27ffd258111b
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Sat Jul 6 19:45:11 2013 +0000
+
+    First version of index.html
+
+commit 917c98577e2637387c515b3cdbbcca1700632ffd
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Sat Jul 6 18:20:51 2013 +0000
+
+    Added readFileSyc & buffer read to read from index.html
+
+commit 0d93e7541bfdb83271db503411b51e78ea557929
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Sat Jul 6 16:25:37 2013 +0000
+
+    Added Index.html
+
+commit 48238f5b329ea4d93476c3c289c6fecf8a95b914
+Author: Mohan Ponnada <kuldeep@unixell.in>
+Date:   Sat Jul 6 16:20:39 2013 +0000
+
+    Updated web.js and added 2 to hello world
+
+commit 90fd58e343c29e54fc1d4e19036595500b2bdc21
+Author: Mark Pundsack <mp@heroku.com>
+Date:   Thu Aug 16 21:11:09 2012 -0700
+
+    init
