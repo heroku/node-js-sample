@@ -1,0 +1,12 @@
+# Heroku environmental variables, including API keys.
+# https://devcenter.heroku.com/articles/config-vars
+.env
+
+# npm packages
+node_modules
+
+# Mac
+.DS_Store
+
+# Emacs
+*~

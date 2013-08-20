@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Orders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Coinbase orders</h2>
+      <table class="table table-striped">
+        <thead>
+          <th>Coinbase ID</th>
+          <th>BTC</th>
+          <th>Transaction time</th>
+        </thead>
+        <tbody>
+          <% for(var i=0; i<orders.length; i++) {%>
+             <tr>
+               <td><%= orders[i].id %></td>
+               <td><%= orders[i].amount %></td>
+               <td><%= orders[i].time %></td>
+             </tr>
+             <% } %>
+      </table>
+      <a href="/refresh_orders">Refresh orders from coinbase</a>
+    </div>
+  </body>
+</html>
