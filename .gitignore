@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Heroku environmental variables, including API keys.
 # https://devcenter.heroku.com/articles/config-vars
 .env
@@ -10,3 +11,6 @@ node_modules
 
 # Emacs
 *~
+=======
+node_modules
+>>>>>>> cccd0ab5b8b50eb81fadd22e5ce90abd8a299237

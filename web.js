@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Define routes for simple SSJS web app. 
 // Writes Coinbase orders to database.
 var async   = require('async')
@@ -109,3 +110,21 @@ var addOrder = function(order_obj, callback) {
     });
   }
 };
+=======
+var express = require('express');
+var fs = require('fs');
+
+var app = express.createServer(express.logger());
+
+app.get('/', function(request, response) {
+    fs.readFile('index.html', function (err, data) {
+	  if (err) throw err;
+	  response.send(data.toString());
+	});
+});
+
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
+>>>>>>> cccd0ab5b8b50eb81fadd22e5ce90abd8a299237
