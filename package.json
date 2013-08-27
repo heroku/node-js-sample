@@ -1,19 +1,12 @@
 {
-<<<<<<< HEAD
   "name": "bitstarter-ssjs-orders",
   "version": "0.0.1",
   "description": "Simple server-side JS order processing",
-=======
-  "name": "node-js-sample",
-  "version": "0.0.2",
-  "description": "a sample node.js app for heroku",
->>>>>>> cccd0ab5b8b50eb81fadd22e5ce90abd8a299237
   "main": "web.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-<<<<<<< HEAD
     "sequelize": "~2.0.0-alpha2",
     "pg": "~2.3.1",
     "ejs": "~0.8.4",
@@ -23,13 +16,6 @@
   "engines": {
     "node": "0.10.12",
     "npm": "1.2.30"
-  }
-=======
-    "express": "~3.3.4"
-  },
-  "engines": {
-    "node": "0.10.13",
-    "npm": "1.3.2"
   },
   "repository": {
     "type": "git",
@@ -42,5 +28,4 @@
   "author": "Mark Pundsack",
   "license": "BSD",
   "gitHead": "90fd58e343c29e54fc1d4e19036595500b2bdc21"
->>>>>>> cccd0ab5b8b50eb81fadd22e5ce90abd8a299237
 }
