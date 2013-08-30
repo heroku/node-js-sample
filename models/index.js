@@ -4,7 +4,7 @@ if (!global.hasOwnProperty('db')) {
     var fs = require('fs');
     var PGPASS_FILE = '../.pgpass';
     if (process.env.DATABASE_URL) {
-        /* Remote database
+        /* Check this Remote database
            Do `heroku config` for details. We will be parsing a connection
            string of the form:
            postgres://bucsqywelrjenr:ffGhjpe9dR13uL7anYjuk3qzXo@\
