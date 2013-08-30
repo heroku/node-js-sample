@@ -1,4 +1,4 @@
-/* Check postgres content after usage Object/Relational mapping for instances of the Order class.
+/* Check db after usag Object/Relational mapping for instances of the Order class.
      - classes correspond to tables
      - instances correspond to rows
     - fields correspond to columns
