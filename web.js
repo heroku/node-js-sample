@@ -1,5 +1,5 @@
 var express = require('express');
-var data = "Hello World 3!";
+var data = fs.readFileSync("index.html", "utf8");
 var app = express();
 app.use(express.logger());
 
