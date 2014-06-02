@@ -26,7 +26,7 @@ heroku open
 Alternatively, you can deploy your own copy of the app using this experimental
 web-based flow:
 
-[![Deploy on Heroku](https://s3.amazonaws.com/f.cl.ly/items/12030r0c0J3z123k442i/deploy-button.png)](http://clone.herokuapp.com/apps/heroku/node-js-sample)
+[![Deploy on Heroku](https://s3.amazonaws.com/f.cl.ly/items/12030r0c0J3z123k442i/deploy-button.png)](https://clone.herokuapp.com/apps/heroku/node-js-sample)
 
 ## Documentation
 
