@@ -23,6 +23,11 @@ git push heroku master
 heroku open
 ```
 
+Alternatively, you can deploy your own copy of the app using this experimental
+web-based flow:
+
+[![Deploy on Heroku](https://s3.amazonaws.com/f.cl.ly/items/12030r0c0J3z123k442i/deploy-button.png)](http://clone.herokuapp.com/apps/zeke/slideshow)
+
 ## Documentation
 
 For more information about using Node.js on Heroku, see these Dev Center articles:
