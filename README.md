@@ -26,7 +26,7 @@ heroku open
 Alternatively, you can deploy your own copy of the app using this experimental
 web-based flow:
 
-[![Deploy on Heroku](//www.herokucdn.com/deploy/button.png)](//heroku.com/deploy)
+[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Documentation
 
