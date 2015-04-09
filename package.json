@@ -1,6 +1,6 @@
 {
   "name": "node-js-sample",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "express": "^4.0.0"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "0.12.x"
   },
   "repository": {
     "type": "git",
