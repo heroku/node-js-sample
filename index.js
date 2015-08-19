@@ -8,14 +8,14 @@ app.use(express.static(__dirname + '/public'))
 var fs = require('fs')
 var buffer = new Buffer(25600) 
 
-
+var website = fs.readFileSync('index.html', 'utf8') 
 
 
 
 //buffer.write(fs.readFileSync('index.html'))
 
-buffer.write('ausprobiert!')
-website = buffer.toString('ascii')
+//buffer.write('ausprobiert!')
+//website = buffer.toString('ascii')
 
 app.get('/', function(request, response) {
   response.send(website)
