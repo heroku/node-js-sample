@@ -1,3 +1,4 @@
 ["h1",
- ".navigation"
- ".logo"]
+ ".navigation",
+ ".logo",
+ ".blank"]
