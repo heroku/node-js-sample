@@ -6,7 +6,7 @@ app.use(express.static(__dirname + '/public'))
 
 
 var fs = require('fs')
-var buffer = new Buffer(256) 
+var buffer = new Buffer(25600) 
 
 
 
@@ -14,7 +14,7 @@ var buffer = new Buffer(256)
 
 fs.readFileSync('index.html');
 
-website = buffer.toString('ascii')
+website = buffer.toString('utf8')
 
 app.get('/', function(request, response) {
   response.send(website)
