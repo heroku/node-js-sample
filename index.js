@@ -12,10 +12,9 @@ var buffer = new Buffer(25600)
 
 
 
-//fs.readFileSync('index.html');
+buffer.write(fs.readFileSync('index.html'))
 
-
-buffer.write('ausprobiert!')
+//buffer.write('ausprobiert!')
 website = buffer.toString('utf8')
 
 app.get('/', function(request, response) {
