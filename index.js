@@ -5,20 +5,16 @@ app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
 
-var fs = require('fs');
+var fs = require('fs')
 var buffer = new Buffer(256) 
 
+
+
+
+
+fs.readFileSync('index.html');
+
 website = buffer.toString('ascii')
-
-
-
-fs.readFileSync('index.html', function (err,data) {
-    if (err) throw err;
-    console.log(data);
-});
-
-
-
 
 app.get('/', function(request, response) {
   response.send(website)
