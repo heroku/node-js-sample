@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af69f40d-8384-4469-a5bd-9dee0b10dd18" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pub/creative/css/quiz.css" afterPath="$PROJECT_DIR$/pub/creative/css/quiz.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pub/creative/index.html" afterPath="$PROJECT_DIR$/pub/creative/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pub/creative/js/quiz.js" afterPath="$PROJECT_DIR$/pub/creative/js/quiz.js" />
     </list>
     <ignored path="node-js-sample.iws" />
@@ -78,8 +77,8 @@
       <file leaf-file-name="quiz.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pub/creative/js/quiz.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.21562156">
-              <caret line="34" column="3" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,8 +102,8 @@
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/pub/creative/css/creative.css" />
         <option value="$PROJECT_DIR$/pub/creative/index.html" />
-        <option value="$PROJECT_DIR$/pub/creative/js/quiz.js" />
         <option value="$PROJECT_DIR$/pub/creative/css/quiz.css" />
+        <option value="$PROJECT_DIR$/pub/creative/js/quiz.js" />
       </list>
     </option>
   </component>
@@ -507,8 +506,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pub/creative/js/quiz.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.21562156">
-          <caret line="34" column="3" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

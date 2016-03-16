@@ -26,10 +26,6 @@ $(document).ready(function(){
 
     $quizBox.find(".well").click( function( event ) {
         $quizBox.find(".well").removeClass("selected");
-//        if ($(this).is(':animated')) {
-//            $(this).css("-webkit-animation", "none");
-//            $(this).css("animation", "none");
-//        }
         $(this).addClass("selected");
         chosenAnswer = $(this).data("answer-letter");
     });
