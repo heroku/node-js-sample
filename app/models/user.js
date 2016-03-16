@@ -6,7 +6,6 @@ var users = JSON.parse(fs.readFileSync('./json/user.json', 'utf8'));
 var exports = module.exports = {};
 
 exports.findOne = function(user, callback) {
-    console.log("user: ", user);
     var email = user.email;
     for(var i=0; i < users.length; i++){
        var act_user = users[i];
@@ -25,7 +24,6 @@ exports.findOne = function(user, callback) {
 exports.findById = function(id, callback) {
     for(var i=0; i < users.length; i++) {
         if (users[i]["id"] === id) {
-            console.log("id found");
             callback(null, users[i]);
             return;
         }
@@ -42,12 +40,12 @@ exports.generateHash = function(password) {
 
 function validatePassword(password, encryptedPassword) {
     return bcrypt.compareSync(password, encryptedPassword);
-};
+}
 
 exports.userSchema = {
     'local'            : {
         'email'        : '',
-        'password'     : '',
+        'password'     : ''
     },
     'facebook'         : {
         'id'           : '',
@@ -79,13 +77,17 @@ exports.generateId = function() {
     return id;
 };
 
-exports.save = function(newUser) {
+exports.save = function(newUser, callback) {
     users.push(newUser);
     fs.writeFile('./json/user.json', JSON.stringify(users), function (err) {
-      if (err) return console.log(err);
-      console.log('User saved');
+      if (err) {
+          console.log(err);
+          return;
+      }
+        console.log('User saved');
+        callback();
     });
-}
+};
 
 function s4() {
     return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
