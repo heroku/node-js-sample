@@ -1,7 +1,7 @@
 {
-  "name": "node-js-sample",
-  "version": "0.2.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "quizzes",
+  "version": "0.0.1",
+  "description": "Quizzes about technology, coding, java, js, freemarker, and more",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -35,11 +35,17 @@
   "keywords": [
     "node",
     "heroku",
-    "express"
+    "express",
+    "quiz",
+    "quizzes",
+    "code",
+    "programming",
+    "javascript",
+    "java",
+    "jdk8",
+    "jdk9",
+    "freemarker"
   ],
-  "author": "Mark Pundsack",
-  "contributors": [
-    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
-  ],
+  "author": "Marcell Neszt",
   "license": "MIT"
 }
