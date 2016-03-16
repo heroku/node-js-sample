@@ -59,34 +59,38 @@
 }
 
 @-webkit-keyframes changes {
-    0% {box-shadow: 0px 0px 15px #FFFFFF; background-color: rgb(245, 245, 245);}
-    10% {box-shadow: 0px 0px 15px #2F4F4F; background-color: rgb(244, 246, 246);}
-    20% {box-shadow: 0px 0px 15px #800080; background-color: rgb(243, 247, 247);}
-    30% {box-shadow: 0px 0px 15px #FF0000; background-color: rgb(242, 248, 248);}
-    40% {box-shadow: 0px 0px 15px #FFFF00; background-color: rgb(241, 248, 249);}
-    50% {box-shadow: 0px 0px 15px #000000; background-color: rgb(240, 248, 250);}
-    60% {box-shadow: 0px 0px 15px #0000FF; background-color: rgb(240, 248, 251);}
-    70% {box-shadow: 0px 0px 15px #FF00FF; background-color: rgb(240, 248, 252);}
-    80% {box-shadow: 0px 0px 15px #008080; background-color: rgb(240, 248, 253);}
-    90% {box-shadow: 0px 0px 15px #00FF00; background-color: rgb(240, 248, 254);}
-    100% {box-shadow: 0px 0px 15px #FFFFFF; background-color: rgb(240, 248, 255);}
+    0% {box-shadow: 0px 0px 15px #FFFFFF;}
+    10% {box-shadow: 0px 0px 15px #2F4F4F;}
+    20% {box-shadow: 0px 0px 15px #800080;}
+    30% {box-shadow: 0px 0px 15px #FF0000;}
+    40% {box-shadow: 0px 0px 15px #FFFF00;}
+    50% {box-shadow: 0px 0px 15px #000000;}
+    60% {box-shadow: 0px 0px 15px #0000FF;}
+    70% {box-shadow: 0px 0px 15px #FF00FF;}
+    80% {box-shadow: 0px 0px 15px #008080;}
+    90% {box-shadow: 0px 0px 15px #00FF00;}
+    100% {box-shadow: 0px 0px 15px #FFFFFF;}
 }
 
 @keyframes changes {
-    0% {box-shadow: 0px 0px 15px #FFFFFF; background-color: rgb(245, 245, 245);}
-    10% {box-shadow: 0px 0px 15px #2F4F4F; background-color: rgb(244, 246, 246);}
-    20% {box-shadow: 0px 0px 15px #800080; background-color: rgb(243, 247, 247);}
-    30% {box-shadow: 0px 0px 15px #FF0000; background-color: rgb(242, 248, 248);}
-    40% {box-shadow: 0px 0px 15px #FFFF00; background-color: rgb(241, 248, 249);}
-    50% {box-shadow: 0px 0px 15px #000000; background-color: rgb(240, 248, 250);}
-    60% {box-shadow: 0px 0px 15px #0000FF; background-color: rgb(240, 248, 251);}
-    70% {box-shadow: 0px 0px 15px #FF00FF; background-color: rgb(240, 248, 252);}
-    80% {box-shadow: 0px 0px 15px #008080; background-color: rgb(240, 248, 253);}
-    90% {box-shadow: 0px 0px 15px #00FF00; background-color: rgb(240, 248, 254);}
-    100% {box-shadow: 0px 0px 15px #FFFFFF; background-color: rgb(240, 248, 255);}
+    0% {box-shadow: 0px 0px 15px #FFFFFF;}
+    10% {box-shadow: 0px 0px 15px #2F4F4F;}
+    20% {box-shadow: 0px 0px 15px #800080;}
+    30% {box-shadow: 0px 0px 15px #FF0000;}
+    40% {box-shadow: 0px 0px 15px #FFFF00;}
+    50% {box-shadow: 0px 0px 15px #000000;}
+    60% {box-shadow: 0px 0px 15px #0000FF;}
+    70% {box-shadow: 0px 0px 15px #FF00FF;}
+    80% {box-shadow: 0px 0px 15px #008080;}
+    90% {box-shadow: 0px 0px 15px #00FF00;}
+    100% {box-shadow: 0px 0px 15px #FFFFFF;}
 }
 
-#quizBox .well:hover {
+#quizBox .well {
+    background-color: rgb(240, 248, 255);
+}
+
+#quizBox .well:hover, #quizBox .well.hovered {
     -webkit-animation-name: changes;
     -webkit-animation-duration: 10s;
     -webkit-transition-timing-function: ease;
@@ -95,4 +99,9 @@
     animation-duration: 10s;
     animation-timing-function: ease;
     animation-iteration-count: infinite;
+}
+
+.selected {
+    background-color: rgba(74, 255, 0, 0.32) !important;
+    font-weight: bold;
 }

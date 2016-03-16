@@ -2,7 +2,8 @@ $(document).ready(function(){
     var $quizSelection = $("#quizSelection"),
         $quizBox = $("#quizBox"),
         $networkError = $(".network-error"),
-        $modalTemplate = $("#modal-template");
+        $modalTemplate = $("#modal-template"),
+        chosenAnswer;
 
     $( "a.quiz-select" ).click( function( event ) {
         var data = $(this).data('quiz');
@@ -21,11 +22,25 @@ $(document).ready(function(){
             $networkError.removeClass("hidden");
             setTimeout(function(){ $networkError.addClass("hidden"); }, 2500);
         });
+    });
 
+    $quizBox.find(".well").click( function( event ) {
+        $quizBox.find(".well").removeClass("selected");
+//        if ($(this).is(':animated')) {
+//            $(this).css("-webkit-animation", "none");
+//            $(this).css("animation", "none");
+//        }
+        $(this).addClass("selected");
+        chosenAnswer = $(this).data("answer-letter");
     });
 
     $( ".submit" ).click( function() {
-        $.post( "/submit", { })
+        if(!chosenAnswer) {
+            $quizBox.find(".well").addClass("hovered");
+            setTimeout(function(){ $quizBox.find(".well").removeClass("hovered"); }, 2500);
+            return;
+        }
+        $.post( "/submit", chosenAnswer)
         .done( function( data ) {
             console.log("data" + JSON.stringify(data));
         })
