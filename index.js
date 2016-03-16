@@ -2,6 +2,10 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var fs = require('fs');
+// Configuring Passport
+var passport = require('passport');
+var Strategy = require('passport-facebook').Strategy;
+
 var javascriptQuiz = JSON.parse(fs.readFileSync('json/javascriptQuiz.json', 'utf8'));
 var jdk8Quiz = JSON.parse(fs.readFileSync('json/jdk8Quiz.json', 'utf8'));
 var jdk9Quiz = JSON.parse(fs.readFileSync('json/jdk9Quiz.json', 'utf8'));
@@ -41,6 +45,24 @@ app.post('/quiz-select', function(request, response) {
       response.send(loadQuiz(selectedQuiz));
   }
 })
+
+//passport.use(new FacebookStrategy({
+//    clientID: FACEBOOK_APP_ID,
+//    clientSecret: FACEBOOK_APP_SECRET,
+//    callbackURL: "http://localhost:" + app.get('port') + "/auth/facebook/callback"
+//  },
+//  function(accessToken, refreshToken, profile, cb) {
+//    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+//      return cb(err, user);
+//    });
+//  }
+//));
+
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+});
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))

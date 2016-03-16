@@ -36,11 +36,35 @@
 </head>
 
 <body id="page-top">
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '675122215960457',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
 
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!--div
+            class="fb-like"
+            data-share="true"
+            data-width="450"
+            data-show-faces="true">
+    </div-->
+    
     <div class="network-error alert alert-warning hidden">
         <a href="#" class="close" data-dismiss="alert">×</a>
         <strong>Warning!</strong> There was a problem with your network connection. Please try again
     </div>
+
 
     <section class="no-padding" id="quizSelection">
         <div class="container-fluid">
@@ -181,7 +205,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <button type="button" class="btn btn-success btn-lg submit">Submit</button>
-                    <button type="button" class="btn btn-primary btn-lg give-up">Give up</button>
+                    <button type="button" class="btn btn-primary btn-lg give-up">No idea, next</button>
                     <a href="#confirmExit" class="btn btn-danger btn-lg exit" data-toggle="modal">Exit</a>
                 </div>
             </div>
