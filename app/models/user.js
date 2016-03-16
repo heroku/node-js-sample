@@ -10,7 +10,10 @@ exports.findOne = function(user, callback) {
     for(var i=0; i < users.length; i++){
        var act_user = users[i];
        act_user.validPassword = function(password) {
-            return validatePassword(password, act_user["password"]);
+           if (act_user["password"].length > 0) {
+               return validatePassword(password, act_user["password"]);
+           }
+           return false;
        }
 
        if (act_user["email"] === user.email) {
