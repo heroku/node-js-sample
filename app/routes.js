@@ -11,18 +11,6 @@ module.exports = function(app, passport) {
         next();
     });
 
-    //app.use(app.session({
-    //    secret: 'asdasdhlxcjbejkh39ujvne',
-    //    cookie: { maxAge: 2628000000 },
-    //    store: new (require('express-sessions'))({
-    //        storage: 'redis',
-    //        instance: client, // optional
-    //        host: 'localhost', // optional
-    //        port: 6379, // optional
-    //        collection: 'sessions', // optional
-    //        expire: 86400 // optional
-    //    })
-    //}));
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -114,7 +102,6 @@ module.exports = function(app, passport) {
     });
 
     app.post('/submit', function(req, res) {
-        req.session.answerIndex = req.session.answerIndex || 1;
         console.log("/SUBMIT");
         ++req.session.answerIndex;
         responseData = validateAnswer(req);
@@ -164,6 +151,7 @@ function censor(censor) {
 
 function loadQuiz(selectedQuiz, req) {
     var quiz;
+    req.session.answerIndex = 0;
     switch (selectedQuiz) {
         case "javascript":
             quiz = JSON.parse(fs.readFileSync('json/javascriptQuiz.json', 'utf8'));
@@ -184,6 +172,14 @@ function loadQuiz(selectedQuiz, req) {
 }
 
 function validateAnswer(req) {
+    if(!req.session.quizAnswers[req.session.answerIndex]) {
+        return {
+            'scoreUp': 0,
+            'questionIndex': req.session.answerIndex,
+            'gameFinished': true
+        }
+    }
+
     if(req.session.quizAnswers[req.session.answerIndex] === req.body.data) {
         return {
             'scoreUp': 10,
@@ -191,6 +187,7 @@ function validateAnswer(req) {
             'gameFinished': false // todo
         }
     }
+
     return {
         'scoreUp': 0,
         'questionIndex': req.session.answerIndex,

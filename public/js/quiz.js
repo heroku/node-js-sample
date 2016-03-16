@@ -26,6 +26,11 @@ $(document).ready(function(){
         });
     });
 
+    $( ".show-high-score" ).click( function( event ) {
+        event.preventDefault();
+        showHighScore();
+    });
+
     $quizBox.find(".well").click( function( event ) {
         $quizBox.find(".well").removeClass("selected");
         $(this).addClass("selected");
@@ -67,7 +72,12 @@ $(document).ready(function(){
 
     function showQuizBox(data, questionIndex) {
         questionIndex = questionIndex || "1";
+        if (!data.questions[questionIndex]) {
+            showHighScore();
+            return;
+        }
         $quizBox.find(".well").removeClass("hidden");
+        $quizBox.find(".well").removeClass("selected");
         $quizBox.find(".question").text(data.questions[questionIndex].question);
         if (data.questions[questionIndex].a)  {
             $quizBox.find(".answer-a").text(data.questions[questionIndex].a);
@@ -107,5 +117,11 @@ $(document).ready(function(){
     function updateScore(data) {
         $userScore = $(".user-score");
         $userScore.text(Number($userScore.val()) + Number(data.scoreUp));
+    }
+
+    function showHighScore() {
+        $modalTemplate.find(".modal-title").text("High Score");
+        $modalTemplate.find(".modal-body").text("Under Construction");
+        $modalTemplate.modal('show');
     }
 });
