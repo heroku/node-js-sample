@@ -2,9 +2,78 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af69f40d-8384-4469-a5bd-9dee0b10dd18" name="Default" comment="">
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\css\animate.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\css\bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\css\bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\css\creative.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\css\quiz.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\css\font-awesome.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\css\font-awesome.min.css" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\fonts\FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\fonts\fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\fonts\fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\fonts\fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\fonts\fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\fonts\fontawesome-webfont.woff2" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\animated.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\bordered-pulled.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\core.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\fixed-width.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\font-awesome.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\icons.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\larger.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\list.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\mixins.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\path.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\rotated-flipped.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\stacked.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\less\variables.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_animated.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_bordered-pulled.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_core.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_fixed-width.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_icons.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_larger.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_list.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_mixins.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_path.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_rotated-flipped.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_stacked.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\_variables.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\font-awesome\scss\font-awesome.scss" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\fonts\glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\fonts\glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\fonts\glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\fonts\glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\fonts\glyphicons-halflings-regular.woff2" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\img\quizzes\backend_java_jdk_8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\img\quizzes\backend_java_jdk_9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\img\quizzes\frontend_freemarker.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\img\quizzes\frontend_js.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\img\quizzes\tbd_01.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\lib\bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\lib\bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\lib\cbpAnimatedHeader.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\lib\classie.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\lib\creative.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\lib\jquery.easing.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\lib\jquery.fittext.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\lib\jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\lib\wow.min.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\js\quiz.js" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\less\creative.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\less\mixins.less" afterPath="" />
+      <change type="DELETED" beforePath="D:\Work\node\node-js-sample\pub\creative\less\variables.less" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.ejs" afterPath="$PROJECT_DIR$/views/index.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pub/creative/index.html" afterPath="$PROJECT_DIR$/pub/creative/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/login.ejs" afterPath="$PROJECT_DIR$/views/login.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/passport.js" afterPath="$PROJECT_DIR$/config/passport.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="$PROJECT_DIR$/app/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/signup.ejs" afterPath="$PROJECT_DIR$/views/signup.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.js" afterPath="$PROJECT_DIR$/app/models/user.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/json/user.json" afterPath="$PROJECT_DIR$/json/user.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="node-js-sample.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,17 +100,17 @@
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/auth.js">
+      <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/express/lib/application.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="82.655174">
+              <caret line="260" column="2" selection-start-line="257" selection-start-column="3" selection-end-line="260" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -51,17 +120,7 @@
         <entry file="file://$PROJECT_DIR$/config/passport.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3794643">
-              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+              <caret line="92" column="123" selection-start-line="92" selection-start-column="121" selection-end-line="92" selection-end-column="123" />
               <folding />
             </state>
           </provider>
@@ -70,28 +129,18 @@
       <file leaf-file-name="profile.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/profile.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+            <state vertical-scroll-proportion="-5.230769">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/signup.ejs">
+      <file leaf-file-name="population-across-three-collections.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/examples/population/population-across-three-collections.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/json/user.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -101,7 +150,27 @@
         <entry file="file://$PROJECT_DIR$/app/routes.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="55" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="55" />
+              <caret line="91" column="57" selection-start-line="91" selection-start-column="57" selection-end-line="91" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="creative.ejs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/creative.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4738676">
+              <caret line="81" column="81" selection-start-line="81" selection-start-column="81" selection-end-line="81" selection-end-column="81" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quiz.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/quiz.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="113" column="6" selection-start-line="113" selection-start-column="6" selection-end-line="113" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -110,18 +179,18 @@
       <file leaf-file-name="login.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/login.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="36" />
+            <state vertical-scroll-proportion="-2.6153846">
+              <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.692307">
-              <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+            <state vertical-scroll-proportion="-12.423077">
+              <caret line="19" column="108" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -146,15 +215,19 @@
         <option value="$PROJECT_DIR$/pub/creative/js/quiz.js" />
         <option value="$PROJECT_DIR$/pub/creative/index.html" />
         <option value="$PROJECT_DIR$/config/auth.js" />
+        <option value="$PROJECT_DIR$/views/profile.ejs" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/app/models/user.js" />
+        <option value="$PROJECT_DIR$/json/user.json" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/views/login.ejs" />
+        <option value="$PROJECT_DIR$/views/signup.ejs" />
+        <option value="$PROJECT_DIR$/config/passport.js" />
+        <option value="$PROJECT_DIR$/json/javascriptQuiz.json" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/app/routes.js" />
-        <option value="$PROJECT_DIR$/views/login.ejs" />
-        <option value="$PROJECT_DIR$/views/profile.ejs" />
-        <option value="$PROJECT_DIR$/views/signup.ejs" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/config/passport.js" />
-        <option value="$PROJECT_DIR$/json/user.json" />
-        <option value="$PROJECT_DIR$/app/models/user.js" />
+        <option value="$PROJECT_DIR$/public/css/quiz.css" />
+        <option value="$PROJECT_DIR$/views/creative.ejs" />
       </list>
     </option>
   </component>
@@ -166,10 +239,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1928" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-967" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -253,29 +325,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pub" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="creative" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node-js-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node-js-sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pub" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="creative" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -468,15 +518,15 @@
       <updated>1458068928907</updated>
       <workItem from="1458114247903" duration="77000" />
       <workItem from="1458114469121" duration="1689000" />
-      <workItem from="1458117603400" duration="2638000" />
+      <workItem from="1458117603400" duration="14736000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4404000" />
+    <option name="totallyTimeSpent" value="16502000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-967" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -490,7 +540,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23987207" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27242887" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -766,27 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pub/creative/css/creative.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="7" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pub/creative/css/quiz.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="106" column="1" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pub/creative/js/quiz.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pub/creative/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.346153">
@@ -794,42 +823,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="55" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/auth.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/profile.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/signup.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -842,18 +839,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/passport/lib/framework/connect.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/passport/lib/strategies/session.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/passport-local/lib/strategy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/json/user.json">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="496" selection-start-line="0" selection-start-column="496" selection-end-line="0" selection-end-column="496" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <caret line="97" column="17" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/signup.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.615385">
+          <caret line="40" column="50" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/json/javascriptQuiz.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2692308">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="82.655174">
+          <caret line="260" column="2" selection-start-line="257" selection-start-column="3" selection-end-line="260" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/profile.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/examples/population/population-across-three-collections.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -861,15 +922,55 @@
     <entry file="file://$PROJECT_DIR$/config/passport.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+          <caret line="92" column="123" selection-start-line="92" selection-start-column="121" selection-end-line="92" selection-end-column="123" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.js">
+    <entry file="file://$PROJECT_DIR$/app/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3794643">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="57" selection-start-line="91" selection-start-column="57" selection-end-line="91" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077">
+          <caret line="19" column="108" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/quiz.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="113" column="6" selection-start-line="113" selection-start-column="6" selection-end-line="113" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/creative.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4738676">
+          <caret line="81" column="81" selection-start-line="81" selection-start-column="81" selection-end-line="81" selection-end-column="81" />
           <folding />
         </state>
       </provider>

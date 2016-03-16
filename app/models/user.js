@@ -7,7 +7,7 @@ var exports = module.exports = {};
 
 exports.findOne = function(user, callback) {
     var email = user.email;
-    for(var i=0; i < users.length; i++){
+    for(var i = 0; i < users.length; i++){
        var act_user = users[i];
        act_user.validPassword = function(password) {
            if (act_user["password"].length > 0) {
@@ -24,8 +24,19 @@ exports.findOne = function(user, callback) {
     callback(null, null);
 };
 
+exports.findOneBasedOnProfileId = function(profileId, callback) {
+    for(var i = 0; i < users.length; i++){
+       var act_user = users[i];
+       if (act_user["profileId"] === profileId) {
+           callback(null, act_user);
+           return;
+       }
+    }
+    callback(null, null);
+};
+
 exports.findById = function(id, callback) {
-    for(var i=0; i < users.length; i++) {
+    for(var i = 0; i < users.length; i++) {
         if (users[i]["id"] === id) {
             callback(null, users[i]);
             return;

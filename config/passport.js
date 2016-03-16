@@ -84,13 +84,14 @@ module.exports = function(passport) {
         // asynchronous
         process.nextTick(function() {
             // find the user in the database based on their facebook id
-            User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+            User.findOneBasedOnProfileId(profile.id, function(err, user) {
                 if (err)
                     return done(err);
                 if (user) {
                     return done(null, user); // user found, return that user
                 } else {
-                    var newUser = createNewUser(profile.emails[0].value, "", profile.id, token, profile.name.givenName + ' ' + profile.name.familyName);
+                    var name = profile.emails && profile.emails[0].value.length > 0 ? profile.emails[0].value : profile.displayName;
+                    var newUser = createNewUser(name, "", profile.id, token, name);
                     return done(null, newUser);
                 }
             });
@@ -103,7 +104,7 @@ function createNewUser(email, password, profileId, profileToken, name) {
     var newUser = {};
     newUser.email    = email;
     newUser.name    = name;
-    newUser.password = User.generateHash(password);
+    newUser.password = password === "" ? password : User.generateHash(password);
     newUser.id = User.generateId();
     newUser.profileId = profileId || "-";
     newUser.profileToken = profileToken || "-";

@@ -105,3 +105,11 @@
     background-color: rgba(74, 255, 0, 0.32) !important;
     font-weight: bold;
 }
+
+#mainNav ul.navbar-nav>li {
+    float: none;
+}
+
+#mainNav {
+    //max-height: 80px;
+}
