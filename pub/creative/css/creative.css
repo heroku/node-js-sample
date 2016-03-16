@@ -258,14 +258,14 @@ header .header-content .header-content-inner p {
     margin-bottom: 0;
 }
 
-.portfolio-box {
+.quiz-select {
     display: block;
     position: relative;
     margin: 0 auto;
     max-width: 650px;
 }
 
-.portfolio-box .portfolio-box-caption {
+.quiz-select .quiz-select-caption {
     display: block;
     position: absolute;
     bottom: 0;
@@ -280,7 +280,7 @@ header .header-content .header-content-inner p {
     transition: all .35s;
 }
 
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
+.quiz-select .quiz-select-caption .quiz-select-caption-content {
     position: absolute;
     top: 50%;
     width: 100%;
@@ -288,32 +288,32 @@ header .header-content .header-content-inner p {
     transform: translateY(-50%);
 }
 
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+.quiz-select .quiz-select-caption .quiz-select-caption-content .project-category,
+.quiz-select .quiz-select-caption .quiz-select-caption-content .project-name {
     padding: 0 15px;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
 
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+.quiz-select .quiz-select-caption .quiz-select-caption-content .project-category {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 600;
 }
 
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+.quiz-select .quiz-select-caption .quiz-select-caption-content .project-name {
     font-size: 18px;
 }
 
-.portfolio-box:hover .portfolio-box-caption {
+.quiz-select:hover .quiz-select-caption {
     opacity: 1;
 }
 
 @media(min-width:768px) {
-    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+    .quiz-select .quiz-select-caption .quiz-select-caption-content .project-category {
         font-size: 16px;
     }
 
-    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+    .quiz-select .quiz-select-caption .quiz-select-caption-content .project-name {
         font-size: 22px;
     }
 }

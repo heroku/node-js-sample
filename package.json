@@ -7,7 +7,9 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "body-parser": "^1.15.0",
+    "express": "^4.13.3",
+    "fs": "0.0.2"
   },
   "engines": {
     "node": "4.0.0"
