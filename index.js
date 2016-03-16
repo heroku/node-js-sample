@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 // Configuring Passport
 var passport = require('passport');
-var Strategy = require('passport-facebook').Strategy;
+var FacebookStrategy = require('passport-facebook');
 
 var javascriptQuiz = JSON.parse(fs.readFileSync('json/javascriptQuiz.json', 'utf8'));
 var jdk8Quiz = JSON.parse(fs.readFileSync('json/jdk8Quiz.json', 'utf8'));
@@ -46,17 +46,17 @@ app.post('/quiz-select', function(request, response) {
   }
 })
 
-//passport.use(new FacebookStrategy({
-//    clientID: FACEBOOK_APP_ID,
-//    clientSecret: FACEBOOK_APP_SECRET,
-//    callbackURL: "http://localhost:" + app.get('port') + "/auth/facebook/callback"
-//  },
-//  function(accessToken, refreshToken, profile, cb) {
-//    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-//      return cb(err, user);
-//    });
-//  }
-//));
+passport.use(new FacebookStrategy({
+    clientID: 675122215960457,
+    clientSecret: "bcf4388b3bbf99d2f56476e462bf311d",
+    callbackURL: "http://localhost:" + app.get('port') + "/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
