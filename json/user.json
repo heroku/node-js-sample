@@ -1,1 +1,12 @@
-[{"email":"Neszt Marcell","name":"Neszt Marcell","password":"","id":"c5447676-60f9-e195-c6b3-90f997a84212","profileId":"10207604706093984","profileToken":"EAAJmBSPcv4kBANlWACLoRQPFeK5cA7ERAyJSOfeCvcx8jt4je7wctZB1BZBynynlmv0AYwZAM7RZADOaCFDpVJeY4Vpl6ZAghRPWN1ne995eAgK4nW7yigbZBFbPMcIc47DAROezSusXAqZACi4Apm9q3ZAp1EiHhVEZD"},{"email":"asdasd","password":"$2a$08$UYgklN7G/qqWbgDCBCjexuRzV8AKWKQ70bGIgyfVc5dgwwoin8BV6","id":"ac819b9a-27a1-37fd-479d-c2dd3ca97c3a","profileId":"-","profileToken":"-"}]
+[
+  {
+    "email": "Neszt Marcell",
+    "name": "Neszt Marcell",
+    "password": "",
+    "id": "b7a3a1ab-6bff-4e0c-eede-6cdc303f1305",
+    "profileId": "10207604706093984",
+    "profileToken": "EAAJmBSPcv4kBAFLCArs7BuO2bPDoJcga3vGqR8UefyecSBO1rnNlke0ZB5svU0pAsgBRBPVXLuDJW4OOdzq2SnGhZAzWGYGx1gUZAxqMg8qrgDMGgV0oAdbh64oUfeIjTQnqAX7ZARQi3NGnTZAgdBu3v5gpZApfsZD",
+    "achievements": [],
+    "latestAchievement": "Account created"
+  }
+]

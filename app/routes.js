@@ -1,5 +1,7 @@
 // app/routes.js
 var fs = require('fs');
+var redis = require('redis');
+//var client = redis.createClient(6379, 'localhost');
 
 module.exports = function(app, passport) {
     // Log time on console
@@ -9,6 +11,18 @@ module.exports = function(app, passport) {
         next();
     });
 
+    //app.use(app.session({
+    //    secret: 'asdasdhlxcjbejkh39ujvne',
+    //    cookie: { maxAge: 2628000000 },
+    //    store: new (require('express-sessions'))({
+    //        storage: 'redis',
+    //        instance: client, // optional
+    //        host: 'localhost', // optional
+    //        port: 6379, // optional
+    //        collection: 'sessions', // optional
+    //        expire: 86400 // optional
+    //    })
+    //}));
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -83,10 +97,10 @@ module.exports = function(app, passport) {
             failureRedirect : '/'
         }));
 
-    app.get('/frontend', isLoggedIn, function(request, response) {
-        response.send('FrontEnd!');
+    app.get('/frontend', function(req, res) {
         console.log("Frontend initialized");
-        console.log("request: " + request.body);
+        console.log("request: " + JSON.stringify(req.session));
+        res.send('FrontEnd!');
     });
 
     app.get('/creative', isLoggedIn, function(req, res) {
@@ -99,25 +113,25 @@ module.exports = function(app, passport) {
         res.redirect('/creative');
     });
 
-    app.post('/submit', function(request, response) {
-        response.send('{data: "tbd"}');
+    app.post('/submit', function(req, res) {
+        req.session.answerIndex = req.session.answerIndex || 1;
         console.log("/SUBMIT");
-        console.log("request: " + JSON.stringify(request.body, censor(request.body)));
+        ++req.session.answerIndex;
+        responseData = validateAnswer(req);
+        res.send(responseData);
     });
 
-    app.post('/quiz-select', function(request, response) {
-        console.log("/quiz-select");
-        if (!request.body || !request.body.data) {
+    app.post('/quiz-select', function(req, res) {
+        if (!req.body || !req.body.data) {
             console.log("error, invalid request");
-            response.send({error: true, message: "invalid request", subMessage: "Please use the valid quizzes, do not try to come up with new ones :)"});
+            res.send({error: true, message: "invalid request", subMessage: "Please use the valid quizzes, do not try to come up with new ones :)"});
         } else {
-            var selectedQuiz = request.body.data;
+            var selectedQuiz = req.body.data;
             console.log("selectedQuiz: " + selectedQuiz);
-            response.send(loadQuiz(selectedQuiz));
+            res.send(loadQuiz(selectedQuiz, req));
         }
     })
 };
-
 
 
 // route middleware to make sure a user is logged in
@@ -148,14 +162,38 @@ function censor(censor) {
     }
 }
 
-function loadQuiz(selectedQuiz) {
+function loadQuiz(selectedQuiz, req) {
     var quiz;
     switch (selectedQuiz) {
-        case "javascript": quiz = JSON.parse(fs.readFileSync('json/javascriptQuiz.json', 'utf8')); break;
-        case "jdk8": quiz = JSON.parse(fs.readFileSync('json/jdk8Quiz.json', 'utf8')); break;
-        case "jdk9": quiz = JSON.parse(fs.readFileSync('json/jdk9Quiz.json', 'utf8')); break;
-        case "freemarker": quiz = JSON.parse(fs.readFileSync('json/freemarkerQuiz.json', 'utf8')); break;
-        default : return {error: true, message: "Invalid quiz request", subMessage: "the requested quiz unfortunately not exists yet. Come back later!"};
+        case "javascript":
+            quiz = JSON.parse(fs.readFileSync('json/javascriptQuiz.json', 'utf8'));
+            req.session.quizAnswers = JSON.parse(fs.readFileSync('json/javascriptQuizAnswerKeys.json', 'utf8'));
+            break;
+        case "jdk8":
+            quiz = JSON.parse(fs.readFileSync('json/jdk8Quiz.json', 'utf8'));
+            break;
+        case "jdk9":
+            quiz = JSON.parse(fs.readFileSync('json/jdk9Quiz.json', 'utf8'));
+            break;
+        case "freemarker":
+            quiz = JSON.parse(fs.readFileSync('json/freemarkerQuiz.json', 'utf8'));
+            break;
+        default: return {error: true, message: "Invalid quiz request", subMessage: "the requested quiz unfortunately not exists yet. Come back later!"};
     }
     return quiz;
+}
+
+function validateAnswer(req) {
+    if(req.session.quizAnswers[req.session.answerIndex] === req.body.data) {
+        return {
+            'scoreUp': 10,
+            'questionIndex': req.session.answerIndex,
+            'gameFinished': false // todo
+        }
+    }
+    return {
+        'scoreUp': 0,
+        'questionIndex': req.session.answerIndex,
+        'gameFinished': false // todo
+    };
 }

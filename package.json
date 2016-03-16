@@ -23,7 +23,8 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-reddit": "^0.2.4",
-    "passport-twitter": "^1.0.4"
+    "passport-twitter": "^1.0.4",
+    "redis": "^2.5.1"
   },
   "engines": {
     "node": "4.0.0"

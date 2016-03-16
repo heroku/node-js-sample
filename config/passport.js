@@ -108,6 +108,8 @@ function createNewUser(email, password, profileId, profileToken, name) {
     newUser.id = User.generateId();
     newUser.profileId = profileId || "-";
     newUser.profileToken = profileToken || "-";
+    newUser.achievements = [];
+    newUser.latestAchievement = "Account created";
 
     // save the user
     User.save(newUser, function(err) {

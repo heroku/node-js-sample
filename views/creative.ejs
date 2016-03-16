@@ -71,12 +71,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Logged in as: <span class="user-name"><%= user.email %></span></a>
-                <p> <a>Latest Achievement: <span class="latest-achievement"></span></a> </p>
+                <p> <a>Latest Achievement: <span class="latest-achievement"><%= user.latestAchievement %></span></a> </p>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <p><a>Score: <span class="user-score"></span></a> </p>
+                        <p><a>Score: <span class="user-score">0</span></a> </p>
                     </li>
                     <li>
                         <p><a class="show-high-score show-high-score btn btn-info" href="#high-score">Show Highscore</a> </p>

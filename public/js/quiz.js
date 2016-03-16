@@ -3,12 +3,13 @@ $(document).ready(function(){
         $quizBox = $("#quizBox"),
         $networkError = $(".network-error"),
         $modalTemplate = $("#modal-template"),
-        chosenAnswer;
+        chosenAnswer,
+        quizData;
 
     $( "a.quiz-select" ).click( function( event ) {
         var data = $(this).data('quiz');
         event.preventDefault();
-        $.post( "/quiz-select", { data } )
+        $.post( "/quiz-select", {'data': data} )
         .done( function( data ) {
             if(data.error || !data.questions || !data.questions["1"] || !data.questions["1"].question) {
                 data.message = data.message || "invalid response";
@@ -16,6 +17,7 @@ $(document).ready(function(){
                 invalidRequest(data.message, data.subMessage);
                 return;
             }
+            quizData = data;
             showQuizBox(data);
         })
         .fail( function() {
@@ -36,9 +38,11 @@ $(document).ready(function(){
             setTimeout(function(){ $quizBox.find(".well").removeClass("hovered"); }, 2500);
             return;
         }
-        $.post( "/submit", chosenAnswer)
+
+        $.post( "/submit", {'data': chosenAnswer} )
         .done( function( data ) {
-            console.log("data" + JSON.stringify(data));
+            updateScore(data);
+            handleNextRound(data);
         })
         .fail( function() {
             $networkError.removeClass("hidden");
@@ -61,30 +65,47 @@ $(document).ready(function(){
         $modalTemplate.modal('show');
     }
 
-    function showQuizBox(data) {
+    function showQuizBox(data, questionIndex) {
+        questionIndex = questionIndex || "1";
         $quizBox.find(".well").removeClass("hidden");
-        $quizBox.find(".question").text(data.questions["1"].question);
-        if (data.questions["1"].a)  {
-            $quizBox.find(".answer-a").text(data.questions["1"].a);
+        $quizBox.find(".question").text(data.questions[questionIndex].question);
+        if (data.questions[questionIndex].a)  {
+            $quizBox.find(".answer-a").text(data.questions[questionIndex].a);
         } else {
             $quizBox.find(".answer-a").parents(".well").addClass("hidden");
         }
-        if (data.questions["1"].b)  {
-            $quizBox.find(".answer-b").text(data.questions["1"].b);
+        if (data.questions[questionIndex].b)  {
+            $quizBox.find(".answer-b").text(data.questions[questionIndex].b);
         } else {
             $quizBox.find(".answer-b").parents(".well").addClass("hidden");
         }
-        if (data.questions["1"].c)  {
-            $quizBox.find(".answer-c").text(data.questions["1"].b);
+        if (data.questions[questionIndex].c)  {
+            $quizBox.find(".answer-c").text(data.questions[questionIndex].c);
         } else {
             $quizBox.find(".answer-c").parents(".well").addClass("hidden");
         }
-        if (data.questions["1"].d)  {
-            $quizBox.find(".answer-d").text(data.questions["1"].b);
+        if (data.questions[questionIndex].d)  {
+            $quizBox.find(".answer-d").text(data.questions[questionIndex].c);
         } else {
             $quizBox.find(".answer-d").parents(".well").addClass("hidden");
         }
         $quizSelection.addClass("hidden");
         $quizBox.removeClass("hidden");
+    }
+    function handleNextRound(data) {
+        if (data.gameFinished) {
+            showHighScore();
+            return;
+        }
+        updateQuizBox(data);
+    }
+
+    function updateQuizBox(data) {
+        showQuizBox(quizData, data.questionIndex);
+    }
+
+    function updateScore(data) {
+        $userScore = $(".user-score");
+        $userScore.text(Number($userScore.val()) + Number(data.scoreUp));
     }
 });
