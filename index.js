@@ -2,25 +2,40 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var fs = require('fs');
-// Configuring Passport
 var passport = require('passport');
-var FacebookStrategy = require('passport-facebook');
+var flash    = require('connect-flash');
+
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
+var session      = require('express-session');
+
+var LocalStrategy    = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var User = require('./app/models/user');
+var configAuth = require('./config/auth');
 
 var javascriptQuiz = JSON.parse(fs.readFileSync('json/javascriptQuiz.json', 'utf8'));
 var jdk8Quiz = JSON.parse(fs.readFileSync('json/jdk8Quiz.json', 'utf8'));
 var jdk9Quiz = JSON.parse(fs.readFileSync('json/jdk9Quiz.json', 'utf8'));
 var freemarkerQuiz = JSON.parse(fs.readFileSync('json/freemarkerQuiz.json', 'utf8'));
 
+require('./config/passport')(passport);
+
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 app.use(express.static(__dirname + '/pub'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.set('view engine', 'ejs'); // set up ejs for templating
 
-app.get('/', function(request, response) {
-  response.send('Hello World!')
-  console.log("request: " + request.body);
-})
+// required for passport
+app.use(session({ secret: 'thisIsReallyASecretButIWillTellYou' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.get('/frontend', function(request, response) {
   response.send('FrontEnd!');
@@ -46,28 +61,16 @@ app.post('/quiz-select', function(request, response) {
   }
 })
 
-passport.use(new FacebookStrategy({
-    clientID: 675122215960457,
-    clientSecret: "bcf4388b3bbf99d2f56476e462bf311d",
-    callbackURL: "http://localhost:" + app.get('port') + "/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
+// routes ======================================================================
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-});
-
+// launch ======================================================================
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
 
+
+// private methods ======================================================================
 function censor(censor) {
   var i = 0;
 
