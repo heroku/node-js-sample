@@ -1,9 +1,11 @@
+var devMode = false;
+
 module.exports = {
 
     'facebookAuth' : {
         'clientID'      : '675122215960457',
         'clientSecret'  : 'bcf4388b3bbf99d2f56476e462bf311d',
-        'callbackURL'   : 'http://localhost:5000/auth/facebook/callback'
+        'callbackURL'   : devMode ? "http://localhost:5000/auth/facebook/callback" : 'https://nodejs-quizzes.herokuapp.com/auth/facebook/callback'
     },
 
     'twitterAuth' : {
