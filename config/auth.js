@@ -1,4 +1,4 @@
-var devMode = false;
+var devMode = true;
 
 module.exports = {
 

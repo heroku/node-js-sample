@@ -21,8 +21,7 @@ $(document).ready(function(){
             showQuizBox(data);
         })
         .fail( function() {
-            $networkError.removeClass("hidden");
-            setTimeout(function(){ $networkError.addClass("hidden"); }, 2500);
+            showNetworkError();
         });
     });
 
@@ -50,13 +49,18 @@ $(document).ready(function(){
             handleNextRound(data);
         })
         .fail( function() {
-            $networkError.removeClass("hidden");
-            setTimeout(function(){ $networkError.addClass("hidden"); }, 2500);
+            showNetworkError();
         });
     });
 
     $( ".give-up" ).click( function() {
-
+        $.post( "/submit", {'data': ""} )
+            .done( function( data ) {
+                handleNextRound(data);
+            })
+            .fail( function() {
+                showNetworkError()
+            });
     });
 
     $( ".exit-anyway" ).click( function() {
@@ -116,7 +120,7 @@ $(document).ready(function(){
 
     function updateScore(data) {
         $userScore = $(".user-score");
-        $userScore.text(Number($userScore.val()) + Number(data.scoreUp));
+        $userScore.text(Number($userScore.text()) + Number(data.scoreUp));
     }
 
     function showHighScore() {
@@ -124,4 +128,10 @@ $(document).ready(function(){
         $modalTemplate.find(".modal-body").text("Under Construction");
         $modalTemplate.modal('show');
     }
+
+    function showNetworkError() {
+        $networkError.removeClass("hidden");
+        setTimeout(function(){ $networkError.addClass("hidden"); }, 2500);
+    }
+
 });
