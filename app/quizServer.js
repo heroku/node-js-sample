@@ -11,7 +11,7 @@ var quizzes = {
     },
     jdk9: {
         quizFile: 'json/jdk9Quiz.json',
-        answerFile: 'json/jdk8QuizAnswerKeys.json'
+        answerFile: 'json/jdk9QuizAnswerKeys.json'
     },
     freemarker: {
         quizFile: 'json/freemarkerQuiz.json',
