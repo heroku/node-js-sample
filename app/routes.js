@@ -102,9 +102,11 @@ module.exports = function(app, passport) {
     });
 
     app.post('/submit', function(req, res) {
-        console.log("/SUBMIT");
-        ++req.session.answerIndex;
+        console.log("/SUBMIT", req.body.data);
         responseData = quizServer.validateAnswer(req);
+        req.session.answerIndex+=1;
+        console.log(req.session.answerIndex);
+        responseData.questionIndex = req.session.answerIndex;
         res.send(responseData);
     });
 

@@ -4,7 +4,8 @@ $(document).ready(function(){
         $networkError = $(".network-error"),
         $modalTemplate = $("#modal-template"),
         chosenAnswer,
-        quizData;
+        quizData,
+        undefined = [][+[]];
 
     $( "a.quiz-select" ).click( function( event ) {
         var data = $(this).data('quiz');
@@ -18,6 +19,7 @@ $(document).ready(function(){
                 return;
             }
             quizData = data;
+            wipeQuizData();
             showQuizBox(data);
         })
         .fail( function() {
@@ -50,6 +52,9 @@ $(document).ready(function(){
         })
         .fail( function() {
             showNetworkError();
+        })
+        .always( function() {
+            chosenAnswer = undefined;
         });
     });
 
@@ -64,8 +69,7 @@ $(document).ready(function(){
     });
 
     $( ".exit-anyway" ).click( function() {
-        $quizSelection.removeClass("hidden");
-        $quizBox.addClass("hidden");
+        exitToQuizzes();
     });
 
     function invalidRequest(message, subMessage) {
@@ -75,9 +79,10 @@ $(document).ready(function(){
     }
 
     function showQuizBox(data, questionIndex) {
-        questionIndex = questionIndex || "1";
-        if (!data.questions[questionIndex]) {
+        questionIndex = questionIndex || "0";
+        if (!quizData.questions[questionIndex]) {
             showHighScore();
+            exitToQuizzes();
             return;
         }
         $quizBox.find(".well").removeClass("hidden");
@@ -109,9 +114,10 @@ $(document).ready(function(){
     function handleNextRound(data) {
         if (data.gameFinished) {
             showHighScore();
-            return;
+            exitToQuizzes();
+        } else {
+            updateQuizBox(data);
         }
-        updateQuizBox(data);
     }
 
     function updateQuizBox(data) {
@@ -132,6 +138,16 @@ $(document).ready(function(){
     function showNetworkError() {
         $networkError.removeClass("hidden");
         setTimeout(function(){ $networkError.addClass("hidden"); }, 2500);
+    }
+
+    function exitToQuizzes() {
+        $quizSelection.removeClass("hidden");
+        $quizBox.addClass("hidden");
+    }
+
+    function wipeQuizData() {
+        $userScore = $(".user-score");
+        $userScore.text(0);
     }
 
 });

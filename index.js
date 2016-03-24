@@ -9,8 +9,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-var User = require('./app/models/user');
-
 require('./config/passport')(passport);
 
 app.set('port', (process.env.PORT || 5000));
@@ -31,6 +29,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
-app.listen(app.get('port'), function(req, res) {
-  console.log("Node app is running at localhost:" + app.get('port'))
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'));
 });

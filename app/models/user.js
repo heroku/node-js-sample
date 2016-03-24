@@ -93,14 +93,14 @@ exports.generateId = function() {
 
 exports.save = function(newUser, callback) {
     users.push(newUser);
-    fs.writeFile('./json/user.json', JSON.stringify(users), function (err) {
-      if (err) {
-          console.log(err);
-          return;
-      }
+    try {
+        fs.writeFileSync('./json/user.json', JSON.stringify(users));
         console.log('User saved');
         callback();
-    });
+    } catch (e) {
+          console.log(e);
+          return;
+    }
 };
 
 function s4() {

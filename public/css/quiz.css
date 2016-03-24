@@ -113,3 +113,7 @@
 #mainNav {
     //max-height: 80px;
 }
+
+p.latest-achievement {
+    float: right;
+}
