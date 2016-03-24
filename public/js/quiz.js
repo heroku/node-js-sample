@@ -80,7 +80,7 @@ $(document).ready(function(){
 
     function showQuizBox(data, questionIndex) {
         questionIndex = questionIndex || "0";
-        if (!quizData.questions[questionIndex]) {
+        if (!data.questions[questionIndex]) {
             showHighScore();
             exitToQuizzes();
             return;
