@@ -22,36 +22,31 @@ var quizzes = {
 var HIGH_SCORE_FILE = 'json/highscore.json';
 
 exports.validateAnswer = function(req) {
+    "use strict";
+    let responseJson = {
+        'scoreUp': 0,
+        'gameFinished': false,
+        'name': req.session.quizName
+    };
     console.log(JSON.stringify(req.session));
     if(!isAnswerIndexValid(req)) {
-        return {
-            'scoreUp': 0,
-            'gameFinished': true
-        }
+        responseJson.gameFinished = true;
+        return responseJson;
     }
 
     if(noAnswerWereSubmitted(req)) {
-        return {
-            'scoreUp': 0,
-            'gameFinished': false
-        }
+        return responseJson;
     }
 
     if(wasTheAnswerCorrect(req)) {
         req.session.score += 10;
-        if (isAnswerIndexTheLast(req.session)) {
-            saveHighScore(req);
-        }
-        return {
-            'scoreUp': 10,
-            'gameFinished': isAnswerIndexTheLast(req.session)
-        }
+        responseJson.scoreUp = 10;
+        responseJson.gameFinished = isAnswerIndexTheLast(req.session);
+        if (responseJson.gameFinished) { saveHighScore(req); }
+        return responseJson;
     }
 
-    return {
-        'scoreUp': 0,
-        'gameFinished': false
-    };
+    return responseJson;
 };
 
 exports.loadQuiz = function(selectedQuiz, req) {
@@ -63,7 +58,7 @@ exports.loadQuiz = function(selectedQuiz, req) {
             try {
                 quiz = JSON.parse(fs.readFileSync(quizzes[key].quizFile, 'utf8'));
                 req.session.quizAnswers = JSON.parse(fs.readFileSync(quizzes[key].answerFile, 'utf8'));
-                req.session.quizName = selectedQuiz;
+                req.session.quizName = quiz.name;
                 req.session.quizLength = Object.keys(quiz.questions).length;
                 req.session.score = 0;
                 break;
@@ -75,6 +70,30 @@ exports.loadQuiz = function(selectedQuiz, req) {
     }
     if (quiz) { return quiz; }
     return {error: true, message: "Invalid quiz request", subMessage: "the requested quiz unfortunately not exists yet. Come back later!"};
+};
+
+
+exports.showHighScoreFor = function(quizName, req) {
+    "use strict";
+    var highScore,
+        responseJson = {};
+    try {
+        highScore = JSON.parse(fs.readFileSync(HIGH_SCORE_FILE, 'utf8'));
+        highScore.tables = highScore.tables || {};
+        highScore.tables.highscore_per_quiz = highScore.tables.highscore_per_quiz || {};
+        if (quizName === "all") {
+            responseJson.title = "all";
+            responseJson.body = highScore.tables.highscore_per_quiz || responseJson;
+        } else {
+            responseJson.title = quizName;
+            responseJson.body = highScore.tables.highscore_per_quiz[quizName] || responseJson;
+        }
+    } catch (e) {
+        console.error(e);
+        console.error("Exception while trying to read highscore table");
+        responseJson = {'error': true, 'message': 'Server error', 'subMessage': 'Some error happened reading the highscore. Sorry for the inconveniences'};
+    }
+    return responseJson;
 };
 
 function isAnswerIndexValid(req) {

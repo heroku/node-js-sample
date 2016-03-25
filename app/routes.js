@@ -119,7 +119,18 @@ module.exports = function(app, passport) {
             console.log("selectedQuiz: " + selectedQuiz);
             res.send(quizServer.loadQuiz(selectedQuiz, req));
         }
-    })
+    });
+
+    app.post('/show-high-score', function(req, res) {
+        if (!req.body || !req.body.data) {
+            console.log("error, invalid request");
+            res.send({error: true, message: "invalid request", subMessage: "Sorry, but I cannot show Highscore without a valid request"});
+        } else {
+            var quizName = req.body.data;
+            console.log("Highscore for: " + quizName + " has been requested");
+            res.send(quizServer.showHighScoreFor(quizName, req));
+        }
+    });
 };
 
 

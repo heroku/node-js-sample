@@ -81,7 +81,7 @@ $(document).ready(function(){
     function showQuizBox(data, questionIndex) {
         questionIndex = questionIndex || "0";
         if (!data.questions[questionIndex]) {
-            showHighScore();
+            showHighScore(data.name);
             exitToQuizzes();
             return;
         }
@@ -113,7 +113,7 @@ $(document).ready(function(){
     }
     function handleNextRound(data) {
         if (data.gameFinished) {
-            showHighScore();
+            showHighScore(data.name || "all");
             exitToQuizzes();
         } else {
             updateQuizBox(data);
@@ -129,10 +129,26 @@ $(document).ready(function(){
         $userScore.text(Number($userScore.text()) + Number(data.scoreUp));
     }
 
-    function showHighScore() {
-        $modalTemplate.find(".modal-title").text("High Score");
-        $modalTemplate.find(".modal-body").text("Under Construction");
-        $modalTemplate.modal('show');
+    function showHighScore(higscoreTable) {
+        "use strict";
+        higscoreTable = higscoreTable || "all";
+        var modalBodyText = "HighScore unfortunately unavailable";
+        var modalTitleText = "";
+        $.post( "/show-high-score", {'data': higscoreTable} )
+            .done( function( data ) {
+                if(data.error) {
+                    data.message = data.message || "invalid response";
+                    data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                    invalidRequest(data.message, data.subMessage);
+                    return;
+                }
+                $modalTemplate.find(".modal-title").text(data.title + " High Score");
+                $modalTemplate.find(".modal-body").text(JSON.stringify(data.body));
+                $modalTemplate.modal('show');
+            })
+            .fail( function() {
+                showNetworkError();
+            });
     }
 
     function showNetworkError() {
