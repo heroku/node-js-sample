@@ -12,7 +12,7 @@ $(document).ready(function(){
         event.preventDefault();
         $.post( "/quiz-select", {'data': data} )
         .done( function( data ) {
-            if(data.error || !data.questions || !data.questions["1"] || !data.questions["1"].question) {
+            if(data.error || !data.questions || !data.questions["0"] || !data.questions["0"].question) {
                 data.message = data.message || "invalid response";
                 data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
                 invalidRequest(data.message, data.subMessage);

@@ -6,7 +6,7 @@ var quizServer = require('./quizServer');
 module.exports = function(app, passport) {
     // Log time on console
     app.use(function (req, res, next) {
-        var now = new Date().toISOString();
+        var now = new Date((new Date() - 1000 * 60 * 60)).toISOString();
         console.log(now.slice(0, 10) + " " + now.slice(11, 16));
         next();
     });

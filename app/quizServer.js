@@ -119,7 +119,7 @@ function updateUserScoreIfBetter(oldScoreObject, newScore) {
     console.log(JSON.stringify(newScoreObject));
     console.log(newScore);
     if (isObjectEmpty(newScoreObject)  || newScoreObject.score < newScore) {
-        let now = new Date().toISOString();
+        let now = new Date((new Date() - 1000 * 60 * 60)).toISOString();
         newScoreObject.score = newScore;
         newScoreObject.dateTime = now.slice(0, 10) + " " + now.slice(11, 16);
     }
