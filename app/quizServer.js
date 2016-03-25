@@ -1,22 +1,25 @@
 var fs = require('fs');
 var User = require('./models/user');
 var exports = module.exports = {};
+var pathToQuizzes = 'json/quizzes/';
+var QUIZ_JSON = 'Quiz.json';
+var QUIZ_ANSWER_KEYS_JSON = 'QuizAnswerKeys.json';
 var quizzes = {
     javascript: {
-        quizFile: 'json/javascriptQuiz.json',
-        answerFile: 'json/javascriptQuizAnswerKeys.json'
+        quizFile: [pathToQuizzes + 'javascript' + QUIZ_JSON].join(''),
+        answerFile: [pathToQuizzes + 'javascript' + QUIZ_ANSWER_KEYS_JSON].join('')
     },
     jdk8: {
-        quizFile: 'json/jdk8Quiz.json',
-        answerFile: 'json/jdk8QuizAnswerKeys.json'
+        quizFile: [pathToQuizzes + 'jdk8' + QUIZ_JSON].join(''),
+        answerFile: [pathToQuizzes + 'jdk8' + QUIZ_ANSWER_KEYS_JSON].join('')
     },
     jdk9: {
-        quizFile: 'json/jdk9Quiz.json',
-        answerFile: 'json/jdk9QuizAnswerKeys.json'
+        quizFile: [pathToQuizzes + 'jdk9' + QUIZ_JSON].join(''),
+        answerFile: [pathToQuizzes + 'jdk9' + QUIZ_ANSWER_KEYS_JSON].join('')
     },
     freemarker: {
-        quizFile: 'json/freemarkerQuiz.json',
-        answerFile: 'json/freemarkerQuizAnswerKeys.json'
+        quizFile: [pathToQuizzes + 'freemarker' + QUIZ_JSON].join(''),
+        answerFile: [pathToQuizzes + 'freemarker' + QUIZ_ANSWER_KEYS_JSON].join('')
     }
 };
 var HIGH_SCORE_FILE = 'json/highscore.json';
