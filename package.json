@@ -4,7 +4,8 @@
   "description": "Quizzes about technology, coding, java, js, freemarker, and more",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "mocha"
   },
   "dependencies": {
     "assert": "^1.3.0",
