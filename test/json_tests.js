@@ -3,7 +3,7 @@ var fs = require('fs');
 var pathToQuizzes = './json/quizzes';
 
 describe('every quiz file', function () {
-    it('should have a corresponding answer keys file', function () {
+    it('should have a corresponding answer keys file, and a category in their name', function () {
         "use strict";
         let errors = [];
         let quizList = [];
@@ -11,12 +11,14 @@ describe('every quiz file', function () {
         let actualQuizName;
         let actualAnswerKeyName;
         let fileNames = fs.readdirSync(pathToQuizzes);
+        let categoryList = [];
         fileNames.forEach(function(fileName) {
             try {
-                let quizNameGroups = /(.*)Quiz.json/.exec(fileName);
-                let answerKeyNameGroups = /(.*)QuizAnswerKeys.json/.exec(fileName);
-                actualQuizName = quizNameGroups ? quizNameGroups[1] : false;
-                actualAnswerKeyName = answerKeyNameGroups ? answerKeyNameGroups[1] : false;
+                let quizNameGroups = /(.*)_(.*)Quiz.json/.exec(fileName);
+                let answerKeyNameGroups = /(.*)_(.*)QuizAnswerKeys.json/.exec(fileName);
+                categoryList.push(/(.*)_/.exec(fileName)[1]);
+                actualQuizName = quizNameGroups ? quizNameGroups[2] : false;
+                actualAnswerKeyName = answerKeyNameGroups ? answerKeyNameGroups[2] : false;
                 if (actualQuizName) { quizList.push(actualQuizName); }
                 if (actualAnswerKeyName) { answerKeyList.push(actualAnswerKeyName); }
                 if (!actualQuizName && !actualAnswerKeyName) { errors.push("File: '" + fileName + "' does not have 'Quiz.json' or 'QuizAnswer.json' in it's name. It should have."); }

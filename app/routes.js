@@ -93,7 +93,8 @@ module.exports = function(app, passport) {
 
     app.get('/creative', isLoggedIn, function(req, res) {
         res.render('creative.ejs', {
-            user : req.user
+            user : req.user,
+            quizzes: quizServer.getQuizzes()
         });
     });
 

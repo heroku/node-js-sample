@@ -8,9 +8,12 @@ var QUIZ_ANSWER_KEYS_JSON = 'QuizAnswerKeys.json';
 var quizFileNames = fs.readdirSync(pathToQuizzes);
 var quizzes = {}; updateQuizzes();
 
-
 exports.updateQuizzes = function() {
     updateQuizzes();
+};
+
+exports.getQuizzes= function() {
+    return quizzes;
 };
 
 exports.validateAnswer = function(req) {
@@ -148,13 +151,14 @@ function updateQuizzes() {
         let answerKeyNameGroups = /(.*)QuizAnswerKeys.json/.exec(fileName);
         let actualQuizName = quizNameGroups ? quizNameGroups[1] : false;
         let actualAnswerKeyName = answerKeyNameGroups ? answerKeyNameGroups[1] : false;
-        if (actualQuizName) {
-            quizzes[actualQuizName] = quizzes[actualQuizName] || {};
-            quizzes[actualQuizName].quizFile = [pathToQuizzes + actualQuizName + QUIZ_JSON].join('');
-        }
-        if (actualAnswerKeyName) {
-            quizzes[actualAnswerKeyName] = quizzes[actualAnswerKeyName] || {};
-            quizzes[actualAnswerKeyName].answerFile = [pathToQuizzes + actualAnswerKeyName + QUIZ_ANSWER_KEYS_JSON].join('')
-        }
+        let quizName = actualQuizName || actualAnswerKeyName;
+        quizzes[quizName] = quizzes[quizName] || {};
+        if (actualQuizName) { quizzes[quizName].quizFile = [pathToQuizzes + quizName + QUIZ_JSON].join(''); }
+        if (quizName) { quizzes[quizName].answerFile = [pathToQuizzes + quizName + QUIZ_ANSWER_KEYS_JSON].join('') }
+        quizzes[quizName].category = /(.*)_/.exec(fileName)[1];
+        quizzes[quizName].imageName = /(.*)_(.*)(Quiz.json|QuizAnswerKeys.json)/.exec(fileName)[2];
+        console.log("*****");
+        console.log(quizName);
     });
+    console.log(JSON.stringify(quizzes));
 }
