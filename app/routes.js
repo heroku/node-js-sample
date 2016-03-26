@@ -1,4 +1,5 @@
 // app/routes.js
+var pg = require('pg');
 var redis = require('redis');
 var quizServer = require('./quizServer');
 //var client = redis.createClient(6379, 'localhost');
@@ -139,6 +140,22 @@ module.exports = function(app, passport) {
         console.log("Quizzes has been updated");
         res.send("done");
     });
+
+
+    /*
+     * Database
+     */
+    app.get('/db', function (request, response) {
+        pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+            client.query('SELECT * FROM test_table', function(err, result) {
+                done();
+                if (err)
+                { console.error(err); response.send("Error " + err); }
+                else
+                { response.render('pages/db', {results: result.rows} ); }
+            });
+        });
+    })
 };
 
 
