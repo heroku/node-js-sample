@@ -157,8 +157,5 @@ function updateQuizzes() {
         if (quizName) { quizzes[quizName].answerFile = [pathToQuizzes + quizName + QUIZ_ANSWER_KEYS_JSON].join('') }
         quizzes[quizName].category = /(.*)_/.exec(fileName)[1];
         quizzes[quizName].imageName = /(.*)_(.*)(Quiz.json|QuizAnswerKeys.json)/.exec(fileName)[2];
-        console.log("*****");
-        console.log(quizName);
     });
-    console.log(JSON.stringify(quizzes));
 }

@@ -12,6 +12,7 @@ var session      = require('express-session');
 require('./config/passport')(passport);
 
 app.set('port', (process.env.PORT || 5000));
+app.set('database_url', (process.env.DATABASE_URL || "TODOLocalDatabaseURL"));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
