@@ -171,8 +171,3 @@ var isAdmin = function(req, res, next) {
         return next();
     res.redirect('/');
 };
-
-/*
-app.get('/api/users', needsGroup('admin'), function(req, res) {
-});
-*/
