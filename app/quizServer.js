@@ -2,27 +2,16 @@ var fs = require('fs');
 var User = require('./models/user');
 var exports = module.exports = {};
 var pathToQuizzes = 'json/quizzes/';
+var HIGH_SCORE_FILE = 'json/highscore.json';
 var QUIZ_JSON = 'Quiz.json';
 var QUIZ_ANSWER_KEYS_JSON = 'QuizAnswerKeys.json';
-var quizzes = {
-    javascript: {
-        quizFile: [pathToQuizzes + 'javascript' + QUIZ_JSON].join(''),
-        answerFile: [pathToQuizzes + 'javascript' + QUIZ_ANSWER_KEYS_JSON].join('')
-    },
-    jdk8: {
-        quizFile: [pathToQuizzes + 'jdk8' + QUIZ_JSON].join(''),
-        answerFile: [pathToQuizzes + 'jdk8' + QUIZ_ANSWER_KEYS_JSON].join('')
-    },
-    jdk9: {
-        quizFile: [pathToQuizzes + 'jdk9' + QUIZ_JSON].join(''),
-        answerFile: [pathToQuizzes + 'jdk9' + QUIZ_ANSWER_KEYS_JSON].join('')
-    },
-    freemarker: {
-        quizFile: [pathToQuizzes + 'freemarker' + QUIZ_JSON].join(''),
-        answerFile: [pathToQuizzes + 'freemarker' + QUIZ_ANSWER_KEYS_JSON].join('')
-    }
+var quizFileNames = fs.readdirSync(pathToQuizzes);
+var quizzes = {}; updateQuizzes();
+
+
+exports.updateQuizzes = function() {
+    updateQuizzes();
 };
-var HIGH_SCORE_FILE = 'json/highscore.json';
 
 exports.validateAnswer = function(req) {
     "use strict";
@@ -150,4 +139,22 @@ function updateUserScoreIfBetter(oldScoreObject, newScore) {
 
 function isObjectEmpty(o) {
     return Object.getOwnPropertyNames(o).length === 0;
+}
+
+function updateQuizzes() {
+    "use strict";
+    quizFileNames.forEach(function(fileName) {
+        let quizNameGroups = /(.*)Quiz.json/.exec(fileName);
+        let answerKeyNameGroups = /(.*)QuizAnswerKeys.json/.exec(fileName);
+        let actualQuizName = quizNameGroups ? quizNameGroups[1] : false;
+        let actualAnswerKeyName = answerKeyNameGroups ? answerKeyNameGroups[1] : false;
+        if (actualQuizName) {
+            quizzes[actualQuizName] = quizzes[actualQuizName] || {};
+            quizzes[actualQuizName].quizFile = [pathToQuizzes + actualQuizName + QUIZ_JSON].join('');
+        }
+        if (actualAnswerKeyName) {
+            quizzes[actualAnswerKeyName] = quizzes[actualAnswerKeyName] || {};
+            quizzes[actualAnswerKeyName].answerFile = [pathToQuizzes + actualAnswerKeyName + QUIZ_ANSWER_KEYS_JSON].join('')
+        }
+    });
 }

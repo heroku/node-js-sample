@@ -131,18 +131,22 @@ module.exports = function(app, passport) {
             res.send(quizServer.showHighScoreFor(quizName, req));
         }
     });
+
+    app.post('/updateQuizzes', isAdmin, function(req, res) {
+        console.log("updating Quizzes");
+        quizServer.updateQuizzes();
+        console.log("Quizzes has been updated");
+        res.send("done");
+    });
 };
 
 
 // private methods ======================================================================
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
-    // if they aren't redirect them to the home page
     res.redirect('/');
 }
 
@@ -161,3 +165,14 @@ function censor(censor) {
         return value;
     }
 }
+
+var isAdmin = function(req, res, next) {
+    if (req.user && req.user.group === "admin")
+        return next();
+    res.redirect('/');
+};
+
+/*
+app.get('/api/users', needsGroup('admin'), function(req, res) {
+});
+*/

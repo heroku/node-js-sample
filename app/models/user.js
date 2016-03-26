@@ -5,38 +5,38 @@ var fs = require('fs');
 var users = JSON.parse(fs.readFileSync('./json/user.json', 'utf8'));
 var exports = module.exports = {};
 
-exports.findOne = function(user, callback) {
+exports.findOne = function (user, callback) {
     var email = user.email;
-    for(var i = 0; i < users.length; i++){
-       var act_user = users[i];
-       act_user.validPassword = function(password) {
-           if (act_user["password"].length > 0) {
-               return validatePassword(password, act_user["password"]);
-           }
-           return false;
-       }
+    for (var i = 0; i < users.length; i++) {
+        var act_user = users[i];
+        act_user.validPassword = function (password) {
+            if (act_user["password"].length > 0) {
+                return validatePassword(password, act_user["password"]);
+            }
+            return false;
+        };
 
-       if (act_user["email"] === user.email) {
-           callback(null, act_user);
-           return;
-       }
+        if (act_user["email"] === user.email) {
+            callback(null, act_user);
+            return;
+        }
     }
     callback(null, null);
 };
 
-exports.findOneBasedOnProfileId = function(profileId, callback) {
-    for(var i = 0; i < users.length; i++){
-       var act_user = users[i];
-       if (act_user["profileId"] === profileId) {
-           callback(null, act_user);
-           return;
-       }
+exports.findOneBasedOnProfileId = function (profileId, callback) {
+    for (var i = 0; i < users.length; i++) {
+        var act_user = users[i];
+        if (act_user["profileId"] === profileId) {
+            callback(null, act_user);
+            return;
+        }
     }
     callback(null, null);
 };
 
-exports.findById = function(id, callback) {
-    for(var i = 0; i < users.length; i++) {
+exports.findById = function (id, callback) {
+    for (var i = 0; i < users.length; i++) {
         if (users[i]["id"] === id) {
             callback(null, users[i]);
             return;
@@ -46,7 +46,7 @@ exports.findById = function(id, callback) {
 };
 
 //// generating a hash
-exports.generateHash = function(password) {
+exports.generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
@@ -57,33 +57,33 @@ function validatePassword(password, encryptedPassword) {
 }
 
 exports.userSchema = {
-    'local'            : {
-        'email'        : '',
-        'password'     : ''
+    'local': {
+        'email': '',
+        'password': ''
     },
-    'facebook'         : {
-        'id'           : '',
-        'token'        : '',
-        'email'        : '',
-        'name'         : ''
+    'facebook': {
+        'id': '',
+        'token': '',
+        'email': '',
+        'name': ''
     },
-    'twitter'          : {
-        'id'           : '',
-        'token'        : '',
-        'displayName'  : '',
-        'username'     : ''
+    'twitter': {
+        'id': '',
+        'token': '',
+        'displayName': '',
+        'username': ''
     },
-    'google'           : {
-        'id'           : '',
-        'token'        : '',
-        'email'        : '',
-        'name'         : ''
+    'google': {
+        'id': '',
+        'token': '',
+        'email': '',
+        'name': ''
     }
 };
 
-exports.generateId = function() {
+exports.generateId = function () {
     var id = s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    for(var i = 0; i < users.length; i++) {
+    for (var i = 0; i < users.length; i++) {
         if (users[i]["id"] === id) {
             return this.generateId();
         }
@@ -91,15 +91,15 @@ exports.generateId = function() {
     return id;
 };
 
-exports.save = function(newUser, callback) {
+exports.save = function (newUser, callback) {
     users.push(newUser);
     try {
         fs.writeFileSync('./json/user.json', JSON.stringify(users));
         console.log('User saved');
         callback();
     } catch (e) {
-          console.log(e);
-          return;
+        console.log(e);
+        return;
     }
 };
 

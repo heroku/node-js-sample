@@ -1,17 +1,16 @@
 var assert = require('assert');
 var fs = require('fs');
-var quizzesPath = './json/quizzes';
+var pathToQuizzes = './json/quizzes';
 
 describe('every quiz file', function () {
     it('should have a corresponding answer keys file', function () {
         "use strict";
-        let fileNames = [];
         let errors = [];
         let quizList = [];
         let answerKeyList = [];
         let actualQuizName;
         let actualAnswerKeyName;
-        fileNames = fs.readdirSync(quizzesPath);
+        let fileNames = fs.readdirSync(pathToQuizzes);
         fileNames.forEach(function(fileName) {
             try {
                 let quizNameGroups = /(.*)Quiz.json/.exec(fileName);

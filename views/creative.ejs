@@ -70,7 +70,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Logged in as: <span class="user-name"><%= user.email %></span></a>
+                <a class="navbar-brand page-scroll" href="#page-top">Logged in as: <span class="user-name"><%= user.email %> <%if (user.group == "admin") { %> admin <% } %></span></a>
                 <p class="latest-achievement"> <a>Latest Achievement: <span class="latest-achievement"><%= user.latestAchievement %></span></a> </p>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -79,7 +79,10 @@
                         <p><a>Score: <span class="user-score">0</span></a> </p>
                     </li>
                     <li>
-                        <p><a class="show-high-score show-high-score btn btn-info" href="#high-score">Show Highscore</a> </p>
+                        <p><a class="show-high-score btn btn-info" href="#high-score">Show Highscore</a> </p>
+                        <%if (user.group == "admin") { %>
+                            <p><a class="update-quizzes btn btn-warning" href="#update-quizzes">Update Quizzes</a> </p>
+                        <% } %>
                     </li>
                 </ul>
             </div>

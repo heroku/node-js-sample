@@ -32,6 +32,16 @@ $(document).ready(function(){
         showHighScore();
     });
 
+    $( ".update-quizzes" ).click( function( event ) {
+        $.post( "/updateQuizzes" )
+            .done( function( data ) {
+                console.log(data);
+            })
+            .fail( function() {
+                showNetworkError();
+            });
+    });
+
     $quizBox.find(".well").click( function( event ) {
         $quizBox.find(".well").removeClass("selected");
         $(this).addClass("selected");
