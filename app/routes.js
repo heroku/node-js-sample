@@ -170,7 +170,7 @@ module.exports = function (app, passport) {
                 }
             });
         });
-        response.redirect('/');
+        response.send("Error client was not provided");
     });
 };
 
