@@ -20,7 +20,7 @@
     "fs": "0.0.2",
     "method-override": "^2.3.5",
     "mocha": "^2.4.5",
-    "mongoose": "^4.4.7",
+    "mongoose": "^4.4.10",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",

@@ -1,4 +1,4 @@
-var devMode = true;
+var devMode = require('../app/config').isDevMode();
 
 module.exports = {
 

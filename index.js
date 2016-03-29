@@ -1,4 +1,7 @@
 var express = require('express');
+
+	var User = require('./app/models/user'); // TODO remove
+	
 var app = express();
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -8,7 +11,7 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-
+var mongoose	 = require('mongoose');
 require('./config/passport')(passport);
 
 app.set('port', (process.env.PORT || 5000));
@@ -28,6 +31,37 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+
+// connect to db ===============================================================
+mongoose.connect('mongodb://nodejsadmin:asdasd@ds013589.mlab.com:13589/quizzes-nodejs');
+var connection = mongoose.connection;
+
+connection.once('open', function() {
+  console.log("connected to mongodb successfully.");
+  // find each person with a last name matching 'Ghost'
+	User.findOne({ 'local.email' :  "email@email.com" }, function(err, user) {
+		if (err) {
+			console.error(err);
+		}
+		if (user) {
+			console.log("user exists");
+			console.log(JSON.stringify(user));
+		} else {
+			var newUser = new User();
+
+			// set the user's local credentials
+			newUser.local.email    = "email@email.com";
+			newUser.local.password = newUser.generateHash("password");
+
+			// save the user
+			newUser.save(function(err) {
+				if (err)
+					console.error(err);
+			});
+		}
+	});
+});
 
 // launch ======================================================================
 app.listen(app.get('port'), function() {
