@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "assert": "^1.3.0",
+    "async": "^1.5.2",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",
@@ -23,6 +24,7 @@
     "mocha": "^2.4.5",
     "mongoose": "^4.4.10",
     "morgan": "^1.7.0",
+    "mpromise": "^0.5.5",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
     "passport-google-oauth": "^1.0.0",

@@ -5,30 +5,10 @@ var app = express();
 var bodyParser 	= require('body-parser');
 var passport 	= require('passport');
 var flash    	= require('connect-flash');
-var Promise 	= require('bluebird');
 var morgan      = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser  = require('body-parser');
 var session     = require('express-session');
-var mongoose	= require('mongoose');
-
-
-// connect to db ===============================================================
-mongoose.connect('mongodb://nodejsadmin:asdasd@ds013589.mlab.com:13589/quizzes-nodejs');
-var connection = mongoose.connection;
-
-//Promise.promisify(connection, mongoose)
-//	.then(function (rows) {
-//	console.log('got rows!')
-//	console.dir(rows)
-	//connection.end()
-//})
-//connectDB('mongodb://nodejsadmin:asdasd@ds013589.mlab.com:13589/quizzes-nodejs')
-//	.then(getAppSecrets)
-//	.then(setAppSecrets);
-var a = Promise.promisify(function(){return connection.once('open')}, mongoose);
-	a.then(getAppSecrets());
-	a.then(setAppSecrets());
+var mongooseConnection = require('./config/mongoModule');
 
 require('./config/passport')(passport);
 
@@ -42,7 +22,7 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-app.use(session({ secret: secrets.appSecret })); // session secret
+app.use(session({ secret: mongooseConnection.getSecrets() })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -57,19 +37,3 @@ app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'));
 });
 
-// private functions ===========================================================
-function getAppSecrets() {
-	console.log("ASDQWEQWDEQWEQWEQW");
-	return Promise.cast(mongoose.model('appsecrets').find({}).exec());
-}
-
-function setAppSecrets(err, secretsFromDB) {
-	if (err) { console.error(err); }
-	if (secrets && secrets.length > 0) {
-		console.log("secrets exist");
-		secrets = secretsFromDB;
-	} else {
-		console.error("err, secrets does not exists. Dieeeeeee");
-		process.exit(1);
-	}
-}
