@@ -1,2 +1,2 @@
-exports.isStubbed = function () { return false; };
+exports.isStubbed = function () { return true; };
 exports.isDevMode = function () { return true; };

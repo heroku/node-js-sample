@@ -76,7 +76,7 @@ if (stubbed) {
 	var userSchema = mongoose.Schema({
 		local            : {
 			email        : String,
-			password     : String,
+			password     : String
 		},
 		facebook         : {
 			id           : String,

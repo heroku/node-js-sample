@@ -6,7 +6,8 @@ var configAuth = require('./auth');
 var stubbed = require('../app/config').isStubbed();
 
 if (stubbed) {
-	module.exports = function(passport) {
+	module.exports = function(passport, asdqwe) {
+		console.log(asdqwe);
 
 		// used to serialize the user for the session
 		passport.serializeUser(function(user, done) {

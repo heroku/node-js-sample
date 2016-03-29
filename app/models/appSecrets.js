@@ -1,3 +1,11 @@
-/**
- * Created by Marcell_Neszt on 3/29/2016.
- */
+var mongoose = require('mongoose');
+
+var appSecretsSchema = mongoose.Schema({
+    facebookAuth : {
+        clientID      : String,
+        clientSecret  : String,
+        callbackURL   : String
+    }
+});
+
+module.exports = mongoose.model('appsecrets', appSecretsSchema);
