@@ -4,18 +4,17 @@ var pathToQuizzes = './json/quizzes';
 
 describe('every quiz file', function () {
     it('should have a corresponding answer keys file, and a category in their name', function () {
-        "use strict";
-        let errors = [];
-        let quizList = [];
-        let answerKeyList = [];
-        let actualQuizName;
-        let actualAnswerKeyName;
-        let fileNames = fs.readdirSync(pathToQuizzes);
-        let categoryList = [];
+        var errors = [];
+        var quizList = [];
+        var answerKeyList = [];
+        var actualQuizName;
+        var actualAnswerKeyName;
+        var fileNames = fs.readdirSync(pathToQuizzes);
+        var categoryList = [];
         fileNames.forEach(function(fileName) {
             try {
-                let quizNameGroups = /(.*)_(.*)Quiz.json/.exec(fileName);
-                let answerKeyNameGroups = /(.*)_(.*)QuizAnswerKeys.json/.exec(fileName);
+                var quizNameGroups = /(.*)_(.*)Quiz.json/.exec(fileName);
+                var answerKeyNameGroups = /(.*)_(.*)QuizAnswerKeys.json/.exec(fileName);
                 categoryList.push(/(.*)_/.exec(fileName)[1]);
                 actualQuizName = quizNameGroups ? quizNameGroups[2] : false;
                 actualAnswerKeyName = answerKeyNameGroups ? answerKeyNameGroups[2] : false;
