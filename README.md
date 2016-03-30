@@ -1,12 +1,25 @@
 # nodejs quizzes
 Wanna play a quiz?
 
-## Documentation
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
+## Dev notes
+# Preinstall
+* [git](https://git-scm.com/downloads)
+* [npm](https://nodejs.org/en/download/)
 
-- [10 Habits of a Happy Node Hacker](https://blog.heroku.com/archives/2014/3/11/node-habits)
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+# Get repo
+* git clone https://github.com/sylwolveryn/nodejs-quizzes.git
+
+# Install packages
+* cd nodejs-quizzes
+* npm install
+* npm install mocha -g
+
+# Run tests
+* npm test
+OR
+* mocha
+
+# Start server
+* npm start
+
