@@ -76,7 +76,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Logged in as: <span class="user-name"><%= user.email %>
+            <a class="navbar-brand page-scroll" href="/profile" target="_blank">Logged in as: <span class="user-name"><%= user.local.email %>  <%= user.facebook.email %>
                     <% if (user.group == "admin") { %>
                     admin
                     <% } %>

@@ -1,17 +1,15 @@
-var devMode = require('../app/config').isDevMode();
-
 module.exports = {
 
     'facebookAuth' : {
-        'clientID'      : devMode ? '676576985814980' : '675122215960457',
-        'clientSecret'  : devMode ? '1557913137034b22baa6fb522db345f2' : 'bcf4388b3bbf99d2f56476e462bf311d',
-        'callbackURL'   : devMode ? "http://localhost:5000/auth/facebook/callback" : 'https://nodejs-quizzes.herokuapp.com/auth/facebook/callback'
+        'clientID'      : process.env.FACEBOOK_CLIENT_ID || '676576985814980',
+        'clientSecret'  : process.env.FACEBOOK_CLIENT_SECRET || '1557913137034b22baa6fb522db345f2',
+        'callbackURL'   : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:5000/auth/facebook/callback'
     },
 
     'twitterAuth' : {
-        'consumerKey'       : 'your-consumer-key-here',
-        'consumerSecret'    : 'your-client-secret-here',
-        'callbackURL'       : 'http://localhost:8080/auth/twitter/callback'
+        'consumerKey'       : process.env.TWITTER_CONSUMER_KEY || 'L1PAufebyu5eFukQA6uGtqiyM',
+        'consumerSecret'    : process.env.TWITTER_CONSUMER_SECRET || 'pZSWCEcOL0cUTgpGesiWR6gxUvj93635juQ7fqyCSghVqn3kzF',
+        'callbackURL'       : process.env.TWITTER_CALLBACK_URL || 'http://localhost:5000/auth/twitter/callback'
     },
 
     'googleAuth' : {

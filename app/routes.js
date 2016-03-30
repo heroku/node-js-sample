@@ -1,97 +1,16 @@
-// app/routes.js
-var pg = require('pg');
-var redis = require('redis');
 var quizServer = require('./quizServer');
-//var client = redis.createClient(6379, 'localhost');
 
 module.exports = function (app, passport) {
-    // Log time on console
-    app.use(function (req, res, next) {
-        var now = new Date((new Date() - 1000 * 60 * 60)).toISOString();
-        console.log(now.slice(0, 10) + " " + now.slice(11, 16));
-        next();
-    });
-
-    // =====================================
-    // HOME PAGE (with login links) ========
-    // =====================================
+    /*
+     * Home page
+     */
     app.get('/', function (req, res) {
-        res.render('index.ejs'); // load the index.ejs file
+        res.render('index.ejs');
     });
 
-    // =====================================
-    // LOGIN ===============================
-    // =====================================
-    // show the login form
-    app.get('/login', function (req, res) {
-
-        // render the page and pass in any flash data if it exists
-        res.render('login.ejs', {message: req.flash('loginMessage')});
-    });
-
-    // process the login form
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/creative', // redirect to the secure profile section
-        failureRedirect: '/login', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
-    }));
-
-    // =====================================
-    // SIGNUP ==============================
-    // =====================================
-    // show the signup form
-    app.get('/signup', function (req, res) {
-
-        // render the page and pass in any flash data if it exists
-        res.render('signup.ejs', {message: req.flash('signupMessage')});
-    });
-
-    // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/creative', // redirect to the secure profile section
-        failureRedirect: '/signup', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
-    }));
-
-    // =====================================
-    // PROFILE SECTION =====================
-    // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function (req, res) {
-        res.render('profile.ejs', {
-            user: req.user // get the user out of session and pass to template
-        });
-    });
-
-    // =====================================
-    // LOGOUT ==============================
-    // =====================================
-    app.get('/logout', function (req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-
-
-    // =====================================
-    // FACEBOOK ROUTES =====================
-    // =====================================
-    // route for facebook authentication and login
-    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
-
-    // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: '/creative',
-            failureRedirect: '/'
-        }));
-
-    app.get('/frontend', function (req, res) {
-        console.log("Frontend initialized");
-        console.log("request: " + JSON.stringify(req.session));
-        res.send('FrontEnd!');
-    });
-
+    /*
+     * Quiz game
+     */
     app.get('/creative', isLoggedIn, function (req, res) {
         res.render('creative.ejs', {
             user: req.user,
@@ -149,33 +68,114 @@ module.exports = function (app, passport) {
         res.send("done");
     });
 
-
     /*
-     * Database
+     * Useful tools
      */
-    app.get('/db', function (request, response) {
-        pg.connect(app.get('database_url'), function (err, client, done) {
-            client = client || { // TODO: - remove. Hack until database is ready
-                'query': function () {
-                }
-            };
-            client.query('SELECT * FROM test_table', function (err, result) {
-                done();
-                if (err) {
-                    console.error(err);
-                    response.send("Error " + err);
-                }
-                else {
-                    response.render('pages/db', {results: result.rows});
-                }
-            });
-        });
-        response.send("Error client was not provided");
+    app.use(function (req, res, next) {
+        var now = new Date((new Date() - 1000 * 60 * 60)).toISOString();
+        console.log(now.slice(0, 10) + " " + now.slice(11, 16));
+        next();
     });
 
-    app.get('/issandbox', function (request, response) {
+    app.get('/isSandbox', function (request, response) {
         response.send("isSandbox: " + (app.get("appSecret") === "itsNotASecretAnyMore"));
     });
+
+    /*
+     * Authentication
+     */
+    app.get('/signup', function (req, res) {
+        res.render('signup.ejs', {message: req.flash('signupMessage')});
+    });
+    app.post('/signup', passport.authenticate('local-login', {
+        successRedirect: '/creative',
+        failureRedirect: '/signup',
+        failureFlash: true
+    }));
+
+    app.get('/login', function (req, res) {
+        res.render('login.ejs', {message: req.flash('loginMessage')});
+    });
+    app.post('/login',
+        passport.authenticate('local-login', {
+            successRedirect: '/creative',
+            failureRedirect: '/login',
+            failureFlash: true })
+    );
+
+    app.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+
+    app.get('/profile', isLoggedIn, function (req, res) {
+        res.render('profile.ejs', { user: req.user });
+    });
+
+    app.get('/auth/twitter', passport.authenticate('twitter'));
+    app.get('/auth/twitter/callback',
+        passport.authenticate('twitter', {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+        })
+    );
+
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/creative',
+            failureRedirect: '/'
+        })
+    );
+
+    app.get('/connect/local', function(req, res) {
+        res.render('connect-local.ejs', { message: req.flash('loginMessage') });
+    });
+    app.post('/connect/local',
+        passport.authenticate('local-login', {
+            successRedirect : '/profile',
+            failureRedirect : '/connect/local',
+            failureFlash : true })
+    );
+    app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
+    app.get('/connect/facebook/callback',
+        passport.authorize('facebook', {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+        })
+    );
+    app.get('/connect/twitter', passport.authorize('twitter', { scope : 'email' }));
+    app.get('/connect/twitter/callback',
+        passport.authorize('twitter', {
+            successRedirect : '/profile',
+            failureRedirect : '/' })
+    );
+
+    app.get('/unlink/local', function(req, res) {
+        var user            = req.user;
+        user.local.email    = undefined;
+        user.local.password = undefined;
+        user.save(function(err) {
+            res.redirect('/profile');
+        });
+    });
+
+    app.get('/unlink/facebook', function(req, res) {
+        var user            = req.user;
+        user.facebook.token = undefined;
+        user.save(function(err) {
+            res.redirect('/profile');
+        });
+    });
+
+    app.get('/unlink/twitter', function(req, res) {
+        var user           = req.user;
+        user.twitter.token = undefined;
+        user.save(function(err) {
+            res.redirect('/profile');
+        });
+    });
+
 };
 
 
@@ -184,7 +184,6 @@ module.exports = function (app, passport) {
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
-
     res.redirect('/');
 }
 

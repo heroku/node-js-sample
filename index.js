@@ -1,7 +1,6 @@
 var express 	= require('express');
 var async = require("async");
 var appSecrets 	= require('./app/models/appSecrets');
-var mongoose = require('mongoose');
 var bodyParser 	= require('body-parser');
 var passport 	= require('passport');
 var flash    	= require('connect-flash');
@@ -19,7 +18,7 @@ app.set('appSecret', (process.env.APP_SECRET || "itsNotASecretAnyMore"));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(morgan('dev')); // log every request to the console
+app.use(morgan('common')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.set('view engine', 'ejs'); // set up ejs for templating
 

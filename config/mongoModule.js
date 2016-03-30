@@ -6,10 +6,11 @@ var readDataBasePromise = new Promise;
 var secrets = {};
 
 // connect to db ===============================================================
-mongoose.connect(process.env.MONGOOSE_MLAB_URI || 'mongodb://sandboxuser:huiokj@ds011880.mlab.com:11880/quizzessandbox');
+mongoose.connect(process.env.MONGOOSE_MLAB_URI || 'mongodb://sandboxUser:huiokj@ds011880.mlab.com:11880/quizzessandbox');
 var connection = mongoose.connection;
 
 connection.once('open', function() {
+    console.log("database connection:");
     if (process.env.MONGOOSE_MLAB_URI) {
         console.log("sucesfully connected to database");
     } else {
