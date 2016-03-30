@@ -1,25 +1,25 @@
-# nodejs quizzes
+
+# Nodejs quizzes
 Wanna play a quiz?
 
 
-## Dev notes
-# Preinstall
+# Dev notes
+## Preinstall
 * [git](https://git-scm.com/downloads)
 * [npm](https://nodejs.org/en/download/)
 
-# Get repo
+## Get repo
 * git clone https://github.com/sylwolveryn/nodejs-quizzes.git
 
-# Install packages
+## Install packages
 * cd nodejs-quizzes
 * npm install
 * npm install mocha -g
 
-# Run tests
+## Run tests
 * npm test
-OR
-* mocha
+npm test is a shortcut for mocha
 
-# Start server
+## Start server
 * npm start
 
