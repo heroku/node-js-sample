@@ -6,11 +6,15 @@ var readDataBasePromise = new Promise;
 var secrets = {};
 
 // connect to db ===============================================================
-mongoose.connect('mongodb://nodejsadmin:asdasd@ds013589.mlab.com:13589/quizzes-nodejs');
+mongoose.connect(process.env.MONGOOSE_MLAB_URI || 'mongodb://sandboxuser:huiokj@ds011880.mlab.com:11880/quizzessandbox');
 var connection = mongoose.connection;
 
 connection.once('open', function() {
-    console.log("sucesfully connected to database");
+    if (process.env.MONGOOSE_MLAB_URI) {
+        console.log("sucesfully connected to database");
+    } else {
+        console.log("sucesfully connected to sandbox database");
+    }
     //setSecrets(getAppSecrets());
     //promise.fulfill();
 });
@@ -41,9 +45,9 @@ connection.once('open', function() {
 //}
 
 // public API  =================================================================
-exports.getSecrets = function() {
-    promise.onResolve(function (err) {
-        if (err) { console.error(err); }
-        return secrets;
-    });
-};
+//exports.getSecrets = function() {
+//    promise.onResolve(function (err) {
+//        if (err) { console.error(err); }
+//        return secrets;
+//    });
+//};

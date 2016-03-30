@@ -15,6 +15,7 @@ var secrets = {};
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
+app.set('appSecret', (process.env.APP_SECRET || "itsNotASecretAnyMore"));
 app.set('database_url', (process.env.DATABASE_URL || "TODOLocalDatabaseURL"));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,14 +26,14 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
 async.series([
+    //function(callback) {
+    //    appSecrets.findOne({}, "appSecret", function(err, obj) {
+        //    secrets.appSecret = obj.get("appSecret");
+        //    callback();
+        //});
+    //},
     function(callback) {
-        appSecrets.findOne({}, "appSecret", function(err, obj) {
-            secrets.appSecret = obj.get("appSecret");
-            callback();
-        });
-    },
-    function(callback) {
-        app.use(session({ secret: secrets.appSecret })); // session secret
+        app.use(session({ secret: app.get('appSecret')})); // session secret
         app.use(passport.initialize());
         app.use(passport.session()); // persistent login sessions
         app.use(flash()); // use connect-flash for flash messages stored in session

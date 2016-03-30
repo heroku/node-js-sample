@@ -172,6 +172,10 @@ module.exports = function (app, passport) {
         });
         response.send("Error client was not provided");
     });
+
+    app.get('/appsecret', function (request, response) {
+        response.send(app.get("appSecret"));
+    });
 };
 
 
