@@ -126,7 +126,7 @@ module.exports = function(passport) {
         return newUser;
     }
 
-    function handleLocalSignUp(req, email, password, done) {
+    function handleLocalSignUp(req, email, password, done) { // TODO: remove comments, do we need it? Sign up vs Sign in question
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
