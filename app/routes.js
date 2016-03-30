@@ -173,8 +173,8 @@ module.exports = function (app, passport) {
         response.send("Error client was not provided");
     });
 
-    app.get('/appsecret', function (request, response) {
-        response.send(app.get("appSecret"));
+    app.get('/issandbox', function (request, response) {
+        response.send("isSandbox: " + (app.get("appSecret") === "itsNotASecretAnyMore"));
     });
 };
 
