@@ -24,7 +24,6 @@ module.exports = function (passport) {
     // FACEBOOK ================================================================
     // =========================================================================
     passport.use(new FacebookStrategy({
-        // pull in our app id and secret from our auth.js file
         clientID: configAuth.facebookAuth.clientID,
         clientSecret: configAuth.facebookAuth.clientSecret,
         callbackURL: configAuth.facebookAuth.callbackURL,
@@ -71,7 +70,7 @@ module.exports = function (passport) {
                 if (!req.user) {
                     User.findOne({'facebook.id': profile.id}, function (err, user) {
                         if (err) return done(err);
-                        if (user) return done(null, user); // user found, return that user
+                        if (user) return done(null, user);
 
                         var newUser = new User();
                         newUser.profileId = uuid.v4();
