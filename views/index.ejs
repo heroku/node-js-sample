@@ -3,25 +3,53 @@
 <html>
 <head>
     <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
     <style>
-        body        { padding-top:80px; }
+        body {
+            padding-top: 80px;
+        }
+
+        input {
+            max-width: 171px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
 <div class="container">
 
     <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+        <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+        <% } %>
 
-        <p>Login or Register with:</p>
+        <!-- LOGIN FORM -->
+        <form action="/login" method="post">
+            <fieldset>
+                <legend>Login or Register</legend>
+                <label for="name_input">Name</label>
+                <input type="text" class="form-control" name="name" id="name_input">
+                <label for="password_input">Password</label>
+                <input type="password" class="form-control" name="password" id="password_input">
+                <button type="submit" class="btn btn-success btn-lg">Login/Create account</button>
+            </fieldset>
+        </form>
 
-        <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook Login</a>
-        <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter Login</a>
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-
+        <hr>
+        <% if (shouldShowThirdPartyLogins) { %>
+        <fieldset>
+            <legend>Login with</legend>
+            <% if (shouldShowFacebookLogin) { %>
+            <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook Login</a>
+            <% } %>
+            <% if (shouldShowTwitterLogin) { %>
+            <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter Login</a>
+            <% } %>
+        </fieldset>
+        <% } %>
     </div>
 
 </div>

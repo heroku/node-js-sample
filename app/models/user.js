@@ -5,14 +5,14 @@ var users = JSON.parse(fs.readFileSync('./json/user.json', 'utf8'));
 var exports = module.exports = {};
 
 var userSchema = mongoose.Schema({
+	profileId: String,
 	local            : {
-		email        : String,
+		name        : String,
 		password     : String
 	},
 	facebook         : {
 		id           : String,
 		token        : String,
-		email        : String,
 		name         : String
 	},
 	twitter          : {

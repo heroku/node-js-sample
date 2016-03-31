@@ -25,6 +25,7 @@
     "mongoose": "^4.4.10",
     "morgan": "^1.7.0",
     "mpromise": "^0.5.5",
+    "node-uuid": "^1.4.7",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
     "passport-google-oauth": "^1.0.0",
