@@ -3,6 +3,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var configAuth = require('./auth');
 var User = require('../app/models/user');
+var Role = require('../app/models/role');
 
 var async = require("async");
 var uuid = require('node-uuid');
@@ -90,10 +91,18 @@ module.exports = function (passport) {
                         if (user) return done(null, user);
 
                         var newUser = new User();
+                        var newRole = new Role();
                         newUser.displayName = profile.displayName;
                         newUser.facebook.id = profile.id;
                         newUser.facebook.token = token;
                         newUser.facebook.name = profile.displayName;
+
+                        newRole.userId = newUser.id;
+                        newRole.role = "user";
+                        newRole.save(function (err) {
+                            if (err) throw err;
+                        });
+
                         newUser.save(function (err) {
                             if (err) throw err;
                             return done(null, newUser);
@@ -128,9 +137,17 @@ module.exports = function (passport) {
                     }
                     else {
                         var newUser = new User();
+                        var newRole = new Role();
                         newUser.displayName = name;
                         newUser.local.name = name;
                         newUser.local.password = newUser.generateHash(password);
+
+                        newRole.userId = newUser.id;
+                        newRole.role = "user";
+                        newRole.save(function (err) {
+                            if (err) throw err;
+                        });
+
                         newUser.save(function (err) {
                             if (err) throw err;
                             return done(null, newUser);
@@ -199,6 +216,7 @@ module.exports = function (passport) {
                     return done(null, user);
                 } else {
                     var newUser = new User();
+                    var newRole = new Role();
                     newUser.displayName = profile.displayName;
                     newUser.twitter.id = profile.id;
                     newUser.twitter.token = token;
@@ -207,6 +225,13 @@ module.exports = function (passport) {
                     if (profile.photos && profile.photos[0]) {
                         newUser.twitter.profilePhoto = profile.photos[0].value;
                     }
+
+                    newRole.userId = newUser.id;
+                    newRole.role = "user";
+                    newRole.save(function (err) {
+                        if (err) throw err;
+                    });
+
                     newUser.save(function (err) {
                         if (err) throw err;
                         return done(null, newUser);

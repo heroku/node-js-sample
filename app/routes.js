@@ -1,6 +1,7 @@
 var quizServer = require('./quizServer');
 var async = require("async");
 var User = require('../app/models/user');
+var Roles = require('../app/models/role');
 
 var REDIRECT_TO_PROFILE = '/profile';
 var REDIRECT_TO_QUIZZES = '/creative';
@@ -95,6 +96,10 @@ module.exports = function (app, passport) {
         response.send("isSandbox: " + (app.get("appSecret") === "itsNotASecretAnyMore"));
     });
 
+    app.get('/isAdmin', isAdmin, function (request, response) {
+        response.send("isAdmin: true (if it qould be false, you would be redirected to homepage)");
+    });
+
     /*
      * Authentication
      */
@@ -102,7 +107,8 @@ module.exports = function (app, passport) {
         passport.authenticate('local-login', {
             successRedirect: REDIRECT_TO_QUIZZES,
             failureRedirect: '/',
-            failureFlash: true })
+            failureFlash: true
+        })
     );
 
     app.get('/logout', function (req, res) {
@@ -111,14 +117,14 @@ module.exports = function (app, passport) {
     });
 
     app.get('/profile', isLoggedIn, function (req, res) {
-        res.render('profile.ejs', { user: req.user });
+        res.render('profile.ejs', {user: req.user});
     });
 
     app.get('/auth/twitter', passport.authenticate('twitter'));
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', {
-            successRedirect : REDIRECT_TO_QUIZZES,
-            failureRedirect : '/'
+            successRedirect: REDIRECT_TO_QUIZZES,
+            failureRedirect: '/'
         })
     );
 
@@ -130,47 +136,48 @@ module.exports = function (app, passport) {
         })
     );
 
-    app.get('/connect/facebook', passport.authorize('facebook', { scope : 'email' }));
+    app.get('/connect/facebook', passport.authorize('facebook', {scope: 'email'}));
     app.get('/connect/facebook/callback',
         passport.authorize('facebook', {
-            successRedirect : REDIRECT_TO_PROFILE,
-            failureRedirect : '/'
+            successRedirect: REDIRECT_TO_PROFILE,
+            failureRedirect: '/'
         })
     );
-    app.get('/connect/twitter', passport.authorize('twitter', { scope : 'email' }));
+    app.get('/connect/twitter', passport.authorize('twitter', {scope: 'email'}));
     app.get('/connect/twitter/callback',
         passport.authorize('twitter', {
-            successRedirect : REDIRECT_TO_PROFILE,
-            failureRedirect : '/' })
+            successRedirect: REDIRECT_TO_PROFILE,
+            failureRedirect: '/'
+        })
     );
 
-    app.get('/unlink/local', function(req, res) {
+    app.get('/unlink/local', function (req, res) {
         var user = req.user;
         user.local.name = undefined;
         user.local.password = undefined;
-        user.save(function(err) {
+        user.save(function (err) {
             res.redirect(REDIRECT_TO_PROFILE);
         });
     });
 
-    app.get('/unlink/facebook', function(req, res) {
+    app.get('/unlink/facebook', function (req, res) {
         var user = req.user;
         user.facebook.token = undefined;
-        user.save(function(err) {
+        user.save(function (err) {
             res.redirect(REDIRECT_TO_PROFILE);
         });
     });
 
-    app.get('/unlink/twitter', function(req, res) {
+    app.get('/unlink/twitter', function (req, res) {
         var user = req.user;
         user.twitter.token = undefined;
         user.twitter.profilePhoto = undefined;
-        user.save(function(err) {
+        user.save(function (err) {
             res.redirect(REDIRECT_TO_PROFILE);
         });
     });
 
-    app.post('/update-display-name', isLoggedIn, function(req, res) {
+    app.post('/update-display-name', isLoggedIn, function (req, res) {
         var updatedUser = req.user;
         var newDisplayName = req.body.data.trim();
         if (!newDisplayName || newDisplayName === "") {
@@ -182,7 +189,7 @@ module.exports = function (app, passport) {
             return;
         }
         async.series([
-            function(callback) {
+            function (callback) {
                 User.findOne({'displayName': newDisplayName}, function (err, user) {
                     if (err) return callback(err);
                     if (user === null) {
@@ -198,9 +205,9 @@ module.exports = function (app, passport) {
                     callback();
                 });
             }
-        ], function(err) {
+        ], function (err) {
             if (err) return next(err);
-            updatedUser.save(function(err) {
+            updatedUser.save(function (err) {
                 if (err) res.send({
                     error: true,
                     message: "unable to save the user to db",
@@ -246,7 +253,22 @@ function censor(censor) {
 }
 
 var isAdmin = function (req, res, next) {
-    if (req.user && req.user.group === "admin")
-        return next();
-    res.redirect('/');
+    async.series([
+        function (callback) {
+            if (req.user) {
+                Roles.findOne({'userId': req.user.id}, function (err, user_role) {
+                    if (err) return callback(err);
+                    if (user_role === null || user_role.role !== "admin") {
+                        res.redirect('/');
+                    }
+                    return next();
+                });
+            } else {
+                callback();
+            }
+        }
+    ], function (err) {
+        if (err) return next(err);
+        res.redirect('/');
+    });
 };
