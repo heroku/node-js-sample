@@ -1,4 +1,5 @@
 var express 	= require('express');
+var helmet = require('helmet');
 var async = require("async");
 var bodyParser 	= require('body-parser');
 var passport 	= require('passport');
@@ -12,6 +13,7 @@ require('./config/passport')(passport);
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.set('appSecret', (process.env.APP_SECRET || "itsNotASecretAnyMore"));
+app.use(helmet());
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

@@ -12,43 +12,60 @@
             padding-top: 80px;
         }
 
-        input {
+        input.form-control {
             max-width: 171px;
-            margin: 0 auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button.form-control {
+            max-width: 171px;
+            display: block;
+            line-height: 0.8;
+        }
+        .right-panel {
+            float: right;
+        }
+
+        .btn-lg {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 <div class="container">
 
-    <div class="jumbotron text-center">
+    <div class="well">
         <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
         <% } %>
 
         <!-- LOGIN FORM -->
         <form action="/login" method="post">
-            <fieldset>
-                <legend>Login or Register</legend>
-                <label for="name_input">Name</label>
-                <input type="text" class="form-control" name="name" id="name_input">
-                <label for="password_input">Password</label>
-                <input type="password" class="form-control" name="password" id="password_input">
-                <button type="submit" class="btn btn-success btn-lg">Login/Create account</button>
+            <fieldset class="form-group">
+                <legend>Login or Register <span class="right-panel">Or</span> </legend>
+                    <div class="right-panel">
+                        <button type="button" class="form-control btn btn-warning btn-lg" name="playAsGuest">Play as guest</button>
+                        <button type="button" class="form-control btn btn-danger btn-lg" name="achievements">Achievements</button>
+                        <button type="button" class="form-control btn btn-danger btn-lg" name="highscores">Highscores</button>
+                        <button type="button" class="form-control btn btn-info btn-lg" name="faq">FAQ</button>
+                    </div>
+                    <input type="text" class="form-control" name="name" id="name_input" placeholder="Name">
+                    <input type="password" class="form-control" name="password" id="password_input" placeholder="Password">
+                <button type="submit" class="form-control btn btn-success btn-lg">Login/Create</button>
             </fieldset>
         </form>
 
         <hr>
         <% if (shouldShowThirdPartyLogins) { %>
-        <fieldset>
-            <legend>Login with</legend>
+        <h3>Or login with
             <% if (shouldShowFacebookLogin) { %>
             <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook Login</a>
             <% } %>
             <% if (shouldShowTwitterLogin) { %>
             <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter Login</a>
             <% } %>
-        </fieldset>
+        </h3>
         <% } %>
     </div>
 

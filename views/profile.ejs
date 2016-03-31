@@ -4,12 +4,20 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body        { padding-top:80px; word-wrap:break-word; }
-    </style>
+    <link rel="stylesheet" href="css/profile.css" type="text/css">
 </head>
 <body>
 <div class="container">
+
+    <div class="network-error alert alert-warning hidden">
+        <a href="#" class="close" data-dismiss="alert">×</a>
+        <strong>Warning!</strong> There was a problem with your network connection. Please try again
+    </div>
+
+    <div class="successfull-update alert alert-success hidden">
+        <a href="#" class="close" data-dismiss="alert">×</a>
+        Profile was updated Succefully!
+    </div>
 
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
@@ -17,6 +25,24 @@
     </div>
 
     <div class="row">
+        <div class="col-sm-6">
+            <div class="well well-info">
+                <h3><span class="fa fa-angle-double-right"></span> Display Name:
+                    <strong class="display-name"><%= user.displayName %></strong></h3>
+                <select class="form-control display-name-change">
+                    <% if (user.local.name) { %>
+                    <option><%= user.local.name %></option>
+                    <% } %>
+                    <% if (user.facebook.token) { %>
+                    <option><%= user.facebook.name %></option>
+                    <% } %>
+                    <% if (user.twitter.token) { %>
+                    <option><%= user.twitter.username %></option>
+                    <% } %>
+                    <option>New</option>
+                </select>
+            </div>
+        </div>
 
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
@@ -78,29 +104,42 @@
             </div>
         </div>
 
-        <!-- GOOGLE INFORMATION -->
-        <div class="col-sm-6 hidden">
-            <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
-
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-                <% if (user.google.token) { %>
-                <p>
-                    <strong>id</strong>: <%= user.google.id %><br>
-                    <strong>token</strong>: <%= user.google.token %><br>
-                    <strong>email</strong>: <%= user.google.email %><br>
-                    <strong>name</strong>: <%= user.google.name %>
-                </p>
-
-                <a href="/unlink/google" class="btn btn-danger">Unlink</a>
-                <% } else { %>
-                <a href="/connect/google" class="btn btn-danger">Connect Google</a>
-                <% } %>
-
-            </div>
-        </div>
     </div>
 
 </div>
+
+<div id="modal-template" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="new-display-name-modal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="update-display-name-text" placeholder="New Display Name">
+                <button type="button" class="update-display-name-button btn btn-success">Update Display Name </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/lib/jquery.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/profile.js"></script>
+
 </body>
 </html>

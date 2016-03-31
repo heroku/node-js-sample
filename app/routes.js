@@ -1,4 +1,7 @@
 var quizServer = require('./quizServer');
+var async = require("async");
+var User = require('../app/models/user');
+
 var REDIRECT_TO_PROFILE = '/profile';
 var REDIRECT_TO_QUIZZES = '/creative';
 
@@ -25,7 +28,6 @@ module.exports = function (app, passport) {
     app.get('/creative', isLoggedIn, function (req, res) {
         res.render('creative.ejs', {
             user: req.user,
-            userName: getUserName(req),
             quizzes: quizServer.getQuizzes()
         });
     });
@@ -164,6 +166,47 @@ module.exports = function (app, passport) {
         user.twitter.token = undefined;
         user.save(function(err) {
             res.redirect(REDIRECT_TO_PROFILE);
+        });
+    });
+
+    app.post('/update-display-name', isLoggedIn, function(req, res) {
+        var updatedUser = req.user;
+        var newDisplayName = req.body.data.trim();
+        if (!newDisplayName || newDisplayName === "") {
+            res.send({
+                error: true,
+                message: "New display Name was not given",
+                subMessage: "Please provide a new name"
+            });
+            return;
+        }
+        async.series([
+            function(callback) {
+                User.findOne({'displayName': newDisplayName}, function (err, user) {
+                    if (err) return callback(err);
+                    if (user === null) {
+                        updatedUser.displayName = newDisplayName;
+                    } else {
+                        res.send({
+                            error: true,
+                            message: "Unable to update the display name",
+                            subMessage: "That display name is already taken"
+                        });
+                        return;
+                    }
+                    callback();
+                });
+            }
+        ], function(err) {
+            if (err) return next(err);
+            updatedUser.save(function(err) {
+                if (err) res.send({
+                    error: true,
+                    message: "unable to save the user to db",
+                    subMessage: "reason: " + err
+                });
+                res.send({error: false});
+            });
         });
     });
 };

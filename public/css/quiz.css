@@ -117,3 +117,8 @@
 p.latest-achievement {
     float: right;
 }
+
+.user-name {
+    color: aqua;
+    font-weight: bold;
+}

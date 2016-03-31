@@ -20,6 +20,22 @@ module.exports = function (passport) {
         });
     });
 
+    passport.updateUserDisplayName = function(user) {
+        var updatedUser;
+        return async.series([
+            function (callback) {
+                User.findById(user._id, function (err, user) {
+                    console.log(JSON.stringify(user));
+                    updatedUser = user;
+                    callback();
+                });
+            },
+            function() {
+                return updatedUser;
+            }
+        ]);
+    };
+
     // =========================================================================
     // FACEBOOK ================================================================
     // =========================================================================
@@ -73,7 +89,7 @@ module.exports = function (passport) {
                         if (user) return done(null, user);
 
                         var newUser = new User();
-                        newUser.profileId = uuid.v4();
+                        newUser.displayName = profile.displayName;
                         newUser.facebook.id = profile.id;
                         newUser.facebook.token = token;
                         newUser.facebook.name = profile.displayName;
@@ -111,7 +127,7 @@ module.exports = function (passport) {
                     }
                     else {
                         var newUser = new User();
-                        newUser.profileId = uuid.v4();
+                        newUser.displayName = name;
                         newUser.local.name = name;
                         newUser.local.password = newUser.generateHash(password);
                         newUser.save(function (err) {
@@ -179,7 +195,7 @@ module.exports = function (passport) {
                     return done(null, user);
                 } else {
                     var newUser = new User();
-                    newUser.profileId = uuid.v4();
+                    newUser.displayName = profile.displayName;
                     newUser.twitter.id = profile.id;
                     newUser.twitter.token = token;
                     newUser.twitter.username = profile.username;
