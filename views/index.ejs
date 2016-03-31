@@ -23,6 +23,7 @@
             display: block;
             line-height: 0.8;
         }
+
         .right-panel {
             float: right;
         }
@@ -43,15 +44,18 @@
         <!-- LOGIN FORM -->
         <form action="/login" method="post">
             <fieldset class="form-group">
-                <legend>Login or Register <span class="right-panel">Or</span> </legend>
-                    <div class="right-panel">
-                        <button type="button" class="form-control btn btn-warning btn-lg" name="playAsGuest">Play as guest</button>
-                        <button type="button" class="form-control btn btn-danger btn-lg" name="achievements">Achievements</button>
-                        <button type="button" class="form-control btn btn-danger btn-lg" name="highscores">Highscores</button>
-                        <button type="button" class="form-control btn btn-info btn-lg" name="faq">FAQ</button>
-                    </div>
-                    <input type="text" class="form-control" name="name" id="name_input" placeholder="Name">
-                    <input type="password" class="form-control" name="password" id="password_input" placeholder="Password">
+                <legend>Login or Register <span class="right-panel">Or</span></legend>
+                <div class="right-panel">
+                    <button type="button" class="form-control btn btn-warning btn-lg" name="playAsGuest">Play as guest
+                    </button>
+                    <button type="button" class="form-control btn btn-danger btn-lg" name="achievements">Achievements
+                    </button>
+                    <button type="button" class="form-control btn btn-danger btn-lg" name="highscores">Highscores
+                    </button>
+                    <button type="button" class="form-control btn btn-info btn-lg" name="faq">FAQ</button>
+                </div>
+                <input type="text" class="form-control" name="name" id="name_input" placeholder="Name">
+                <input type="password" class="form-control" name="password" id="password_input" placeholder="Password">
                 <button type="submit" class="form-control btn btn-success btn-lg">Login/Create</button>
             </fieldset>
         </form>
@@ -70,5 +74,8 @@
     </div>
 
 </div>
+
+<script src="js/lib/jquery.js"></script>
+
 </body>
 </html>

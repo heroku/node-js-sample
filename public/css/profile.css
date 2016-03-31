@@ -7,6 +7,14 @@ body {
     background: #5BC0DE;
 }
 
+.well-achievement {
+    background-color: darkturquoise;
+}
+
+.well-profile {
+    background-color: powderblue;
+}
+
 .twitter-photo {
     position: relative;
     float: right;

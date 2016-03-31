@@ -10,7 +10,7 @@ module.exports = function (app, passport) {
      * Home page
      */
     app.get('/', function (req, res) {
-        if (req.user && req.user.local.name) {
+        if (req.user) {
             res.redirect(REDIRECT_TO_QUIZZES);
         } else {
             res.render('index.ejs', {
