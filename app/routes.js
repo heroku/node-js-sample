@@ -92,16 +92,16 @@ module.exports = function (app, passport) {
         next();
     });
 
-    app.get('/isSandbox', function (request, response) {
-        response.send("isSandbox: " + (app.get("appSecret") === "itsNotASecretAnyMore"));
+    app.get('/isSandbox', function (req, res) {
+        res.send("isSandbox: " + (app.get("appSecret") === "itsNotASecretAnyMore"));
     });
 
-    app.get('/isAdmin', isAdmin, function (request, response) {
-        response.send("isAdmin: true (if it qould be false, you would be redirected to homepage)");
+    app.get('/isAdmin', isAdmin, function (req, res) {
+        res.send("isAdmin: true (if it qould be false, you would be redirected to homepage)");
     });
 
-    app.get('/checkFacebookProfile', function (request, response) {
-        response.send(JSON.stringify(request.session.tempFaceBookProfileDump));
+    app.get('/errorTemp', isAdmin, function (req, res) {
+        res.send(JSON.stringify(req.session.errorTemp));
     });
 
     /*
@@ -139,21 +139,9 @@ module.exports = function (app, passport) {
             failureRedirect: '/'
         })
     );
-    app.get('/auth/callbackURL',
-        passport.authenticate('facebook', {
-            successRedirect: REDIRECT_TO_PROFILE,
-            failureRedirect: '/'
-        })
-    );
 
     app.get('/connect/facebook', passport.authorize('facebook', {scope: 'email'}));
     app.get('/connect/facebook/callback',
-        passport.authorize('facebook', {
-            successRedirect: REDIRECT_TO_PROFILE,
-            failureRedirect: '/'
-        })
-    );
-    app.get('/connect/callbackURL',
         passport.authorize('facebook', {
             successRedirect: REDIRECT_TO_PROFILE,
             failureRedirect: '/'

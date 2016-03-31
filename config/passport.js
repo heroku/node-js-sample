@@ -84,7 +84,6 @@ module.exports = function (passport) {
     }));
 
     function handleFacebookLogin(req, token, refreshToken, profile, done) {
-        req.session.tempFaceBookProfileDump = profile;
         try {
             process.nextTick(function () {
                 if (!req.user) {
@@ -116,8 +115,9 @@ module.exports = function (passport) {
                 }
             });
         } catch (e) {
+            req.session.errorTemp = e;
             console.log(e);
-            done(e);
+            return done(e);
         }
     }
 
