@@ -100,6 +100,10 @@ module.exports = function (app, passport) {
         response.send("isAdmin: true (if it qould be false, you would be redirected to homepage)");
     });
 
+    app.get('/checkFacebookProfile', function (request, response) {
+        response.send(JSON.stringify(request.session.tempFaceBookProfileDump));
+    });
+
     /*
      * Authentication
      */

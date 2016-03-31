@@ -84,6 +84,7 @@ module.exports = function (passport) {
     }));
 
     function handleFacebookLogin(req, token, refreshToken, profile, done) {
+        req.session.tempFaceBookProfileDump = profile;
         try {
             process.nextTick(function () {
                 if (!req.user) {
