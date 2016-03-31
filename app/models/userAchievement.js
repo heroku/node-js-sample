@@ -5,4 +5,4 @@ var userAchievementSchema = mongoose.Schema({
     achievements: []
 });
 
-module.exports = mongoose.model('userAchievementSchema', userAchievementSchema);
+module.exports = mongoose.model('userAchievement', userAchievementSchema);
