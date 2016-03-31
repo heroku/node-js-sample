@@ -164,6 +164,7 @@ module.exports = function (app, passport) {
     app.get('/unlink/twitter', function(req, res) {
         var user = req.user;
         user.twitter.token = undefined;
+        user.twitter.profilePhoto = undefined;
         user.save(function(err) {
             res.redirect(REDIRECT_TO_PROFILE);
         });

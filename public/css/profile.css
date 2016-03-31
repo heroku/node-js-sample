@@ -6,3 +6,8 @@ body {
 .well-info {
     background: #5BC0DE;
 }
+
+.twitter-photo {
+    position: relative;
+    float: right;
+}

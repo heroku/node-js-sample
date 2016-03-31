@@ -187,6 +187,9 @@ module.exports = function (passport) {
                         user.twitter.token = token;
                         user.twitter.username = profile.username;
                         user.twitter.displayName = profile.displayName;
+                        if (profile.photos && profile.photos[0]) {
+                            user.twitter.profilePhoto = profile.photos[0].value;
+                        }
 
                         user.save(function (err) {
                             if (err) throw err;
@@ -201,6 +204,9 @@ module.exports = function (passport) {
                     newUser.twitter.token = token;
                     newUser.twitter.username = profile.username;
                     newUser.twitter.displayName = profile.displayName;
+                    if (profile.photos && profile.photos[0]) {
+                        newUser.twitter.profilePhoto = profile.photos[0].value;
+                    }
                     newUser.save(function (err) {
                         if (err) throw err;
                         return done(null, newUser);
@@ -213,6 +219,9 @@ module.exports = function (passport) {
             user.twitter.token = token;
             user.twitter.username = profile.username;
             user.twitter.displayName = profile.displayName;
+            if (profile.photos && profile.photos[0]) {
+                user.twitter.profilePhoto = profile.photos[0].value;
+            }
             user.save(function (err) {
                 if (err) throw err;
                 return done(null, user);
