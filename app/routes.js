@@ -105,7 +105,7 @@ module.exports = function (app, passport) {
      */
     app.post('/login',
         passport.authenticate('local-login', {
-            successRedirect: REDIRECT_TO_QUIZZES,
+            successRedirect: REDIRECT_TO_PROFILE,
             failureRedirect: '/',
             failureFlash: true
         })
@@ -123,7 +123,7 @@ module.exports = function (app, passport) {
     app.get('/auth/twitter', passport.authenticate('twitter'));
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', {
-            successRedirect: REDIRECT_TO_QUIZZES,
+            successRedirect: REDIRECT_TO_PROFILE,
             failureRedirect: '/'
         })
     );
@@ -131,7 +131,13 @@ module.exports = function (app, passport) {
     app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: REDIRECT_TO_QUIZZES,
+            successRedirect: REDIRECT_TO_PROFILE,
+            failureRedirect: '/'
+        })
+    );
+    app.get('/auth/callbackURL',
+        passport.authenticate('facebook', {
+            successRedirect: REDIRECT_TO_PROFILE,
             failureRedirect: '/'
         })
     );
