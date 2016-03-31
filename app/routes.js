@@ -143,6 +143,13 @@ module.exports = function (app, passport) {
             failureRedirect: '/'
         })
     );
+    app.get('/connect/callbackURL',
+        passport.authorize('facebook', {
+            successRedirect: REDIRECT_TO_PROFILE,
+            failureRedirect: '/'
+        })
+    );
+
     app.get('/connect/twitter', passport.authorize('twitter', {scope: 'email'}));
     app.get('/connect/twitter/callback',
         passport.authorize('twitter', {
@@ -228,30 +235,6 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
-function getUserName(req) {
-    var user = {};
-    user.local = req.user.local || {};
-    user.facebook = req.user.facebook || {};
-    user.twitter = req.user.twitter || {};
-    return user.local.name || user.facebook.name || user.twitter.username;
-}
-
-function censor(censor) {
-    var i = 0;
-
-    return function (key, value) {
-        if (i !== 0 && typeof(censor) === 'object' && typeof(value) == 'object' && censor == value)
-            return '[Circular]';
-
-        if (i >= 29) // seems to be a harded maximum of 30 serialized objects?
-            return '[Unknown]';
-
-        ++i; // so we know we aren't using the original object anymore
-
-        return value;
-    }
-}
-
 var isAdmin = function (req, res, next) {
     async.series([
         function (callback) {
@@ -272,3 +255,19 @@ var isAdmin = function (req, res, next) {
         res.redirect('/');
     });
 };
+
+function censor(censor) {
+    var i = 0;
+
+    return function (key, value) {
+        if (i !== 0 && typeof(censor) === 'object' && typeof(value) == 'object' && censor == value)
+            return '[Circular]';
+
+        if (i >= 29) // seems to be a harded maximum of 30 serialized objects?
+            return '[Unknown]';
+
+        ++i; // so we know we aren't using the original object anymore
+
+        return value;
+    }
+}
