@@ -20,111 +20,25 @@
     </div>
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <h1><span class="fa fa-anchor"></span> Admin Page</h1>
+        <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        <a href="/profile" class="btn btn-primary btn-sm">Profile</a>
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
-            <div class="well well-info">
-                <h3><span class="fa fa-angle-double-right"></span> Display Name:
-                    <strong class="display-name"><%= user.displayName %></strong></h3>
-                <select class="form-control display-name-change">
-                    <% if (user.local.name) { %>
-                    <option><%= user.local.name %></option>
-                    <% } %>
-                    <% if (user.facebook.token) { %>
-                    <option><%= user.facebook.name %></option>
-                    <% } %>
-                    <% if (user.twitter.token) { %>
-                    <option><%= user.twitter.username %></option>
-                    <% } %>
-                    <option>New</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="well well-info">
-                <h3><span class="fa fa-gamepad"></span> Play now</h3>
-                <a href="/creative" class="btn btn-lg btn-success">Play</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <!-- Local Information -->
         <div class="col-sm-6">
             <div class="well well-profile">
-                <h3><span class="fa fa-user"></span> Quizzes</h3>
-
-                <% if (user.local.name) { %>
-                <p>
-                    <strong>name</strong>: <%= user.local.name %><br>
-                </p>
-
-                <a href="/unlink/local" class="btn btn-danger">Unlink</a>
-                <% } else { %>
-                <a href="/" class="btn btn-success">Connect Local</a>
-                <% } %>
-
+                <h3><span class="fa fa-file-text"></span> Quizzes</h3>
+                <button type="button" class="create-quiz btn btn-primary">Create quiz</button>
+                <button type="button" class="manage-quiz btn btn-primary">Manage a quiz</button>
             </div>
         </div>
-        <!-- FACEBOOK INFORMATION -->
         <div class="col-sm-6">
             <div class="well well-profile">
-                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-                <% if (user.facebook.token) { %>
-                <p>
-                    <strong>name</strong>: <%= user.facebook.name %><br>
-                </p>
-
-                <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
-                <% } else { %>
-                <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
-                <% } %>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <!-- TWITTER INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well well-profile">
-                <% if (user.twitter.profilePhoto) { %>
-                <img src="<%= user.twitter.profilePhoto %>" alt="profilePhoto" class="twitter-photo"/>
-                <% } %>
-                <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
-
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-                <% if (user.twitter.token) { %>
-                <p>
-                    <strong>display name</strong>: <%= user.twitter.displayName %><br>
-                    <strong>username</strong>: <%= user.twitter.username %>
-                </p>
-                <a href="/unlink/twitter" class="btn btn-info">Unlink</a>
-                <% } else { %>
-                <a href="/connect/twitter" class="btn btn-info">Connect Twitter</a>
-                <% } %>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="well well-data-list">
-                <h3><span class="fa fa-shield"></span> Achievements</h3>
-                <% achievements.forEach(function(achievement, index) { %>
-                <p><%= achievement %></p>
-                <% }); %>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="well well-data-list">
-                <h3><span class="fa fa-star"></span> Highscores</h3>
-
+                <h3><span class="fa fa-users"></span> Users</h3>
+                <button type="button" class="list-users btn btn-info">List users</button>
+                <button type="button" class="create-user btn btn-primary">Create new user</button>
+                <button type="button" class="manage-users btn btn-primary">Manage user roles</button>
             </div>
         </div>
     </div>

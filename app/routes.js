@@ -160,8 +160,11 @@ module.exports = function (app, passport) {
                 });
             },
             function(callback) {
-                if (req.session.roleState) { callback(); }
-                setUserRoleStateInSession(req, callback);
+                if (req.session.roleState) {
+                    callback();
+                } else {
+                    setUserRoleStateInSession(req, callback);
+                }
             }
         ], function (err) {
             if (err) return next(err);
