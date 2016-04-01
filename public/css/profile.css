@@ -19,3 +19,7 @@ body {
     position: relative;
     float: right;
 }
+
+input.form-control, button.form-control {
+    margin-bottom: 12px;
+}

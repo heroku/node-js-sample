@@ -1,18 +1,14 @@
 <!doctype html>
 <html>
 <head>
-    <title>Admin page</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <title>Admin</title>
+    <% include commom_css_includes %>
     <link rel="stylesheet" href="css/profile.css" type="text/css">
 </head>
 <body>
 <div class="container">
 
-    <div class="network-error alert alert-warning hidden">
-        <a href="#" class="close" data-dismiss="alert">×</a>
-        <strong>Warning!</strong> There was a problem with your network connection. Please try again
-    </div>
+    <% include network_error %>
 
     <div class="successfull-update alert alert-success hidden">
         <a href="#" class="close" data-dismiss="alert">×</a>
@@ -29,16 +25,16 @@
         <div class="col-sm-6">
             <div class="well well-profile">
                 <h3><span class="fa fa-file-text"></span> Quizzes</h3>
-                <button type="button" class="create-quiz btn btn-primary">Create quiz</button>
-                <button type="button" class="manage-quiz btn btn-primary">Manage a quiz</button>
+                <button type="button" class="form-control create-quiz btn btn-primary">Create quiz</button>
+                <button type="button" class="form-control manage-quiz btn btn-primary">Manage a quiz</button>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="well well-profile">
                 <h3><span class="fa fa-users"></span> Users</h3>
-                <button type="button" class="list-users btn btn-info">List users</button>
-                <button type="button" class="create-user btn btn-primary">Create new user</button>
-                <button type="button" class="manage-users btn btn-primary">Manage user roles</button>
+                <button type="button" class="form-control list-users btn btn-info">List users</button>
+                <button type="button" class="form-control create-user btn btn-primary">Create new user</button>
+                <button type="button" class="form-control manage-users btn btn-primary">Manage user roles</button>
             </div>
         </div>
     </div>
@@ -59,7 +55,7 @@
     </div>
 </div>
 
-<div id="new-display-name-modal" class="modal fade in">
+<div id="new-quiz-modal" class="modal fade in">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
