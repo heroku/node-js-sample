@@ -2,14 +2,14 @@
 <html>
 <head>
     <title>Profile</title>
-    <% include commom_css_includes %>
+    <% include common_css_includes.ejs %>
     <link rel="stylesheet" href="css/profile.css" type="text/css">
 </head>
 <body>
 <div class="container">
 
     <% include network_error %>
-    
+
     <div class="successfull-update alert alert-success hidden">
         <a href="#" class="close" data-dismiss="alert">×</a>
         Profile was updated Succefully!
@@ -162,8 +162,7 @@
 </div>
 
 
-<script src="js/lib/jquery.js"></script>
-<script src="js/lib/bootstrap.min.js"></script>
+<% include common_javascript_includes %>
 <script src="js/profile.js"></script>
 
 </body>
