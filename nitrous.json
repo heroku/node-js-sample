@@ -1,0 +1,10 @@
+{
+  "template": "nodejs",
+  "ports": [5000],
+  "name": "Node.js Sample",
+  "description": "A barebones Node.js app using the Express framework.",
+  "scripts": {
+    "post-create": "cd ~/code/node-js-sample && echo 'npm installing -- this might take a while' && npm install",
+    "Start Node.js Sample": "cd ~/code/node-js-sample && npm start"
+  }
+}

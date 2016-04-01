@@ -15,6 +15,16 @@ npm start
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
+## Nitrous Quickstart
+
+You can quickly create a free development environment for this Node.js sample project in the cloud on www.nitrous.io:
+
+<a href="https://www.nitrous.io/quickstart">
+  <img src="https://nitrous-image-icons.s3.amazonaws.com/quickstart.png" alt="Nitrous Quickstart" width=142 height=34>
+</a>
+
+In the IDE, start Node.js Sample via `Run > Start Node.js Sample` and access your site via `Preview > 5000`.
+
 ## Deploying to Heroku
 
 ```
