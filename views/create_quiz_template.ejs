@@ -1,0 +1,30 @@
+<div class="panel-group" id="new-quiz-accordion">
+    <style scoped>
+        button {
+            margin-right: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <input type="text" class="quiz-name form-control col-sm-3" placeholder="Quiz name">
+        </div>
+
+        <div class="col-sm-6 col-md-6">
+            <button type="button" class="save pull-right btn btn-success">Save</button>
+        </div>
+        <div class="clearfix visible-md-block"></div>
+    </div>
+
+    <% include one_quiz_template %>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <button type="button" class="plus-one-question btn btn-primary">+1 Question</button>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <button type="button" class="pull-right save btn btn-success">Save</button>
+            <button type="button" class="pull-right discard btn btn-danger">Discard</button>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@
 
     $(document).ready(function(){
         $(".create-quiz").click(function() {
-            $newQuizModal.modal("show")
+            $newQuizModal.modal("show");
         });
     });
 

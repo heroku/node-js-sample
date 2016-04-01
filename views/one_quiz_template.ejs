@@ -1,0 +1,25 @@
+<% if (!question_index) { %>
+<% var question_index = 1; %>
+<% } %>
+
+<div class="panel panel-default">
+    <a data-toggle="collapse" data-parent="#new-quiz-accordion" href="#collapse<%= question_index %>">
+        <div class="panel-heading">
+            <h4 class="panel-title"> Question <%= question_index %></h4>
+        </div>
+    </a>
+
+    <div id="collapse<%= question_index %>" class="panel-collapse collapse in">
+        <style scoped>
+            .quiz-question {
+                margin-top: 0.2rem;
+            }
+        </style>
+        <input type="text" class="quiz-question form-control col-sm-5" placeholder="Quiz question">
+        <input type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer A">
+        <input type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer B">
+        <input type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer C">
+        <input type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer D">
+    </div>
+</div>
+
