@@ -2,6 +2,7 @@ var quizServer = require('./quizServer');
 var async = require("async");
 var User = require('../app/models/user');
 var Roles = require('../app/models/role');
+var UserAchievement = require('../app/models/userAchievement');
 
 var REDIRECT_TO_PROFILE = '/profile';
 var REDIRECT_TO_QUIZZES = '/creative';
@@ -76,6 +77,31 @@ module.exports = function (app, passport) {
         }
     });
 
+    /*
+     * Admin controls
+     */
+    app.get('/admin', isAdmin, function (req, res) {
+        console.log("admin page");
+        var user_achievements = [];
+        async.series([
+            function (callback) {
+                UserAchievement.findOne({'userId': req.user.id}, function (err, achievements) {
+                    if (err) return callback(err);
+                    if (achievements !== null) {
+                        user_achievements = achievements.achievements;
+                    }
+                    callback();
+                });
+            }
+        ], function (err) {
+            if (err) return next(err);
+            res.render('admin.ejs', {
+                user: req.user,
+                achievements: user_achievements
+            });
+        });
+    });
+
     app.post('/updateQuizzes', isAdmin, function (req, res) {
         console.log("updating Quizzes");
         quizServer.updateQuizzes();
@@ -121,7 +147,30 @@ module.exports = function (app, passport) {
     });
 
     app.get('/profile', isLoggedIn, function (req, res) {
-        res.render('profile.ejs', {user: req.user});
+        var user_achievements = [];
+        var admin = false;
+        async.series([
+            function (callback) {
+                UserAchievement.findOne({'userId': req.user.id}, function (err, achievements) {
+                    if (err) return callback(err);
+                    if (achievements !== null) {
+                        user_achievements = achievements.achievements;
+                    }
+                    callback();
+                });
+            },
+            function(callback) {
+                if (req.session.roleState) { callback(); }
+                setUserRoleStateInSession(req, callback);
+            }
+        ], function (err) {
+            if (err) return next(err);
+            res.render('profile.ejs', {
+                user: req.user,
+                admin: req.session.roleState,
+                achievements: user_achievements
+            });
+        });
     });
 
     app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -251,6 +300,28 @@ var isAdmin = function (req, res, next) {
     ], function (err) {
         if (err) return next(err);
         res.redirect('/');
+    });
+};
+
+var setUserRoleStateInSession = function (req, cb) {
+    async.series([
+        function (callback) {
+            if (req.user) {
+                Roles.findOne({'userId': req.user.id}, function (err, user_role) {
+                    if (err) return callback(err);
+                    if (user_role !== null ) {
+                        req.session.roleState = user_role.role;
+                    } else {
+                        req.session.roleState = "guest";
+                    }
+                    callback();
+                });
+            } else {
+                callback();
+            }
+        }
+    ], function () {
+        cb();
     });
 };
 
