@@ -1,0 +1,55 @@
+body {
+    padding-top: 80px;
+    word-wrap: break-word;
+}
+
+.well-info {
+    background: #5BC0DE;
+}
+
+.well-data-list {
+    background-color: darkturquoise;
+}
+
+.well-profile {
+    background-color: powderblue;
+}
+
+.twitter-photo {
+    position: relative;
+    float: right;
+}
+
+input.form-control, button.form-control {
+    margin-bottom: 12px;
+}
+
+.quiz-question {
+    margin-top: 15px;
+}
+
+button {
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+#new-quiz-accordion .panel-heading {
+    padding-top: 0;
+    padding-right: 0;
+}
+
+#new-quiz-accordion button.toggle-questions {
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-right: 0;
+}
+
+.new-quiz-title {
+    position: relative;
+    top: 5px;
+}
+
+.save {
+    margin-right: 0;
+}

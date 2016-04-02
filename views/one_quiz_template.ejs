@@ -2,24 +2,21 @@
 <% var question_index = 1; %>
 <% } %>
 
-<div class="panel panel-default">
-    <a data-toggle="collapse" data-parent="#new-quiz-accordion" href="#collapse<%= question_index %>">
-        <div class="panel-heading">
-            <h4 class="panel-title"> Question <%= question_index %></h4>
-        </div>
-    </a>
-
+<div class="panel panel-primary">
+    <div class="panel-heading well-data-list">
+        <h4 class="panel-title"><span class="new-quiz-title">Question <%= question_index %></span>
+            <button class="toggle-questions pull-right btn btn-info btn-lg" type="button" data-toggle="collapse" data-target="#collapse<%= question_index %>" aria-expanded="false" aria-controls="collapseExample">
+                <span class="fa fa-chevron-up"></span> Close
+            </button>
+        </h4>
+    </div>
     <div id="collapse<%= question_index %>" class="panel-collapse collapse in">
-        <style scoped>
-            .quiz-question {
-                margin-top: 0.2rem;
-            }
-        </style>
-        <input type="text" class="quiz-question form-control col-sm-5" placeholder="Quiz question">
-        <input type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer A">
-        <input type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer B">
-        <input type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer C">
-        <input type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer D">
+        <div class="form-group">
+            <textarea type="text" class="quiz-question form-control col-sm-5" placeholder="Quiz question"></textarea>
+            <textarea type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer A"></textarea>
+            <textarea type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer B"></textarea>
+            <textarea type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer C"></textarea>
+            <textarea type="text" class="quiz-answer form-control col-sm-5" placeholder="Quiz answer D"></textarea>
+        </div>
     </div>
 </div>
-
