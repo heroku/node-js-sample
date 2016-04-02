@@ -8,8 +8,6 @@ var connection = mongoose.connection;
 
 connection.once('open', function() {
     console.log("database connection:");
-
-
     mongoose.connection.db.dropCollection('achievements', function(err, result) {});
     achievementSeeder.seedAchievement();
 //    quizSeeder.seedQuizzes(); // it was only for testing the schema for first. Maybe it will be used to save a new quiz

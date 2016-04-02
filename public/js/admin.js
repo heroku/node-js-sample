@@ -28,7 +28,6 @@
         $(".plus-one-question").click(function() {
             console.log("plus-one-question");
         });
-
     });
 
 })();

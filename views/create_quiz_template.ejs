@@ -1,24 +1,64 @@
 <div class="panel-group" id="new-quiz-accordion">
-    <div class="row">
-        <div class="col-sm-6 col-md-6">
-            <input type="text" class="quiz-name form-control col-sm-3" placeholder="Quiz name">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-xs-5" for="quiz_name">Quiz Name:</label>
+            <div class="col-xs-7">
+                <input type="text" id="quiz_name" class="form-control" placeholder="Wonderful quiz">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-5" for="quiz_category">Quiz Category:</label>
+            <div class="col-xs-7">
+                <input type="text" id="quiz_category" class="form-control" placeholder="Java">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-5" for="quiz_image">Image for the quiz:</label>
+            <div class="col-xs-7">
+                <input type="file"  id="quiz_image" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-5" for="quiz_time_based_gameplay">Time based gameplay</label>
+            <div class="col-xs-1">
+                <input type="checkbox" id="quiz_time_based_gameplay" class="form-control">
+            </div>
         </div>
 
-        <div class="col-sm-6 col-md-6">
-            <button type="button" class="save pull-right btn btn-success">Save</button>
+        <div class="form-group">
+            <label class="control-label col-xs-5" for="quiz_time_based_gameplay">Time based point calculation</label>
+            <div class="col-xs-1">
+                <input type="checkbox" id="quiz_time_based_gameplay" class="form-control">
+            </div>
         </div>
-        <div class="clearfix visible-md-block"></div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-5" for="quiz_random_question_order">Random question order</label>
+            <div class="col-xs-1">
+                <input type="checkbox" id="quiz_random_question_order" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-5" for="quiz_random_question_order">Random answer order</label>
+            <div class="col-xs-1">
+                <input type="checkbox" id="quiz_random_answer_order" class="form-control">
+            </div>
+        </div>
     </div>
 
-    <% include one_quiz_template %>
+    <!--<div class="clearfix visible-md-block"></div>-->
+</div>
 
-    <div class="row">
-        <div class="col-sm-6 col-md-6">
-            <button type="button" class="plus-one-question btn btn-primary">+1 Question</button>
-        </div>
-        <div class="col-sm-6 col-md-6">
-            <button type="button" class="pull-right save btn btn-success">Save</button>
-            <button type="button" class="pull-right discard btn btn-danger">Discard</button>
-        </div>
+<% include one_question_and_answers_template %>
+
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <button type="button" class="plus-one-question btn btn-primary">+1 Question</button>
     </div>
+    <div class="col-sm-6 col-md-6">
+        <button type="button" class="pull-right save btn btn-success">Save</button>
+        <button type="button" class="pull-right discard btn btn-danger">Discard</button>
+    </div>
+</div>
 </div>
