@@ -70,7 +70,11 @@ button {
     background-color: rgba(247, 35, 29, 0.45);
 }
 
+.yellow {
+    background-color: rgba(255, 255, 0, 0.38);
+}
+
 
 .orange {
-    background-color: rgba(247, 112, 18, 0.39);
+    background-color: rgba(239, 98, 0, 0.32);
 }

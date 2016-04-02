@@ -109,6 +109,10 @@ module.exports = function (app, passport) {
         res.send("done");
     });
 
+    app.post('/plus_one_question', isAdmin, function (req, res) {
+        res.render('one_question_and_answers_template.ejs', { question_index: Number(req.body.question_index)+1 });
+    });
+
     /*
      * Useful tools
      */
