@@ -11,7 +11,7 @@ var fs = require('fs');
 
 var PATH_TO_QUIZ_IMAGES = './public/img/quizzes';
 var REDIRECT_TO_PROFILE = '/profile';
-var REDIRECT_TO_QUIZZES = '/creative';
+var REDIRECT_TO_QUIZZES = '/quizzes';
 
 module.exports = function (app, passport) {
     /*
@@ -33,15 +33,11 @@ module.exports = function (app, passport) {
     /*
      * Quiz game
      */
-    app.get('/creative', isLoggedIn, function (req, res) {
-        res.render('creative.ejs', {
+    app.get('/quizzes', isLoggedIn, function (req, res) {
+        res.render('quizzes.ejs', {
             user: req.user,
             quizzes: quizServer.getQuizzes()
         });
-    });
-
-    app.get('/creative/*', function (req, res) {
-        res.redirect('/creative');
     });
 
     app.post('/submit', function (req, res) {
