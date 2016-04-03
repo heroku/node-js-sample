@@ -1,7 +1,6 @@
 
 # Nodejs quizzes
-Wanna play a quiz?
-[https://nodejs-quizzes.herokuapp.com/]
+Wanna play a quiz? https://nodejs-quizzes.herokuapp.com/
 
 # Dev notes
 ## Preinstall
