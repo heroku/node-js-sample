@@ -12,7 +12,7 @@ $(document).ready(function(){
         event.preventDefault();
         $.post( "/quiz-select", {'data': data} )
         .done( function( data ) {
-            if(data.error || !data.questions || !data.questions["0"] || !data.questions["0"].question) {
+            if(data.error || !data.questionsAndAnswers || !data.questionsAndAnswers.length) {
                 data.message = data.message || "invalid response";
                 data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
                 invalidRequest(data.message, data.subMessage);
@@ -90,31 +90,31 @@ $(document).ready(function(){
 
     function showQuizBox(data, questionIndex) {
         questionIndex = questionIndex || "0";
-        if (!data.questions[questionIndex]) {
+        if (!data.questionsAndAnswers[questionIndex]) {
             showHighScore(data.name);
             exitToQuizzes();
             return;
         }
         $quizBox.find(".well").removeClass("hidden");
         $quizBox.find(".well").removeClass("selected");
-        $quizBox.find(".question").text(data.questions[questionIndex].question);
-        if (data.questions[questionIndex].a)  {
-            $quizBox.find(".answer-a").text(data.questions[questionIndex].a);
+        $quizBox.find(".question").text(data.questionsAndAnswers[questionIndex].question);
+        if (data.questionsAndAnswers[questionIndex].answers[0].answerText)  {
+            $quizBox.find(".answer-a").text(data.questionsAndAnswers[questionIndex].answers[0].answerText);
         } else {
             $quizBox.find(".answer-a").parents(".well").addClass("hidden");
         }
-        if (data.questions[questionIndex].b)  {
-            $quizBox.find(".answer-b").text(data.questions[questionIndex].b);
+        if (data.questionsAndAnswers[questionIndex].answers[1].answerText)  {
+            $quizBox.find(".answer-b").text(data.questionsAndAnswers[questionIndex].answers[1].answerText);
         } else {
             $quizBox.find(".answer-b").parents(".well").addClass("hidden");
         }
-        if (data.questions[questionIndex].c)  {
-            $quizBox.find(".answer-c").text(data.questions[questionIndex].c);
+        if (data.questionsAndAnswers[questionIndex].answers[2].answerText)  {
+            $quizBox.find(".answer-c").text(data.questionsAndAnswers[questionIndex].answers[2].answerText);
         } else {
             $quizBox.find(".answer-c").parents(".well").addClass("hidden");
         }
-        if (data.questions[questionIndex].d)  {
-            $quizBox.find(".answer-d").text(data.questions[questionIndex].c);
+        if (data.questionsAndAnswers[questionIndex].answers[3].answerText)  {
+            $quizBox.find(".answer-d").text(data.questionsAndAnswers[questionIndex].answers[3].answerText);
         } else {
             $quizBox.find(".answer-d").parents(".well").addClass("hidden");
         }

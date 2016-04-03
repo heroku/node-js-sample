@@ -48,14 +48,14 @@ module.exports = function (app, passport) {
             },
             function (callback) {
                 "use strict";
-                Quiz.find({}, 'name category imageName',  function (err, quizzesFromDB) {
+                Quiz.find({}, 'name category imageName', function (err, quizzesFromDB) {
                     if (err) return (err);
                     quizzes = quizzesFromDB;
                     callback();
                 })
             }
         ], function (err) {
-            if (err)  {
+            if (err) {
                 console.error(err);
                 res.send({error: true, message: err});
             } else {
@@ -86,9 +86,37 @@ module.exports = function (app, passport) {
                 subMessage: "Please use the valid quizzes, do not try to come up with new ones :)"
             });
         } else {
-            var selectedQuiz = req.body.data;
+            var selectedQuiz = req.body.data,
+                quiz = {};
             console.log("selectedQuiz: " + selectedQuiz);
-            res.send(quizServer.loadQuiz(selectedQuiz, req));
+            async.series([
+                function (callback) {
+                    Quiz.findOne({'name': selectedQuiz}, function (err, result) {
+                        console.log("quiz retrieve result: " + result);
+                        if (err) return callback(err);
+                        if (result !== null) {
+                            res.send(result);
+                        } else {
+                            callback();
+                        }
+                    });
+                }
+            ], function (err) {
+                if (err) {
+                    res.send({
+                        error: true,
+                        message: "Error during quiz retrieve",
+                        subMessage: err
+                    });
+                } else {
+                    res.send({
+                            error: true,
+                            message: "Quiz not found",
+                            subMessage: "please try another one"
+                        }
+                    )
+                }
+            });
         }
     });
 
