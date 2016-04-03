@@ -1,0 +1,61 @@
+{
+  "answersShouldBeRandomlyOrdered": true,
+  "questionsShouldBeRandomlyOrdered": true,
+  "pointCalculationTimeBased": true,
+  "gamePlayTimeBased": true,
+  "imageName": "javascript.jpg",
+  "category": "js",
+  "name": "javascript",
+  "questionsAndAnswers": [
+    {
+      "question": "What is the significance, and what are the benefits, of including 'use strict' at the beginning of a JavaScript source file?",
+      "answers": [
+        {
+          "valid": false,
+          "point": 0,
+          "answerText": "nothing"
+        },
+        {
+          "valid": true,
+          "point": 25,
+          "answerText": "use stric makes js coding more idiot-proof"
+        },
+        {
+          "valid": false,
+          "point": 0,
+          "answerText": "use strict is for only nodejs experts"
+        },
+        {
+          "valid": false,
+          "point": 0,
+          "answerText": "using it will makes js strongly typed"
+        }
+      ]
+    },
+    {
+      "question": "JS - magic",
+      "answers": [
+        {
+          "valid": true,
+          "point": 1,
+          "answerText": "definitely"
+        },
+        {
+          "valid": true,
+          "point": 17,
+          "answerText": "black magic"
+        },
+        {
+          "valid": true,
+          "point": 25,
+          "answerText": "the force is awakaning with this little witch, who learned everything from Merlin the great Potter"
+        },
+        {
+          "valid": true,
+          "point": 100,
+          "answerText": "[object object]"
+        }
+      ]
+    }
+  ]
+}
