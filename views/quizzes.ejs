@@ -99,7 +99,7 @@
         <div class="row no-gutter">
             <% Object.keys(quizzes).forEach(function(quiz) { %>
             <div class="col-lg-<%= Object.keys(quizzes).length %> col-sm-<%= Object.keys(quizzes).length %>">
-                <a href="#" class="quiz-select" data-quiz="<%= quiz %>">
+                <a href="#" class="quiz-select" data-quiz="<%= quizzes[quiz].name %>">
                     <img src="img/quizzes/<%= quizzes[quiz].imageName %>" class="img-responsive" alt="">
                     <div class="quiz-select-caption">
                         <div class="quiz-select-caption-content">
