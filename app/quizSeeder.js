@@ -49,13 +49,15 @@ exports.seedQuizzes = function (data, callback) {
             let questionIndex = 0;
             for (let answer_index in answers) {
                 console.log("quiz.questionsAndAnswers[" + questionIndex + "]" + quiz.questionsAndAnswers[questionIndex]);
+                let pointIndex = 0;
                 for (let answer of answers[answer_index]) {
                     console.log("answer" + answer);
                     quiz.questionsAndAnswers[questionIndex].answers.push({
-                        valid: points[questionIndex+1][answer_index] > 0,
-                        point: points[questionIndex+1][answer_index],
+                        valid: points[questionIndex+1][pointIndex] > 0,
+                        point: points[questionIndex+1][pointIndex] || 0,
                         answerText: answer
                     });
+                    pointIndex++;
                 }
                 console.log("quiz.questionsAndAnswers[" + questionIndex + "]" + quiz.questionsAndAnswers[questionIndex]);
                 questionIndex++;
