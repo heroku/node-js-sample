@@ -24,7 +24,12 @@
                     <label class="control-label col-xs-5" for="quiz_image">Image for the quiz:</label>
 
                     <div class="col-xs-7">
-                        <input type="file" name="imageName" id="quiz_image" class="form-control">
+                        <!--<input type="file" name="imageName" id="quiz_image" class="form-control">-->
+                        <select name="imageName" id="quiz_image" class="form-control">
+                            <% Object.keys(imageNames).forEach(function(imageName) { %>
+                            <option value="<%= imageNames[imageName] %>"><%= imageNames[imageName] %></option>
+                            <% }); %>
+                        </select>
                     </div>
                 </div>
             </div>

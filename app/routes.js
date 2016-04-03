@@ -1,12 +1,15 @@
 var quizServer = require('./quizServer');
 var async = require("async");
-var User = require('../app/models/user');
-var Roles = require('../app/models/role');
-var UserAchievement = require('../app/models/userAchievement');
-var Quiz = require('../app/models/quiz');
-var quizSeeder = require('../app/quizSeeder');
+var User = require('./models/user');
+var Roles = require('./models/role');
+var UserAchievement = require('./models/userAchievement');
+var Quiz = require('./models/quiz');
+var quizSeeder = require('./quizSeeder');
 var validator = require('validator');
 
+var fs = require('fs');
+
+var PATH_TO_QUIZ_IMAGES = './public/img/quizzes';
 var REDIRECT_TO_PROFILE = '/profile';
 var REDIRECT_TO_QUIZZES = '/creative';
 
@@ -100,6 +103,7 @@ module.exports = function (app, passport) {
             if (err) return next(err);
             res.render('admin.ejs', {
                 user: req.user,
+                imageNames: fs.readdirSync(PATH_TO_QUIZ_IMAGES),
                 achievements: user_achievements
             });
         });
