@@ -34,9 +34,41 @@ module.exports = function (app, passport) {
      * Quiz game
      */
     app.get('/quizzes', isLoggedIn, function (req, res) {
-        res.render('quizzes.ejs', {
-            user: req.user,
-            quizzes: quizServer.getQuizzes()
+        var user_achievements = {},
+            quizzes = {};
+        async.series([
+            function (callback) {
+                UserAchievement.findOne({'userId': req.user.id}, function (err, achievements) {
+                    if (err) return callback(err);
+                    if (achievements !== null) {
+                        user_achievements = achievements.achievements;
+                    }
+                    callback();
+                });
+            },
+            function (callback) {
+                "use strict";
+                Quiz.find({}, 'name category imageName',  function (err, quizzesFromDB) {
+                    if (err) return (err);
+                    for ( key in quizzesFromDB ) {
+                        console.log('name: %s ; category: %s ; imageName: %s.', quizzesFromDB[key].name, quizzesFromDB[key].category, quizzesFromDB[key].imageName);
+                    }
+                    console.log("quizzesFromDB: " + JSON.stringify(quizzesFromDB[key]));
+                    quizzes = quizzesFromDB;
+                    callback();
+                })
+            }
+        ], function (err) {
+            if (err)  {
+                console.error(err);
+                res.send({error: true, message: err});
+            } else {
+                res.render('quizzes.ejs', {
+                    user: req.user,
+                    quizzes: quizzes,
+                    achievements: user_achievements
+                });
+            }
         });
     });
 
