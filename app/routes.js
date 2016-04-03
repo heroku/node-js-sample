@@ -3,6 +3,9 @@ var async = require("async");
 var User = require('../app/models/user');
 var Roles = require('../app/models/role');
 var UserAchievement = require('../app/models/userAchievement');
+var Quiz = require('../app/models/quiz');
+var quizSeeder = require('../app/quizSeeder');
+var validator = require('validator');
 
 var REDIRECT_TO_PROFILE = '/profile';
 var REDIRECT_TO_QUIZZES = '/creative';
@@ -110,7 +113,50 @@ module.exports = function (app, passport) {
     });
 
     app.post('/plus_one_question', isAdmin, function (req, res) {
-        res.render('one_question_and_answers_template.ejs', { question_index: Number(req.body.question_index)+1 });
+        res.render('one_question_and_answers_template.ejs', {question_index: Number(req.body.question_index) + 1});
+    });
+
+    app.post('/save_one_quiz', isAdmin, function (req, res) {
+        if (quizIsNotValid(req.body)) {
+            res.send({
+                error: true,
+                message: "invalid request",
+                subMessage: "Please make sure the quiz is valid (all the mandatory fields are filled in)"
+            });
+        } else {
+            async.series([
+                function (callback) {
+                    console.log("series start");
+                    if (!req.body.shouldOverrideExistingQuiz) {
+                        Quiz.findOne({'name': req.body.name}, function (err, quiz) {
+                            console.log("quiz [findone]: " + quiz);
+
+                            if (err) return callback(err);
+                            if (quiz !== null) {
+                                console.log("quiz already exists");
+                                res.send({
+                                    error: true,
+                                    message: "quiz name already exists",
+                                    subMessage: "Please change the name of your quiz"
+                                });
+                            } else {
+                                console.log("ide azért belefut, csak szemétkedik");
+                                callback();
+                            }
+                        });
+                    }
+                },
+                function (callback) {
+                    console.log("na ezt nem szabadna előbb látni mint az ide azért belefutot");
+                    quizSeeder.seedQuizzes(req.body, callback);
+                }
+            ], function (err) {
+                console.log(err);
+                console.log(JSON.stringify(err));
+                if (err) return res.send({error: err});
+                res.send({error: false});
+            });
+        }
     });
 
     /*
@@ -163,7 +209,7 @@ module.exports = function (app, passport) {
                     callback();
                 });
             },
-            function(callback) {
+            function (callback) {
                 if (req.session.roleState) {
                     callback();
                 } else {
@@ -316,7 +362,7 @@ var setUserRoleStateInSession = function (req, cb) {
             if (req.user) {
                 Roles.findOne({'userId': req.user.id}, function (err, user_role) {
                     if (err) return callback(err);
-                    if (user_role !== null ) {
+                    if (user_role !== null) {
                         req.session.roleState = user_role.role;
                     } else {
                         req.session.roleState = "guest";
@@ -346,4 +392,46 @@ function censor(censor) {
 
         return value;
     }
+}
+
+function quizIsNotValid(data) {
+    "use strict";
+    let answers = [],
+        questions = [],
+        points = [];
+    for (key in data) {
+        if (data.hasOwnProperty(key)) {
+            if (key.startsWith("answer_")) {
+                answers.push(data[key]);
+            }
+            if (key.startsWith("question_")) {
+                questions.push(data[key]);
+            }
+            if (key.startsWith("points_")) {
+                points.push(data[key]);
+            }
+        }
+    }
+    console.log(!data);
+    console.log(!validator.isAscii(data.name));
+    console.log(!validator.isAscii(data.category));
+    console.log(!validator.isBoolean(data.gamePlayTimeBased));
+    console.log(!validator.isBoolean(data.pointCalculationTimeBased));
+    console.log(!validator.isBoolean(data.questionsShouldBeRandomlyOrdered));
+    console.log(!validator.isBoolean(data.answersShouldBeRandomlyOrdered));
+    console.log(questions.some(elem => elem.length < 1));
+    console.log(questions.some(elem => !validator.isAscii(elem)));
+    console.log(answers.some(elem => elem.length < 1));
+    console.log(answers.some(elem => !validator.isAscii(elem)));
+    console.log(points.some(elem => elem.length !== 0 && !Number.isInteger(Number(elem))));
+
+    return !!(
+    !data || !validator.isAscii(data.name) || !validator.isAscii(data.category) || !validator.isBoolean(data.gamePlayTimeBased) || !validator.isBoolean(data.pointCalculationTimeBased) || !validator.isBoolean(data.questionsShouldBeRandomlyOrdered) || !validator.isBoolean(data.answersShouldBeRandomlyOrdered) ||
+    questions.some(elem => elem.length < 1) ||
+    questions.some(elem => !validator.isAscii(elem)) ||
+    answers.some(elem => elem.length < 1) ||
+    answers.some(elem => !validator.isAscii(elem)) ||
+    points.some(elem => elem.length !== 0 && !Number.isInteger(Number(elem)))
+    );
+
 }

@@ -34,7 +34,8 @@
     "passport-reddit": "^0.2.4",
     "passport-twitter": "^1.0.4",
     "pg": "^4.5.1",
-    "redis": "^2.5.1"
+    "redis": "^2.5.1",
+    "validator": "^5.1.0"
   },
   "engines": {
     "node": "4.0.0"

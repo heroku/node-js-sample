@@ -14,7 +14,26 @@
         });
 
         $(".save").click(function () {
-            console.log("save");
+            var data = {},
+                name, val;
+            $newQuizModal.find("input[type='text'], textarea, input[type='tel'], input[type='file']").each(function(index, element){
+                name = $(element).attr("name");
+                val = $(element).val();
+                data[name] = val
+            });
+            $newQuizModal.find("input[type='checkbox']").each(function() {
+                name = $(this).attr("name");
+                val = $(this).is(':checked');
+                data[name] = val;
+            });
+
+            $.post("/save_one_quiz", data)
+                .done(function (data) {
+                    console.log(data);
+                })
+                .fail(function () {
+                    showNetworkError();
+                });
         });
 
         $(".discard").click(function () {
@@ -44,6 +63,8 @@
     }
 
     function showNetworkError() {
+        $("html, body").animate({ scrollTop: 0 }, "fast");
+        $('.modal').animate({ scrollTop: 0 }, 'fast');
         $networkError.removeClass("hidden");
         setTimeout(function () {
             $networkError.addClass("hidden");
