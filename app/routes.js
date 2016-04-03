@@ -50,10 +50,6 @@ module.exports = function (app, passport) {
                 "use strict";
                 Quiz.find({}, 'name category imageName',  function (err, quizzesFromDB) {
                     if (err) return (err);
-                    for ( key in quizzesFromDB ) {
-                        console.log('name: %s ; category: %s ; imageName: %s.', quizzesFromDB[key].name, quizzesFromDB[key].category, quizzesFromDB[key].imageName);
-                    }
-                    console.log("quizzesFromDB: " + JSON.stringify(quizzesFromDB[key]));
                     quizzes = quizzesFromDB;
                     callback();
                 })
