@@ -92,11 +92,10 @@
 
 <hr>
 
-<% include network_error %>
-
 <section id="quizSelection">
     <div class="container-fluid">
         <div class="row no-gutter">
+            <% include network_error %>
             <% Object.keys(quizzes).forEach(function(quiz) { %>
             <div class="col-lg-<%= Object.keys(quizzes).length %> col-sm-<%= Object.keys(quizzes).length %>">
                 <a href="#" class="quiz-select" data-quiz="<%= quizzes[quiz].name %>">
