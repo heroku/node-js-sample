@@ -16,7 +16,7 @@ exports.getQuizzes= function() {
     return quizzes;
 };
 
-exports.validateAnswer = function(req) {
+exports.validateAnswer = function(req, callback) {
     "use strict";
     let responseJson = {
         'scoreUp': 0,
@@ -26,11 +26,11 @@ exports.validateAnswer = function(req) {
     console.log(JSON.stringify(req.session));
     if(!isAnswerIndexValid(req)) {
         responseJson.gameFinished = true;
-        return responseJson;
+        req.session.validateAnswerResult = responseJson;
     }
 
     if(noAnswerWereSubmitted(req)) {
-        return responseJson;
+        req.session.validateAnswerResult = responseJson;
     }
 
     if(wasTheAnswerCorrect(req)) {
@@ -38,10 +38,12 @@ exports.validateAnswer = function(req) {
         responseJson.scoreUp = 10;
         responseJson.gameFinished = isAnswerIndexTheLast(req.session);
         if (responseJson.gameFinished) { saveHighScore(req); }
-        return responseJson;
+        req.session.validateAnswerResult = responseJson;
+    } else {
+        req.session.validateAnswerResult = responseJson;
     }
+    callback();
 
-    return responseJson;
 };
 
 exports.loadQuiz = function(selectedQuiz, req) {
