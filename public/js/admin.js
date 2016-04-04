@@ -16,7 +16,7 @@
         $(".save").click(function () {
             var data = {},
                 name, val;
-            $newQuizModal.find("input[type='text'], textarea, input[type='tel'], input[type='file']").each(function(index, element){
+            $newQuizModal.find("input[type='text'], textarea, input[type='tel'], select").each(function(index, element){
                 name = $(element).attr("name");
                 val = $(element).val();
                 data[name] = val
