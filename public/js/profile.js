@@ -23,17 +23,20 @@
     });
 
     function invalidRequest(message, subMessage) {
+        scrollToTop();
         $modalTemplate.find(".modal-title").text(message);
         if (subMessage) { $modalTemplate.find(".modal-body").text(subMessage); }
         $modalTemplate.modal('show');
     }
 
     function showNetworkError() {
+        scrollToTop();
         $networkError.removeClass("hidden");
         setTimeout(function(){ $networkError.addClass("hidden"); }, 2500);
     }
 
     function showSuccessfullUpdate() {
+        scrollToTop();
         $successfullUpdate.removeClass("hidden");
         setTimeout(function(){ $successfullUpdate.addClass("hidden"); }, 2500);
     }
@@ -64,6 +67,11 @@
             .always(function() {
                 hideNewDisplayNameModal();
             });
+    }
+
+    function scrollToTop(speed) {
+        $("html, body").animate({ scrollTop: 0 }, speed || "fast");
+        $('.modal').animate({ scrollTop: 0 }, speed || 'fast');
     }
 })();
 

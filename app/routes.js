@@ -173,11 +173,12 @@ module.exports = function (app, passport) {
     });
 
     app.post('/save_one_quiz', isAdmin, function (req, res) {
-        if (quizIsNotValid(req.body)) {
+        var validationErrors = getQuizValidationErrors(req.body);
+        if (validationErrors.length > 0) {
             res.send({
                 error: true,
                 message: "invalid request",
-                subMessage: "Please make sure the quiz is valid (all the mandatory fields are filled in)"
+                subMessage: validationErrors
             });
         } else {
             async.series([
@@ -450,11 +451,12 @@ function censor(censor) {
     }
 }
 
-function quizIsNotValid(data) {
+function getQuizValidationErrors(data) {
     "use strict";
     let answers = [],
         questions = [],
-        points = [];
+        points = [],
+        validationErrors = "";
     for (key in data) {
         if (data.hasOwnProperty(key)) {
             if (key.startsWith("answer_")) {
@@ -468,26 +470,20 @@ function quizIsNotValid(data) {
             }
         }
     }
-    console.log(!data);
-    console.log(!validator.isAscii(data.name));
-    console.log(!validator.isAscii(data.category));
-    console.log(!validator.isBoolean(data.gamePlayTimeBased));
-    console.log(!validator.isBoolean(data.pointCalculationTimeBased));
-    console.log(!validator.isBoolean(data.questionsShouldBeRandomlyOrdered));
-    console.log(!validator.isBoolean(data.answersShouldBeRandomlyOrdered));
-    console.log(questions.some(elem => elem.length < 1));
-    console.log(questions.some(elem => !validator.isAscii(elem)));
-    console.log(answers.some(elem => elem.length < 1));
-    console.log(answers.some(elem => !validator.isAscii(elem)));
-    console.log(points.some(elem => elem.length !== 0 && !Number.isInteger(Number(elem))));
+    if(!data) { validationErrors = "quiz data was not provided at all.\n"; }
+    if(!validator.isAscii(data.name)) { validationErrors += "quiz name contained not valid chars. Please check that.\n"; }
+    if(!validator.isAscii(data.category)) { validationErrors += "category contained invalid chars. Please check that.\n"; }
 
-    return !!(
-    !data || !validator.isAscii(data.name) || !validator.isAscii(data.category) || !validator.isBoolean(data.gamePlayTimeBased) || !validator.isBoolean(data.pointCalculationTimeBased) || !validator.isBoolean(data.questionsShouldBeRandomlyOrdered) || !validator.isBoolean(data.answersShouldBeRandomlyOrdered) ||
-    questions.some(elem => elem.length < 1) ||
-    questions.some(elem => !validator.isAscii(elem)) ||
-    answers.some(elem => elem.length < 1) ||
-    answers.some(elem => !validator.isAscii(elem)) ||
-    points.some(elem => elem.length !== 0 && !Number.isInteger(Number(elem)))
-    );
+    if(!validator.isBoolean(data.gamePlayTimeBased)) { validationErrors += "Time based gameplay was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).\n"; }
+    if(!validator.isBoolean(data.pointCalculationTimeBased)) { validationErrors += "Time based point calculation was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).\n"; }
+    if(!validator.isBoolean(data.questionsShouldBeRandomlyOrdered)) { validationErrors += "Random question order was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).\n"; }
+    if(!validator.isBoolean(data.answersShouldBeRandomlyOrdered)) { validationErrors += "Random answer order was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).\n"; }
 
+    if(questions.some(elem => elem.length < 1)) { validationErrors += "One or more question is not filled in. Please provide the question.\n"; }
+    if(questions.some(elem => !validator.isAscii(elem))) { validationErrors += "One or more question contains invalid chars. Please check them.\n"; }
+    if(answers.some(elem => elem.length < 1)) { validationErrors += "One or more answer is not filled in. Please provide the question.\n"; }
+    if(answers.some(elem => !validator.isAscii(elem))) { validationErrors += "One or more answer contains invalid chars. Please check them.\n"; }
+    if(points.some(elem => elem.length !== 0 && !Number.isInteger(Number(elem)))) { validationErrors += "One or more point either should be left empty or should be a number. Pleasecheck them.\n"; }
+
+    return validationErrors;
 }

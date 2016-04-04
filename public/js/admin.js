@@ -1,6 +1,9 @@
 (function () {
     "use strict";
     let $networkError = $(".network-error"),
+        $successfullQuizSave = $(".successfull-quiz-save"),
+        $modalTemplate = $("#modal-template"),
+        $quizErrorTemplate = $(".quiz-error-template"),
         $newQuizModal = $("#new-quiz-modal");
 
     $(document).ready(function () {
@@ -29,7 +32,13 @@
 
             $.post("/save_one_quiz", data)
                 .done(function (data) {
-                    console.log(data);
+                    if (data.error) {
+                        data.message = data.message || "invalid response";
+                        data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                        invalidRequest(data.message, data.subMessage);
+                        return;
+                    }
+                    showSuccessfullQuizSave();
                 })
                 .fail(function () {
                     showNetworkError();
@@ -37,10 +46,10 @@
         });
 
         $(".discard").click(function () {
-            $newQuizModal.find("input[type='text']").val('')
-            $newQuizModal.find("textarea").val('')
-            $newQuizModal.find("input[type='tel']").val('')
-            $newQuizModal.find("input[type='file']").val('')
+            $newQuizModal.find("input[type='text']").val('');
+            $newQuizModal.find("textarea").val('');
+            $newQuizModal.find("input[type='tel']").val('');
+            $newQuizModal.find("input[type='file']").val('');
             $newQuizModal.find("input[type='checkbox']").prop('checked', false);
         });
 
@@ -63,12 +72,29 @@
     }
 
     function showNetworkError() {
-        $("html, body").animate({ scrollTop: 0 }, "fast");
-        $('.modal').animate({ scrollTop: 0 }, 'fast');
+        scrollToTop();
         $networkError.removeClass("hidden");
         setTimeout(function () {
             $networkError.addClass("hidden");
         }, 2500);
+    }
+
+    function invalidRequest(message, subMessage) {
+        scrollToTop();
+        $quizErrorTemplate.find("h3").text(message);
+        if (subMessage) { $quizErrorTemplate.find("p").text(subMessage); }
+        $quizErrorTemplate.removeClass('hidden');
+    }
+
+    function scrollToTop(speed) {
+        $("html, body").animate({ scrollTop: 0 }, speed || "fast");
+        $('.modal').animate({ scrollTop: 0 }, speed || 'fast');
+    }
+
+    function showSuccessfullQuizSave() {
+        scrollToTop();
+        $successfullQuizSave.removeClass("hidden");
+        setTimeout(function(){ $successfullQuizSave.addClass("hidden"); }, 2500);
     }
 })();
 
