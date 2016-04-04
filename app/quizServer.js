@@ -18,32 +18,25 @@ exports.getQuizzes= function() {
 
 exports.validateAnswer = function(req, callback) {
     "use strict";
-    let responseJson = {
+    let validateAnswerResult = {
         'scoreUp': 0,
         'gameFinished': false,
-        'name': req.session.quizName
+        'name': req.session.quizName,
+        'questionIndex': req.session.answerIndex+1
     };
-    console.log(JSON.stringify(req.session));
+//    console.log(JSON.stringify(req.session));
     if(!isAnswerIndexValid(req)) {
-        responseJson.gameFinished = true;
-        req.session.validateAnswerResult = responseJson;
+        validateAnswerResult.gameFinished = true;
+    } else if(wasTheAnswerCorrect(req)) {
+        validateAnswerResult.scoreUp = req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].point;
+        req.session.score += validateAnswerResult.scoreUp;
+        validateAnswerResult.gameFinished = isAnswerIndexTheLast(req.session);
+        if (validateAnswerResult.gameFinished) { /*saveHighScore(req);*/ console.log("TODO: save highscore."); }
     }
 
-    if(noAnswerWereSubmitted(req)) {
-        req.session.validateAnswerResult = responseJson;
-    }
-
-    if(wasTheAnswerCorrect(req)) {
-        req.session.score += 10;
-        responseJson.scoreUp = 10;
-        responseJson.gameFinished = isAnswerIndexTheLast(req.session);
-        if (responseJson.gameFinished) { saveHighScore(req); }
-        req.session.validateAnswerResult = responseJson;
-    } else {
-        req.session.validateAnswerResult = responseJson;
-    }
+    req.session.validateAnswerResult = validateAnswerResult;
+    req.session.answerIndex++;
     callback();
-
 };
 
 exports.loadQuiz = function(selectedQuiz, req) {
@@ -94,7 +87,7 @@ exports.showHighScoreFor = function(quizName, req) {
 };
 
 function isAnswerIndexValid(req) {
-    return req.session.quizAnswers && req.session.quizAnswers[req.session.answerIndex];
+    return req.session.questionsAndAnswers && req.session.questionsAndAnswers[req.session.answerIndex];
 }
 
 function isAnswerIndexTheLast(session) {
@@ -102,7 +95,8 @@ function isAnswerIndexTheLast(session) {
 }
 
 function wasTheAnswerCorrect(req) {
-    return req.session.quizAnswers[req.session.answerIndex] === req.body.data;
+    return  req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data] &&
+            req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].valid;
 }
 
 function noAnswerWereSubmitted(req) {

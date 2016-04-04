@@ -71,17 +71,22 @@ module.exports = function (app, passport) {
     app.post('/submit', function (req, res) {
         console.log("/SUBMIT", req.body.data);
         if (!req.body.data) {
+            console.log("invalid request");
             res.send({
                 error: true,
                 message: "invalid request",
                 subMessage: "Please use the valid quizzes, do not try to come up with new ones :)"
             });
         } else {
+            console.log("valid request");
             async.series([
                 function (callback) {
+                    console.log("validate Answer");
                     quizServer.validateAnswer(req, callback);
                 }
             ], function (err) {
+                console.log("validation is done");
+                console.log("result: " + JSON.stringify(req.session.validateAnswerResult));
                 if (err) {
                     res.send({
                         error: true,
@@ -93,12 +98,6 @@ module.exports = function (app, passport) {
                 }
             });
         }
-
-        //responseData =
-        //req.session.answerIndex += 1;
-        //console.log(req.session.answerIndex);
-        //responseData.questionIndex = req.session.answerIndex;
-        //res.send(responseData);
     });
 
     app.post('/quiz-select', function (req, res) {
@@ -119,6 +118,8 @@ module.exports = function (app, passport) {
                         console.log("quiz retrieve result: " + result);
                         if (err) return callback(err);
                         if (result !== null) {
+                            saveQuizToSession(req, result);
+                            result = removeAnswerValidityFromQuiz(result);
                             res.send(result);
                         } else {
                             callback();
@@ -510,4 +511,26 @@ function getQuizValidationErrors(data) {
     if(points.some(elem => elem.length !== 0 && !Number.isInteger(Number(elem)))) { validationErrors += "<p>One or more point either should be left empty or should be a number. Pleasecheck them.</p>"; }
 
     return validationErrors;
+}
+
+function saveQuizToSession(req, result) {
+    "use strict";
+    req.session.quizName = result.name;
+    req.session.answerIndex = 0;
+    req.session.score = 0;
+    req.session.pointCalculationTimeBased = result.pointCalculationTimeBased;
+    req.session.gamePlayTimeBased = result.gamePlayTimeBased;
+    req.session.questionsShouldBeRandomlyOrdered = result.questionsShouldBeRandomlyOrdered;
+    req.session.answersShouldBeRandomlyOrdered = result.answersShouldBeRandomlyOrdered;
+    req.session.questionsAndAnswers = result.questionsAndAnswers;
+    req.session.quizLength = result.questionsAndAnswers.length;
+}
+
+function removeAnswerValidityFromQuiz(quiz) {
+    "use strict";
+    for (let index = 0 ; index < quiz.questionsAndAnswers.length ; index++ ) {
+        quiz.questionsAndAnswers[index].answers.valid = "";
+        quiz.questionsAndAnswers[index].answers.point = "";
+    }
+    return quiz;
 }
