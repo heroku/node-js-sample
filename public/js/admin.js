@@ -82,7 +82,7 @@
     function invalidRequest(message, subMessage) {
         scrollToTop();
         $quizErrorTemplate.find("h3").text(message);
-        if (subMessage) { $quizErrorTemplate.find("p").text(subMessage); }
+        if (subMessage) { $quizErrorTemplate.find("div").html(subMessage); }
         $quizErrorTemplate.removeClass('hidden');
     }
 
