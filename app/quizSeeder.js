@@ -28,14 +28,14 @@ exports.seedQuizzes = function (data, callback) {
             }
 
             var quiz = new Quiz();
-            quiz.name = data.name,
-                quiz.category = data.category,
-                quiz.imageName = data.imageName,
-                quiz.gamePlayTimeBased = data.gamePlayTimeBased,
-                quiz.pointCalculationTimeBased = data.pointCalculationTimeBased,
-                quiz.questionsShouldBeRandomlyOrdered = data.questionsShouldBeRandomlyOrdered,
-                quiz.answersShouldBeRandomlyOrdered = data.answersShouldBeRandomlyOrdered,
-                quiz.questionsAndAnswers = [];
+            quiz.name = data.name;
+            quiz.category = data.category;
+            quiz.imageName = data.imageName;
+            quiz.gamePlayTimeBased = data.gamePlayTimeBased;
+            quiz.pointCalculationTimeBased = data.pointCalculationTimeBased;
+            quiz.questionsShouldBeRandomlyOrdered = data.questionsShouldBeRandomlyOrdered;
+            quiz.answersShouldBeRandomlyOrdered = data.answersShouldBeRandomlyOrdered;
+            quiz.questionsAndAnswers = [];
 
             for (let question of questions) {
                 quiz.questionsAndAnswers.push({
@@ -44,7 +44,7 @@ exports.seedQuizzes = function (data, callback) {
                 });
             }
             console.log("answers: " + JSON.stringify(answers));
-            console.log("points: " + JSON.stringify(points))
+            console.log("points: " + JSON.stringify(points));
 
             let questionIndex = 0;
             for (let answer_index in answers) {
