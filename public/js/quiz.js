@@ -45,7 +45,7 @@ $(document).ready(function(){
     $quizBox.find(".well").click( function( event ) {
         $quizBox.find(".well").removeClass("selected");
         $(this).addClass("selected");
-        chosenAnswer = $(this).data("answer-index");
+        chosenAnswer = $(this).data("answer-index")+"";
     });
 
     $( ".submit" ).click( function() {
