@@ -122,3 +122,7 @@ p.latest-achievement {
     color: aqua;
     font-weight: bold;
 }
+
+.answer, .question {
+    word-break: break-all;
+}
