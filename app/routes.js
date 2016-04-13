@@ -94,7 +94,7 @@ module.exports = function (app, passport) {
                         subMessage: err
                     });
                 } else {
-                    res.send( req.session.validateAnswerResult )
+                    res.send(req.session.validateAnswerResult)
                 }
             });
         }
@@ -146,6 +146,10 @@ module.exports = function (app, passport) {
     });
 
     app.post('/show-high-score', function (req, res) {
+        "use strict";
+        let quizName,
+            //highScores = {},
+            retrievedHighScore = [];
         if (!req.body || !req.body.data) {
             console.log("error, invalid request");
             res.send({
@@ -154,9 +158,22 @@ module.exports = function (app, passport) {
                 subMessage: "Sorry, but I cannot show Highscore without a valid request"
             });
         } else {
-            var quizName = req.body.data;
-            console.log("Highscore for: " + quizName + " has been requested");
-            res.send(quizServer.showHighScoreFor(quizName, req));
+            async.series([
+                function (callback) {
+                    quizName = req.body.data;
+                    console.log("Highscore for: " + quizName + " has been requested");
+                    quizServer.saveInSessionHighScoreFor(quizName, req, callback);
+                }
+            ], function (err) {
+                "use strict";
+                if (err) return next(err);
+                console.log("Highscore sending to client");
+                let highScoreData = {
+                    body: req.session.retrievedHighScore,
+                    title: quizName
+                };
+                res.send(highScoreData);
+            });
         }
     });
 
@@ -495,20 +512,44 @@ function getQuizValidationErrors(data) {
             }
         }
     }
-    if(!data) { validationErrors = "<p>quiz data was not provided at all.</p>"; }
-    if(!validator.isAscii(data.name)) { validationErrors += "<p>quiz name contained not valid chars. Please check that.</p>"; }
-    if(!validator.isAscii(data.category)) { validationErrors += "<p>category contained invalid chars. Please check that.</p>"; }
+    if (!data) {
+        validationErrors = "<p>quiz data was not provided at all.</p>";
+    }
+    if (!validator.isAscii(data.name)) {
+        validationErrors += "<p>quiz name contained not valid chars. Please check that.</p>";
+    }
+    if (!validator.isAscii(data.category)) {
+        validationErrors += "<p>category contained invalid chars. Please check that.</p>";
+    }
 
-    if(!validator.isBoolean(data.gamePlayTimeBased)) { validationErrors += "<p>Time based gameplay was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).</p>"; }
-    if(!validator.isBoolean(data.pointCalculationTimeBased)) { validationErrors += "<p>Time based point calculation was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).</p>"; }
-    if(!validator.isBoolean(data.questionsShouldBeRandomlyOrdered)) { validationErrors += "<p>Random question order was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).</p>"; }
-    if(!validator.isBoolean(data.answersShouldBeRandomlyOrdered)) { validationErrors += "<p>Random answer order was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).</p>"; }
+    if (!validator.isBoolean(data.gamePlayTimeBased)) {
+        validationErrors += "<p>Time based gameplay was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).</p>";
+    }
+    if (!validator.isBoolean(data.pointCalculationTimeBased)) {
+        validationErrors += "<p>Time based point calculation was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).</p>";
+    }
+    if (!validator.isBoolean(data.questionsShouldBeRandomlyOrdered)) {
+        validationErrors += "<p>Random question order was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).</p>";
+    }
+    if (!validator.isBoolean(data.answersShouldBeRandomlyOrdered)) {
+        validationErrors += "<p>Random answer order was not provided. Please check that (tick/untick... this is a weird error... it's onlya a boolean flag :)).</p>";
+    }
 
-    if(questions.some(elem => elem.length < 1)) { validationErrors += "<p>One or more question is not filled in. Please provide the question.</p>"; }
-    if(questions.some(elem => !validator.isAscii(elem))) { validationErrors += "<p>One or more question contains invalid chars. Please check them.</p>"; }
-    if(answers.some(elem => elem.length < 1)) { validationErrors += "<p>One or more answer is not filled in. Please provide the question.</p>"; }
-    if(answers.some(elem => !validator.isAscii(elem))) { validationErrors += "<p>One or more answer contains invalid chars. Please check them.</p>"; }
-    if(points.some(elem => elem.length !== 0 && !Number.isInteger(Number(elem)))) { validationErrors += "<p>One or more point either should be left empty or should be a number. Pleasecheck them.</p>"; }
+    if (questions.some(elem => elem.length < 1)) {
+        validationErrors += "<p>One or more question is not filled in. Please provide the question.</p>";
+    }
+    if (questions.some(elem => !validator.isAscii(elem))) {
+        validationErrors += "<p>One or more question contains invalid chars. Please check them.</p>";
+    }
+    if (answers.some(elem => elem.length < 1)) {
+        validationErrors += "<p>One or more answer is not filled in. Please provide the question.</p>";
+    }
+    if (answers.some(elem => !validator.isAscii(elem))) {
+        validationErrors += "<p>One or more answer contains invalid chars. Please check them.</p>";
+    }
+    if (points.some(elem => elem.length !== 0 && !Number.isInteger(Number(elem)))) {
+        validationErrors += "<p>One or more point either should be left empty or should be a number. Pleasecheck them.</p>";
+    }
 
     return validationErrors;
 }
@@ -528,7 +569,7 @@ function saveQuizToSession(req, result) {
 
 function removeAnswerValidityFromQuiz(quiz) {
     "use strict";
-    for (let index = 0 ; index < quiz.questionsAndAnswers.length ; index++ ) {
+    for (let index = 0; index < quiz.questionsAndAnswers.length; index++) {
         quiz.questionsAndAnswers[index].answers.valid = "";
         quiz.questionsAndAnswers[index].answers.point = "";
     }

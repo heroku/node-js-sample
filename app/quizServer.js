@@ -3,19 +3,19 @@ var exports = module.exports = {};
 var Highscore = require('./models/highscore');
 var async = require('async');
 
-exports.validateAnswer = function(req, callback) {
+exports.validateAnswer = function (req, callback) {
     "use strict";
     let validateAnswerResult = {
         'scoreUp': 0,
         'gameFinished': false,
         'name': req.session.quizName,
-        'questionIndex': req.session.answerIndex+1
+        'questionIndex': req.session.answerIndex + 1
     };
     let shouldCallback = true;
 //    console.log(JSON.stringify(req.session));
-    if(!isAnswerIndexValid(req)) {
+    if (!isAnswerIndexValid(req)) {
         validateAnswerResult.gameFinished = true;
-    } else if(wasTheAnswerCorrect(req)) {
+    } else if (wasTheAnswerCorrect(req)) {
         validateAnswerResult.scoreUp = req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].point;
         req.session.score += validateAnswerResult.scoreUp;
         validateAnswerResult.gameFinished = isAnswerIndexTheLast(req.session);
@@ -26,44 +26,69 @@ exports.validateAnswer = function(req, callback) {
     }
     req.session.validateAnswerResult = validateAnswerResult;
     req.session.answerIndex++;
-    if ( shouldCallback ) { callback(); }
+    if (shouldCallback) {
+        callback();
+    }
 };
 
-exports.showHighScoreFor = function(quizName, req) {
+exports.saveInSessionHighScoreFor = function (quizName, req, cb) {
     "use strict";
-    //var highScore,
-    //    responseJson = {};
-    //try {
-    //    highScore = JSON.parse(fs.readFileSync(HIGH_SCORE_FILE, 'utf8'));
-    //    highScore.tables = highScore.tables || {};
-    //    highScore.tables.highscore_per_quiz = highScore.tables.highscore_per_quiz || {};
-    //    if (quizName === "all") {
-    //        responseJson.title = "all";
-    //        responseJson.body = highScore.tables.highscore_per_quiz || responseJson;
-    //    } else {
-    //        responseJson.title = quizName;
-    //        responseJson.body = highScore.tables.highscore_per_quiz[quizName] || responseJson;
-    //    }
-    //} catch (e) {
-    //    console.error(e);
-    //    console.error("Exception while trying to read highscore table");
-    //    responseJson = {'error': true, 'message': 'Server error', 'subMessage': 'Some error happened reading the highscore. Sorry for the inconveniences'};
-    //}
-    //return responseJson;
-    //TODO: show HighScore for quiz
+    req.session.retrievedHighScore = [];
+    async.series([
+        function (callback) {
+            if (quizName === "all") {
+                Highscore.find({}, function (err, result) {
+                    if (err) return callback(err);
+                    pushRetrievedHighScoreInToSession(req, result, 0, callback);
+                });
+            } else {
+                Highscore.findOne({'quizName': quizName}, function (err, result) {
+                    if (err) return callback(err);
+                    req.session.retrievedHighScore = result;
+                    callback();
+                });
+            }
+        }
+    ], function (err) {
+        cb(err);
+    });
 };
+
+function pushRetrievedHighScoreInToSession(req, highScores, index, cb) {
+    "use strict";
+    if (!highScores[index]) {
+        cb();
+        return;
+    }
+    async.series([
+        function (callback) {
+            User.findById(highScores[index].userId, function (err, user) {
+                if(user) {
+                    let highScoreEntry = {
+                        user: user.displayName,
+                        score: highScores[index].score,
+                        date: highScores[index].dateTime
+                    };
+                    req.session.retrievedHighScore.push(highScoreEntry);
+                }
+                callback();
+            });
+        }], function (err) {
+            pushRetrievedHighScoreInToSession(req, highScores, index+1, cb);
+    });
+}
 
 function isAnswerIndexValid(req) {
     return req.session.questionsAndAnswers && req.session.questionsAndAnswers[req.session.answerIndex];
 }
 
 function isAnswerIndexTheLast(session) {
-    return session.quizLength === session.answerIndex+1;
+    return session.quizLength === session.answerIndex + 1;
 }
 
 function wasTheAnswerCorrect(req) {
-    return  req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data] &&
-            req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].valid;
+    return req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data] &&
+        req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].valid;
 }
 
 function noAnswerWereSubmitted(req) {
