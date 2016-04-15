@@ -57,6 +57,7 @@ $(document).ready(function(){
 
         $.post( "/submit", {'data': chosenAnswer} )
         .done( function( data ) {
+            showVolatileScoreUp(data);
             updateScore(data);
             handleNextRound(data);
         })
@@ -137,6 +138,11 @@ $(document).ready(function(){
     function updateScore(data) {
         $userScore = $(".user-score");
         $userScore.text(Number($userScore.text()) + Number(data.scoreUp));
+    }
+
+    function showVolatileScoreUp(data) {
+        $volatileScore = $(".volatile-score");
+        $volatileScore.text(Number(data.scoreUp));
     }
 
     function showHighScore(higscoreTable) {

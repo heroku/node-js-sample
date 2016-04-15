@@ -13,6 +13,7 @@ exports.validateAnswer = function (req, callback) {
     };
     let shouldCallback = true;
 //    console.log(JSON.stringify(req.session));
+    req.session.validateAnswerResult = validateAnswerResult;
     if (!isAnswerIndexValid(req)) {
         validateAnswerResult.gameFinished = true;
     } else if (wasTheAnswerCorrect(req)) {
@@ -24,7 +25,6 @@ exports.validateAnswer = function (req, callback) {
             shouldCallback = false;
         }
     }
-    req.session.validateAnswerResult = validateAnswerResult;
     req.session.answerIndex++;
     if (shouldCallback) {
         callback();
@@ -100,18 +100,10 @@ function saveHighScore(req, cb) {
     "use strict";
     async.series([
         function (callback) {
-            Highscore.findOne({'userId': req.user.id, 'quizName': req.session.quizName}, function (err, result) {
-                if (err) return callback(err);
-                if (result && result !== null) {
-                    updateUserScoreIfBetter(result, req, callback);
-                } else {
-                    saveNewScore(req, callback);
-                    callback();
-                }
-            });
+            saveNewScore(req, callback);
         }
     ], function (err) {
-        cb();
+        cb(err);
     });
 }
 
@@ -132,6 +124,7 @@ function saveNewScore(req, callback, result) {
     highscore.save(function (err) {
         if (err) return callback(err);
     });
+    callback();
 }
 
 function isObjectEmpty(o) {
