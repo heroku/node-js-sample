@@ -126,3 +126,11 @@ p.latest-achievement {
 .answer, .question {
     word-break: break-all;
 }
+
+.volatile-score {
+    background-color: #00FF00;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 30%;
+}

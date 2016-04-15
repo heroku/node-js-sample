@@ -136,13 +136,24 @@ $(document).ready(function(){
     }
 
     function updateScore(data) {
-        $userScore = $(".user-score");
+        "use strict";
+        let $userScore = $(".user-score");
         $userScore.text(Number($userScore.text()) + Number(data.scoreUp));
     }
 
     function showVolatileScoreUp(data) {
-        $volatileScore = $(".volatile-score");
-        $volatileScore.text(Number(data.scoreUp));
+        "use strict";
+        let $volatileScore = $(".volatile-score");
+        $volatileScore
+            .text(Number(data.scoreUp))
+            .removeClass("hidden")
+            .css({opacity: "1", fontSize: "1em", bottom: "0"})
+            .animate( {
+                //width: "300%",
+                opacity: 0.0,
+                fontSize: "3em",
+                bottom: "100px"
+            }, 1500);
     }
 
     function showHighScore(higscoreTable) {
