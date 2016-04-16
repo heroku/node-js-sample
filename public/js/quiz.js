@@ -3,6 +3,8 @@ $(document).ready(function(){
         $quizBox = $("#quizBox"),
         $networkError = $(".network-error"),
         $modalTemplate = $("#modal-template"),
+        $highScoreModal = $("#highscoreModal"),
+        $navPills = $highScoreModal.find(".modal-header").find("a"),
         chosenAnswer,
         quizData,
         undefined = [][0];
@@ -25,6 +27,13 @@ $(document).ready(function(){
         .fail( function() {
             showNetworkError();
         });
+    });
+
+    $navPills.click( function (event) {
+        "use strict";
+        event.preventDefault();
+        $navPills.parent().removeClass("active");
+        $(this).parent().addClass("active");
     });
 
     $( ".show-high-score" ).click( function( event ) {
@@ -159,8 +168,6 @@ $(document).ready(function(){
     function showHighScore(higscoreTable) {
         "use strict";
         higscoreTable = higscoreTable || "all";
-        var modalBodyText = "HighScore unfortunately unavailable";
-        var modalTitleText = "";
         $.post( "/show-high-score", {'data': higscoreTable} )
             .done( function( data ) {
                 if(data.error) {
@@ -169,13 +176,29 @@ $(document).ready(function(){
                     invalidRequest(data.message, data.subMessage);
                     return;
                 }
-                $modalTemplate.find(".modal-title").text(data.title + " High Score");
-                $modalTemplate.find(".modal-body").text(JSON.stringify(data.body));
-                $modalTemplate.modal('show');
+                makeTheRightScoreTabActive(data);
+                $highScoreModal.find(".modal-body").find("p").text(JSON.stringify(data.body));
+                $highScoreModal.modal('show');
             })
             .fail( function() {
                 showNetworkError();
             });
+    }
+
+    function makeTheRightScoreTabActive(data) {
+        "use strict";
+        $navPills.parent().removeClass("active");
+        switch(data.title) {
+            case "all":
+                $navPills.filter("[href='#show-all']").parent().addClass("active");
+                break;
+            case "own":
+                $navPills.filter("[href='#own-scores']").parent().addClass("active");
+                break;
+            default:
+                $navPills.filter("[href='#show-all']").parent().addClass("active");
+                break;
+        }
     }
 
     function showNetworkError() {
