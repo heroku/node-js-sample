@@ -190,13 +190,13 @@ $(document).ready(function(){
         $navPills.parent().removeClass("active");
         switch(data.title) {
             case "all":
-                $navPills.filter("[href='#show-all']").parent().addClass("active");
+                $navPills.filter("[data-request='all']").parent().addClass("active");
                 break;
             case "own":
-                $navPills.filter("[href='#own-scores']").parent().addClass("active");
+                $navPills.filter("[data-request='own']").parent().addClass("active");
                 break;
             default:
-                $navPills.filter("[href='#show-all']").parent().addClass("active");
+                $navPills.filter("[data-request='per-quiz']").parent().addClass("active");
                 break;
         }
     }
