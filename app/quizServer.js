@@ -42,7 +42,7 @@ exports.saveInSessionHighScoreFor = function (quizName, req, cb) {
                     pushRetrievedHighScoreInToSession(req, result, 0, callback);
                 });
             } else {
-                Highscore.findOne({'quizName': quizName}, function (err, result) {
+                Highscore.findOne({'quizName': quizName}, function (err, result) { // TODO: consider, do we even need it?
                     if (err) return callback(err);
                     req.session.retrievedHighScore = result;
                     callback();
@@ -67,7 +67,8 @@ function pushRetrievedHighScoreInToSession(req, highScores, index, cb) {
                     let highScoreEntry = {
                         user: user.displayName,
                         score: highScores[index].score,
-                        date: highScores[index].dateTime
+                        date: highScores[index].dateTime,
+                        quizName: highScores[index].quizName
                     };
                     req.session.retrievedHighScore.push(highScoreEntry);
                 }

@@ -134,3 +134,20 @@ p.latest-achievement {
     top: 50%;
     right: 30%;
 }
+
+/* TODO: find a solution with relative path */
+.score-row:first-of-type {
+    font-weight: bold;
+    /*border-style: solid;*/
+    /*border-width: 0 51px 33px 50px;*/
+    /*-moz-border-image: url("http://localhost:5000/img/assets/bottom_border_blue_green_alpha.png") 0 51 33 50 repeat;*/
+    /*-webkit-border-image: url("http://localhost:5000/img/assets/bottom_border_blue_green_alpha.png") 0 51 33 50 repeat;*/
+    /*-o-border-image: url("http://localhost:5000/img/assets/bottom_border_blue_green_alpha.png") 0 51 33 50 repeat;*/
+    /*border-image: url("http://localhost:5000/img/assets/bottom_border_blue_green_alpha.png") 0 51 33 50 fill repeat;*/
+    border-bottom: thick solid black;
+}
+
+.score-item {
+    width: 25%;
+    display: inline-block;
+}
