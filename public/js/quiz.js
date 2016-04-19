@@ -154,9 +154,9 @@
             $volatileScore
                 .text(Number(data.scoreUp))
                 .removeClass("hidden")
+                .stop()
                 .css({"opacity": "1", "top": "50%", "right": "30%"})
                 .animate( {
-                    //width: "300%",
                     opacity: 0.0,
                     top: "40%",
                     right: "20%"
