@@ -172,6 +172,7 @@ p.latest-achievement {
 }
 
 .volatile-score {
+    z-index: 1001;
     font-size: 3em;
     opacity: 0.0;
     color: #fff;
