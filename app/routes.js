@@ -86,7 +86,6 @@ module.exports = function (app, passport) {
                 }
             ], function (err) {
                 console.log("validation is done");
-                console.log("result: " + JSON.stringify(req.session.validateAnswerResult));
                 if (err) {
                     res.send({
                         error: true,
@@ -111,11 +110,9 @@ module.exports = function (app, passport) {
         } else {
             var selectedQuiz = req.body.data,
                 quiz = {};
-            console.log("selectedQuiz: " + selectedQuiz);
             async.series([
                 function (callback) {
                     Quiz.findOne({'name': selectedQuiz}, function (err, result) {
-                        console.log("quiz retrieve result: " + result);
                         if (err) return callback(err);
                         if (result !== null) {
                             saveQuizToSession(req, result);
