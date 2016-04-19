@@ -4,20 +4,18 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">
+                    <%= (title) %>
                     <ul class="nav nav-pills">
-                        <li role="presentation">
+                        <li role="presentation" class="<% if (title == "all") { %>active<% } %>">
                             <a href="#show-all"
-                               data-request="all"
-                               class="<% if (title == "all") { %>active<% } %>">Show all</a></li>
-                        <li role="presentation">
+                               data-request="all">Show all</a></li>
+                        <li role="presentation" class="<% if (title == "own") { %>active<% } %>">
                             <a href="#quiz-scores"
-                               data-request="per-quiz"
-                               class="<% if (title == "own") { %>active<% } %>">Quiz scores</a>
+                               data-request="per-quiz">Quiz scores</a>
                         </li>
-                        <li role="presentation">
+                        <li role="presentation" class="<% if (title !== "all" && title != "own" ) { %>active<% } %>">
                             <a href="#own-scores"
-                               data-request="own"
-                               class="<% if (title !== "all" && title != "own" ) { %>active<% } %>">Own
+                               data-request="own">Own
                                 scores</a></li>
                     </ul>
                 </h4>
