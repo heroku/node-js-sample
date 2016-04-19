@@ -5,10 +5,9 @@
             $quizBox = $("#quizBox"),
             $networkError = $(".network-error"),
             $modalTemplate = $("#modal-template"),
-            $highScoreModal = $("#highscoreModal"),
-            $navPills = $highScoreModal.find(".modal-header").find("a"),
             chosenAnswer,
             quizData,
+            highScoreData,
             undefined = [][0];
 
         $( "a.quiz-select" ).click( function( event ) {
@@ -31,9 +30,9 @@
                 });
         });
 
-        $navPills.click( function (event) {
+        $("body").on("click", "#highscoreModal .modal-header a", function (event) {
             event.preventDefault();
-            $navPills.parent().removeClass("active");
+            $("#highscoreModal .modal-header a").parent().removeClass("active");
             $(this).parent().addClass("active");
         });
 
@@ -166,6 +165,7 @@
 
         function showHighScore(higscoreTable) {
             higscoreTable = higscoreTable || "all";
+            showLoadingInterstitial();
             $.post( "/show-high-score", {'data': higscoreTable} )
                 .done( function( data ) {
                     if(data.error) {
@@ -174,59 +174,31 @@
                         invalidRequest(data.message, data.subMessage);
                         return;
                     }
-                    fillScoreTabs(data);
-                    activateScoreTab(data.title);
+                    highScoreData = data;
+                    $(".highscore-container").html(data);
+                    $("#highscoreModal").modal('show');
                 })
                 .fail( function() {
                     showNetworkError();
+                })
+                .always( function() {
+                    hideLoadingInterstitial();
                 });
+
         }
 
-        function fillScoreTabs(data) {
-            if (!data.scores) return;
+        function showLoadingInterstitial() {
+            $('.interstitial-mask').removeClass("hidden")
+            $(".loader").removeClass("hidden");
+        }
 
-            let $scoreModalBody = $highScoreModal.find(".modal-body");
-            let scoresTitleRow =
-                "<div class='score-row'>" +
-                "<div class='score-item'>player</div>" +
-                "<div class='score-item'>quiz</div>" +
-                "<div class='score-item'>date</div>" +
-                "<div class='score-item'>score</div>" +
-                "</div>";
-            let scores = "";
-            data.scores.forEach(function (score) {
-                scores +=
-                    "<div class='score-row'>" +
-                    "<div class='score-item'>" + score.user + "</div>" +
-                    "<div class='score-item'>" + score.quizName + "</div>" +
-                    "<div class='score-item'>" + formatDate(score.date) + "</div>" +
-                    "<div class='score-item'>" + score.score + "</div>" +
-                    "</div>";
-            });
-
-            $scoreModalBody.html(scoresTitleRow + scores);
-            $highScoreModal.modal('show');
+        function hideLoadingInterstitial() {
+            $('.interstitial-mask').addClass("hidden")
+            $(".loader").addClass("hidden");
         }
 
         function formatDate(scoreDate) {
             return (scoreDate.slice(0, 10) + " " + scoreDate.slice(11, 16));
-        }
-
-        function activateScoreTab(title) {
-            if (!title) return;
-
-            $navPills.parent().removeClass("active");
-            switch(title) {
-                case "all":
-                    $navPills.filter("[data-request='all']").parent().addClass("active");
-                    break;
-                case "own":
-                    $navPills.filter("[data-request='own']").parent().addClass("active");
-                    break;
-                default:
-                    $navPills.filter("[data-request='per-quiz']").parent().addClass("active");
-                    break;
-            }
         }
 
         function showNetworkError() {

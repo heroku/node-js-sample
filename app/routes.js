@@ -147,8 +147,8 @@ module.exports = function (app, passport) {
 
     app.post('/show-high-score', function (req, res) {
         "use strict";
-        let quizName,
-            retrievedHighScore = [];
+        let quizName;
+
         if (!req.body || !req.body.data) {
             console.log("error, invalid request");
             res.send({
@@ -167,11 +167,10 @@ module.exports = function (app, passport) {
                 "use strict";
                 if (err) return next(err);
                 console.log("Highscore sending to client");
-                let highScoreData = {
+                res.render('highscore_modal.ejs', {
                     scores: req.session.retrievedHighScore,
                     title: quizName
-                };
-                res.send(highScoreData);
+                });
             });
         }
     });
