@@ -194,7 +194,7 @@
                 "<div class='score-item'>score</div>" +
                 "</div>";
             let scores = "";
-            for (let score of data.scores) {
+            data.scores.forEach(function (score) {
                 scores +=
                     "<div class='score-row'>" +
                     "<div class='score-item'>" + score.user + "</div>" +
@@ -202,7 +202,7 @@
                     "<div class='score-item'>" + formatDate(score.date) + "</div>" +
                     "<div class='score-item'>" + score.score + "</div>" +
                     "</div>";
-            }
+            });
 
             $scoreModalBody.html(scoresTitleRow + scores);
             $highScoreModal.modal('show');
