@@ -124,7 +124,7 @@ p.latest-achievement {
 }
 
 .answer, .question {
-    word-break: break-all;
+    word-wrap: break-word;
 }
 
 .volatile-score {
