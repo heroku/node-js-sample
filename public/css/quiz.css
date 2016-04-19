@@ -128,11 +128,26 @@ p.latest-achievement {
 }
 
 .volatile-score {
-    background-color: #00FF00;
+    font-size: 3em;
+    opacity: 0.0;
     color: #fff;
     position: absolute;
     top: 50%;
     right: 30%;
+    background-size: 50px 50px;
+    height: 100px;
+    width: 100px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    -webkit-box-shadow: #B3B3B3 26px 26px 26px;
+    -moz-box-shadow: #B3B3B3 26px 26px 26px;
+    box-shadow: #B3B3B3 26px 26px 26px;
+    padding: 15px;
+    color: #00A000;
+    text-shadow:  1px 0 0 hsl(129, 21%, 27%), 0 2px 0 hsl(106, 47%, 50%), 0 3px 0 hsl(111, 34%, 81%), 0 4px 0 hsl(0, 0%, 60%), 3px 3px 7px #000000;
+    filter: dropshadow(color=#000000, offx=3, offy=3);
+    text-align: center
 }
 
 /* TODO: find a solution with relative path */

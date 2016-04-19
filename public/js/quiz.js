@@ -155,12 +155,12 @@
             $volatileScore
                 .text(Number(data.scoreUp))
                 .removeClass("hidden")
-                .css({opacity: "1", fontSize: "1em", bottom: "0"})
+                .css({"opacity": "1", "top": "50%", "right": "30%"})
                 .animate( {
                     //width: "300%",
                     opacity: 0.0,
-                    fontSize: "3em",
-                    bottom: "100px"
+                    top: "40%",
+                    right: "20%"
                 }, 1500);
         }
 
