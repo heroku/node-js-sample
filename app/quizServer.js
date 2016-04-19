@@ -20,10 +20,10 @@ exports.validateAnswer = function (req, callback) {
         validateAnswerResult.scoreUp = req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].point;
         req.session.score += validateAnswerResult.scoreUp;
         validateAnswerResult.gameFinished = isAnswerIndexTheLast(req.session);
-        if (validateAnswerResult.gameFinished) {
-            saveHighScore(req, callback);
-            shouldCallback = false;
-        }
+    }
+    if (validateAnswerResult.gameFinished) {
+        saveHighScore(req, callback);
+        shouldCallback = false;
     }
     req.session.answerIndex++;
     if (shouldCallback) {
