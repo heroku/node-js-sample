@@ -36,18 +36,10 @@ exports.saveInSessionHighScoreFor = function (quizName, req, cb) {
     req.session.retrievedHighScore = [];
     async.series([
         function (callback) {
-            if (quizName === "all") {
-                Highscore.find({}, function (err, result) {
-                    if (err) return callback(err);
-                    pushRetrievedHighScoreInToSession(req, result, 0, callback);
-                });
-            } else {
-                Highscore.findOne({'quizName': quizName}, function (err, result) { // TODO: consider, do we even need it?
-                    if (err) return callback(err);
-                    req.session.retrievedHighScore = result;
-                    callback();
-                });
-            }
+            Highscore.find({}, function (err, result) {
+                if (err) return callback(err);
+                pushRetrievedHighScoreInToSession(req, result, 0, callback);
+            });
         }
     ], function (err) {
         cb(err);

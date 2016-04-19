@@ -168,8 +168,8 @@ module.exports = function (app, passport) {
                 if (err) return next(err);
                 console.log("Highscore sending to client");
                 res.render('highscore_modal.ejs', {
-                    scores: req.session.retrievedHighScore,
-                    title: quizName
+                    scores: req.session.retrievedHighScore || [],
+                    title: quizName || "all"
                 });
             });
         }
