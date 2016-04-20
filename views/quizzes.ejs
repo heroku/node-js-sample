@@ -164,7 +164,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <button type="button" class="btn btn-success btn-lg submit">Submit</button>
+                <button type="button" class="btn btn-success btn-lg submit<% if (user.shouldUseFastAnswers) { %> hidden<% } %>">Submit</button>
                 <button type="button" class="btn btn-primary btn-lg give-up">No idea, next</button>
                 <a href="#confirmExit" class="btn btn-danger btn-lg exit" data-toggle="modal">Exit</a>
             </div>
