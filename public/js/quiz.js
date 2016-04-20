@@ -9,6 +9,8 @@
             quizData,
             highScoreData,
             shoudUseFastAnswers = $(".user-name").data("shouldUseFastAnswers"),
+            answerIndex = 0,
+            lastAnswerIndex = -1,
             undefined = [][0];
 
         $( "a.quiz-select" ).click( function( event ) {
@@ -38,6 +40,8 @@
         });
 
         $("body").keypress( function (event) {
+            if (!$quizBox.is(":visible")) return;
+
             if (shoudUseFastAnswers) {
                 switch(event.which) {
                     case 49: $( ".answer-a" ).click(); $( ".submit" ).click(); break;
@@ -83,12 +87,14 @@
         });
 
         $( ".submit" ).click( function() {
+            if(lastAnswerIndex === answerIndex) return;
             if(!chosenAnswer) {
                 $quizBox.find(".well").addClass("hovered");
                 setTimeout(function(){ $quizBox.find(".well").removeClass("hovered"); }, 2500);
                 return;
             }
 
+            lastAnswerIndex++;
             $.post( "/submit", {'data': chosenAnswer} )
                 .done( function( data ) {
                     showVolatileScoreUp(data);
@@ -100,6 +106,7 @@
                 })
                 .always( function() {
                     chosenAnswer = undefined;
+                    answerIndex++;
                 });
         });
 
@@ -189,6 +196,8 @@
         }
 
         function showHighScore(higscoreTable) {
+            if ($('.interstitial-mask').is(":visible")) return;
+
             higscoreTable = higscoreTable || "all";
             showLoadingInterstitial();
             $.post( "/show-high-score", {'data': higscoreTable} )
@@ -234,6 +243,8 @@
         function exitToQuizzes() {
             $quizSelection.removeClass("hidden");
             $quizBox.addClass("hidden");
+            lastAnswerIndex = -1;
+            answerIndex = 0;
         }
 
         function wipeQuizData() {

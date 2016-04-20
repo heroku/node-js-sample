@@ -46,10 +46,14 @@ exports.saveInSessionHighScoreFor = function (quizName, req, cb) {
     req.session.retrievedHighScore = [];
     async.series([
         function (callback) {
-            Highscore.find({}, function (err, result) {
-                if (err) return callback(err);
-                pushRetrievedHighScoreInToSession(req, result, 0, callback);
-            });
+            Highscore
+                .find({})
+                .sort({score: -1})
+                .limit(10)
+                .exec( function (err, result) {
+                    if (err) return callback(err);
+                    pushRetrievedHighScoreInToSession(req, result, 0, callback);
+                });
         }
     ], function (err) {
         cb(err);
@@ -122,6 +126,7 @@ function updateUserScoreIfBetter(result, req, callback) {
 
 function saveNewScore(req, callback, result) {
     "use strict";
+    console.log("new hs: " + req.session.score);
     var highscore = result || new Highscore();
     highscore.quizName = req.session.quizName;
     highscore.userId = req.user.id;

@@ -70,6 +70,10 @@ module.exports = function (app, passport) {
 
     app.post('/submit', isLoggedInV2, function (req, res) {
         console.log("/SUBMIT", req.body.data);
+        console.log("answerindex", req.session.answerIndex);
+        console.log("lastAnswerIndex", req.session.lastAnswerIndex);
+        if(req.session.lastAnswerIndex === req.session.answerIndex) return;
+        req.session.lastAnswerIndex++;
         async.series([
             function (callback) {
                 console.log("validate Answer");
@@ -591,6 +595,7 @@ function saveQuizToSession(req, result) {
     "use strict";
     req.session.quizName = result.name;
     req.session.answerIndex = 0;
+    req.session.lastAnswerIndex = -1;
     req.session.score = 0;
     req.session.pointCalculationTimeBased = result.pointCalculationTimeBased;
     req.session.gamePlayTimeBased = result.gamePlayTimeBased;
