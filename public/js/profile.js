@@ -16,6 +16,10 @@
             }
         });
 
+        $("#fastAnswer").change(function() {
+            updateUserFastAnswers(this.checked);
+        });
+
         $(".update-display-name-button").click(function() {
             let newDisplayName = $(".update-display-name-text").val();
             updateDisplayNameWith(newDisplayName);
@@ -59,6 +63,25 @@
                     return;
                 }
                 $(".display-name").text(newDisplayName);
+                showSuccessfullUpdate();
+            })
+            .fail( function() {
+                showNetworkError();
+            })
+            .always(function() {
+                hideNewDisplayNameModal();
+            });
+    }
+
+    function updateUserFastAnswers(shouldUseFastAnswers) {
+        $.post( "/update-user-fast-ansers", {'data': shouldUseFastAnswers} )
+            .done( function( data ) {
+                if(data.error) {
+                    data.message = data.message || "invalid response";
+                    data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                    invalidRequest(data.message, data.subMessage);
+                    return;
+                }
                 showSuccessfullUpdate();
             })
             .fail( function() {

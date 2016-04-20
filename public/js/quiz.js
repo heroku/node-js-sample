@@ -8,6 +8,7 @@
             chosenAnswer,
             quizData,
             highScoreData,
+            shoudUseFastAnswers = $(".user-name").data("shouldUseFastAnswers"),
             undefined = [][0];
 
         $( "a.quiz-select" ).click( function( event ) {
@@ -36,6 +37,27 @@
             $(this).parent().addClass("active");
         });
 
+        $("body").keypress( function (event) {
+            if (shoudUseFastAnswers) {
+                switch(event.which) {
+                    case 49: $( ".answer-a" ).click(); $( ".submit" ).click(); break;
+                    case 50: $( ".answer-b" ).click(); $( ".submit" ).click(); break;
+                    case 51: $( ".answer-c" ).click(); $( ".submit" ).click(); break;
+                    case 52: $( ".answer-d" ).click(); $( ".submit" ).click(); break;
+                    default: break;
+                }
+            } else {
+                switch(event.which) {
+                    case 13: $( ".submit" ).click(); break;
+                    case 49: $( ".answer-a" ).click(); break;
+                    case 50: $( ".answer-b" ).click(); break;
+                    case 51: $( ".answer-c" ).click(); break;
+                    case 52: $( ".answer-d" ).click(); break;
+                    default: break;
+                }
+            }
+        });
+
         $( ".show-high-score" ).click( function( event ) {
             event.preventDefault();
             showHighScore();
@@ -55,6 +77,9 @@
             $quizBox.find(".well").removeClass("selected");
             $(this).addClass("selected");
             chosenAnswer = $(this).data("answer-index")+"";
+            if (shoudUseFastAnswers) {
+                $( ".submit" ).click();
+            }
         });
 
         $( ".submit" ).click( function() {

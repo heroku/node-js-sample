@@ -78,3 +78,15 @@ button {
 .orange {
     background-color: rgba(239, 98, 0, 0.32);
 }
+
+.lg {
+    width: 34px;
+    height: 34px;
+}
+
+#fastAnswer {
+    float: right;
+}
+.fast-answers-label {
+    line-height: 36px;
+}

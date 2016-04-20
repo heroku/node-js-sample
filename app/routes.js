@@ -408,6 +408,44 @@ module.exports = function (app, passport) {
             });
         });
     });
+
+    app.post('/update-user-fast-ansers', isLoggedIn, function (req, res) {
+        console.log("update-user-fast-ansers with: " + JSON.stringify(req.body.data));
+        var updatedUser = req.user;
+        var shouldUseFastAnswers = req.body.data === "true";
+        console.log("shouldUseFastAnswers: " + shouldUseFastAnswers);
+        async.series([
+            function (callback) {
+                User.findById(req.user.id, function (err, user) {
+                    if (err) return callback(err);
+                    if (user === null) {
+                        console.log("user is null.");
+                        res.send({
+                            error: true,
+                            message: "Unable to update the display name",
+                            subMessage: "That display name is already taken"
+                        });
+                        return;
+                    } else {
+                        console.log("user found: " + user.displayName);
+                        updatedUser.shouldUseFastAnswers = shouldUseFastAnswers;
+                    }
+                    callback();
+                });
+            }
+        ], function (err) {
+            if (err) return next(err);
+            console.log("updatedUser save: " + updatedUser);
+            updatedUser.save(function (err) {
+                if (err) res.send({
+                    error: true,
+                    message: "unable to save the user to db",
+                    subMessage: "reason: " + err
+                });
+                res.send({error: false});
+            });
+        });
+    });
 };
 
 

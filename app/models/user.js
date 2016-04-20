@@ -6,6 +6,7 @@ var exports = module.exports = {};
 
 var userSchema = mongoose.Schema({
 	displayName: String,
+	shouldUseFastAnswers: { type: Boolean, default: false },
 	local            : {
 		name        : String,
 		password     : String

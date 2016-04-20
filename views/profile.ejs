@@ -40,6 +40,10 @@
                     <% } %>
                     <option>New</option>
                 </select>
+                <hr/>
+
+                <label class="fast-answers-label" for="fastAnswer">Fast Answers (click for submit):</label>
+                <input type="checkbox" id="fastAnswer" class="lg" <% if (user.shouldUseFastAnswers) { %>checked checked="checked" <% } %>>
             </div>
         </div>
         <div class="col-sm-6">
@@ -149,18 +153,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title"><span class="fa fa-paw"></span>  Change Display Name</h4>
+                <h4 class="modal-title"><span class="fa fa-paw"></span> Change Display Name</h4>
             </div>
             <div class="modal-body form-group">
                 <div class="">
-                    <input type="text" class="update-display-name-text form-control col-sm-5" placeholder="New Display Name">
-                    <button type="button" class="update-display-name-button form-control btn btn-success">Update Display Name</button>
+                    <input type="text" class="update-display-name-text form-control col-sm-5"
+                           placeholder="New Display Name">
+                    <button type="button" class="update-display-name-button form-control btn btn-success">Update Display
+                        Name
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <% include common_javascript_includes %>
 <script src="js/profile.js"></script>

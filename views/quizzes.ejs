@@ -68,14 +68,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="/profile" target="_blank">Logged in as: <span class="user-name"><%= user.displayName %>
+            <a class="navbar-brand page-scroll" href="/profile" target="_blank">Logged in as:
+                <span class="user-name" data-should-use-fast-answers="<% if (user.shouldUseFastAnswers) { %>true<% } %>"><%= user.displayName %>
                     <% if (user.group == "admin") { %>
                     admin
                     <% } %>
                 </span></a>
 
             <p class="latest-achievement"><a>Latest Achievement: <span
-                            class="latest-achievement"><%= achievements[achievements.length-1] %></span></a></p>
+                            class="latest-achievement"><%= achievements[achievements.length - 1] %></span></a></p>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -97,9 +98,10 @@
         <div class="row no-gutter">
             <% include network_error %>
             <% Object.keys(quizzes).forEach(function(quiz) { %>
-            <div class="col-lg-<%= Math.floor(12/Object.keys(quizzes).length) %> col-sm-<%= Math.floor(12/Object.keys(quizzes).length) %>">
+            <div class="col-lg-<%= Math.floor(12 / Object.keys(quizzes).length) %> col-sm-<%= Math.floor(12 / Object.keys(quizzes).length) %>">
                 <a href="#" class="quiz-select" data-quiz="<%= quizzes[quiz].name %>">
                     <img src="img/quizzes/<%= quizzes[quiz].imageName %>" class="img-responsive" alt="">
+
                     <div class="quiz-select-caption">
                         <div class="quiz-select-caption-content">
                             <div class="project-category text-faded">
