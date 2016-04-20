@@ -70,33 +70,23 @@ module.exports = function (app, passport) {
 
     app.post('/submit', function (req, res) {
         console.log("/SUBMIT", req.body.data);
-        if (!req.body.data) {
-            console.log("invalid request");
-            res.send({
-                error: true,
-                message: "invalid request",
-                subMessage: "Please use the valid quizzes, do not try to come up with new ones :)"
-            });
-        } else {
-            console.log("valid request");
-            async.series([
-                function (callback) {
-                    console.log("validate Answer");
-                    quizServer.validateAnswer(req, callback);
-                }
-            ], function (err) {
-                console.log("validation is done");
-                if (err) {
-                    res.send({
-                        error: true,
-                        message: "Error during quiz answer validation",
-                        subMessage: err
-                    });
-                } else {
-                    res.send(req.session.validateAnswerResult)
-                }
-            });
-        }
+        async.series([
+            function (callback) {
+                console.log("validate Answer");
+                quizServer.validateAnswer(req, callback);
+            }
+        ], function (err) {
+            console.log("validation is done");
+            if (err) {
+                res.send({
+                    error: true,
+                    message: "Error during quiz answer validation",
+                    subMessage: err
+                });
+            } else {
+                res.send(req.session.validateAnswerResult)
+            }
+        });
     });
 
     app.post('/quiz-select', function (req, res) {

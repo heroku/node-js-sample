@@ -80,12 +80,14 @@ function isAnswerIndexTheLast(session) {
 }
 
 function wasTheAnswerCorrect(req) {
-    return req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data] &&
-        req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].valid;
+    return  answerWereSubmitted(req) &&
+            req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].valid;
 }
 
-function noAnswerWereSubmitted(req) {
-    return req.body.data.length === 0;
+function answerWereSubmitted(req) {
+    return  req.session.questionsAndAnswers[req.session.answerIndex] &&
+            req.session.questionsAndAnswers[req.session.answerIndex].answers &&
+            req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data];
 }
 
 
