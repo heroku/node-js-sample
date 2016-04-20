@@ -14,10 +14,7 @@ exports.validateAnswer = function (req, callback) {
     let shouldCallback = true;
 
     req.session.validateAnswerResult = validateAnswerResult;
-    if (!isAnswerIndexValid(req)) {
-        validateAnswerResult.gameFinished = true;
-        req.session.startTimeStamp = new Date().getTime();
-    } else if (wasTheAnswerCorrect(req)) {
+    if (wasTheAnswerCorrect(req)) {
         let timeStampDiff = new Date().getTime() - req.session.startTimeStamp;
         req.session.startTimeStamp = new Date().getTime();
 
@@ -28,9 +25,9 @@ exports.validateAnswer = function (req, callback) {
         }
 
         req.session.score += validateAnswerResult.scoreUp;
-        validateAnswerResult.gameFinished = isAnswerIndexTheLast(req.session);
     }
 
+    validateAnswerResult.gameFinished = isAnswerIndexTheLastOrInvalid(req.session);
     if (validateAnswerResult.gameFinished) {
         saveHighScore(req, callback);
         shouldCallback = false;
@@ -85,12 +82,8 @@ function pushRetrievedHighScoreInToSession(req, highScores, index, cb) {
     });
 }
 
-function isAnswerIndexValid(req) {
-    return req.session.questionsAndAnswers && req.session.questionsAndAnswers[req.session.answerIndex];
-}
-
-function isAnswerIndexTheLast(session) {
-    return session.quizLength === session.answerIndex + 1;
+function isAnswerIndexTheLastOrInvalid(session) {
+    return session.quizLength <= session.answerIndex + 1;
 }
 
 function wasTheAnswerCorrect(req) {
