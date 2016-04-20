@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var highscoreSchema = new mongoose.Schema({
     quizName: String,
     userId: String,
-    score: { type: Number },
+    score: Number,
     dateTime: { type: Date, default: Date.now }
 });
 

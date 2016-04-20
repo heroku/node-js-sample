@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var achievementSchema = mongoose.Schema({
     name: String,
     description: String,
-    point: { type: Number },
+    point: Number,
     group: String,
     type: String,
     subType: String,
