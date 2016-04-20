@@ -12,15 +12,25 @@ exports.validateAnswer = function (req, callback) {
         'questionIndex': req.session.answerIndex + 1
     };
     let shouldCallback = true;
-//    console.log(JSON.stringify(req.session));
+
     req.session.validateAnswerResult = validateAnswerResult;
     if (!isAnswerIndexValid(req)) {
         validateAnswerResult.gameFinished = true;
+        req.session.startTimeStamp = new Date().getTime();
     } else if (wasTheAnswerCorrect(req)) {
-        validateAnswerResult.scoreUp = req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].point;
+        let timeStampDiff = new Date().getTime() - req.session.startTimeStamp;
+        req.session.startTimeStamp = new Date().getTime();
+
+        if (req.session.gamePlayTimeBased) {
+            validateAnswerResult.scoreUp = req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].point / calculateScoreDivisor(timeStampDiff);
+        } else {
+            validateAnswerResult.scoreUp = req.session.questionsAndAnswers[req.session.answerIndex].answers[req.body.data].point;
+        }
+
         req.session.score += validateAnswerResult.scoreUp;
         validateAnswerResult.gameFinished = isAnswerIndexTheLast(req.session);
     }
+
     if (validateAnswerResult.gameFinished) {
         saveHighScore(req, callback);
         shouldCallback = false;
@@ -124,4 +134,7 @@ function saveNewScore(req, callback, result) {
 
 function isObjectEmpty(o) {
     return Object.getOwnPropertyNames(o).length === 0;
+}
+function calculateScoreDivisor(timeStampDiff) {
+    return (timeStampDiff / 3600);
 }
