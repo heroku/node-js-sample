@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var AnswersSchema = new mongoose.Schema({
     valid: Boolean,
-    point: { type: Number },
+    point: Number,
     answerText: String
 });
 

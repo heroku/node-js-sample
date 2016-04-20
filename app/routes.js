@@ -68,7 +68,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/submit', function (req, res) {
+    app.post('/submit', isLoggedInV2, function (req, res) {
         console.log("/SUBMIT", req.body.data);
         async.series([
             function (callback) {
@@ -89,7 +89,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/quiz-select', function (req, res) {
+    app.post('/quiz-select', isLoggedInV2, function (req, res) {
         if (!req.body || !req.body.data) {
             console.log("error, invalid request");
             res.send({
@@ -368,7 +368,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/update-display-name', isLoggedIn, function (req, res) {
+    app.post('/update-display-name', isLoggedInV2, function (req, res) {
         var updatedUser = req.user;
         var newDisplayName = req.body.data.trim();
         if (!newDisplayName || newDisplayName === "") {
@@ -409,7 +409,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/update-user-fast-ansers', isLoggedIn, function (req, res) {
+    app.post('/update-user-fast-ansers', isLoggedInV2, function (req, res) {
         console.log("update-user-fast-ansers with: " + JSON.stringify(req.body.data));
         var updatedUser = req.user;
         var shouldUseFastAnswers = req.body.data === "true";
@@ -455,6 +455,16 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
     res.redirect('/');
+}
+
+function isLoggedInV2(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+    res.send({
+        error: true,
+        message: "Not logged in",
+        subMessage: "please log in before using the app"
+    });
 }
 
 var isAdmin = function (req, res, next) {
@@ -588,6 +598,7 @@ function saveQuizToSession(req, result) {
     req.session.answersShouldBeRandomlyOrdered = result.answersShouldBeRandomlyOrdered;
     req.session.questionsAndAnswers = result.questionsAndAnswers;
     req.session.quizLength = result.questionsAndAnswers.length;
+    req.session.startTimeStamp = new Date().getTime();
 }
 
 function removeAnswerValidityFromQuiz(quiz) {
