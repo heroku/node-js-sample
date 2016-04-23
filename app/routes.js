@@ -14,6 +14,7 @@ var REDIRECT_TO_PROFILE = '/profile';
 var REDIRECT_TO_QUIZZES = '/quizzes';
 
 module.exports = function (app, passport) {
+    "use strict";
     /*
      * Home page
      */
