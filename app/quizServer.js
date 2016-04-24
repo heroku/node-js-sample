@@ -64,13 +64,11 @@ exports.saveInSessionHighScoreFor = function (quizName, req, cb) {
                     .limit(10)
                     .exec( function (err, result) {
                         if (err) return callback(err);
-                        console.log("highscores["+quizNames[quizIndex]+"]: " + JSON.stringify(result));
                         pushRetrievedHighScoreInToSession(req, result, 0, quizIndex, quizNamesLength, cb);
                     });
             }
         }
     ], function (err) {
-        console.log("req.session.retrievedHighScore: " + JSON.stringify(req.session.retrievedHighScore));
         cb(err);
     });
 };
@@ -108,7 +106,6 @@ function pushRetrievedHighScoreInToSession(req, highScores, index, quizIndex, qu
                         date: highScores[index].dateTime,
                         quizName: highScores[index].quizName
                     };
-                    console.log("highScoreEntry: " + highScoreEntry);
                     req.session.retrievedHighScore.push(highScoreEntry);
                 }
                 callback();
@@ -155,7 +152,6 @@ function updateUserScoreIfBetter(result, req, callback) {
 
 function saveNewScore(req, callback, result) {
     "use strict";
-    console.log("new hs: " + req.session.score);
     var highscore = result || new Highscore();
     highscore.quizName = req.session.quizName;
     highscore.userId = req.user.id;

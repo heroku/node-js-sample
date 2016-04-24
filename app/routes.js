@@ -71,17 +71,13 @@ module.exports = function (app, passport) {
 
     app.post('/submit', isLoggedInV2, function (req, res) {
         console.log("/SUBMIT", req.body.data);
-        console.log("answerindex", req.session.answerIndex);
-        console.log("lastAnswerIndex", req.session.lastAnswerIndex);
         if(req.session.lastAnswerIndex === req.session.answerIndex) return;
         req.session.lastAnswerIndex++;
         async.series([
             function (callback) {
-                console.log("validate Answer");
                 quizServer.validateAnswer(req, callback);
             }
         ], function (err) {
-            console.log("validation is done");
             if (err) {
                 res.send({
                     error: true,
@@ -152,13 +148,11 @@ module.exports = function (app, passport) {
             async.series([
                 function (callback) {
                     quizName = req.body.data;
-                    console.log("Highscore for: " + quizName + " has been requested");
                     quizServer.saveInSessionHighScoreFor(quizName, req, callback);
                 }
             ], function (err) {
                 "use strict";
                 if (err) return next(err);
-                console.log("Highscore sending to client");
                 res.render('highscore_modal.ejs', {
                     scores: req.session.retrievedHighScore || [],
                     title: quizName || "all"
@@ -215,11 +209,8 @@ module.exports = function (app, passport) {
         } else {
             async.series([
                 function (callback) {
-                    console.log("series start");
                     if (!req.body.shouldOverrideExistingQuiz) {
                         Quiz.findOne({'name': req.body.name}, function (err, quiz) {
-                            console.log("quiz [findone]: " + quiz);
-
                             if (err) return callback(err);
                             if (quiz !== null) {
                                 console.log("quiz already exists");
@@ -229,15 +220,13 @@ module.exports = function (app, passport) {
                                     subMessage: "Please change the name of your quiz"
                                 });
                             } else {
-                                console.log("ide azért belefut, csak szemétkedik");
                                 callback();
                             }
                         });
                     }
                 },
                 function (callback) {
-                    console.log("na ezt nem szabadna előbb látni mint az ide azért belefutot");
-                    quizSeeder.seedQuizzes(req.body, callback);
+                    quizSeeder.seedQuizzes(req, callback);
                 }
             ], function (err) {
                 console.log(err);
@@ -415,16 +404,13 @@ module.exports = function (app, passport) {
     });
 
     app.post('/update-user-fast-ansers', isLoggedInV2, function (req, res) {
-        console.log("update-user-fast-ansers with: " + JSON.stringify(req.body.data));
         var updatedUser = req.user;
         var shouldUseFastAnswers = req.body.data === "true";
-        console.log("shouldUseFastAnswers: " + shouldUseFastAnswers);
         async.series([
             function (callback) {
                 User.findById(req.user.id, function (err, user) {
                     if (err) return callback(err);
                     if (user === null) {
-                        console.log("user is null.");
                         res.send({
                             error: true,
                             message: "Unable to update the display name",
@@ -432,7 +418,6 @@ module.exports = function (app, passport) {
                         });
                         return;
                     } else {
-                        console.log("user found: " + user.displayName);
                         updatedUser.shouldUseFastAnswers = shouldUseFastAnswers;
                     }
                     callback();
@@ -440,7 +425,6 @@ module.exports = function (app, passport) {
             }
         ], function (err) {
             if (err) return next(err);
-            console.log("updatedUser save: " + updatedUser);
             updatedUser.save(function (err) {
                 if (err) res.send({
                     error: true,

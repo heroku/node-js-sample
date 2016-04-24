@@ -13,6 +13,7 @@ var QuestionsAndAnswersSchema = new mongoose.Schema({
 
 var quizSchema = mongoose.Schema({
     name: String,
+    creator: String,
     category: String,
     imageName: String,
     gamePlayTimeBased: Boolean,

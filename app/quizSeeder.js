@@ -1,9 +1,11 @@
 var Quiz = require('../app/models/quiz');
 
-exports.seedQuizzes = function (data, callback) {
-    saveQuizToDatabase(data, callback);
+exports.seedQuizzes = function (req, callback) {
+    var data = req.body,
+        user = req.user;
+    saveQuizToDatabase(data, user, callback);
 
-    function saveQuizToDatabase(data, callback) {
+    function saveQuizToDatabase(data, user, callback) {
         "use strict";
         try {
             let answers = {},
@@ -28,6 +30,7 @@ exports.seedQuizzes = function (data, callback) {
             }
 
             var quiz = new Quiz();
+            quiz.creator = user.id;
             quiz.name = data.name;
             quiz.category = data.category;
             quiz.imageName = data.imageName;
