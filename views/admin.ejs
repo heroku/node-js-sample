@@ -9,6 +9,9 @@
 <div class="container">
 
     <% include network_error %>
+    <% include common_error_template %>
+
+    <% include manage_saved_quiz_modal_template %>
 
     <div class="successfull-update alert alert-success hidden">
         <a href="#" class="close" data-dismiss="alert">×</a>
@@ -26,7 +29,13 @@
             <div class="well well-profile">
                 <h3><span class="fa fa-file-text"></span> Quizzes</h3>
                 <button type="button" class="form-control create-quiz btn btn-primary">Create quiz</button>
-                <button type="button" class="form-control manage-quiz btn btn-primary">Manage a quiz</button>
+                <select class="form-control manage-quiz-select">
+                    <option selected="selected" disabled="true">Choose quiz to manage</option>
+                    <% Object.keys(quizzes).forEach(function(quiz) { %>
+                    <option><%= quizzes[quiz].name %></option>
+                    <% }); %>
+                </select>
+                <button type="button" class="form-control manage-quiz btn btn-primary">Manage selected quiz</button>
             </div>
         </div>
         <div class="col-sm-6">
@@ -61,7 +70,7 @@
             <div class="modal-header">
                 <% include network_error %>
                 <% include successfull_quiz_save %>
-                <% include quiz_error_template %>
+                <% include common_error_template %>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title"><span class="fa fa-paw"></span> Create new quiz</h4>
             </div>

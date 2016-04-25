@@ -53,7 +53,7 @@ module.exports = function (app, passport) {
                     if (err) return (err);
                     quizzes = quizzesFromDB;
                     callback();
-                })
+                });
             }
         ], function (err) {
             if (err) {
@@ -166,7 +166,8 @@ module.exports = function (app, passport) {
      */
     app.get('/admin', isAdmin, function (req, res) {
         console.log("admin page");
-        var user_achievements = [];
+        var user_achievements = [],
+            quizzes = {};
         async.series([
             function (callback) {
                 UserAchievement.findOne({'userId': req.user.id}, function (err, achievements) {
@@ -176,22 +177,83 @@ module.exports = function (app, passport) {
                     }
                     callback();
                 });
+            },
+            function (callback) {
+                "use strict";
+                Quiz.find({}, 'name category imageName', function (err, quizzesFromDB) {
+                    if (err) return (err);
+                    quizzes = quizzesFromDB;
+                    callback();
+                });
             }
         ], function (err) {
             if (err) return next(err);
             res.render('admin.ejs', {
                 user: req.user,
                 imageNames: fs.readdirSync(PATH_TO_QUIZ_IMAGES),
-                achievements: user_achievements
+                achievements: user_achievements,
+                quizzes: quizzes
             });
         });
     });
 
-    app.post('/updateQuizzes', isAdmin, function (req, res) {
-        console.log("updating Quizzes");
-        quizServer.updateQuizzes();
-        console.log("Quizzes has been updated");
-        res.send("done");
+    app.post('/loadQuiz', isAdmin, function(req, res) {
+        console.log("load quiz: ", req.body);
+        if (!req.body || !req.body.selectedQuiz) {
+            res.send({
+                error: true,
+                message: "invalid request",
+                subMessage: "quiz were not selected"
+            });
+            return;
+        }
+
+        Quiz.findOne({'name': req.body.selectedQuiz}, function (err, result) {
+            if (err) {
+                res.send({
+                    error: true,
+                    message: "invalid request",
+                    subMessage: "quiz was not found in the database"
+                });
+                return;
+            }
+            res.send(result)
+        });
+    });
+
+    app.post('/updateQuiz', isAdmin, function (req, res) {
+        console.log("update quiz: ", req.body);
+        if (!req.body || !req.body.selectedQuiz) {
+            res.send({
+                error: true,
+                message: "invalid request",
+                subMessage: "quiz were not selected"
+            });
+            return;
+        }
+        let quizFromRequest = req.body.quiz;//JSON.parse(req.body.quiz);
+        console.log("quizFromRequest: ", quizFromRequest);
+        let validationErrors = getQuizValidationErrors(quizFromRequest);
+        if (validationErrors.length > 0) {
+            res.send({
+                error: true,
+                message: "invalid request",
+                subMessage: validationErrors
+            });
+        }
+
+        Quiz.findOne({'name': req.body.selectedQuiz}, function (err, result) {
+            if (err) {
+                res.send({
+                    error: true,
+                    message: "invalid request",
+                    subMessage: "quiz was not found in the database"
+                });
+                return;
+            }
+            quizSeeder.updateQuiz(result, quizFromRequest, req.user);
+            res.send("Quiz was successfully updated")
+        });
     });
 
     app.post('/plus_one_question', isAdmin, function (req, res) {

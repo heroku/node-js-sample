@@ -11,6 +11,48 @@
             $newQuizModal.modal("show");
         });
 
+        $(".manage-quiz").click(function () {
+            let selectedQuiz = $(".manage-quiz-select").val();
+            if (!selectedQuiz && selectedQuiz == '') { return; }
+            $.post("/loadQuiz", {"selectedQuiz": selectedQuiz})
+                .done(function (data) {
+                    if (data.error) {
+                        data.message = data.message || "invalid response";
+                        data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                        showCommonError(data.message, data.subMessage);
+                        return;
+                    }
+                    $("#manageSavedQuizModal").find(".manage-saved-quiz").val(JSON.stringify(data));
+                    $("#manageSavedQuizModal").modal("show");
+                })
+                .fail(function () {
+                    showNetworkError();
+                });
+        });
+
+        $(".update-saved-quiz").click(function () {
+            let selectedQuiz = $(".manage-quiz-select").val(),
+                updatedQuiz = $("#manageSavedQuizModal").find(".manage-saved-quiz").val();//JSON.parse($("#manageSavedQuizModal").find(".manage-saved-quiz").val());
+            if (!selectedQuiz && selectedQuiz == '') { return; }
+
+            $.post("/updateQuiz", {"selectedQuiz": selectedQuiz, "quiz": updatedQuiz})
+                .done(function (data) {
+                    if (data.error) {
+                        data.message = data.message || "invalid response";
+                        data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                        showCommonError(message, subMessage);
+                        return;
+                    }
+                    $("#manageSavedQuizModal").modal("hide");
+                    showSuccessfullQuizSave();
+                })
+                .fail(function () {
+                    showNetworkError();
+                });
+
+
+        });
+
         $("body").on('hidden.bs.collapse', '[id^="collapse"]', function () {
             var $toggleButton = $(this).parent().find(".toggle-questions");
             $toggleButton.html('<span class="fa fa-chevron-down"></span> Open');
@@ -84,6 +126,13 @@
         $quizErrorTemplate.find("h3").text(message);
         if (subMessage) { $quizErrorTemplate.find("div").html(subMessage); }
         $quizErrorTemplate.removeClass('hidden');
+    }
+
+    function showCommonError(message, subMessage) {
+        scrollToTop();
+        $(".common-error-template").find("h3").text(message);
+        if (subMessage) { $(".common-error-template").find("div").html(subMessage); }
+        $(".common-error-template").removeClass('hidden');
     }
 
     function scrollToTop(speed) {
