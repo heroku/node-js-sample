@@ -73,21 +73,8 @@ exports.saveInSessionHighScoreFor = function (quizName, req, cb) {
     });
 };
 
-//function callBackOnHighscoresReady(callback, parallelIndex, quizNamesLength) {
-//    "use strict";
-//    if (parallelIndex === quizNamesLength) {
-//        callback();
-//    } else {
-//        callBackOnHighscoresReady(callback, parallelIndex, quizNamesLength)
-//    }
-//}
-
 function pushRetrievedHighScoreInToSession(req, highScores, index, quizIndex, quizNamesLength, cb) {
     "use strict";
-    //if (quizIndex+1 === quizNamesLength) {
-    //    console.log("quizIndex+1: ", quizIndex+1 );
-    //    console.log("quizNamesLength: ", quizNamesLength );
-    //}
     if (!highScores[index]) {
         req.session.parallelIndex++;
         if (req.session.parallelIndex === quizNamesLength) {
