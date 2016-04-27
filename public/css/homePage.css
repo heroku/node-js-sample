@@ -21,3 +21,7 @@ button.form-control {
 .btn-lg {
     margin-bottom: 10px;
 }
+
+a.btn {
+    line-height: 15px;
+}
