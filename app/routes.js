@@ -359,14 +359,11 @@ module.exports = function (app, passport) {
                 });
             },
             function (callback) {
-                if (req.session.roleState) {
-                    callback();
-                } else {
-                    setUserRoleStateInSession(req, callback);
-                }
+                setUserRoleStateInSession(req, callback);
             }
         ], function (err) {
             if (err) return next(err);
+            console.log(" req.session.roleState: ",  req.session.roleState);
             res.render('profile.ejs', {
                 user: req.user,
                 admin: req.session.roleState,
