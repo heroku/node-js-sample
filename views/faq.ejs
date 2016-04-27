@@ -19,7 +19,15 @@
 
 </div>
 <footer class="text-center">
-    <a href="/"><button type="button" class="btn btn-info btn-lg">Login page</button></a>
+    <% if (loggedIn) { %>
+    <a href="/profile">
+        <button type="button" class="btn btn-info btn-lg">Profile</button>
+    </a>
+    <% } else { %>
+    <a href="/">
+        <button type="button" class="btn btn-info btn-lg">Login</button>
+    </a>
+    <% } %>
 </footer>
 </body>
 </html>
