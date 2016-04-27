@@ -243,6 +243,7 @@
         function exitToQuizzes() {
             $quizSelection.removeClass("hidden");
             $quizBox.addClass("hidden");
+            chosenAnswer = undefined;
             lastAnswerIndex = -1;
             answerIndex = 0;
         }
