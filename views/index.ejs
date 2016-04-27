@@ -23,7 +23,7 @@
                     </button-->
                     <!--button type="button" class="form-control btn btn-danger btn-lg" name="achievements">Achievements
                     </button-->
-                    <button type="button" class="form-control btn btn-danger btn-lg" name="highscores">Highscores
+                    <button type="button" class="form-control btn btn-danger btn-lg show-high-score" name="highscores">Highscores
                     </button>
                     <!--a href="/faq"><button type="button" class="form-control btn btn-info btn-lg">FAQ</button></a-->
                     <a href="/faq" class="form-control btn btn-info btn-lg">FAQ</a>
@@ -50,6 +50,11 @@
 </div>
 
 <% include common_javascript_includes %>
+<% include modal_template %>
+<% include highscore_container %>
+<% include network_error %>
+<% include interstitials %>
+
 <script src="js/homepage.js"></script>
 
 </body>

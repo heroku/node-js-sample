@@ -96,7 +96,6 @@
 <section id="quizSelection">
     <div class="container-fluid">
         <div class="row no-gutter">
-            <% include network_error %>
             <% Object.keys(quizzes).forEach(function(quiz) { %>
             <div class="col-lg-<%= Math.floor(12 / Object.keys(quizzes).length) %> col-sm-<%= Math.floor(12 / Object.keys(quizzes).length) %>">
                 <a href="#" class="quiz-select" data-quiz="<%= quizzes[quiz].name %>">
@@ -194,27 +193,15 @@
     </div>
 </div>
 
-<div id="modal-template" class="modal fade in">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <p></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<h2 class="highscore-container"></h2>
 
 <span class="volatile-score" class="hidden"></span>
 
+<% include common_javascript_includes %>
+<% include modal_template %>
+<% include highscore_container %>
+<% include network_error %>
 <% include interstitials %>
 
-<% include common_javascript_includes %>
 <script src="js/quiz.js"></script>
 </body>
 
