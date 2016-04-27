@@ -30,7 +30,7 @@
                     <div class='score-item'><%= score.user %></div>
                     <div class='score-item'><%= score.quizName %></div>
                     <div class='score-item'><%= (score.date.toString().slice(11, 16) + score.date.toString().slice(4,10)) %></div>
-                    <div class='score-item'><%= score.score %></div>
+                    <div class='score-item'><%= Math.round(score.score * 100) / 100 %></div>
                 </div>
                 <% }); %>
             </div>
