@@ -321,6 +321,14 @@ module.exports = function (app, passport) {
     });
 
     /*
+     * FAQ
+     */
+    app.get('/faq', function (req, res) {
+        res.render('faq.ejs');
+    });
+
+
+    /*
      * Authentication
      */
     app.post('/login',
