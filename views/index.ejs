@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Quizzes auth</title>
     <% include common_css_includes.ejs %>
     <link rel="stylesheet" href="css/homePage.css" type="text/css">
 </head>
@@ -19,13 +19,14 @@
             <fieldset class="form-group">
                 <legend>Login or Register <span class="right-panel">Or</span></legend>
                 <div class="right-panel">
-                    <button type="button" class="form-control btn btn-warning btn-lg" name="playAsGuest">Play as guest
-                    </button>
-                    <button type="button" class="form-control btn btn-danger btn-lg" name="achievements">Achievements
-                    </button>
+                    <!--button type="button" class="form-control btn btn-warning btn-lg" name="playAsGuest">Play as guest
+                    </button-->
+                    <!--button type="button" class="form-control btn btn-danger btn-lg" name="achievements">Achievements
+                    </button-->
                     <button type="button" class="form-control btn btn-danger btn-lg" name="highscores">Highscores
                     </button>
-                    <button type="button" class="form-control btn btn-info btn-lg" name="faq">FAQ</button>
+                    <!--a href="/faq"><button type="button" class="form-control btn btn-info btn-lg">FAQ</button></a-->
+                    <a href="/faq" class="form-control btn btn-info btn-lg">FAQ</a>
                 </div>
                 <input type="text" class="form-control" name="name" id="name_input" placeholder="Name">
                 <input type="password" class="form-control" name="password" id="password_input" placeholder="Password">
