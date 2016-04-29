@@ -8,7 +8,6 @@
         });
 
         google.charts.load('current', {'packages': ['table']});
-        //google.charts.setOnLoadCallback(drawTable);
         Quizzes.drawTable = function() {
             var table = new google.visualization.Table(document.getElementById('hsBody'));
             Quizzes.scores = Quizzes.scores || {};
