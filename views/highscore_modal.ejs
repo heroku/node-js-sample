@@ -23,41 +23,16 @@
         </div>
     </div>
     <script>
-        var Quizzes = {
-            scores: {user: [], quizName: [], date: [], score: []}
+        Quizzes.scores = {
+            user: [], quizName: [], date: [], score: []
         };
         <% scores.forEach(function (score) { %>
-        Quizzes.scores.user.push("<%- score.user %>");
-        Quizzes.scores.quizName.push("<%- score.quizName %>");
-        Quizzes.scores.date.push("<%- (score.date.toString().slice(11, 16) + score.date.toString().slice(4, 10)) %>");
-        Quizzes.scores.score.push(<%- Math.round(score.score * 100) / 100 %>);
+        Quizzes.scores.user.push("<%= score.user %>");
+        Quizzes.scores.quizName.push("<%= score.quizName %>");
+        Quizzes.scores.date.push("<%= (score.date.toString().slice(11, 16) + score.date.toString().slice(4, 10)) %>");
+        Quizzes.scores.score.push(<%= Math.round(score.score * 100) / 100 %>);
         <% }); %>
-        google.charts.load('current', {'packages': ['table']});
-        google.charts.setOnLoadCallback(drawTable);
-
-        function drawTable() {
-            var data = new google.visualization.DataTable(),
-                rowLength = Quizzes.scores.user.length,
-                index;
-
-            data.addColumn('string', 'Player');
-            data.addColumn('string', 'Quiz');
-            data.addColumn('string', 'Date');
-            data.addColumn('number', 'Score');
-            for (index = 0; index < rowLength; index++) {
-                data.addRows([
-                    [   Quizzes.scores.user[index],
-                        Quizzes.scores.quizName[index],
-                        Quizzes.scores.date[index],
-                        Quizzes.scores.score[index]
-                    ]
-                ]);
-            }
-
-            var table = new google.visualization.Table(document.getElementById('hsBody'));
-
-            table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-        }
+        Quizzes.drawTable();
     </script>
 </div>
 
