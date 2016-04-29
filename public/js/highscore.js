@@ -30,8 +30,22 @@
                 ]);
             }
             table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+            showActualUserHighlighted();
         };
 
+        function showActualUserHighlighted() {
+            var userName = $(".user-name").text().trim(),
+                $tableTDs = $(".google-visualization-table-td");
+
+            for (var td of $tableTDs) {
+                var $td = $(td)
+                if ($td.text() === userName) {
+                    $td.parent().addClass("highlight-gold");
+                }
+            }
+
+
+        }
     });
 
 })(window.Quizzes = window.Quizzes || {});
