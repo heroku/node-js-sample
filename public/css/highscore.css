@@ -80,3 +80,11 @@
     animation-timing-function: ease;
     animation-iteration-count: infinite;
 }
+
+table {
+    padding-bottom: 25px;
+}
+
+caption {
+    text-align: center;
+}

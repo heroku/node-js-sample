@@ -11,8 +11,8 @@
                         <!--li role="presentation" class="<% if (title != "all" && title != "own" ) { %>active<% } %>">
                             <a href="#quiz-scores"
                                data-request="per-quiz">Quiz scores</a>
-                        </li-->
-                        <!--li role="presentation" class="<% if (title == "own") { %>active<% } %>">
+                        </li>
+                        <li role="presentation" class="<% if (title == "own") { %>active<% } %>">
                             <a href="#own-scores"
                                data-request="own">Own scores</a></li-->
                     </ul>
@@ -24,15 +24,15 @@
     </div>
     <script>
         Quizzes.scores = {
-            user: [], quizName: [], date: [], score: []
+            users: [], quizNames: [], dates: [], scores: []
         };
         <% scores.forEach(function (score) { %>
-        Quizzes.scores.user.push("<%= score.user %>");
-        Quizzes.scores.quizName.push("<%= score.quizName %>");
-        Quizzes.scores.date.push("<%= (score.date.toString().slice(11, 16) + score.date.toString().slice(4, 10)) %>");
-        Quizzes.scores.score.push(<%= Math.round(score.score * 100) / 100 %>);
+        Quizzes.scores.users.push("<%= score.user %>");
+        Quizzes.scores.quizNames.push("<%= score.quizName %>");
+        Quizzes.scores.dates.push("<%= (score.date.toString().slice(11, 16) + score.date.toString().slice(4, 10)) %>");
+        Quizzes.scores.scores.push(<%= Math.round(score.score * 100) / 100 %>);
         <% }); %>
-        Quizzes.drawTable();
+        google.charts.setOnLoadCallback(Quizzes.drawTables);
     </script>
 </div>
 

@@ -8,29 +8,52 @@
         });
 
         google.charts.load('current', {'packages': ['table']});
-        Quizzes.drawTable = function () {
-            Quizzes.scores = Quizzes.scores || {};
-            Quizzes.scores = sortScoresBy("quizName");
-            var table = new google.visualization.Table(document.getElementById('hsBody')),
-                data = new google.visualization.DataTable(),
-                rowLength = Quizzes.scores.user.length,
-                index;
 
+        Quizzes.drawTables = function () {
+            Quizzes.scores = Quizzes.scores || {};
+            Quizzes.scores.quizNames = Quizzes.scores.quizNames || {};
+            Quizzes.scores = sortScoresBy("quizNames");
+            var table,
+                data = new google.visualization.DataTable(),
+                rowLength = Quizzes.scores.users.length,
+                quizCaptionIndex = 0,
+                previousQuizName = Quizzes.scores.quizNames[0],
+                index,
+                $highscoreBody = $("#hsBody");
 
             data.addColumn('string', 'Player');
-            data.addColumn('string', 'Quiz');
             data.addColumn('string', 'Date');
             data.addColumn('number', 'Score');
+
             for (index = 0; index < rowLength; index++) {
-                data.addRows([
-                    [Quizzes.scores.user[index],
-                        Quizzes.scores.quizName[index],
-                        Quizzes.scores.date[index],
-                        Quizzes.scores.score[index]
-                    ]
-                ]);
+                if (previousQuizName === Quizzes.scores.quizNames[index]) {
+                    data.addRows([
+                        [Quizzes.scores.users[index],
+                            Quizzes.scores.dates[index],
+                            Quizzes.scores.scores[index]
+                        ]
+                    ]);
+                } else {
+                    $highscoreBody.append("<div id=hsBody" + index + "></div>");
+                    //data.sort([{column: 2, desc: true}, {column: 1}]);
+                    table = new google.visualization.Table(document.getElementById('hsBody'+index));
+                    table.draw(data, {showRowNumber: true, width: '100%', height: '100%', sortAscending: false, sortColumn: 2});
+                    data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Player');
+                    data.addColumn('string', 'Date');
+                    data.addColumn('number', 'Score');
+                    data.addRows([
+                        [Quizzes.scores.users[index],
+                            Quizzes.scores.dates[index],
+                            Quizzes.scores.scores[index]
+                        ]
+                    ]);
+                    showCaptionForTheTable(quizCaptionIndex++, previousQuizName);
+                    previousQuizName = Quizzes.scores.quizNames[index];
+                }
             }
-            table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+            table.draw(data, {showRowNumber: true, width: '100%', height: '100%', sortAscending: false, sortColumn: 2});
+
             showActualUserHighlighted();
         };
 
@@ -101,6 +124,16 @@
             }
 
             return items;
+        }
+
+        function showCaptionForTheTable(index, previousQuizName) {
+            if($($("table").get(index)).find("caption").length > 0) {
+                return;
+            }
+            if($("table").get(index)) {
+                $($("table").get(index)).prepend("<caption><h2>" + previousQuizName + "</h2></caption>");
+            }
+            setTimeout(function(){ showCaptionForTheTable(index, previousQuizName); }, 600);
         }
     });
 })(window.Quizzes = window.Quizzes || {});
