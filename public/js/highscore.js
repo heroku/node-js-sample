@@ -127,11 +127,12 @@
         }
 
         function showCaptionForTheTable(index, previousQuizName) {
-            if($($("table").get(index)).find("caption").length > 0) {
+            var actualTable = $("table").get(index);
+            if($(actualTable).find("caption").length > 0) {
                 return;
             }
-            if($("table").get(index)) {
-                $($("table").get(index)).prepend("<caption><h2>" + previousQuizName + "</h2></caption>");
+            if(actualTable) {
+                $(actualTable).prepend("<caption><h2>" + previousQuizName + "</h2></caption>");
             }
             setTimeout(function(){ showCaptionForTheTable(index, previousQuizName); }, 600);
         }
