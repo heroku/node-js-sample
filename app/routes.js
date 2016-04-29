@@ -135,7 +135,7 @@ module.exports = function (app, passport) {
 
     app.post('/show-high-score', function (req, res) {
         "use strict";
-        let quizName;
+        let userRequest;
 
         if (!req.body || !req.body.data) {
             console.log("error, invalid request");
@@ -147,15 +147,15 @@ module.exports = function (app, passport) {
         } else {
             async.series([
                 function (callback) {
-                    quizName = req.body.data;
-                    quizServer.saveInSessionHighScoreFor(quizName, req, callback);
+                    userRequest = req.body.data;
+                    quizServer.saveInSessionHighScoreFor(userRequest, req, callback);
                 }
             ], function (err) {
                 "use strict";
                 if (err) return next(err);
                 res.render('highscore_modal.ejs', {
                     scores: req.session.retrievedHighScore || [],
-                    title: quizName || "all"
+                    title: userRequest || "all"
                 });
             });
         }

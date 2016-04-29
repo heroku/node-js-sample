@@ -39,38 +39,104 @@ exports.validateAnswer = function (req, callback) {
     }
 };
 
-exports.saveInSessionHighScoreFor = function (quizName, req, cb) {
+exports.saveInSessionHighScoreFor = function (userRequest, req, cb) {
     "use strict";
     let quizNames = [];
     req.session.retrievedHighScore = [];
     req.session.parallelIndex = 0;
 
-    async.series([
-        function (callback) {
-            Quiz.find({})
-                .select("name")
-                .exec( function (err, result) {
-                if (err) return callback(err);
-                quizNames = Array.from(result, quiz => quiz.name);
-                callback();
-            });
-        },
-        function (callback) {
-            let quizNamesLength = quizNames.length;
-            for (let quizIndex = 0; quizIndex < quizNamesLength; quizIndex++) {
-                Highscore
-                    .find({quizName : quizNames[quizIndex]})
-                    .sort({score: -1})
-                    .limit(10)
-                    .exec( function (err, result) {
-                        if (err) return callback(err);
-                        pushRetrievedHighScoreInToSession(req, result, 0, quizIndex, quizNamesLength, cb);
-                    });
+    console.log(userRequest);
+    switch(userRequest) {
+        case "own":
+            if(!req.user) {
+                cb();
+                return;
             }
-        }
-    ], function (err) {
-        cb(err);
-    });
+            async.series([
+                function (callback) {
+                    Quiz.find({})
+                        .select("name")
+                        .exec( function (err, result) {
+                            if (err) {
+                                callback(err);
+                                return;
+                            }
+                            quizNames = Array.from(result, quiz => quiz.name);
+                            callback();
+                        });
+                },
+                function (callback) {
+                    let quizNamesLength = quizNames.length,
+                        quizIndex;
+                    for (quizIndex = 0; quizIndex < quizNamesLength; quizIndex++) {
+                        User.findById(req.user.id, function (err, user) {
+                            if(!user) { return callback(); }
+                            console.log("quizIndex:", quizIndex);
+                            console.log("user.id:", user.id);
+                            console.log("req.session.parallelIndex", req.session.parallelIndex);
+                            console.log("quizNames[req.session.parallelIndex]:", quizNames[req.session.parallelIndex]);
+                            Highscore
+                                .find({quizName : quizNames[req.session.parallelIndex], userId: user.id})
+                                .sort({score: -1})
+                                .exec( function (err, result) {
+                                    console.log("result: ", JSON.stringify(result));
+                                    if (err) { return callback(err); }
+                                    for (let index = 0 ; index < result.length; index++) {
+                                        console.log("result found inside for");
+                                        let highScoreEntry = {
+                                            user: user.displayName,
+                                            score: result[index].score,
+                                            date: result[index].dateTime,
+                                            quizName: result[index].quizName
+                                        };
+                                        console.log("highScoreEntry", JSON.stringify(highScoreEntry));
+                                        req.session.retrievedHighScore.push(highScoreEntry);
+                                    }
+                                    console.log("req.session.parallelIndex", req.session.parallelIndex);
+                                    console.log("quizNamesLength", quizNamesLength);
+                                    req.session.parallelIndex++;
+                                    if (req.session.parallelIndex === quizNamesLength) {
+                                        req.session.parallelIndex = 0;
+                                        callback();
+                                    }
+                                });
+                        });
+                    }
+                }
+            ], function (err) {
+                cb(err);
+            });
+            break;
+        case "all":
+        default:
+            async.series([
+                function (callback) {
+                    Quiz.find({})
+                        .select("name")
+                        .exec( function (err, result) {
+                        if (err) return callback(err);
+                        quizNames = Array.from(result, quiz => quiz.name);
+                        callback();
+                    });
+                },
+                function (callback) {
+                    let quizNamesLength = quizNames.length;
+                    for (let quizIndex = 0; quizIndex < quizNamesLength; quizIndex++) {
+                        Highscore
+                            .find({quizName : quizNames[quizIndex]})
+                            .sort({score: -1})
+                            .limit(10)
+                            .exec( function (err, result) {
+                                if (err) return callback(err);
+                                pushRetrievedHighScoreInToSession(req, result, 0, quizIndex, quizNamesLength, cb);
+                            });
+                    }
+                }
+            ], function (err) {
+                cb(err);
+            });
+            break;
+    }
 };
 
 function pushRetrievedHighScoreInToSession(req, highScores, index, quizIndex, quizNamesLength, cb) {

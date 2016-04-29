@@ -1,4 +1,4 @@
-(function() {
+(function(Quizzes) {
     "use strict";
     $(document).ready(function(){
         var $quizSelection = $("#quizSelection"),
@@ -21,7 +21,7 @@
                     if(data.error || !data.questionsAndAnswers || !data.questionsAndAnswers.length) {
                         data.message = data.message || "invalid response";
                         data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
-                        invalidRequest(data.message, data.subMessage);
+                        Quizzes.invalidRequest(data.message, data.subMessage);
                         return;
                     }
                     quizData = data;
@@ -29,7 +29,7 @@
                     showQuizBox(data);
                 })
                 .fail( function() {
-                    showNetworkError();
+                    Quizzes.showNetworkError();
                 });
         });
 
@@ -67,7 +67,7 @@
                     console.log(data);
                 })
                 .fail( function() {
-                    showNetworkError();
+                    Quizzes.showNetworkError();
                 });
         });
 
@@ -96,7 +96,7 @@
                     handleNextRound(data);
                 })
                 .fail( function() {
-                    showNetworkError();
+                    Quizzes.showNetworkError();
                 })
                 .always( function() {
                     chosenAnswer = undefined;
@@ -110,19 +110,13 @@
                     handleNextRound(data);
                 })
                 .fail( function() {
-                    showNetworkError()
+                    Quizzes.showNetworkError()
                 });
         });
 
         $( ".exit-anyway" ).click( function() {
             exitToQuizzes();
         });
-
-        function invalidRequest(message, subMessage) {
-            $modalTemplate.find(".modal-title").text(message);
-            if (subMessage) { $modalTemplate.find(".modal-body").text(subMessage); }
-            $modalTemplate.modal('show');
-        }
 
         function showQuizBox(data, questionIndex) {
             questionIndex = questionIndex || "0";
@@ -193,13 +187,13 @@
             if ($('.interstitial-mask').is(":visible")) return;
 
             higscoreTable = higscoreTable || "all";
-            showLoadingInterstitial();
+            Quizzes.showLoadingInterstitial();
             $.post( "/show-high-score", {'data': higscoreTable} )
                 .done( function( data ) {
                     if(data.error) {
                         data.message = data.message || "invalid response";
                         data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
-                        invalidRequest(data.message, data.subMessage);
+                        Quizzes.invalidRequest(data.message, data.subMessage);
                         return;
                     }
                     highScoreData = data;
@@ -207,32 +201,18 @@
                     $("#highscoreModal").modal('show');
                 })
                 .fail( function() {
-                    showNetworkError();
+                    Quizzes.showNetworkError();
                 })
                 .always( function() {
-                    hideLoadingInterstitial();
+                    Quizzes.hideLoadingInterstitial();
                 });
 
-        }
-
-        function showLoadingInterstitial() {
-            $('.interstitial-mask').removeClass("hidden")
-            $(".loader").removeClass("hidden");
-        }
-
-        function hideLoadingInterstitial() {
-            $('.interstitial-mask').addClass("hidden")
-            $(".loader").addClass("hidden");
         }
 
         function formatDate(scoreDate) {
             return (scoreDate.slice(0, 10) + " " + scoreDate.slice(11, 16));
         }
 
-        function showNetworkError() {
-            $networkError.removeClass("hidden");
-            setTimeout(function(){ $networkError.addClass("hidden"); }, 2500);
-        }
 
         function exitToQuizzes() {
             $quizSelection.removeClass("hidden");
@@ -248,4 +228,4 @@
         }
 
     });
-})();
+})(window.Quizzes = window.Quizzes || {});
