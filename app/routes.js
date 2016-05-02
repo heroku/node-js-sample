@@ -530,8 +530,10 @@ var isAdmin = function (req, res, next) {
             if (req.user) {
                 Roles.findOne({'userId': req.user.id}, function (err, user_role) {
                     if (err) return callback(err);
-                    if (user_role === null || user_role.role === "admin") {
+                    if (user_role.role === "admin") {
                         return next();
+                    } else {
+                        res.redirect('/');
                     }
                     callback();
                 });
