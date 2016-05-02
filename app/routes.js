@@ -313,7 +313,7 @@ module.exports = function (app, passport) {
     });
 
     app.get('/isAdmin', isAdmin, function (req, res) {
-        res.send("isAdmin: true (if it qould be false, you would be redirected to homepage)");
+        res.send("isAdmin: true (if it could be false, you would be redirected to homepage)");
     });
 
     app.get('/errorTemp', isAdmin, function (req, res) {
