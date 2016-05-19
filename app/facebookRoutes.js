@@ -1,4 +1,4 @@
-let pageToken = process.env.APP_PAGE_TOKEN || "EAAJmBSPcv4kBABA8BAX8vHxf7S8Ld00SRGUTHoAPzjZASqa0XzYgiZC7RYGxAzynpfTfsCZBs2ChFemOdZAv9XHpjqTpVkfGCNIjS9T8ltKZBDk7nBE6ZBL9c8vYmyw6wQEt38uAQE5rvdVZBvcHiI8Q4QULf6E16dZBecVQmbcahAZDZD"";
+var pageToken = process.env.APP_PAGE_TOKEN || "EAAJmBSPcv4kBABA8BAX8vHxf7S8Ld00SRGUTHoAPzjZASqa0XzYgiZC7RYGxAzynpfTfsCZBs2ChFemOdZAv9XHpjqTpVkfGCNIjS9T8ltKZBDk7nBE6ZBL9c8vYmyw6wQEt38uAQE5rvdVZBvcHiI8Q4QULf6E16dZBecVQmbcahAZDZD";
 
 module.exports = function (app, passport) {
     "use strict";
