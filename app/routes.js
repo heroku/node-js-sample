@@ -31,6 +31,10 @@ module.exports = function (app, passport) {
         }
     });
 
+    app.get('/webhook', function (req, res) {
+        res.send(89593859);
+    });
+
     /*
      * Quiz game
      */
