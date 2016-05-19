@@ -8,6 +8,7 @@ module.exports = function (app, passport) {
 
     app.post('/webhook', (req, res) => {
         const messagingEvents = req.body.entry[0].messaging;
+        console.log('message received: ', JSON.stringify(messagingEvents));
 
         messagingEvents.forEach((event) => {
             const sender = event.sender.id;
