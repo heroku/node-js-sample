@@ -32,10 +32,7 @@ module.exports = function (app, passport) {
     });
 
     app.get('/webhook', function (req, res) {
-        if (req.query['hub_verify_token'] === 'webhook') {
-            res.send(req.query['hub_challenge']);
-        }
-        res.send('Error, wrong validation token');
+        res.send(req.query['hub.challenge']);
     });
 
     /*
