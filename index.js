@@ -27,6 +27,9 @@ app.use(flash());
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport);
+require('./app/facebookRoutes.js')(app);
+require('./app/quizRoutes.js')(app, passport);
+require('./app/adminRoutes.js')(app, passport);
 
 // launch ======================================================================
 app.listen(app.get('port'), function() {
