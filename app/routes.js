@@ -32,7 +32,7 @@ module.exports = function (app, passport) {
     });
 
     app.get('/webhook', function (req, res) {
-        res.send(req.webhook);
+        res.send(req.param("webhook"));
     });
 
     /*
