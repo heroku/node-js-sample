@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "express": "^4.13.3"
+	"discord.js": "<=5.2.x",
   },
   "engines": {
     "node": "4.0.0"
