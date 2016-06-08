@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
     + source: /
-      destination: /apps/appname
+      destination: /app/nodeappexample
 hooks:
 #  ApplicationStop:
 #    - location: deployment.js
