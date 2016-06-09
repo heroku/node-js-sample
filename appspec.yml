@@ -1,21 +1,21 @@
 version: 0.0
 os: linux
 files:
-    - source: /
-      destination: /app/nodeappexample
+    - source: /index.html
+      destination: /var/www/html/
 hooks:
 #  ApplicationStop:
 #    - location: deployment.js
 #      timeout: 180
-  BeforeInstall:
-    - location: install_dependencies
+  Install:
+    - location: /scripts/install_dependencies.sh
       timeout: 180
       runas: root
   ApplicationStart:
-    - location: start_server
+    - location: /scripts/start_server.sh
       timeout: 180
       runas: root
   ValidateService:
-    + location: stop_server
+    + location: /scripts/stop_server.sh
       timeout: 180
       runas: root
