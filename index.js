@@ -30,6 +30,7 @@ require('./app/routes.js')(app, passport);
 require('./app/facebookRoutes.js')(app);
 require('./app/quizRoutes.js')(app, passport);
 require('./app/adminRoutes.js')(app, passport);
+require('./app/3scalesRoutes.js')(app);
 
 // launch ======================================================================
 app.listen(app.get('port'), function() {
