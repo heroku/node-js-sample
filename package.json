@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "express": "^4.13.3",
-    "node-module-sample": "file:../node-module-sample"
+    "node-module-sample": "^0.1.0"
   },
   "engines": {
     "node": "4.0.0"
