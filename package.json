@@ -4,11 +4,15 @@
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "mystart": "node index.js"
   },
   "dependencies": {
     "express": "^4.13.3",
-    "node-module-sample": "^0.1.0"
+    "checkstyle-formatter": "^1.0.0",
+    "xml-writer": "latest",
+    "node-module-sample": "file: ../node-module-sample"
+
   },
   "engines": {
     "node": "4.0.0"
