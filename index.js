@@ -1,7 +1,7 @@
 var express = require('express')
 var app = express()
 
-var module_sample = require('node-module-sample')
+//var module_sample = require('node-module-sample')
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))

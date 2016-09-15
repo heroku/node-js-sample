@@ -10,8 +10,7 @@
   "dependencies": {
     "express": "^4.13.3",
     "checkstyle-formatter": "^1.0.0",
-    "xml-writer": "latest",
-    "node-module-sample": "file: ../node-module-sample"
+    "xml-writer": "latest"
 
   },
   "engines": {
