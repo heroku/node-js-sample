@@ -4,13 +4,19 @@
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "mystart": "node index.js"
   },
   "dependencies": {
-    "express": "^4.0.0"
+    "express": "^4.13.3",
+    "checkstyle-formatter": "^1.0.0",
+    "xml-writer": "latest"
+
   },
+
+
   "engines": {
-    "node": "0.12.x"
+    "node": "4.0.0"
   },
   "repository": {
     "type": "git",
