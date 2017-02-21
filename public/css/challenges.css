@@ -1,0 +1,144 @@
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/*.menu {*/
+    /*width: 80rem;*/
+    /*height: 40rem;*/
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin-left: -40rem;*/
+    /*margin-top: -20rem;*/
+    /*font-size: 0;*/
+/*}*/
+
+/*.menu div {*/
+    /*position: static;*/
+    /*display: inline-block;*/
+    /*width: 40%;*/
+    /*height: 40%;*/
+    /*border: #444444 double 2px;*/
+    /*margin: 0;*/
+    /*font-size: 16px; !* some value *!*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*line-height: 20rem;*/
+/*}*/
+
+/*
+ * mosaic menu
+ */
+.panel {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel .no-hover {
+    float: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(255,255,255,0);
+    background: url('/img/challenges/background.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    box-shadow: 0 1px 6px rgba(0,0,0,.9);
+}
+
+.panel .hover {
+    float: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(255,255,255,0);
+    /*background: url('/img/challenges/background.png') no-repeat 0 132px fixed;*/
+    background: url('/img/challenges/background.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    box-shadow: 0 1px 6px rgba(0,0,0,.9);
+
+    /* -- transition is the magic sauce for animation -- */
+    -webkit-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.panel .hover:hover {
+    top: -50px;
+    left: -50px;
+    z-index: 200;
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 15px 15px rgba(0,0,0,.1);
+}
+
+.panel.sprint, .panel.code-challenges {
+    float: left;
+    width: 820px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel.sprint .hover, .panel.code-challenges .hover {
+    width: 820px;
+}
+
+.panel.sprint .hover:hover, .panel.code-challenges .hover:hover{
+    width: 900px;
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 15px 15px rgba(0,0,0,.1);
+}
+
+.panel.personal {
+    float: left;
+    width: 580px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel.personal .hover {
+    width: 580px;
+}
+.panel.personal .hover:hover {
+    width: 680px;
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 15px 15px rgba(0,0,0,.1);
+}
+
+.panel.history {
+    float: left;
+    width: 460px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel.history .hover {
+    width: 460px;
+}
+.panel.history .hover:hover {
+    width: 560px;
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 15px 15px rgba(0,0,0,.1);
+}
+
+.hover {
+    cursor: pointer;
+}
