@@ -83,7 +83,7 @@ module.exports = function (app, passport, middlewares) {
                 });
             },
             function (callback) {
-                setUserRoleStateInSession(req, callback);
+                middlewares.setUserRoleStateInSession(req, callback);
             }
         ], function (err) {
             if (err) return next(err);
