@@ -51,11 +51,7 @@ body {
     width: 100px;
     height: 100px;
     border: 1px solid rgba(255,255,255,0);
-    background: url('/img/challenges/background.png') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url('/img/challenges/background.png') no-repeat 0 -70px fixed;
     box-shadow: 0 1px 6px rgba(0,0,0,.9);
 }
 
@@ -68,47 +64,36 @@ body {
     width: 100px;
     height: 100px;
     border: 1px solid rgba(255,255,255,0);
-    /*background: url('/img/challenges/background.png') no-repeat 0 132px fixed;*/
-    background: url('/img/challenges/background.png') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url('/img/challenges/background.png') no-repeat 0 -70px fixed;
+    /*background: url('/img/challenges/background.png') no-repeat center center fixed; */
     box-shadow: 0 1px 6px rgba(0,0,0,.9);
 
     /* -- transition is the magic sauce for animation -- */
     -webkit-transition: all .3s ease-out;
     transition: all .3s ease-out;
 }
-.panel .hover:hover {
-    top: -50px;
-    left: -50px;
-    z-index: 200;
-    width: 200px;
-    height: 200px;
-    border: 1px solid rgba(255,255,255,.1);
-    box-shadow: 0 15px 15px rgba(0,0,0,.1);
-}
 
-.panel.sprint, .panel.code-challenges {
-    float: left;
+.panel.sprint{
     width: 820px;
     margin: 10px;
     position: relative;
 }
 
-.panel.sprint .hover, .panel.code-challenges .hover {
+.panel.sprint .hover{
     width: 820px;
 }
 
-.panel.sprint .hover:hover, .panel.code-challenges .hover:hover{
-    width: 900px;
-    border: 1px solid rgba(255,255,255,.1);
-    box-shadow: 0 15px 15px rgba(0,0,0,.1);
+.panel.code-challenges {
+    width: 940px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel.code-challenges .hover {
+    width: 940px;
 }
 
 .panel.personal {
-    float: left;
     width: 580px;
     margin: 10px;
     position: relative;
@@ -117,28 +102,22 @@ body {
 .panel.personal .hover {
     width: 580px;
 }
-.panel.personal .hover:hover {
-    width: 680px;
-    border: 1px solid rgba(255,255,255,.1);
-    box-shadow: 0 15px 15px rgba(0,0,0,.1);
-}
 
 .panel.history {
     float: left;
-    width: 460px;
+    width: 580px;
     margin: 10px;
     position: relative;
 }
 
 .panel.history .hover {
-    width: 460px;
+    width: 580px;
 }
-.panel.history .hover:hover {
-    width: 560px;
-    border: 1px solid rgba(255,255,255,.1);
-    box-shadow: 0 15px 15px rgba(0,0,0,.1);
-}
-
 .hover {
     cursor: pointer;
+}
+
+.menu .row {
+    min-width: 1450px;
+    margin: 0;
 }
