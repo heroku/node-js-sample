@@ -30,7 +30,7 @@ var middlewares = require('./app/middlewares.js');
 require('./app/routes.js')(app, passport, middlewares);
 require('./app/facebookRoutes.js')(app);
 require('./app/quizRoutes.js')(app, passport, middlewares);
-require('./app/adminRoutes.js')(app, passport);
+require('./app/adminRoutes.js')(app, passport, middlewares);
 require('./app/3scalesRoutes.js')(app);
 require('./app/challengeRoutes.js')(app, passport, middlewares);
 

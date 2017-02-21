@@ -2,18 +2,17 @@ var fs = require('fs');
 
 var async = require("async");
 var UserAchievement = require('./models/userAchievement');
-var Roles = require('./models/role');
 var Quiz = require('./models/quiz');
 var quizSeeder = require('./quizSeeder');
 
 var PATH_TO_QUIZ_IMAGES = './public/img/quizzes';
 
-module.exports = function (app, passport) {
+module.exports = function (app, passport, middlewares) {
     "use strict";
     /*
      * Admin controls
      */
-    app.get('/admin', isAdmin, function (req, res) {
+    app.get('/admin', middlewares.isAdmin, function (req, res) {
         console.log("admin page");
         var user_achievements = [],
             quizzes = {};
@@ -46,7 +45,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/loadQuiz', isAdmin, function (req, res) {
+    app.post('/loadQuiz', middlewares.isAdmin, function (req, res) {
         console.log("load quiz: ", req.body);
         if (!req.body || !req.body.selectedQuiz) {
             res.send({
@@ -70,7 +69,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/updateQuiz', isAdmin, function (req, res) {
+    app.post('/updateQuiz', middlewares.isAdmin, function (req, res) {
         console.log("update quiz: ", req.body);
         if (!req.body || !req.body.selectedQuiz) {
             res.send({
@@ -105,11 +104,11 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/plus_one_question', isAdmin, function (req, res) {
+    app.post('/plus_one_question', middlewares.isAdmin, function (req, res) {
         res.render('one_question_and_answers_template.ejs', {question_index: Number(req.body.question_index) + 1});
     });
 
-    app.post('/save_one_quiz', isAdmin, function (req, res) {
+    app.post('/save_one_quiz', middlewares.isAdmin, function (req, res) {
         var validationErrors = getQuizValidationErrors(req.body);
         if (validationErrors.length > 0) {
             res.send({
@@ -146,29 +145,6 @@ module.exports = function (app, passport) {
                 res.send({error: false});
             });
         }
-    });
-};
-
-var isAdmin = function (req, res, next) {
-    async.series([
-        function (callback) {
-            if (req.user) {
-                Roles.findOne({'userId': req.user.id}, function (err, user_role) {
-                    if (err) return callback(err);
-                    if (user_role !== null && user_role.role === "admin") {
-                        return next();
-                    } else {
-                        res.redirect('/');
-                    }
-                    callback();
-                });
-            } else {
-                callback();
-            }
-        }
-    ], function (err) {
-        if (err) return next(err);
-        res.redirect('/');
     });
 };
 

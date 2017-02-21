@@ -36,11 +36,11 @@ module.exports = function (app, passport, middlewares) {
         res.send("isSandbox: " + (app.get("appSecret") === "itsNotASecretAnyMore"));
     });
 
-    app.get('/isAdmin', isAdmin, function (req, res) {
+    app.get('/isAdmin', middlewares.isAdmin, function (req, res) {
         res.send("isAdmin: true (if it could be false, you would be redirected to homepage)");
     });
 
-    app.get('/errorTemp', isAdmin, function (req, res) {
+    app.get('/errorTemp', middlewares.isAdmin, function (req, res) {
         res.send(JSON.stringify(req.session.errorTemp));
     });
 
