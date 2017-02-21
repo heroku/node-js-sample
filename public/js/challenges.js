@@ -33,9 +33,9 @@ $(document).ready(function () {
                 $menuElement.css({
                     "top": "0",
                     "left": "0",
-                    "z-index": "100",
                     "width": getOriginalWidth($menuElement),
                     "height": "100px",
+                    "z-index": "100",
                     "border": "1px solid rgba(255,255,255,0)",
                     "box-shadow": "0 1px 6px rgba(0,0,0,.9)"
                 });
@@ -45,14 +45,15 @@ $(document).ready(function () {
         $selected.animate({
             "top": "-50px",
             "left": "-50px",
-            "z-index": "200",
             "width": "+=100",
             "height": "+=100",
-            "border": "1px solid rgba(255,255,255,.1)",
-            "box-shadow": "0 15px 15px rgba(0,0,0,.1)"
         }, 20, function() {
             $selected.addClass('selected');
             // Animation complete.
+        }).css({
+            "z-index": "200",
+            "border": "1px solid rgba(255,255,255,.1)",
+            "box-shadow": "0 15px 15px rgba(0,0,0,.1)"
         });
     }
 
