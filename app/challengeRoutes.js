@@ -1,7 +1,8 @@
 module.exports = function (app, passport, middlewares) {
     "use strict";
     // root of Deadpool challenges page. Check for authentication
-    app.get('/deadpool/*', middlewares.isLoggedIn, function (req, res) {
+    app.get('/deadpool/*', middlewares.isLoggedIn, function (req, res, next) {
+        next();
     });
 
     app.get('/deadpool/challenges', function (req, res) {
