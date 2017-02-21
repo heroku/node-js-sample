@@ -13,26 +13,35 @@ $(document).ready(function () {
 
     selectMenu($sprint);
 
+    function getOriginalWidth($menuElement) {
+        let $parent = $menuElement.parent();
+        if ($parent.hasClass('sprint')) {
+            return "820px";
+        } else if ($parent.hasClass('code-challenges')) {
+            return "940px";
+        } else if ($parent.hasClass('personal') || $parent.hasClass('history')) {
+            return "580px";
+        }
+        return "0px";
+    }
+
     function selectMenu($element) {
         let $selected = $element.find('div');
         for (let $menuElement of menuElements) {
-            $menuElement.stop(true, true);
             if ($menuElement.hasClass('selected')) {
                 $menuElement.removeClass('selected');
-                $menuElement.animate({
-                    "top": "0px",
-                    "left": "0px",
+                $menuElement.css({
+                    "top": "0",
+                    "left": "0",
                     "z-index": "100",
-                    "width": "-=100",
-                    "height": "-=100",
+                    "width": getOriginalWidth($menuElement),
+                    "height": "100px",
                     "border": "1px solid rgba(255,255,255,0)",
                     "box-shadow": "0 1px 6px rgba(0,0,0,.9)"
-                }, 2000, function() {
-                    // Animation complete.
                 });
             }
         }
-        $selected.addClass('selected');
+
         $selected.animate({
             "top": "-50px",
             "left": "-50px",
@@ -41,7 +50,8 @@ $(document).ready(function () {
             "height": "+=100",
             "border": "1px solid rgba(255,255,255,.1)",
             "box-shadow": "0 15px 15px rgba(0,0,0,.1)"
-        }, 2000, function() {
+        }, 20, function() {
+            $selected.addClass('selected');
             // Animation complete.
         });
     }
