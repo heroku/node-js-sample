@@ -1,12 +1,11 @@
 var async = require("async");
 var User = require('./models/user');
-var Roles = require('./models/role');
 var UserAchievement = require('./models/userAchievement');
 
 var REDIRECT_TO_PROFILE = '/profile';
 var REDIRECT_TO_QUIZZES = '/quizzes';
 
-module.exports = function (app, passport) {
+module.exports = function (app, passport, middlewares) {
     "use strict";
     /*
      * Home page
@@ -70,7 +69,7 @@ module.exports = function (app, passport) {
         res.redirect('/');
     });
 
-    app.get('/profile', isLoggedIn, function (req, res) {
+    app.get('/profile', middlewares.isLoggedIn, function (req, res) {
         var user_achievements = [];
         var admin = false;
         async.series([
@@ -155,7 +154,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/update-display-name', isLoggedInV2, function (req, res) {
+    app.post('/update-display-name', middlewares.isLoggedInV2, function (req, res) {
         var updatedUser = req.user;
         var newDisplayName = req.body.data.trim();
         if (!newDisplayName || newDisplayName === "") {
@@ -196,7 +195,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/update-user-fast-ansers', isLoggedInV2, function (req, res) {
+    app.post('/update-user-fast-ansers', middlewares.isLoggedInV2, function (req, res) {
         var updatedUser = req.user;
         var shouldUseFastAnswers = req.body.data === "true";
         async.series([
@@ -233,63 +232,3 @@ module.exports = function (app, passport) {
 
 // private methods ======================================================================
 // route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
-}
-
-function isLoggedInV2(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.send({
-        error: true,
-        message: "Not logged in",
-        subMessage: "please log in before using the app"
-    });
-}
-
-var isAdmin = function (req, res, next) {
-    async.series([
-        function (callback) {
-            if (req.user) {
-                Roles.findOne({'userId': req.user.id}, function (err, user_role) {
-                    if (err) return callback(err);
-                    if (user_role !== null && user_role.role === "admin") {
-                        return next();
-                    } else {
-                        res.redirect('/');
-                    }
-                    callback();
-                });
-            } else {
-                callback();
-            }
-        }
-    ], function (err) {
-        if (err) return next(err);
-        res.redirect('/');
-    });
-};
-
-var setUserRoleStateInSession = function (req, cb) {
-    async.series([
-        function (callback) {
-            if (req.user) {
-                Roles.findOne({'userId': req.user.id}, function (err, user_role) {
-                    if (err) return callback(err);
-                    if (user_role !== null) {
-                        req.session.roleState = user_role.role;
-                    } else {
-                        req.session.roleState = "guest";
-                    }
-                    callback();
-                });
-            } else {
-                callback();
-            }
-        }
-    ], function () {
-        cb();
-    });
-};

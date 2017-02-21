@@ -25,12 +25,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+var middlewares = require('./app/middlewares.js');
 // routes ======================================================================
-require('./app/routes.js')(app, passport);
+require('./app/routes.js')(app, passport, middlewares);
 require('./app/facebookRoutes.js')(app);
-require('./app/quizRoutes.js')(app, passport);
+require('./app/quizRoutes.js')(app, passport, middlewares);
 require('./app/adminRoutes.js')(app, passport);
 require('./app/3scalesRoutes.js')(app);
+require('./app/challengeRoutes.js')(app, passport, middlewares);
 
 // launch ======================================================================
 app.listen(app.get('port'), function() {

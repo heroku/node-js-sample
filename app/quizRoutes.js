@@ -5,12 +5,12 @@ var Quiz = require('./models/quiz');
 
 var validator = require('validator');
 
-module.exports = function (app, passport) {
+module.exports = function (app, passport, middlewares) {
     "use strict";
     /*
      * Quiz game
      */
-    app.get('/quizzes', isLoggedIn, function (req, res) {
+    app.get('/quizzes', middlewares.isLoggedIn, function (req, res) {
         var user_achievements = {},
             quizzes = {};
         async.series([
@@ -45,7 +45,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/submit', isLoggedInV2, function (req, res) {
+    app.post('/submit', middlewares.isLoggedInV2, function (req, res) {
         console.log("/SUBMIT", req.body.data);
         if (req.session.lastAnswerIndex === req.session.answerIndex) return;
         req.session.lastAnswerIndex++;
@@ -66,7 +66,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/quiz-select', isLoggedInV2, function (req, res) {
+    app.post('/quiz-select', middlewares.isLoggedInV2, function (req, res) {
         if (!req.body || !req.body.data) {
             console.log("error, invalid request");
             res.send({
@@ -163,19 +163,4 @@ function removeAnswerValidityFromQuiz(quiz) {
     return quiz;
 }
 
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
-}
-
-function isLoggedInV2(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.send({
-        error: true,
-        message: "Not logged in",
-        subMessage: "please log in before using the app"
-    });
-}
 

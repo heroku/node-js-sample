@@ -178,7 +178,7 @@ function getQuizValidationErrors(data) {
         questions = [],
         points = [],
         validationErrors = "";
-    for (key in data) {
+    for (let key in data) {
         if (data.hasOwnProperty(key)) {
             if (key.startsWith("answer_")) {
                 answers.push(data[key]);
