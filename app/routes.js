@@ -27,7 +27,7 @@ module.exports = function (app, passport, middlewares) {
      * Useful tools
      */
     app.use(function (req, res, next) {
-        var now = new Date((new Date() - 1000 * 60 * 60)).toISOString();
+        let now = new Date((new Date() - 1000 * 60 * 60)).toISOString();
         console.log(now.slice(0, 10) + " " + now.slice(11, 16));
         next();
     });
@@ -71,8 +71,7 @@ module.exports = function (app, passport, middlewares) {
     });
 
     app.get('/profile', middlewares.isLoggedIn, function (req, res) {
-        var user_achievements = [];
-        var admin = false;
+        let user_achievements = [];
         async.series([
             function (callback) {
                 UserAchievement.findOne({'userId': req.user.id}, function (err, achievements) {
@@ -134,7 +133,7 @@ module.exports = function (app, passport, middlewares) {
     );
 
     app.get('/unlink/local', function (req, res) {
-        var user = req.user;
+        let user = req.user;
         user.local.name = undefined;
         user.local.password = undefined;
         user.save(function (err) {
@@ -143,7 +142,7 @@ module.exports = function (app, passport, middlewares) {
     });
 
     app.get('/unlink/facebook', function (req, res) {
-        var user = req.user;
+        let user = req.user;
         user.facebook.token = undefined;
         user.save(function (err) {
             res.redirect(REDIRECT_TO_PROFILE);
@@ -151,7 +150,7 @@ module.exports = function (app, passport, middlewares) {
     });
 
     app.get('/unlink/twitter', function (req, res) {
-        var user = req.user;
+        let user = req.user;
         user.twitter.token = undefined;
         user.twitter.profilePhoto = undefined;
         user.save(function (err) {
@@ -160,8 +159,8 @@ module.exports = function (app, passport, middlewares) {
     });
 
     app.post('/update-display-name', middlewares.isLoggedInV2, function (req, res) {
-        var updatedUser = req.user;
-        var newDisplayName = req.body.data.trim();
+        let updatedUser = req.user;
+        let newDisplayName = req.body.data.trim();
         if (!newDisplayName || newDisplayName === "") {
             res.send({
                 error: true,
@@ -201,8 +200,8 @@ module.exports = function (app, passport, middlewares) {
     });
 
     app.post('/update-user-fast-answers', middlewares.isLoggedInV2, function (req, res) {
-        var updatedUser = req.user;
-        var shouldUseFastAnswers = req.body.data === "true";
+        let updatedUser = req.user;
+        let shouldUseFastAnswers = req.body.data === "true";
         async.series([
             function (callback) {
                 User.findById(req.user.id, function (err, user) {
@@ -237,6 +236,7 @@ module.exports = function (app, passport, middlewares) {
 
 // private methods ======================================================================
 function getRedirectURL(req) {
+    "use strict";
     let url = req.session.redirectURL || REDIRECT_TO_PROFILE;
     req.session.redirectURL = null;
     return url;
