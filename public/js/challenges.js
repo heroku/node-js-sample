@@ -36,8 +36,8 @@ $(document).ready(function () {
                     "width": getOriginalWidth($menuElement),
                     "height": "100px",
                     "z-index": "100",
-                    "border": "1px solid rgba(255,255,255,0)",
-                    "box-shadow": "0 1px 6px rgba(0,0,0,.9)"
+                    "border": "1px solid rgba(200,205,205,.1)",
+                    "box-shadow": "0 1px 90px rgba(255,0,0,.3)"
                 });
             }
         }
@@ -53,7 +53,7 @@ $(document).ready(function () {
         }).css({
             "z-index": "200",
             "border": "1px solid rgba(255,255,255,.1)",
-            "box-shadow": "0 15px 15px rgba(0,0,0,.1)"
+            "box-shadow": "0 1px 90px rgba(0,200,255,.3)"
         });
     }
 

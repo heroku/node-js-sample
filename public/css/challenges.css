@@ -6,6 +6,11 @@
 
 body {
     background: black;
+    overflow: hidden;
+}
+
+#matrixCanvas {
+    position: absolute;
 }
 
 .menu {
@@ -59,9 +64,9 @@ body {
     left: 0;
     width: 100px;
     height: 100px;
-    border: 1px solid rgba(255,255,255,0);
+    border: 1px solid rgba(91, 8, 8, 1);
     background: url('/img/challenges/background.png') no-repeat 0 -70px fixed;
-    box-shadow: 0 1px 6px rgba(0,0,0,.9);
+    box-shadow: -1px -1px 9px rgba(0, 9, 245, 0.9);
 }
 
 .panel .hover {
@@ -72,10 +77,10 @@ body {
     z-index: 100;
     width: 100px;
     height: 100px;
-    border: 1px solid rgba(255,255,255,0);
     background: url('/img/challenges/background.png') no-repeat 0 -70px fixed;
     /*background: url('/img/challenges/background.png') no-repeat center center fixed; */
-    box-shadow: 0 1px 6px rgba(0,0,0,.9);
+    border: 1px solid rgba(200,205,205,.1);
+    box-shadow: 0 1px 90px rgba(255,0,0,.3);
 
     /* -- transition is the magic sauce for animation -- */
     -webkit-transition: all .3s ease-out;
@@ -129,4 +134,8 @@ body {
 .menu .row {
     min-width: 1450px;
     margin: 0;
+}
+
+.panel {
+    border: 0 solid transparent;
 }

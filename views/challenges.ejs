@@ -6,12 +6,8 @@
     <% include common_css_includes.ejs %>
     <link rel="stylesheet" href="/css/challenges.css" type="text/css">
 </head>
-<body>
-<!--<div>-->
-<!--<%= user.displayName %>-->
-<!--</div>-->
-
-
+<body onload="for(s=window.screen,w=matrixCanvas.width=s.width,h=matrixCanvas.height=s.height,m=Math.random,p=[],i=0;i<256;p[i++]=1);setInterval('9Style=\'rgba(0,0,0,.05)\'9Rect(0,0,w,h)9Style=\'#F00\';p.map(function(v,i){9Text(String.fromCharCode(3e4+m()*33),i*10,v);p[i]=v>758+m()*1e4?0:v+10})'.split(9).join(';matrixCanvas.getContext(\'2d\').fill'),33)">
+<canvas id=matrixCanvas></canvas>
 <div class="menu">
     <div class="row">
         <div class="panel">
