@@ -6,9 +6,7 @@ module.exports = function (app, passport, middlewares) {
     });
 
     app.get('/deadpool/challenges', function (req, res) {
-        res.render('challenges.ejs', {
-            user: req.user
-        });
+        res.render('challenges.ejs');
     });
 
     app.get('/deadpool/challenges/code/:challengeId', function (req, res) {

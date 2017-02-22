@@ -2,8 +2,10 @@ var async = require("async");
 var Roles = require('./models/role');
 
 exports.isLoggedIn = function (req, res, next) {
-    if (req.isAuthenticated())
+    if (req.isAuthenticated()) {
         return next();
+    }
+    req.session.redirectURL = req.url;
     res.redirect('/');
 };
 exports.isLoggedInV2 = function (req, res, next) {

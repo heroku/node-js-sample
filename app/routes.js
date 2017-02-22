@@ -56,12 +56,13 @@ module.exports = function (app, passport, middlewares) {
     /*
      * Authentication
      */
-    app.post('/login',
-        passport.authenticate('local-login', {
-            successRedirect: REDIRECT_TO_PROFILE,
-            failureRedirect: '/',
-            failureFlash: true
-        })
+    app.post('/login', function (req, res) {
+            passport.authenticate('local-login', {
+                successRedirect: getRedirectURL(req),
+                failureRedirect: '/',
+                failureFlash: true
+            })(req, res);
+        }
     );
 
     app.get('/logout', function (req, res) {
@@ -87,7 +88,7 @@ module.exports = function (app, passport, middlewares) {
             }
         ], function (err) {
             if (err) return next(err);
-            console.log(" req.session.roleState: ",  req.session.roleState);
+            console.log(" req.session.roleState: ", req.session.roleState);
             res.render('profile.ejs', {
                 user: req.user,
                 admin: req.session.roleState,
@@ -97,35 +98,39 @@ module.exports = function (app, passport, middlewares) {
     });
 
     app.get('/auth/twitter', passport.authenticate('twitter'));
-    app.get('/auth/twitter/callback',
-        passport.authenticate('twitter', {
-            successRedirect: REDIRECT_TO_PROFILE,
-            failureRedirect: '/'
-        })
+    app.get('/auth/twitter/callback', function (req, res) {
+            passport.authenticate('twitter', {
+                successRedirect: getRedirectURL(req),
+                failureRedirect: '/'
+            })(req, res);
+        }
     );
 
     app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: REDIRECT_TO_PROFILE,
-            failureRedirect: '/'
-        })
+    app.get('/auth/facebook/callback', function (req, res) {
+            passport.authenticate('facebook', {
+                successRedirect: getRedirectURL(req),
+                failureRedirect: '/'
+            })(req, res);
+        }
     );
 
     app.get('/connect/facebook', passport.authorize('facebook', {scope: 'email'}));
-    app.get('/connect/facebook/callback',
-        passport.authorize('facebook', {
-            successRedirect: REDIRECT_TO_PROFILE,
-            failureRedirect: '/'
-        })
+    app.get('/connect/facebook/callback', function (req, res) {
+            passport.authorize('facebook', {
+                successRedirect: getRedirectURL(req),
+                failureRedirect: '/'
+            })(req, res);
+        }
     );
 
     app.get('/connect/twitter', passport.authorize('twitter', {scope: 'email'}));
-    app.get('/connect/twitter/callback',
-        passport.authorize('twitter', {
-            successRedirect: REDIRECT_TO_PROFILE,
-            failureRedirect: '/'
-        })
+    app.get('/connect/twitter/callback', function (req, res) {
+            passport.authorize('twitter', {
+                successRedirect: getRedirectURL(req),
+                failureRedirect: '/'
+            })(req, res);
+        }
     );
 
     app.get('/unlink/local', function (req, res) {
@@ -195,7 +200,7 @@ module.exports = function (app, passport, middlewares) {
         });
     });
 
-    app.post('/update-user-fast-ansers', middlewares.isLoggedInV2, function (req, res) {
+    app.post('/update-user-fast-answers', middlewares.isLoggedInV2, function (req, res) {
         var updatedUser = req.user;
         var shouldUseFastAnswers = req.body.data === "true";
         async.series([
@@ -231,4 +236,8 @@ module.exports = function (app, passport, middlewares) {
 
 
 // private methods ======================================================================
-// route middleware to make sure a user is logged in
+function getRedirectURL(req) {
+    let url = req.session.redirectURL || REDIRECT_TO_PROFILE;
+    req.session.redirectURL = null;
+    return url;
+}
