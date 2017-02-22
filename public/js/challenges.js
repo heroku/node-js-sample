@@ -74,27 +74,34 @@ $(document).ready(function () {
     });
 
     function nextMenu() {
-        if (actualMenu === $sprint) {
+        if (actualMenu.is($sprint)) {
             actualMenu = $codeChallenge;
-        } else if (actualMenu === $codeChallenge) {
+        } else if (actualMenu.is($codeChallenge)) {
             actualMenu = $personal;
-        } else if (actualMenu === $personal) {
+        } else if (actualMenu.is($personal)) {
             actualMenu = $history;
-        } else if (actualMenu === $history) {
+        } else if (actualMenu.is($history)) {
             actualMenu = $sprint;
         }
     }
 
     function previousMenu() {
-        if (actualMenu === $sprint) {
+        if (actualMenu.is($sprint)) {
             actualMenu = $history;
-        } else if (actualMenu === $codeChallenge) {
+        } else if (actualMenu.is($codeChallenge)) {
             actualMenu = $sprint;
-        } else if (actualMenu === $personal) {
+        } else if (actualMenu.is($personal)) {
             actualMenu = $codeChallenge;
-        } else if (actualMenu === $history) {
+        } else if (actualMenu.is($history)) {
             actualMenu = $personal;
         }
     }
-    //.stop(true, true);
+
+    $( "body" ).on( "mouseover", ".hover", function(event) {
+        let parent = $(this).parent();
+        if (actualMenu.is(parent)) return;
+        actualMenu = parent;
+        selectMenu(actualMenu);
+    });
+
 });
