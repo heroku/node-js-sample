@@ -38,20 +38,44 @@ exports.isAdmin = function (req, res, next) {
         }
     ], function (err) {
         if (err) return next(err);
-        res.redirect('/');
     });
 };
 
-exports.setUserRoleStateInSession = function (req, cb) {
+exports.partOfDeadpool = function (req, res, next) {
+    async.series([
+        function (callback) {
+            if (req.user) {
+                Roles.findOne({'userId': req.user.id}, function (err, user_role) {
+                    if (err) return callback(err);
+                    if (user_role !== null && user_role.team === "Deadpool") {
+                        return next();
+                    } else {
+                        res.redirect('/');
+                    }
+                    callback();
+                });
+            } else {
+                callback();
+            }
+        }
+    ], function (err) {
+        if (err) return next(err);
+    });
+};
+
+
+exports.setUserRoleDataInSession = function (req, cb) {
+    req.session.role = {};
     async.series([
         function (callback) {
             if (req.user) {
                 Roles.findOne({'userId': req.user.id}, function (err, user_role) {
                     if (err) return callback(err);
                     if (user_role !== null) {
-                        req.session.roleState = user_role.role;
+                        req.session.role.state = user_role.role;
+                        req.session.role.team = user_role.team;
                     } else {
-                        req.session.roleState = "guest";
+                        req.session.role.state = "guest";
                     }
                     callback();
                 });
