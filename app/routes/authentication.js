@@ -32,14 +32,14 @@ module.exports = function (app, passport, middlewares) {
                 });
             },
             function (callback) {
-                middlewares.setUserRoleStateInSession(req, callback);
+                middlewares.setUserRoleDataInSession(req, callback);
             }
         ], function (err) {
             if (err) return next(err);
-            console.log(" req.session.roleState: ", req.session.roleState);
+            console.log(" req.session.role.state: ", req.session.role.state);
             res.render('profile.ejs', {
                 user: req.user,
-                admin: req.session.roleState,
+                admin: req.session.role.state,
                 achievements: user_achievements
             });
         });

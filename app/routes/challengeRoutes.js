@@ -1,7 +1,7 @@
 module.exports = function (app, passport, middlewares) {
     "use strict";
     // root of Deadpool challenges page. Check for authentication
-    app.get('/deadpool/*', middlewares.isLoggedIn, function (req, res, next) {
+    app.get('/deadpool/*', middlewares.isLoggedIn, middlewares.partOfDeadpool, function (req, res, next) {
         next();
     });
 
@@ -44,16 +44,18 @@ module.exports = function (app, passport, middlewares) {
         res.send("post for /deadpool/challenges/code/" + methodId);
     });
 
-    app.get('/deadpool/challenges/personal', function (req, res) {
-        res.send("personal");
-    });
-
     app.get('/deadpool/challenges/sprint', function (req, res) {
-        res.send("sprint");
+        res.render('sprint.ejs', {
+            user: req.user
+        });
     });
 
     app.get('/deadpool/challenges/code', function (req, res) {
         res.send("code");
+    });
+
+    app.get('/deadpool/challenges/personal', function (req, res) {
+        res.send("personal");
     });
 
     app.get('/deadpool/challenges/history', function (req, res) {
