@@ -7,6 +7,9 @@ var flash    	= require('connect-flash');
 var morgan      = require('morgan');
 var cookieParser = require('cookie-parser');
 var session     = require('express-session');
+
+var middlewares = require('./app/middlewares.js');
+var sessionHelper = require('./app/sessionHelper.js');
 require('./config/mongoModule');
 require('./config/passport')(passport);
 
@@ -25,15 +28,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-var middlewares = require('./app/middlewares.js');
 // routes ======================================================================
 require('./app/routes/tools.js')(app, middlewares);
 require('./app/routes/routes.js')(app, middlewares);
-require('./app/routes/authentication.js')(app, passport, middlewares);
+require('./app/routes/authentication.js')(app, passport, middlewares, sessionHelper);
 require('./app/routes/facebookRoutes.js')(app);
 require('./app/routes/quizRoutes.js')(app, passport, middlewares);
 require('./app/routes/adminRoutes.js')(app, passport, middlewares);
-require('./app/routes/challengeRoutes.js')(app, passport, middlewares);
+require('./app/routes/challengeRoutes.js')(app, passport, middlewares, sessionHelper);
 
 // launch ======================================================================
 app.listen(app.get('port'), function() {

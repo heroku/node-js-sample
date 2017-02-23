@@ -1,4 +1,6 @@
-module.exports = function (app, passport, middlewares) {
+var async = require("async");
+
+module.exports = function (app, passport, middlewares, sessionHelper) {
     "use strict";
     // root of Deadpool challenges page. Check for authentication
     app.get('/deadpool/*', middlewares.isLoggedIn, middlewares.partOfDeadpool, function (req, res, next) {
@@ -45,9 +47,17 @@ module.exports = function (app, passport, middlewares) {
     });
 
     app.get('/deadpool/challenges/sprint', function (req, res) {
-        res.render('sprint.ejs', {
-            user: req.user
+        async.series([
+            function (callback) {
+                sessionHelper.setUserRoleDataInSession(req, callback);
+            }
+        ], function (err) {
+            if (err) return next(err);
+            res.render('sprint.ejs', {
+                user: sessionHelper.buildUser(req)
+            });
         });
+
     });
 
     app.get('/deadpool/challenges/code', function (req, res) {
