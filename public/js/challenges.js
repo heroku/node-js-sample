@@ -4,11 +4,13 @@ $(document).ready(function () {
         $codeChallenge = $('.code-challenges'),
         $personal = $('.personal'),
         $history = $('.history'),
+        $body = $( "body" ),
         menuElements = [$sprint.find('div'), $codeChallenge.find('div'), $personal.find('div'), $history.find('div')],
         LEFT = 37,
         UP = 38,
         RIGHT = 39,
         DOWN = 40,
+        ENTER = 13,
         actualMenu = $sprint;
 
     selectMenu($sprint);
@@ -25,8 +27,8 @@ $(document).ready(function () {
         return "0px";
     }
 
-    function selectMenu($element) {
-        let $selected = $element.find('div');
+    function selectMenu() {
+        let $selected = actualMenu.find('div');
         for (let $menuElement of menuElements) {
             if ($menuElement.hasClass('selected')) {
                 $menuElement.removeClass('selected');
@@ -57,21 +59,36 @@ $(document).ready(function () {
         });
     }
 
-    $( "body" ).on( "keydown", function(event) {
+    $body.on( "keydown", function(event) {
         switch ( event.which ) {
             case DOWN:
             case RIGHT:
                 nextMenu();
-                selectMenu(actualMenu);
+                selectMenu();
                 break;
             case UP:
             case LEFT:
                 previousMenu();
-                selectMenu(actualMenu);
+                selectMenu();
+                break;
+            case ENTER:
+                redirectUserBasedOnMenuSelection();
             default:
                 break;
         }
     });
+
+    function redirectUserBasedOnMenuSelection() {
+        if (actualMenu.is($sprint)) {
+            window.location = "/deadpool/challenges/sprint";
+        } else if (actualMenu.is($codeChallenge)) {
+            window.location = "/deadpool/challenges/code";
+        } else if (actualMenu.is($personal)) {
+            window.location = "/deadpool/challenges/personal";
+        } else if (actualMenu.is($history)) {
+            window.location = "/deadpool/challenges/history";
+        }
+    }
 
     function nextMenu() {
         if (actualMenu.is($sprint)) {
@@ -97,11 +114,17 @@ $(document).ready(function () {
         }
     }
 
-    $( "body" ).on( "mouseover", ".hover", function(event) {
+    $body.on( "mouseover", ".hover", function() {
         let parent = $(this).parent();
         if (actualMenu.is(parent)) return;
         actualMenu = parent;
         selectMenu(actualMenu);
+    });
+
+    $body.on( "click", ".hover", function() {
+        let e = jQuery.Event("keydown");
+        e.which = ENTER;
+        $body.trigger(e);
     });
 
 });

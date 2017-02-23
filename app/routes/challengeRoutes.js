@@ -44,7 +44,19 @@ module.exports = function (app, passport, middlewares) {
         res.send("post for /deadpool/challenges/code/" + methodId);
     });
 
-    app.get('/deadpool/history', function (req, res) {
-        res.send("/deadpool/history");
+    app.get('/deadpool/challenges/personal', function (req, res) {
+        res.send("personal");
+    });
+
+    app.get('/deadpool/challenges/sprint', function (req, res) {
+        res.send("sprint");
+    });
+
+    app.get('/deadpool/challenges/code', function (req, res) {
+        res.send("code");
+    });
+
+    app.get('/deadpool/challenges/history', function (req, res) {
+        res.send("history");
     });
 };
