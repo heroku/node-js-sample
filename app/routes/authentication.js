@@ -2,7 +2,7 @@ var async = require("async");
 var UserAchievement = require('./../models/userAchievement');
 var REDIRECT_TO_PROFILE = '/profile';
 
-module.exports = function (app, passport, middlewares) {
+module.exports = function (app, passport, middlewares, sessionHelper) {
     "use strict";
 
     app.post('/login', function (req, res) {
@@ -32,14 +32,14 @@ module.exports = function (app, passport, middlewares) {
                 });
             },
             function (callback) {
-                middlewares.setUserRoleDataInSession(req, callback);
+                sessionHelper.setUserRoleDataInSession(req, callback);
             }
         ], function (err) {
             if (err) return next(err);
-            console.log(" req.session.role.state: ", req.session.role.state);
+            console.log(" req.session.roleState: ", req.session.roleState);
             res.render('profile.ejs', {
                 user: req.user,
-                admin: req.session.role.state,
+                admin: req.session.roleState,
                 achievements: user_achievements
             });
         });
