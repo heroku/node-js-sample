@@ -1,7 +1,7 @@
 var async = require("async");
-var quizServer = require('./quizServer');
-var UserAchievement = require('./models/userAchievement');
-var Quiz = require('./models/quiz');
+var quizServer = require('./../quizServer');
+var UserAchievement = require('./../models/userAchievement');
+var Quiz = require('./../models/quiz');
 
 var validator = require('validator');
 

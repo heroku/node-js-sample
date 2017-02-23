@@ -1,9 +1,9 @@
 var fs = require('fs');
 
 var async = require("async");
-var UserAchievement = require('./models/userAchievement');
-var Quiz = require('./models/quiz');
-var quizSeeder = require('./quizSeeder');
+var UserAchievement = require('./../models/userAchievement');
+var Quiz = require('./../models/quiz');
+var quizSeeder = require('./../quizSeeder');
 
 var PATH_TO_QUIZ_IMAGES = './public/img/quizzes';
 

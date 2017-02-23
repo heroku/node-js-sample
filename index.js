@@ -27,12 +27,13 @@ app.use(flash());
 
 var middlewares = require('./app/middlewares.js');
 // routes ======================================================================
-require('./app/routes.js')(app, passport, middlewares);
-require('./app/facebookRoutes.js')(app);
-require('./app/quizRoutes.js')(app, passport, middlewares);
-require('./app/adminRoutes.js')(app, passport, middlewares);
-require('./app/3scalesRoutes.js')(app);
-require('./app/challengeRoutes.js')(app, passport, middlewares);
+require('./app/routes/tools.js')(app, middlewares);
+require('./app/routes/routes.js')(app, middlewares);
+require('./app/routes/authentication.js')(app, passport, middlewares);
+require('./app/routes/facebookRoutes.js')(app);
+require('./app/routes/quizRoutes.js')(app, passport, middlewares);
+require('./app/routes/adminRoutes.js')(app, passport, middlewares);
+require('./app/routes/challengeRoutes.js')(app, passport, middlewares);
 
 // launch ======================================================================
 app.listen(app.get('port'), function() {

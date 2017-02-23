@@ -8,6 +8,7 @@ exports.isLoggedIn = function (req, res, next) {
     req.session.redirectURL = req.url;
     res.redirect('/');
 };
+
 exports.isLoggedInV2 = function (req, res, next) {
     if (req.isAuthenticated())
         return next();
