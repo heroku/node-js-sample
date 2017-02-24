@@ -90,3 +90,25 @@ button {
 .fast-answers-label {
     line-height: 36px;
 }
+
+.float-right {
+    float: right;
+}
+
+.users li {
+    width: 50%;
+    height: 32px;
+}
+
+.users li span, .users li input[type=text] {
+    float: right;
+}
+
+.select-user {
+    position: relative;
+    top: 40px;
+    left: -180px;
+    height: 40px;
+    width: 40px;
+    float: right;
+}

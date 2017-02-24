@@ -1,20 +1,26 @@
 (function () {
     "use strict";
-    const   $networkError = $(".network-error"),
+    $(document).ready(function () {
+        const $body = $("body"),
+            $networkError = $(".network-error"),
             $successfullQuizSave = $(".successfull-quiz-save"),
             $modalTemplate = $("#modal-template"),
             $quizErrorTemplate = $(".quiz-error-template"),
             $newQuizModal = $("#new-quiz-modal"),
-            UL = "<ul>",
+            $createQuiz = $(".create-quiz"),
+            $manageQuiz = $(".manage-quiz"),
+            USERS_UL = "<ul class='users'>",
             PER_UL = "</ul>",
-            HORIZONTAL_LINE = "<hr/>";
+            HORIZONTAL_LINE = "<hr/>",
+            QUICK_BUTTONS = "<h3>Quick buttons:</h3>";
 
-    $(document).ready(function () {
-        $(".create-quiz").click(function () {
+
+        $createQuiz.click(function () {
             $newQuizModal.modal("show");
         });
 
-        $(".manage-quiz").click(function () {
+
+        $manageQuiz.click(function () {
             let selectedQuiz = $(".manage-quiz-select").val();
             if (!selectedQuiz && selectedQuiz == '') {
                 return;
@@ -27,8 +33,9 @@
                         showCommonError(data.message, data.subMessage);
                         return;
                     }
-                    $("#manageSavedQuizModal").find(".manage-saved-quiz").val(JSON.stringify(data));
-                    $("#manageSavedQuizModal").modal("show");
+                    const $manageSavedQuizModal = $("#manageSavedQuizModal");
+                    $manageSavedQuizModal.find(".manage-saved-quiz").val(JSON.stringify(data));
+                    $manageSavedQuizModal.modal("show");
                 })
                 .fail(function () {
                     showNetworkError();
@@ -60,13 +67,13 @@
 
         });
 
-        $("body").on('hidden.bs.collapse', '[id^="collapse"]', function () {
-            var $toggleButton = $(this).parent().find(".toggle-questions");
+        $body.on('hidden.bs.collapse', '[id^="collapse"]', function () {
+            let $toggleButton = $(this).parent().find(".toggle-questions");
             $toggleButton.html('<span class="fa fa-chevron-down"></span> Open');
         });
 
         $(".save").click(function () {
-            var data = {},
+            let data = {},
                 name, val;
             $newQuizModal.find("input[type='text'], textarea, input[type='tel'], select").each(function (index, element) {
                 name = $(element).attr("name");
@@ -92,124 +99,213 @@
                 .fail(function () {
                     showNetworkError();
                 });
+
+            $(".discard").click(function () {
+                $newQuizModal.find("input[type='text']").val('');
+                $newQuizModal.find("textarea").val('');
+                $newQuizModal.find("input[type='tel']").val('');
+                $newQuizModal.find("input[type='file']").val('');
+                $newQuizModal.find("input[type='checkbox']").prop('checked', false);
+            });
+
+            $(".plus-one-question").click(function () {
+                let question_index = getQuestionIndex();
+                $.post("/admin/plus_one_question", {question_index: question_index})
+                    .done(function (data) {
+                        $newQuizModal.find(".panel-primary").last().after(data);
+                    })
+                    .fail(function () {
+                        showNetworkError();
+                    });
+
+                console.log("plus-one-question");
+            });
         });
 
-        $(".discard").click(function () {
-            $newQuizModal.find("input[type='text']").val('');
-            $newQuizModal.find("textarea").val('');
-            $newQuizModal.find("input[type='tel']").val('');
-            $newQuizModal.find("input[type='file']").val('');
-            $newQuizModal.find("input[type='checkbox']").prop('checked', false);
-        });
+        function getQuestionIndex() {
+            return $newQuizModal.find(".panel-collapse").length;
+        }
 
-        $(".plus-one-question").click(function () {
-            var question_index = getQuestionIndex();
-            $.post("/admin/plus_one_question", {question_index: question_index})
+        function showNetworkError() {
+            scrollToTop();
+            $networkError.removeClass("hidden");
+            setTimeout(function () {
+                $networkError.addClass("hidden");
+            }, 2500);
+        }
+
+        function invalidRequest(message, subMessage) {
+            scrollToTop();
+            $quizErrorTemplate.find("h3").text(message);
+            if (subMessage) {
+                $quizErrorTemplate.find("div").html(subMessage);
+            }
+            $quizErrorTemplate.removeClass('hidden');
+        }
+
+        function showCommonError(message, subMessage) {
+            scrollToTop();
+            $(".common-error-template").find("h3").text(message);
+            if (subMessage) {
+                $(".common-error-template").find("div").html(subMessage);
+            }
+            $(".common-error-template").removeClass('hidden');
+        }
+
+        function scrollToTop(speed) {
+            $("html, body").animate({scrollTop: 0}, speed || "fast");
+            $('.modal').animate({scrollTop: 0}, speed || 'fast');
+        }
+
+        function showSuccessfullQuizSave() {
+            scrollToTop();
+            $successfullQuizSave.removeClass("hidden");
+            setTimeout(function () {
+                $successfullQuizSave.addClass("hidden");
+            }, 2500);
+        }
+
+        $(".list-users").click(function () {
+            $.get("/admin/users")
                 .done(function (data) {
-                    $newQuizModal.find(".panel-primary").last().after(data);
+                    if (data.error) {
+                        data.message = data.message || "invalid response";
+                        data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                        showCommonError(message, subMessage);
+                        return;
+                    }
+                    showUsers(data);
                 })
                 .fail(function () {
                     showNetworkError();
                 });
-
-            console.log("plus-one-question");
         });
-    });
 
-    function getQuestionIndex() {
-        return $newQuizModal.find(".panel-collapse").length;
-    }
+        $(".manage-users").click(function () {
+            $.get("/admin/users")
+                .done(function (data) {
+                    if (data.error) {
+                        data.message = data.message || "invalid response";
+                        data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                        showCommonError(message, subMessage);
+                        return;
+                    }
+                    let managingEnabled = true;
+                    showUsers(data, managingEnabled);
+                })
+                .fail(function () {
+                    showNetworkError();
+                });
+        });
 
-    function showNetworkError() {
-        scrollToTop();
-        $networkError.removeClass("hidden");
-        setTimeout(function () {
-            $networkError.addClass("hidden");
-        }, 2500);
-    }
-
-    function invalidRequest(message, subMessage) {
-        scrollToTop();
-        $quizErrorTemplate.find("h3").text(message);
-        if (subMessage) {
-            $quizErrorTemplate.find("div").html(subMessage);
-        }
-        $quizErrorTemplate.removeClass('hidden');
-    }
-
-    function showCommonError(message, subMessage) {
-        scrollToTop();
-        $(".common-error-template").find("h3").text(message);
-        if (subMessage) {
-            $(".common-error-template").find("div").html(subMessage);
-        }
-        $(".common-error-template").removeClass('hidden');
-    }
-
-    function scrollToTop(speed) {
-        $("html, body").animate({scrollTop: 0}, speed || "fast");
-        $('.modal').animate({scrollTop: 0}, speed || 'fast');
-    }
-
-    function showSuccessfullQuizSave() {
-        scrollToTop();
-        $successfullQuizSave.removeClass("hidden");
-        setTimeout(function () {
-            $successfullQuizSave.addClass("hidden");
-        }, 2500);
-    }
-
-    $(".list-users").click(function () {
-        $.get("/admin/users")
-            .done(function (data) {
-                if (data.error) {
-                    data.message = data.message || "invalid response";
-                    data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
-                    showCommonError(message, subMessage);
-                    return;
+        $body.on("click", ".users-select-all", function () {
+            $('.select-user').each(function (index) {
+                if (!$(this).is(":checked")) {
+                    $(this).prop('checked', true);
                 }
-                showUsers(data);
-            })
-            .fail(function () {
-                showNetworkError();
             });
-    });
+        });
 
-    function renderUserRoleListElem(user) {
-        return user.role === "admin" ?
-            "<li style='color:red'>Role: " + user.role + "</li>" :
-            "<li>Role: " + user.role + "</li>";
-    }
+        $body.on("click", ".users-select-none", function () {
+            $('.select-user').each(function (index) {
+                if ($(this).is(":checked")) {
+                    $(this).prop('checked', false);
+                }
+            });
+        });
 
-    function renderTeamListElem(user) {
-        return user.team ?
-            "<li>Team: " + user.team + "</li>" :
-            "";
-    }
+        $body.on("click", ".users-team-deadpool", function () {
+            $('.select-user').each(function (index) {
+                if ($(this).is(":checked")) {
+                    // TODO change team to Deadpool
+                }
+            });
+        });
 
-    function renderUserNameListElem(user) {
-        return "<li>Name: <b>" + user.displayName + "</b></li>";
-    }
+        $body.on("click", ".users-add-admin", function () {
+            $('.select-user').each(function (index) {
+                if ($(this).is(":checked")) {
+                    // TODO are you sure and add admin rights
+                }
+            });
+        });
 
-    function renderUserIdListElem(user) {
-        return "<li>Id: " + user.id + "</li>";
-    }
+        $body.on("click", ".users-delete", function () {
+            $('.select-user').each(function (index) {
+                if ($(this).is(":checked")) {
+                    // TODO are you sure and delete
+                }
+            });
+        });
 
-    function showUsers(users) {
-        scrollToTop();
-        $modalTemplate.find(".modal-title").text("Users");
-        let modalBody = "";
-        for (let user of users) {
-            modalBody += UL;
-            modalBody += renderUserNameListElem(user);
-            modalBody += renderUserIdListElem(user);
-            modalBody += renderUserRoleListElem(user);
-            modalBody += renderTeamListElem(user);
-            modalBody += PER_UL;
-            modalBody += HORIZONTAL_LINE;
+        $body.on("click", ".users-apply", function () {
+            $('.select-user').each(function (index) {
+                if ($(this).is(":checked")) {
+                    // TODO are you sure and delete
+                }
+            });
+        });
+
+        function renderUserRoleListElem(user, managingEnabled) {
+            const colorToApply = user.role === "admin" ? "color:red" : "";
+            return managingEnabled ?
+                "<li style='" + colorToApply + "'>Role: <input type='text' value='" + user.role + "' data-value='" + user.role + "'></li>" :
+                "<li style='" + colorToApply + "'>Role: " + user.role + "</li>";
         }
-        $modalTemplate.find(".modal-body").html(modalBody);
-        $modalTemplate.modal('show');
-    }
 
+        function renderTeamListElem(user, managingEnabled) {
+            if (managingEnabled) {
+                return "<li>Team: <input type='text' value='" + (user.team || '') + "' data-value='" + (user.team || '') + "'></li>";
+            }
+            return user.team ?
+                "<li>Team: " + user.team + "</li>" :
+                "";
+        }
+
+        function renderUserNameListElem(user, managingEnabled) {
+            return managingEnabled ?
+                "<li>Name: <input type='text' value='" + user.displayName + "' data-value='" + user.displayName + "'></li>" :
+                "<li>Name: <b>" + user.displayName + "</b></li>";
+        }
+
+        function renderUserIdListElem(user, managingEnabled) {
+            return managingEnabled ?
+                "<input type='checkbox' name='" + user.displayName + "' class='select-user' />" +
+                "<li>Id: <span>" + user.id + "</span></li>" :
+
+                "<li>Id: " + user.id + "</li>";
+        }
+
+        function renderManagerButtons(managingEnabled) {
+            return managingEnabled ?
+                '<button type="button" class="users-select-all btn btn-info">select: all</button>' +
+                '<button type="button" class="users-select-none btn btn-info">select: none</button>' +
+                '<button type="button" class="users-apply btn btn-success float-right">Apply</button>' +
+                HORIZONTAL_LINE +
+                QUICK_BUTTONS +
+                '<button type="button" class="users-delete btn btn-danger">Delete</button>' +
+                '<button type="button" class="users-add-admin btn btn-danger ">+Admin</button>' +
+                '<button type="button" class="users-team-deadpool btn btn-danger ">DeAdPoOl</button>' :
+                '';
+        }
+
+        function showUsers(users, managingEnabled) {
+            scrollToTop();
+            $modalTemplate.find(".modal-title").text("Users");
+            let modalBody = "";
+            modalBody += renderManagerButtons(managingEnabled);
+            for (let user of users) {
+                modalBody += HORIZONTAL_LINE;
+                modalBody += USERS_UL;
+                modalBody += renderUserIdListElem(user, managingEnabled);
+                modalBody += renderUserNameListElem(user, managingEnabled);
+                modalBody += renderUserRoleListElem(user, managingEnabled);
+                modalBody += renderTeamListElem(user, managingEnabled);
+                modalBody += PER_UL;
+                modalBody += HORIZONTAL_LINE;
+            }
+            $modalTemplate.find(".modal-body").html(modalBody);
+            $modalTemplate.modal('show');
+        }
+    });
 })();
