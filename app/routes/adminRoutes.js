@@ -3,6 +3,8 @@ var fs = require('fs');
 var async = require("async");
 var UserAchievement = require('./../models/userAchievement');
 var Quiz = require('./../models/quiz');
+var User = require('./../models/user');
+var Role = require('./../models/role');
 var quizSeeder = require('./../quizSeeder');
 
 var PATH_TO_QUIZ_IMAGES = './public/img/quizzes';
@@ -12,7 +14,11 @@ module.exports = function (app, passport, middlewares) {
     /*
      * Admin controls
      */
-    app.get('/admin', middlewares.isAdmin, function (req, res) {
+    app.get('/admin/*', middlewares.isAdmin, function (req, res, next) {
+        next();
+    });
+
+    app.get('/admin/home', function (req, res) {
         console.log("admin page");
         var user_achievements = [],
             quizzes = {};
@@ -27,7 +33,6 @@ module.exports = function (app, passport, middlewares) {
                 });
             },
             function (callback) {
-                "use strict";
                 Quiz.find({}, 'name category imageName', function (err, quizzesFromDB) {
                     if (err) return (err);
                     quizzes = quizzesFromDB;
@@ -45,7 +50,7 @@ module.exports = function (app, passport, middlewares) {
         });
     });
 
-    app.post('/loadQuiz', middlewares.isAdmin, function (req, res) {
+    app.post('/admin/loadQuiz', middlewares.isAdmin, function (req, res) {
         console.log("load quiz: ", req.body);
         if (!req.body || !req.body.selectedQuiz) {
             res.send({
@@ -69,7 +74,7 @@ module.exports = function (app, passport, middlewares) {
         });
     });
 
-    app.post('/updateQuiz', middlewares.isAdmin, function (req, res) {
+    app.post('/admin/updateQuiz', middlewares.isAdmin, function (req, res) {
         console.log("update quiz: ", req.body);
         if (!req.body || !req.body.selectedQuiz) {
             res.send({
@@ -104,11 +109,11 @@ module.exports = function (app, passport, middlewares) {
         });
     });
 
-    app.post('/plus_one_question', middlewares.isAdmin, function (req, res) {
+    app.post('/admin/plus_one_question', middlewares.isAdmin, function (req, res) {
         res.render('one_question_and_answers_template.ejs', {question_index: Number(req.body.question_index) + 1});
     });
 
-    app.post('/save_one_quiz', middlewares.isAdmin, function (req, res) {
+    app.post('/admin/save_one_quiz', middlewares.isAdmin, function (req, res) {
         var validationErrors = getQuizValidationErrors(req.body);
         if (validationErrors.length > 0) {
             res.send({
@@ -146,6 +151,46 @@ module.exports = function (app, passport, middlewares) {
             });
         }
     });
+
+    app.get('/admin/users', function (req, res) {
+        let users = {},
+            roles = {},
+            usersAndRoles = [];
+        async.series([
+            function (callback) {
+                User.find({}, 'displayName _id', function (err, usersFromDB) {
+                    if (err) return (err);
+                    users = usersFromDB;
+                    callback();
+                });
+            },
+            function (callback) {
+                Role.find({}, function (err, roleFromDB) {
+                    if (err) return callback(err);
+                    roles = roleFromDB;
+                    callback();
+                });
+            },
+            function (callback) {
+                for (let userIndex in users) {
+                    usersAndRoles[userIndex] = {};
+                    for (let role of roles) {
+                        if (role.userId === users[userIndex].id) {
+                            usersAndRoles[userIndex].displayName = users[userIndex].displayName;
+                            usersAndRoles[userIndex].id = users[userIndex].id;
+                            usersAndRoles[userIndex].role = role.role;
+                            usersAndRoles[userIndex].team = role.team;
+                        }
+                    }
+                }
+                callback();
+            }
+        ], function (err) {
+            if (err) return next(err);
+            res.send(usersAndRoles);
+        });
+    });
+
 };
 
 function getQuizValidationErrors(data) {

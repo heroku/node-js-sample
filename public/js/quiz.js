@@ -62,7 +62,7 @@
         });
 
         $( ".update-quizzes" ).click( function( event ) {
-            $.post( "/updateQuizzes" )
+            $.post( "/admin/updateQuizzes" )
                 .done( function( data ) {
                     console.log(data);
                 })

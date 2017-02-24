@@ -38,6 +38,7 @@ exports.isAdmin = function (req, res, next) {
         }
     ], function (err) {
         if (err) return next(err);
+        res.redirect('/');
     });
 };
 
