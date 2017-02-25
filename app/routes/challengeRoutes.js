@@ -3,50 +3,60 @@ var async = require("async");
 module.exports = function (app, passport, middlewares, sessionHelper) {
     "use strict";
     // root of Deadpool challenges page. Check for authentication
-    app.all('/deadpool/*', middlewares.isLoggedIn, middlewares.partOfDeadpool, function (req, res, next) {
+    app.all('/challenges/:team/*', middlewares.isLoggedIn, middlewares.partOfTheRequestedTeam, function (req, res, next) {
         next();
     });
 
-    app.get('/deadpool/challenges', function (req, res) {
-        res.render('challenges.ejs');
+    app.get('/challenges/:team/home', function (req, res) {
+        let team = req.params["team"];
+        res.render('challenges.ejs', {
+            team: team
+        });
     });
 
-    app.get('/deadpool/challenges/code/:challengeId', function (req, res) {
+    app.get('/challenges/:team/code/:challengeId', function (req, res) {
         let challengeId = req.params["challengeId"];
-        res.send("/deadpool/challenges/code/" + challengeId);
+        let team = req.params["team"];
+        res.send("/challenges/" +  + "/code/" + challengeId);
     });
 
-    app.get('/deadpool/challenges/idea/:ideaId', function (req, res) {
+    app.get('/challenges/:team/idea/:ideaId', function (req, res) {
         let ideaId = req.params["ideaId"];
-        res.send("get for /deadpool/challenges/code/" + ideaId);
+        let team = req.params["team"];
+        res.send("get for /challenges/" + team + "/code/" + ideaId);
     });
 
-    app.post('/deadpool/challenges/idea/:ideaId', function (req, res) {
+    app.post('/challenges/:team/idea/:ideaId', function (req, res) {
         let ideaId = req.params["ideaId"];
-        res.send("post for /deadpool/challenges/code/" + ideaId);
+        let team = req.params["team"];
+        res.send("post for /challenges/" + team + "/code/" + ideaId);
     });
 
-    app.get('/deadpool/challenges/oneliner/:oneLinerId', function (req, res) {
+    app.get('/challenges/:team/oneliner/:oneLinerId', function (req, res) {
         let oneLinerId = req.params["oneLinerId"];
-        res.send("get for /deadpool/challenges/code/" + oneLinerId);
+        let team = req.params["team"];
+        res.send("get for /challenges/" + team + "/code/" + oneLinerId);
     });
 
-    app.post('/deadpool/challenges/oneliner/:oneLinerId', function (req, res) {
+    app.post('/challenges/:team/oneliner/:oneLinerId', function (req, res) {
         let oneLinerId = req.params["oneLinerId"];
-        res.send("post for /deadpool/challenges/code/" + oneLinerId);
+        let team = req.params["team"];
+        res.send("post for /challenges/" + team + "/code/" + oneLinerId);
     });
 
-    app.get('/deadpool/challenges/method/:methodId', function (req, res) {
+    app.get('/challenges/:team/method/:methodId', function (req, res) {
         let methodId = req.params["methodId"];
-        res.send("get for /deadpool/challenges/code/" + methodId);
+        let team = req.params["team"];
+        res.send("get for /challenges/" + team + "/code/" + methodId);
     });
 
-    app.post('/deadpool/challenges/method/:methodId', function (req, res) {
+    app.post('/challenges/:team/method/:methodId', function (req, res) {
         let methodId = req.params["methodId"];
-        res.send("post for /deadpool/challenges/code/" + methodId);
+        let team = req.params["team"];
+        res.send("post for /challenges/" + team + "/code/" + methodId);
     });
 
-    app.get('/deadpool/challenges/sprint', function (req, res) {
+    app.get('/challenges/:team/sprint', function (req, res) {
         async.series([
             function (callback) {
                 sessionHelper.setUserRoleDataInSession(req, callback);
@@ -60,15 +70,15 @@ module.exports = function (app, passport, middlewares, sessionHelper) {
 
     });
 
-    app.get('/deadpool/challenges/code', function (req, res) {
+    app.get('/challenges/:team/code', function (req, res) {
         res.send("code");
     });
 
-    app.get('/deadpool/challenges/personal', function (req, res) {
+    app.get('/challenges/:team/personal', function (req, res) {
         res.send("personal");
     });
 
-    app.get('/deadpool/challenges/history', function (req, res) {
+    app.get('/challenges/:team/history', function (req, res) {
         res.send("history");
     });
 };
