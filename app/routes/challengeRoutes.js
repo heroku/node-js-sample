@@ -3,7 +3,7 @@ var async = require("async");
 module.exports = function (app, passport, middlewares, sessionHelper) {
     "use strict";
     // root of Deadpool challenges page. Check for authentication
-    app.get('/deadpool/*', middlewares.isLoggedIn, middlewares.partOfDeadpool, function (req, res, next) {
+    app.all('/deadpool/*', middlewares.isLoggedIn, middlewares.partOfDeadpool, function (req, res, next) {
         next();
     });
 
