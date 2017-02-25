@@ -28,6 +28,7 @@ $(document).ready(function () {
     }
 
     function selectMenu() {
+        $(".menu-step").trigger("play");
         let $selected = actualMenu.find('div');
         for (let $menuElement of menuElements) {
             if ($menuElement.hasClass('selected')) {
