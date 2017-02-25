@@ -1,7 +1,7 @@
 (function() {
     "use strict";
     let $networkError = $(".network-error"),
-        $successfullUpdate = $(".successfull-update"),
+        $successfulUpdate = $(".successful-update"),
         $modalTemplate = $("#modal-template"),
         $newDisplayNameModal = $("#new-display-name-modal");
 
@@ -39,10 +39,10 @@
         setTimeout(function(){ $networkError.addClass("hidden"); }, 2500);
     }
 
-    function showSuccessfullUpdate() {
+    function showSuccessfulUpdate() {
         scrollToTop();
-        $successfullUpdate.removeClass("hidden");
-        setTimeout(function(){ $successfullUpdate.addClass("hidden"); }, 2500);
+        $successfulUpdate.removeClass("hidden");
+        setTimeout(function(){ $successfulUpdate.addClass("hidden"); }, 2500);
     }
 
     function showNewDisplayNameModal() {
@@ -63,7 +63,7 @@
                     return;
                 }
                 $(".display-name").text(newDisplayName);
-                showSuccessfullUpdate();
+                showSuccessfulUpdate();
             })
             .fail( function() {
                 showNetworkError();
@@ -82,7 +82,7 @@
                     invalidRequest(data.message, data.subMessage);
                     return;
                 }
-                showSuccessfullUpdate();
+                showSuccessfulUpdate();
             })
             .fail( function() {
                 showNetworkError();

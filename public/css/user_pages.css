@@ -112,3 +112,7 @@ button {
     width: 40px;
     float: right;
 }
+
+.alert {
+    z-index: 500;
+}

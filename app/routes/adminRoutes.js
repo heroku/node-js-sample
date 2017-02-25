@@ -14,7 +14,7 @@ module.exports = function (app, passport, middlewares) {
     /*
      * Admin controls
      */
-    app.get('/admin/*', middlewares.isAdmin, function (req, res, next) {
+    app.all('/admin/*', middlewares.isAdmin, function (req, res, next) {
         next();
     });
 
@@ -105,7 +105,7 @@ module.exports = function (app, passport, middlewares) {
                 return;
             }
             quizSeeder.updateQuiz(result, quizFromRequest, req.user);
-            res.send("Quiz was successfully updated")
+            res.send("Quiz was successfuly updated")
         });
     });
 
@@ -189,6 +189,125 @@ module.exports = function (app, passport, middlewares) {
             if (err) return next(err);
             res.send(usersAndRoles);
         });
+    });
+
+    app.post('/admin/update/users', function (req, res) {
+        let users = JSON.parse(req.body.data);
+        async.series([
+            function (callback) {
+                let index = users.length;
+                for (let user of users) {
+                    User.findOne({_id: user.userId}, user, function (err, userFromDB) {
+                        if (err) return (err);
+                        console.log('The raw response from Mongo was ', userFromDB);
+                        if (userFromDB == null) {
+                            return;
+                        }
+                        userFromDB.displayName = user.name;
+                        userFromDB.save(function (err) {
+                            if (err) res.send({
+                                error: true,
+                                message: "unable to save the user to db",
+                                subMessage: "reason: " + err
+                            });
+                            index--;
+
+                            if (index === 0) {  // last user is updated
+                                callback();
+                            }
+                        });
+                    });
+                }
+            },
+            function (callback) {
+                let index = users.length;
+                for (let user of users) {
+                    Role.findOne({userId: user.userId}, user, function (err, roleFromDB) {
+                        if (err) return (err);
+                        console.log('The raw response from Mongo was ', roleFromDB);
+                        if (roleFromDB == null) {
+                            return;
+                        }
+                        roleFromDB.role = user.role;
+                        roleFromDB.team = user.team;
+                        roleFromDB.save(function (err) {
+                            if (err) res.send({
+                                error: true,
+                                message: "unable to save the role to db",
+                                subMessage: "reason: " + err
+                            });
+                            index--;
+
+                            if (index === 0) {  // last role is updated
+                                callback();
+                            }
+                        });
+                    });
+                }
+            },
+        ], function (err) {
+            if (err) return next(err);
+            res.send({success: true});
+        });
+
+    });
+
+    app.post('/admin/delete/users', function (req, res) {
+        let users = JSON.parse(req.body.data);
+        async.series([
+            function (callback) {
+                let index = users.length;
+                for (let user of users) {
+                    User.findOne({_id: user.userId}, user, function (err, userFromDB) {
+                        if (err) return (err);
+                        console.log('The raw response from Mongo was ', userFromDB);
+                        if (userFromDB == null) {
+                            return;
+                        }
+                        userFromDB.remove(function (err) {
+                            if (err) res.send({
+                                error: true,
+                                message: "unable to remove the user from db",
+                                subMessage: "reason: " + err
+                            });
+                            index--;
+
+                            if (index === 0) {  // last user is removed
+                                callback();
+                            }
+                        });
+                    });
+                }
+            },
+            function (callback) {
+                let index = users.length;
+                for (let user of users) {
+                    Role.findOne({userId: user.userId}, user, function (err, roleFromDB) {
+                        if (err) return (err);
+                        console.log('The raw response from Mongo was ', roleFromDB);
+                        if (roleFromDB == null) {
+                            return;
+                        }
+                        roleFromDB.remove(function (err) {
+                            if (err) res.send({
+                                error: true,
+                                message: "unable to remove the role from db",
+                                subMessage: "reason: " + err
+                            });
+                            index--;
+
+                            if (index === 0) {  // last role is updated
+                                callback();
+                            }
+                        });
+                    });
+                }
+            },
+        ], function (err) {
+            if (err) return next(err);
+            res.send({success: true});
+        });
+
     });
 
 };

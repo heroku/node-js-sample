@@ -3,7 +3,7 @@
     $(document).ready(function () {
         const $body = $("body"),
             $networkError = $(".network-error"),
-            $successfullQuizSave = $(".successfull-quiz-save"),
+            $successfulQuizSave = $(".successful-quiz-save"),
             $modalTemplate = $("#modal-template"),
             $quizErrorTemplate = $(".quiz-error-template"),
             $newQuizModal = $("#new-quiz-modal"),
@@ -12,7 +12,7 @@
             USERS_UL = "<ul class='users'>",
             PER_UL = "</ul>",
             HORIZONTAL_LINE = "<hr/>",
-            QUICK_BUTTONS = "<h3>Quick buttons:</h3>";
+            QUICK_BUTTONS = "<h4>Quick buttons (for the users selected by the checkbox):</h4>";
 
 
         $createQuiz.click(function () {
@@ -58,7 +58,7 @@
                         return;
                     }
                     $("#manageSavedQuizModal").modal("hide");
-                    showSuccessfullQuizSave();
+                    showSuccessfulQuizSave();
                 })
                 .fail(function () {
                     showNetworkError();
@@ -94,7 +94,7 @@
                         invalidRequest(data.message, data.subMessage);
                         return;
                     }
-                    showSuccessfullQuizSave();
+                    showSuccessfulQuizSave();
                 })
                 .fail(function () {
                     showNetworkError();
@@ -131,7 +131,7 @@
             $networkError.removeClass("hidden");
             setTimeout(function () {
                 $networkError.addClass("hidden");
-            }, 2500);
+            }, 5000);
         }
 
         function invalidRequest(message, subMessage) {
@@ -157,12 +157,20 @@
             $('.modal').animate({scrollTop: 0}, speed || 'fast');
         }
 
-        function showSuccessfullQuizSave() {
+        function showSuccessfulQuizSave() {
             scrollToTop();
-            $successfullQuizSave.removeClass("hidden");
+            $successfulQuizSave.removeClass("hidden");
             setTimeout(function () {
-                $successfullQuizSave.addClass("hidden");
-            }, 2500);
+                $successfulQuizSave.addClass("hidden");
+            }, 5000);
+        }
+
+        function showSuccessfulUserUpdate() {
+            scrollToTop();
+            $(".successful-user-update").removeClass("hidden");
+            setTimeout(function () {
+                $(".successful-user-update").addClass("hidden");
+            }, 5000);
         }
 
         $(".list-users").click(function () {
@@ -214,36 +222,133 @@
             });
         });
 
-        $body.on("click", ".users-team-deadpool", function () {
+        $body.on("click", ".deadpool-confirmation", function () {
             $('.select-user').each(function (index) {
                 if ($(this).is(":checked")) {
-                    // TODO change team to Deadpool
+                    let $this = $(this),
+                        $userAttributeList = $this.parent("ul").find("li");
+                    $($userAttributeList.get(3)).find("input").val("Deadpool");
                 }
             });
+            let onlyChecked = true;
+            let checkForChange = true;
+            let userToUpdate = getUsersToUpdate(onlyChecked, checkForChange);
+            $.post("/admin/update/users", {data: userToUpdate})
+                .done(function (data) {
+                    if (data.error) {
+                        data.message = data.message || "invalid response";
+                        data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                        showCommonError(data.message, data.subMessage);
+                        return;
+                    }
+                    updateOriginalData();
+                    showSuccessfulUserUpdate();
+                })
+                .fail(function () {
+                    showNetworkError();
+                });
+
         });
 
-        $body.on("click", ".users-add-admin", function () {
+        $body.on("click", ".admin-confirm", function () {
             $('.select-user').each(function (index) {
                 if ($(this).is(":checked")) {
-                    // TODO are you sure and add admin rights
+                    let $this = $(this),
+                        $userAttributeList = $this.parent("ul").find("li");
+                    $($userAttributeList.get(2)).find("input").val("admin");
                 }
             });
+            let onlyChecked = true;
+            let checkForChange = true;
+            let userToUpdate = getUsersToUpdate(onlyChecked, checkForChange);
+            $.post("/admin/update/users", {data: userToUpdate})
+                .done(function (data) {
+                    if (data.error) {
+                        data.message = data.message || "invalid response";
+                        data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                        showCommonError(data.message, data.subMessage);
+                        return;
+                    }
+                    updateOriginalData();
+                    showSuccessfulUserUpdate();
+                })
+                .fail(function () {
+                    showNetworkError();
+                });
         });
 
-        $body.on("click", ".users-delete", function () {
-            $('.select-user').each(function (index) {
-                if ($(this).is(":checked")) {
-                    // TODO are you sure and delete
-                }
-            });
+        $body.on("click", ".delete-confirm", function () {
+            let onlyChecked = true;
+            let checkForChange = false;
+            let userToDelete = getUsersToUpdate(onlyChecked, checkForChange);
+            $.post("/admin/delete/users", {data: userToDelete})
+                .done(function (data) {
+                    if (data.error) {
+                        data.message = data.message || "invalid response";
+                        data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                        showCommonError(data.message, data.subMessage);
+                        return;
+                    }
+                    updateOriginalData();
+                    showSuccessfulUserUpdate();
+                })
+                .fail(function () {
+                    showNetworkError();
+                });
         });
 
-        $body.on("click", ".users-apply", function () {
-            $('.select-user').each(function (index) {
-                if ($(this).is(":checked")) {
-                    // TODO are you sure and delete
+        function changeDetected(name, originalName, role, originalRole, team, originalTeam) {
+            return name !== originalName+"" || role !== originalRole+"" || team !== originalTeam+"";
+        }
+
+        function getUsersToUpdate(onlyChecked, checkForChange) {
+            let userToUpdate = [];
+            $('.users').each(function (index) {
+                if (!onlyChecked || $(this).find(".select-user").is(":checked")) {
+                    let $this = $(this),
+                        $userAttributeList = $this.find("li"),
+                        userId = $($userAttributeList.get(0)).find("span").text(),
+                        name = $($userAttributeList.get(1)).find("input").val(),
+                        originalName = $($userAttributeList.get(1)).find("input").data("value"),
+                        role = $($userAttributeList.get(2)).find("input").val(),
+                        originalRole = $($userAttributeList.get(2)).find("input").data("value"),
+                        team = $($userAttributeList.get(3)).find("input").val(),
+                        originalTeam = $($userAttributeList.get(3)).find("input").data("value");
+                    if (!checkForChange || changeDetected(name, originalName, role, originalRole, team, originalTeam)) {
+                        userToUpdate.push({
+                            userId: userId,
+                            name: name,
+                            role: role,
+                            team: team
+                        });
+                    }
                 }
             });
+            return JSON.stringify(userToUpdate);
+        }
+
+        function updateOriginalData() {
+            $(".manage-users").click();
+        }
+
+        $body.on("click", ".apply-confirm", function () {
+            let onlyChecked = false;
+            let checkForChange = true;
+            let userToUpdate = getUsersToUpdate(onlyChecked, checkForChange);
+            $.post("/admin/update/users", {data: userToUpdate})
+                .done(function (data) {
+                    if (data.error) {
+                        data.message = data.message || "invalid response";
+                        data.subMessage = data.subMessage || "Unfortunately the response somehow malformed, sorry for the inconveniences";
+                        showCommonError(data.message, data.subMessage);
+                        return;
+                    }
+                    updateOriginalData();
+                    showSuccessfulUserUpdate();
+                })
+                .fail(function () {
+                    showNetworkError();
+                });
         });
 
         function renderUserRoleListElem(user, managingEnabled) {
@@ -280,18 +385,20 @@
             return managingEnabled ?
                 '<button type="button" class="users-select-all btn btn-info">select: all</button>' +
                 '<button type="button" class="users-select-none btn btn-info">select: none</button>' +
-                '<button type="button" class="users-apply btn btn-success float-right">Apply</button>' +
+                '<a href="#confirmChanges" class="users-apply btn btn-success float-right" data-toggle="modal">Apply</a>' +
                 HORIZONTAL_LINE +
                 QUICK_BUTTONS +
-                '<button type="button" class="users-delete btn btn-danger">Delete</button>' +
-                '<button type="button" class="users-add-admin btn btn-danger ">+Admin</button>' +
-                '<button type="button" class="users-team-deadpool btn btn-danger ">DeAdPoOl</button>' :
+                '<a href="#confirmDelete" class="users-delete btn btn-primary" data-toggle="modal">Delete</a>' +
+                '<a href="#confirmAdmin" class="users-add-admin btn btn-primary" data-toggle="modal">+Admin</a>' +
+                '<a href="#confirmDeadpool" class="users-team-deadpool btn btn-primary" data-toggle="modal">DeAdPoOl</a>' :
                 '';
         }
 
         function showUsers(users, managingEnabled) {
             scrollToTop();
-            $modalTemplate.find(".modal-title").text("Users");
+            $modalTemplate.find(".modal-title").html(
+                "Users" + "<div class='successful-user-update alert alert-success hidden'> Successful user db update </div>"
+            );
             let modalBody = "";
             modalBody += renderManagerButtons(managingEnabled);
             for (let user of users) {
