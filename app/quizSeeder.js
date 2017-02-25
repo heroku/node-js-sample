@@ -7,12 +7,11 @@ exports.seedQuizzes = function (req, callback) {
     saveQuizToDatabase(data, user, callback);
 
     function saveQuizToDatabase(data, user, callback) {
-        "use strict";
         try {
             let answers = {},
                 questions = [],
                 points = {};
-            for (key in data) {
+            for (let key in data) {
                 if (data.hasOwnProperty(key)) {
                     if (key.startsWith("answer_")) {
                         let answer_index = /(.*)_(\d*)/.exec(key)[2];
@@ -30,7 +29,7 @@ exports.seedQuizzes = function (req, callback) {
                 }
             }
 
-            var quiz = new Quiz();
+            let quiz = new Quiz();
             quiz.creator = user.id;
             quiz.name = data.name;
             quiz.category = data.category;
@@ -88,7 +87,7 @@ exports.updateQuiz = function (quiz, quizFromRequest, user) {
         let answers = {},
             questions = [],
             points = {};
-        for (key in quizFromRequest) {
+        for (let key in quizFromRequest) {
             if (quizFromRequest.hasOwnProperty(key)) {
                 if (key.startsWith("answer_")) {
                     let answer_index = /(.*)_(\d*)/.exec(key)[2];
