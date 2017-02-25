@@ -43,6 +43,7 @@ exports.isAdmin = function (req, res, next) {
 };
 
 exports.partOfTheRequestedTeam = function (req, res, next) {
+    "use strict";
     let requestedTeam = req.params["team"];
     async.series([
         function (callback) {
