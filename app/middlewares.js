@@ -42,13 +42,14 @@ exports.isAdmin = function (req, res, next) {
     });
 };
 
-exports.partOfDeadpool = function (req, res, next) {
+exports.partOfTheRequestedTeam = function (req, res, next) {
+    let requestedTeam = req.params["team"];
     async.series([
         function (callback) {
             if (req.user) {
                 Roles.findOne({'userId': req.user.id}, function (err, user_role) {
                     if (err) return callback(err);
-                    if (user_role !== null && user_role.team === "Deadpool") {
+                    if (user_role !== null && user_role.team.toLowerCase() === requestedTeam.toLowerCase()) {
                         return next();
                     } else {
                         res.redirect('/');

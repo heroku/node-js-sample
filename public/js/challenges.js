@@ -1,17 +1,18 @@
 $(document).ready(function () {
     "use strict";
-    let $sprint = $('.sprint'),
-        $codeChallenge = $('.code-challenges'),
-        $personal = $('.personal'),
-        $history = $('.history'),
-        $body = $( "body" ),
-        menuElements = [$sprint.find('div'), $codeChallenge.find('div'), $personal.find('div'), $history.find('div')],
-        LEFT = 37,
-        UP = 38,
-        RIGHT = 39,
-        DOWN = 40,
-        ENTER = 13,
-        actualMenu = $sprint;
+    const   $sprint = $('.sprint'),
+            $codeChallenge = $('.code-challenges'),
+            $personal = $('.personal'),
+            $history = $('.history'),
+            $body = $( "body" ),
+            menuElements = [$sprint.find('div'), $codeChallenge.find('div'), $personal.find('div'), $history.find('div')],
+            LEFT = 37,
+            UP = 38,
+            RIGHT = 39,
+            DOWN = 40,
+            ENTER = 13,
+            TEAM = $body.data("team");
+        let actualMenu = $sprint;
 
     selectMenu($sprint);
 
@@ -73,21 +74,21 @@ $(document).ready(function () {
                 selectMenu();
                 break;
             case ENTER:
-                redirectUserBasedOnMenuSelection();
             default:
+                redirectUserBasedOnMenuSelection();
                 break;
         }
     });
 
     function redirectUserBasedOnMenuSelection() {
         if (actualMenu.is($sprint)) {
-            window.location = "/deadpool/challenges/sprint";
+            window.location = "/challenges/" + TEAM + "/sprint";
         } else if (actualMenu.is($codeChallenge)) {
-            window.location = "/deadpool/challenges/code";
+            window.location = "/challenges/" + TEAM + "/code";
         } else if (actualMenu.is($personal)) {
-            window.location = "/deadpool/challenges/personal";
+            window.location = "/challenges/" + TEAM + "/personal";
         } else if (actualMenu.is($history)) {
-            window.location = "/deadpool/challenges/history";
+            window.location = "/challenges/" + TEAM + "/history";
         }
     }
 
