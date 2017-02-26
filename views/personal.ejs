@@ -3,10 +3,11 @@
 <head>
     <title>Personal</title>
     <% include common_css_includes.ejs %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="/css/personal.css" type="text/css">
 </head>
 <body data-team="<%= team %>"
-      onload="for(s=window.screen,w=matrixCanvas.width=s.width,h=matrixCanvas.height=s.height,m=Math.random,p=[],i=0;i<256;p[i++]=1);setInterval('9Style=\'rgba(0,0,0,.05)\'9Rect(0,0,w,h)9Style=\'#F00\';p.map(function(v,i){9Text(String.fromCharCode(3e4+m()*33),i*10,v);p[i]=v>758+m()*1e4?0:v+10})'.split(9).join(';matrixCanvas.getContext(\'2d\').fill'),33)">
+      onload="for(s=window.screen,w=matrixCanvas.width=s.width,h=matrixCanvas.height=s.height,m=Math.random,p=[],i=0;i<256;p[i++]=1);setInterval('9Style=\'rgba(0,0,0,.05)\'9Rect(0,0,w,h)9Style=\'#A00\';p.map(function(v,i){9Text(String.fromCharCode(3e4+m()*33),i*10,v);p[i]=v>758+m()*1e4?0:v+10})'.split(9).join(';matrixCanvas.getContext(\'2d\').fill'),33)">
 <canvas id=matrixCanvas></canvas>
 <div class="container">
     <% include network_error %>
@@ -25,15 +26,16 @@
                     <a href="/logout" class="right btn btn-primary btn-sm">Logout</a>
                 </h3>
                 <hr/>
+                <div>Team: <span><%= team %></span></div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="well well-info">
                 <h3><span class="fa fa-signal"></span> Audio</h3>
-                <select class="form-control audio-change">
-                    <option>flute</option>
-                    <option>cat</option>
-                    <option>funny</option>
+                <select data-style="btn-primary" class="selectpicker audio-change">
+                    <option class="audio-opt">flute</option>
+                    <option class="audio-opt">cat</option>
+                    <option class="audio-opt">funny</option>
                 </select>
             </div>
         </div>
@@ -69,5 +71,8 @@
         </div>
     </div>
 </div>
+
+<% include common_javascript_includes %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 </body>
 </html>
