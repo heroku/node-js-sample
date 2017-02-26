@@ -29,7 +29,6 @@ $(document).ready(function () {
     }
 
     function selectMenu() {
-        $(".menu-step").trigger("play");
         let $selected = actualMenu.find('div');
         for (let $menuElement of menuElements) {
             if ($menuElement.hasClass('selected')) {
@@ -61,21 +60,45 @@ $(document).ready(function () {
         });
     }
 
+    function playAudio(audio) {
+        switch (audio) {
+            case DOWN:
+                $(".menu-step-up")[0].pause();
+                $(".menu-step-up")[0].currentTime = 0;
+                $(".menu-step-down").trigger("play");
+                break;
+            case UP:
+            default:
+                $(".menu-step-down")[0].pause();
+                $(".menu-step-down")[0].currentTime = 0;
+                $(".menu-step-up").trigger("play");
+                break;
+        }
+
+    }
+
     $body.on( "keydown", function(event) {
         switch ( event.which ) {
             case DOWN:
             case RIGHT:
+                event.stopPropagation();
+                event.preventDefault();
+                playAudio(DOWN);
                 nextMenu();
                 selectMenu();
                 break;
             case UP:
             case LEFT:
+                event.stopPropagation();
+                event.preventDefault();
+                playAudio(UP);
                 previousMenu();
                 selectMenu();
                 break;
             case ENTER:
-            default:
                 redirectUserBasedOnMenuSelection();
+                break;
+            default:
                 break;
         }
     });
