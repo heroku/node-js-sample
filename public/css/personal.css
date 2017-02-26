@@ -1,0 +1,47 @@
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    overflow: hidden;
+}
+
+#matrixCanvas {
+    position: absolute;
+}
+
+.container {
+    position: relative;
+}
+
+.right {
+    float: right;
+}
+
+.well-info {
+    background: rgba(74, 32, 32, 0.42);
+    color: rgba(8, 10, 66, 0.91);
+    text-shadow: 1px 0 0 hsla(183, 89%, 57%, 0.3), 0 2px 0 hsl(233, 78%, 38%), 0 3px 0 hsl(0, 0%, 73%), 0 4px 0 hsl(216, 78%, 15%), 3px 3px 7px #65ffdb;
+}
+
+.btn-primary {
+    color: greenyellow;
+}
+
+div .well select {
+    background-color: rgba(0, 0, 0, 0.48);
+    color: white;
+    text-shadow: 1px 0 0 hsl(199, 62%, 57%), 0 2px 0 hsla(0, 100%, 48%, 0.15), 0 3px 0 hsla(0, 33%, 18%, 0.38), 0 4px 0 hsla(216, 100%, 7%, 0.56), 3px 3px 7px #2d4c45;
+}
+
+div .well select option{
+    background-color: black;
+    color: greenyellow;
+}
+
+.row {
+    margin-top: 15px;
+}

@@ -75,7 +75,11 @@ module.exports = function (app, passport, middlewares, sessionHelper) {
     });
 
     app.get('/challenges/:team/personal', function (req, res) {
-        res.send("personal");
+        let team = req.params["team"];
+        res.render("personal.ejs", {
+            user: sessionHelper.buildUser(req),
+            team: team
+        });
     });
 
     app.get('/challenges/:team/history', function (req, res) {
