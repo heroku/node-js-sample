@@ -78,7 +78,6 @@ body {
     width: 100px;
     height: 100px;
     background: url('/img/challenges/background.png') no-repeat 0 -70px fixed;
-    /*background: url('/img/challenges/background.png') no-repeat center center fixed; */
     border: 1px solid rgba(200,205,205,.1);
     box-shadow: 0 1px 90px rgba(255,0,0,.3);
 
