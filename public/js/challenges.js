@@ -12,7 +12,8 @@ $(document).ready(function () {
             DOWN = 40,
             ENTER = 13,
             TEAM = $body.data("team");
-        let actualMenu = $sprint;
+        let actualMenu = $sprint,
+            prohibitDoubleKeyPress = false;
 
     selectMenu($sprint);
 
@@ -78,6 +79,11 @@ $(document).ready(function () {
     }
 
     $body.on( "keydown", function(event) {
+        if (prohibitDoubleKeyPress) {
+            return;
+        }
+        prohibitDoubleKeyPress = true;
+        setTimeout(function(){ prohibitDoubleKeyPress = false; }, 100);
         switch ( event.which ) {
             case DOWN:
             case RIGHT:
