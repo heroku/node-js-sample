@@ -414,5 +414,12 @@
             $modalTemplate.find(".modal-body").html(modalBody);
             $modalTemplate.modal('show');
         }
+
+        // fix overflow issue for cases when more than one modal is open
+        $('.modal').on('hidden.bs.modal', function () {
+            if ($(".modal").is(":visible")) {
+                $body.addClass("modal-open");
+            }
+        });
     });
 })();
