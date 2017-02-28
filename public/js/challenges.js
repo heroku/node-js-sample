@@ -13,7 +13,7 @@ $(document).ready(function () {
             ENTER = 13,
             TEAM = $body.data("team");
         let actualMenu = $sprint,
-            prohibitDoubleKeyPress = false;
+            prohibitTooOftenMenuSelection = false;
 
     selectMenu($sprint);
 
@@ -32,6 +32,7 @@ $(document).ready(function () {
     function selectMenu() {
         let $selected = actualMenu.find('div');
         for (let $menuElement of menuElements) {
+            $menuElement.stop(true, true);
             if ($menuElement.hasClass('selected')) {
                 $menuElement.removeClass('selected');
                 $menuElement.css({
@@ -51,7 +52,7 @@ $(document).ready(function () {
             "left": "-50px",
             "width": "+=100",
             "height": "+=100",
-        }, 20, function() {
+        }, 200, function() {
             $selected.addClass('selected');
             // Animation complete.
         }).css({
@@ -78,12 +79,18 @@ $(document).ready(function () {
 
     }
 
+    function handleProhibitMenuSelection() {
+        prohibitTooOftenMenuSelection = true;
+        setTimeout(function () {
+            prohibitTooOftenMenuSelection = false;
+        }, 200);
+    }
+
     $body.on( "keydown", function(event) {
-        if (prohibitDoubleKeyPress) {
+        if (prohibitTooOftenMenuSelection) {
             return;
         }
-        prohibitDoubleKeyPress = true;
-        setTimeout(function(){ prohibitDoubleKeyPress = false; }, 100);
+        handleProhibitMenuSelection();
         switch ( event.which ) {
             case DOWN:
             case RIGHT:
@@ -146,6 +153,10 @@ $(document).ready(function () {
     }
 
     $body.on( "mouseover", ".hover", function() {
+        if (prohibitTooOftenMenuSelection) {
+            return;
+        }
+        handleProhibitMenuSelection();
         let parent = $(this).parent();
         if (actualMenu.is(parent)) return;
         actualMenu = parent;
