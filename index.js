@@ -10,10 +10,11 @@ var session     = require('express-session');
 
 var middlewares = require('./app/middlewares.js');
 var sessionHelper = require('./app/sessionHelper.js');
+var app = express();
+
 require('./config/mongoModule');
 require('./config/passport')(passport);
 
-var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.set('appSecret', (process.env.APP_SECRET || "itsNotASecretAnyMore"));
 app.use(helmet());
