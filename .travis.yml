@@ -2,3 +2,10 @@ language: node_js
 
 node_js:
   - 6.10.1
+
+# Eventually deploy to heroku so we can actually test it out...
+#deploy:
+#  app: express-example
+#  provider: heroku
+#  api_key:
+#    secure: FF7yK....
