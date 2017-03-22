@@ -1,0 +1,9 @@
+
+addons:
+  apt:
+    packages:
+    - npm
+sudo: false
+script:
+- npm install
+- npm start
