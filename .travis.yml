@@ -1,0 +1,10 @@
+language: node_js
+
+node_js:
+  - 6.10.1
+
+deploy:
+  app: node-js-sample
+  provider: heroku
+  api_key:
+    secure: JZn68hIXbMbXRNurAs6rVgQHiaT5VduoXZOhtTruBhcWFp5mGBHQxPoxfAL1+eYBNnzbGY4azrMhrxneLbXmFpsmr0/gS7rRjSp72hoUwwg9lJdtqUP5McOBZMcqnrimUGAqclAXs+oNmnndjJ3LRsmX0LNoTGzvXGSV5Oww1eqCwdvb2MhLfFSaC9Qu6CQHGRNwMlOZaZm54ysYZdW7JER6zzikPWSC25tLP/r1DjHTg3ct2WFbi+zzoBjs85nL7fIQaApiNQ7aqypbaFOAGV/zQCo2AHf+NaihQHhZN9eNlygXkJ8O25k2zPRt4MZ0o92VP7oy4AZTewnP537IobMbFLdZFyzDBWXtSRlFBP7F4Df1mZ93R1clTltCwnxUXCERLlnDEy8JsCW+b8LWA/zi9KOl+Y81S/DPRzi7xLrESKWv8an3N913a9Zpx4cspaIdSBWRgELbbBdmQ6fzU4pxL3zjU8UMD3yQ1pArEzykBvf/+hCdL/DBe+1YYlfqWBSxHXT80NJ1o940/mOf/dafo17xaf8+nODGteaSBQ8TABBLEDBPxTNKSELJzSkASwtoSetH5GWW99PbVw4jlv0NSrOjS9fX9M2W/fz56WWwRT3Ma//3tK9AwKSrVUNJRuW97+WaNbakojl4FElGoXzTMLivply+EwZp80/eibo=
