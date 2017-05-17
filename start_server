@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /app/nodeserver
+npm install
+npm start

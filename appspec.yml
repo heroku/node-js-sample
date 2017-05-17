@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+    - source: /index.html
+      destination: /var/www/html/
+hooks:
+#  ApplicationStop:
+#    - location: deployment.js
+#      timeout: 180
+  Install:
+    - location: /scripts/install_dependencies.sh
+      timeout: 180
+      runas: root
+  ApplicationStart:
+    - location: /scripts/start_server.sh
+      timeout: 180
+      runas: root
+  ValidateService:
+    + location: /scripts/stop_server.sh
+      timeout: 180
+      runas: root
