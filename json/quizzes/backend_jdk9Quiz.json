@@ -1,0 +1,10 @@
+{
+	"name": "jdk9 quizzes",
+	"questions": {
+		"1": {
+			"question": "What is the significance, and what are the benefits, of including 'use strict' at the beginning of a JavaScript source file?",
+			"a": "nothing",
+			"c": "use strict is for only nodejs experts"
+		}
+	}
+}

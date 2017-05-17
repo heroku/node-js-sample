@@ -1,0 +1,19 @@
+{
+	"name": "javascript quizzes",
+	"questions": {
+		"0": {
+			"question": "What is the significance, and what are the benefits, of including 'use strict' at the beginning of a JavaScript source file?",
+			"a": "nothing",
+			"b": "use stric makes js coding idiot-proof",
+			"c": "use strict is for only nodejs experts",
+			"d": "using it will makes js strongly typed"
+		},
+		"1": {
+			"question": "JS - magic",
+			"a": "definitely",
+			"b": "black magic",
+			"c": "the force is awakaning with this little witch, who learned everything from Merlin the great Potter",
+			"d": "[object object]"
+		}
+	}
+}

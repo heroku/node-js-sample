@@ -1,0 +1,61 @@
+[
+  {
+    "email": "Neszt Marcell",
+    "name": "Neszt Marcell",
+    "password": "",
+    "id": "b7a3a1ab-6bff-4e0c-eede-6cdc303f1305",
+    "profileId": "10207604706093984",
+    "profileToken": "EAAJmBSPcv4kBAFLCArs7BuO2bPDoJcga3vGqR8UefyecSBO1rnNlke0ZB5svU0pAsgBRBPVXLuDJW4OOdzq2SnGhZAzWGYGx1gUZAxqMg8qrgDMGgV0oAdbh64oUfeIjTQnqAX7ZARQi3NGnTZAgdBu3v5gpZApfsZD",
+    "achievements": [],
+    "latestAchievement": "Account created",
+    "group": "admin"
+  },
+  {
+    "email": "asdasd",
+    "password": "$2a$08$tG6SZxutzNOpfCurihVmee8DiYb8eO.UIg/sGlOAt8qU4OWC8GFJ.",
+    "id": "8d277952-b411-26ae-644e-7828acc80efe",
+    "profileId": "-",
+    "profileToken": "-",
+    "achievements": [],
+    "latestAchievement": "Account created",
+    "group": "user"
+  },
+  {
+    "email": "Annamária Kemény",
+    "name": "Annamária Kemény",
+    "password": "",
+    "id": "9bd286d9-721c-d521-b992-e35e9971131b",
+    "profileId": "1097956716923194",
+    "profileToken": "CAAJnV9rnF8QBAKicwgp34TUaZCuTItQoohQLhZCnmyLRm5BANLZAtll9FHIiOLZBrQWl2Ug9xmGyfHGaYKheuWYUjAofTPmFprRvkGEw5sXctkvNzUGl4b3ZBhoY8YxAsRhkemUb0Tft1VQxVDoo189hvoE2OnZB0LNhaXfgZBAuzI9UpxBpg2ZArIamjJYGHxF6De9YPtzuhQZDZD",
+    "achievements": [],
+    "latestAchievement": "Account created"
+  },
+  {
+    "email": "yxc",
+    "password": "$2a$08$jMCtdSCX8IgV.XAkMm/el.yEFfcl8CyKggI1mKi4hP66YqRBTkzju",
+    "id": "9193d86e-3b50-97eb-994b-8a05d652a934",
+    "profileId": "-",
+    "profileToken": "-",
+    "achievements": [],
+    "latestAchievement": "Account created"
+  },
+  {
+    "email": "Sylwolveryn",
+    "password": "$2a$08$fult2Ly.pyRN/tt0s8z14.Nx/a3mERF2cp7kVl7sqG/r6zaIx6d1i",
+    "id": "4ba5d9c7-1251-40b8-241a-b0fa715a815c",
+    "profileId": "-",
+    "profileToken": "-",
+    "achievements": [],
+    "latestAchievement": "Quizzes created",
+    "group": "admin"
+  },
+  {
+    "email": "Új emberke vagyok",
+    "password": "$2a$08$AqLksggaStdMGwbkT4s0z.pGJxp7qdW1brWvseTi66h3c6Fa7ewQ6",
+    "id": "dcb70438-5cc9-d587-c388-6f2e8f8fe808",
+    "profileId": "-",
+    "profileToken": "-",
+    "achievements": [],
+    "latestAchievement": "Account created"
+  }
+]

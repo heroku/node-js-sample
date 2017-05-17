@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <title>Admin</title>
+    <% include common_css_includes.ejs %>
+    <link rel="stylesheet" href="css/user_pages.css" type="text/css">
+</head>
+<body>
+<div class="container">
+
+    <% include network_error %>
+
+    <div class="successfull-update alert alert-success hidden">
+        <a href="#" class="close" data-dismiss="alert">×</a>
+        Profile was updated Succefully!
+    </div>
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Admin Page</h1>
+        <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        <a href="/profile" class="btn btn-primary btn-sm">Profile</a>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="well well-profile">
+                <h3><span class="fa fa-file-text"></span> Quizzes</h3>
+                <button type="button" class="form-control create-quiz btn btn-primary">Create quiz</button>
+                <button type="button" class="form-control manage-quiz btn btn-primary">Manage a quiz</button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="well well-profile">
+                <h3><span class="fa fa-users"></span> Users</h3>
+                <button type="button" class="form-control list-users btn btn-info">List users</button>
+                <button type="button" class="form-control create-user btn btn-primary">Create new user</button>
+                <button type="button" class="form-control manage-users btn btn-primary">Manage user roles</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modal-template" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="new-quiz-modal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <% include network_error %>
+                <% include successfull_quiz_save %>
+                <% include quiz_error_template %>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"><span class="fa fa-paw"></span> Create new quiz</h4>
+            </div>
+            <div class="modal-body">
+                <% include create_quiz_template %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include common_javascript_includes %>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

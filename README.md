@@ -1,38 +1,28 @@
-# node-js-sample
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+# Nodejs quizzes
+Wanna play a quiz? https://nodejs-quizzes.herokuapp.com/
 
-## Running Locally
+# Dev notes
+## Preinstall
+* [git](https://git-scm.com/downloads)
+* [npm](https://nodejs.org/en/download/)
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+## Tools
+* Create video from gif: use [ffmpeg](https://ffmpeg.zeranoe.com/builds/) - for more info: [optimizing-animated-gifs-with-html5-video](http://rigor.com/blog/2015/12/optimizing-animated-gifs-with-html5-video)
+* Video editing tool: use [Avidemux](http://fixounet.free.fr/avidemux/download.html)
 
-```sh
-git clone git@github.com:heroku/node-js-sample.git # or clone your own fork
-cd node-js-sample
-npm install
-npm start
-```
+## Get repo
+* git clone https://github.com/sylwolveryn/nodejs-quizzes.git
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+## Install packages
+* cd nodejs-quizzes
+* npm install
+* npm install mocha -g
 
-## Deploying to Heroku
+## Run tests
+* npm test
+npm test is a shortcut for mocha
 
-```
-heroku create
-git push heroku master
-heroku open
-```
+## Start server
+* npm start
 
-Alternatively, you can deploy your own copy of the app using the web-based flow:
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## Documentation
-
-For more information about using Node.js on Heroku, see these Dev Center articles:
-
-- [10 Habits of a Happy Node Hacker](https://blog.heroku.com/archives/2014/3/11/node-habits)
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)

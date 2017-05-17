@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Quizzes</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/creative.css" type="text/css">
+    <link rel="stylesheet" href="css/quiz.css" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top">
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '675122215960457',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!--div
+            class="fb-like"
+            data-share="true"
+            data-width="450"
+            data-show-faces="true">
+    </div-->
+
+    <div class="network-error alert alert-warning hidden">
+        <a href="#" class="close" data-dismiss="alert">×</a>
+        <strong>Warning!</strong> There was a problem with your network connection. Please try again
+    </div>
+
+
+    <section class="no-padding" id="quizSelection">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-4 col-sm-4">
+                    <a href="#" class="quiz-select" data-quiz="javascript">
+                        <img src="img/quizzes/frontend_js.jpg" class="img-responsive" alt="">
+                        <div class="quiz-select-caption">
+                            <div class="quiz-select-caption-content">
+                                <div class="project-category text-faded">
+                                    Frontend
+                                </div>
+                                <div class="project-name">
+                                    Javascript
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <a href="#" class="quiz-select" data-quiz="jdk8">
+                        <img src="img/quizzes/backend_java_jdk_8.jpg" class="img-responsive" alt="">
+                        <div class="quiz-select-caption">
+                            <div class="quiz-select-caption-content">
+                                <div class="project-category text-faded">
+                                    Backend
+                                </div>
+                                <div class="project-name">
+                                    Java JDK8
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <a href="#" class="quiz-select" data-quiz="jdk9">
+                        <img src="img/quizzes/backend_java_jdk_9.jpg" class="img-responsive" alt="">
+                        <div class="quiz-select-caption">
+                            <div class="quiz-select-caption-content">
+                                <div class="project-category text-faded">
+                                    Backend
+                                </div>
+                                <div class="project-name">
+                                    Java JDK9
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <a href="#" class="quiz-select" data-quiz="freemarker">
+                        <img src="img/quizzes/frontend_freemarker.jpg" class="img-responsive" alt="">
+                        <div class="quiz-select-caption">
+                            <div class="quiz-select-caption-content">
+                                <div class="project-category text-faded">
+                                    Frontend
+                                </div>
+                                <div class="project-name">
+                                    Freemarker
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <a href="#" class="quiz-select" data-quiz="tbd">
+                        <img src="img/quizzes/tbd_01.jpg" class="img-responsive" alt="">
+                        <div class="quiz-select-caption">
+                            <div class="quiz-select-caption-content">
+                                <div class="project-category text-faded">
+                                    TBD
+                                </div>
+                                <div class="project-name">
+                                    TBD
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <a href="#" class="quiz-select" data-quiz="tbd">
+                        <img src="img/quizzes/tbd_01.jpg" class="img-responsive" alt="">
+                        <div class="quiz-select-caption">
+                            <div class="quiz-select-caption-content">
+                                <div class="project-category text-faded">
+                                    TBD
+                                </div>
+                                <div class="project-name">
+                                    TBD
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>                
+            </div>
+        </div>
+    </section>
+
+    <section id="quizBox" class="hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading question">Question</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center well" data-answer-letter="a">
+                    <div class="service-box">
+                        <h3 class="answer answer-a">A</h3>
+                        <p class="text-muted"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center well" data-answer-letter="b">
+                    <div class="service-box">
+                        <h3 class="answer answer-b">B</h3>
+                        <p class="text-muted"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center well" data-answer-letter="c">
+                    <div class="service-box">
+                        <h3 class="answer answer-c">C</h3>
+                        <p class="text-muted"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center well" data-answer-letter="d">
+                    <div class="service-box">
+                        <h3 class="answer answer-d">D</h3>
+                        <p class="text-muted"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <button type="button" class="btn btn-success btn-lg submit">Submit</button>
+                    <button type="button" class="btn btn-primary btn-lg give-up">No idea, next</button>
+                    <a href="#confirmExit" class="btn btn-danger btn-lg exit" data-toggle="modal">Exit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="confirmExit" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want to exit before finishing this quiz?</p>
+                    <p class="text-warning"><small>If you exit now, your score won't be complete.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default exit-anyway" data-dismiss="modal">Exit anyway</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Get back to the quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-template" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/lib/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/lib/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/lib/jquery.easing.min.js"></script>
+    <script src="js/lib/jquery.fittext.js"></script>
+    <script src="js/lib/wow.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/lib/creative.js"></script>
+
+    <script src="js/quiz.js"></script>
+</body>
+
+</html>

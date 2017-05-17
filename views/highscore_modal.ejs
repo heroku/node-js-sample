@@ -1,0 +1,39 @@
+<div id="highscoreModal" class="modal fade in">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="<% if (title == "all") { %>active<% } %>">
+                            <a href="#show-all"
+                               data-request="all">Show all</a></li>
+                        <li role="presentation" class="<% if (title != "all" && title != "own" ) { %>active<% } %>">
+                            <a href="#quiz-scores"
+                               data-request="per-quiz">Quiz scores</a>
+                        </li>
+                        <li role="presentation" class="<% if (title == "own") { %>active<% } %>">
+                            <a href="#own-scores"
+                               data-request="own">Own scores</a></li>
+                    </ul>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class='score-row'>
+                    <div class='score-item'>player</div>
+                    <div class='score-item'>quiz</div>
+                    <div class='score-item'>date</div>
+                    <div class='score-item'>score</div>
+                </div>
+                <% scores.forEach(function (score) { %>
+                <div class='score-row'>
+                    <div class='score-item'><%= score.user %></div>
+                    <div class='score-item'><%= score.quizName %></div>
+                    <div class='score-item'><%= (score.date.toString().slice(11, 16) + score.date.toString().slice(4,10)) %></div>
+                    <div class='score-item'><%= score.score %></div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
