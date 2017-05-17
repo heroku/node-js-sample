@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title>FAQ</title>
+    <% include common_css_includes.ejs %>
+</head>
+<body>
+<div class="container">
+    <div class="well">
+        <h1>FAQ</h1>
+        <ul>
+            <li><strong>Why is sign in mixed with create account?</strong></li>
+            <span class="answer">Because quizzes app don't really need anything else, just your display name... and of course a password to protect your account from others. On one hand if your profile does not exist yet, quizzes create it for you with the given credentials, on the other hand it tries to log you in and inform you about the problems. Or you can use the other sig in options if you don't want to keep in mind a password for your new profile (Quizzes already handles: Facebbok, and Twitter Authentication).</span>
+            <li><strong>Where should I report a bug or a feature request?</strong></li>
+            <span class="answer">Feel free to contact the Creator via email marcell@neszt.hu or catch him personaly and talk to him face to face.</span>
+        </ul>
+
+    </div>
+
+</div>
+<footer class="text-center">
+    <% if (loggedIn) { %>
+    <a href="/profile">
+        <button type="button" class="btn btn-info btn-lg">Profile</button>
+    </a>
+    <% } else { %>
+    <a href="/">
+        <button type="button" class="btn btn-info btn-lg">Login</button>
+    </a>
+    <% } %>
+</footer>
+</body>
+</html>

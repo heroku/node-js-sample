@@ -1,0 +1,197 @@
+.quiz-select {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    max-width: 650px;
+}
+
+.quiz-select .quiz-select-caption {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+    background: rgba(240, 95, 64, .9);
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
+
+.quiz-select .quiz-select-caption .quiz-select-caption-content {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+.quiz-select .quiz-select-caption .quiz-select-caption-content .project-category,
+.quiz-select .quiz-select-caption .quiz-select-caption-content .project-name {
+    padding: 0 15px;
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.quiz-select .quiz-select-caption .quiz-select-caption-content .project-category {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.quiz-select .quiz-select-caption .quiz-select-caption-content .project-name {
+    font-size: 18px;
+}
+
+.quiz-select:hover .quiz-select-caption {
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    .quiz-select .quiz-select-caption .quiz-select-caption-content .project-category {
+        font-size: 16px;
+    }
+
+    .quiz-select .quiz-select-caption .quiz-select-caption-content .project-name {
+        font-size: 22px;
+    }
+}
+
+@-webkit-keyframes changes {
+    0% {
+        box-shadow: 0px 0px 15px #FFFFFF;
+    }
+    10% {
+        box-shadow: 0px 0px 15px #2F4F4F;
+    }
+    20% {
+        box-shadow: 0px 0px 15px #800080;
+    }
+    30% {
+        box-shadow: 0px 0px 15px #FF0000;
+    }
+    40% {
+        box-shadow: 0px 0px 15px #FFFF00;
+    }
+    50% {
+        box-shadow: 0px 0px 15px #000000;
+    }
+    60% {
+        box-shadow: 0px 0px 15px #0000FF;
+    }
+    70% {
+        box-shadow: 0px 0px 15px #FF00FF;
+    }
+    80% {
+        box-shadow: 0px 0px 15px #008080;
+    }
+    90% {
+        box-shadow: 0px 0px 15px #00FF00;
+    }
+    100% {
+        box-shadow: 0px 0px 15px #FFFFFF;
+    }
+}
+
+@keyframes changes {
+    0% {
+        box-shadow: 0px 0px 15px #FFFFFF;
+    }
+    10% {
+        box-shadow: 0px 0px 15px #2F4F4F;
+    }
+    20% {
+        box-shadow: 0px 0px 15px #800080;
+    }
+    30% {
+        box-shadow: 0px 0px 15px #FF0000;
+    }
+    40% {
+        box-shadow: 0px 0px 15px #FFFF00;
+    }
+    50% {
+        box-shadow: 0px 0px 15px #000000;
+    }
+    60% {
+        box-shadow: 0px 0px 15px #0000FF;
+    }
+    70% {
+        box-shadow: 0px 0px 15px #FF00FF;
+    }
+    80% {
+        box-shadow: 0px 0px 15px #008080;
+    }
+    90% {
+        box-shadow: 0px 0px 15px #00FF00;
+    }
+    100% {
+        box-shadow: 0px 0px 15px #FFFFFF;
+    }
+}
+
+#quizBox .well {
+    background-color: rgb(240, 248, 255);
+}
+
+#quizBox .well:hover, #quizBox .well.hovered {
+    -webkit-animation-name: changes;
+    -webkit-animation-duration: 10s;
+    -webkit-transition-timing-function: ease;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: changes;
+    animation-duration: 10s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+.selected {
+    background-color: rgba(74, 255, 0, 0.32) !important;
+    font-weight: bold;
+}
+
+#mainNav ul.navbar-nav > li {
+    float: none;
+}
+
+#mainNav {
+/ / max-height : 80 px;
+}
+
+p.latest-achievement {
+    float: right;
+}
+
+.user-name {
+    color: aqua;
+    font-weight: bold;
+}
+
+.answer, .question {
+    word-wrap: break-word;
+}
+
+.volatile-score {
+    z-index: 1001;
+    font-size: 3em;
+    opacity: 0.0;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 30%;
+    background-size: 50px 50px;
+    height: 100px;
+    width: 100px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    -webkit-box-shadow: #B3B3B3 26px 26px 26px;
+    -moz-box-shadow: #B3B3B3 26px 26px 26px;
+    box-shadow: #B3B3B3 26px 26px 26px;
+    padding: 15px;
+    color: #00A000;
+    text-shadow: 1px 0 0 hsl(129, 21%, 27%), 0 2px 0 hsl(106, 47%, 50%), 0 3px 0 hsl(111, 34%, 81%), 0 4px 0 hsl(0, 0%, 60%), 3px 3px 7px #000000;
+    filter: dropshadow(color=#000000, offx=3, offy=3);
+    text-align: center
+}
+

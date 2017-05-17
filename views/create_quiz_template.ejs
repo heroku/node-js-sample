@@ -1,0 +1,96 @@
+<div class="panel-group" id="new-quiz-accordion">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading well-data-list">
+            <h4 class="panel-title"><span class="new-quiz-general-title">General</span></h4>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-xs-5" for="quiz_name">Quiz Name:</label>
+
+                    <div class="col-xs-7">
+                        <input type="text" name="name" id="quiz_name" class="form-control" placeholder="Wonderful quiz">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-5" for="quiz_category">Quiz Category:</label>
+
+                    <div class="col-xs-7">
+                        <input type="text" name="category" id="quiz_category" class="form-control" placeholder="Java">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-5" for="quiz_image">Image for the quiz:</label>
+
+                    <div class="col-xs-7">
+                        <!--<input type="file" name="imageName" id="quiz_image" class="form-control">-->
+                        <select name="imageName" id="quiz_image" class="form-control">
+                            <% Object.keys(imageNames).forEach(function(imageName) { %>
+                            <option value="<%= imageNames[imageName] %>"><%= imageNames[imageName] %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading well-data-list">
+            <h4 class="panel-title"><span class="new-quiz-general-title">Time and randomization</span></h4>
+        </div>
+        <div class="panel-body">
+
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="control-label col-xs-5" for="quiz_time_based_gameplay">Time based gameplay</label>
+
+                    <div class="col-xs-7">
+                        <input type="checkbox" name="gamePlayTimeBased" id="quiz_time_based_gameplay" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-xs-5" for="quiz_time_based_points">Time based point
+                        calculation</label>
+
+                    <div class="col-xs-7">
+                        <input type="checkbox" name="pointCalculationTimeBased" id="quiz_time_based_points" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-xs-5" for="quiz_random_question_order">Random question order</label>
+
+                    <div class="col-xs-7">
+                        <input type="checkbox" name="questionsShouldBeRandomlyOrdered" id="quiz_random_question_order" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-xs-5" for="quiz_random_answer_order">Random answer order</label>
+
+                    <div class="col-xs-7">
+                        <input type="checkbox" name="answersShouldBeRandomlyOrdered" id="quiz_random_answer_order" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% include one_question_and_answers_template %>
+
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <button type="button" class="plus-one-question btn btn-primary">+1 Question</button>
+    </div>
+    <div class="col-sm-6 col-md-6">
+        <button type="button" class="pull-right save btn btn-success">Save</button>
+        <button type="button" class="pull-right discard btn btn-danger">Discard</button>
+    </div>
+</div>
+</div>

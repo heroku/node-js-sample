@@ -1,0 +1,27 @@
+body {
+    padding-top: 80px;
+}
+
+input.form-control {
+    max-width: 171px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+button.form-control {
+    max-width: 171px;
+    display: block;
+    line-height: 0.8;
+}
+
+.right-panel {
+    float: right;
+}
+
+.btn-lg {
+    margin-bottom: 10px;
+}
+
+a.btn {
+    line-height: 15px;
+}

@@ -1,0 +1,61 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Quizzes auth</title>
+    <% include common_css_includes.ejs %>
+    <link rel="stylesheet" href="css/homePage.css" type="text/css">
+</head>
+<body>
+<div class="container">
+
+    <div class="well">
+        <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+        <% } %>
+
+        <!-- LOGIN FORM -->
+        <form action="/login" method="post">
+            <fieldset class="form-group">
+                <legend>Login or Register <span class="right-panel">Or</span></legend>
+                <div class="right-panel">
+                    <!--button type="button" class="form-control btn btn-warning btn-lg" name="playAsGuest">Play as guest
+                    </button-->
+                    <!--button type="button" class="form-control btn btn-danger btn-lg" name="achievements">Achievements
+                    </button-->
+                    <button type="button" class="form-control btn btn-danger btn-lg show-high-score" name="highscores">Highscores
+                    </button>
+                    <!--a href="/faq"><button type="button" class="form-control btn btn-info btn-lg">FAQ</button></a-->
+                    <a href="/faq" class="form-control btn btn-info btn-lg">FAQ</a>
+                </div>
+                <input type="text" class="form-control" name="name" id="name_input" placeholder="Name">
+                <input type="password" class="form-control" name="password" id="password_input" placeholder="Password">
+                <button type="submit" class="form-control btn btn-success btn-lg">Login/Create</button>
+            </fieldset>
+        </form>
+
+        <hr>
+        <% if (shouldShowThirdPartyLogins) { %>
+        <h3>Or login with
+            <% if (shouldShowFacebookLogin) { %>
+            <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook Login</a>
+            <% } %>
+            <% if (shouldShowTwitterLogin) { %>
+            <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter Login</a>
+            <% } %>
+        </h3>
+        <% } %>
+    </div>
+
+</div>
+
+<% include common_javascript_includes %>
+<% include modal_template %>
+<% include highscore_container %>
+<% include network_error %>
+<% include interstitials %>
+
+<script src="js/homepage.js"></script>
+
+</body>
+</html>

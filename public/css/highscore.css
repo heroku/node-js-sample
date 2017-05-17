@@ -1,0 +1,90 @@
+@-webkit-keyframes changes {
+    0% {
+        background-color: rgba(238, 255, 135, 0.36);
+    }
+    10% {
+        background-color: rgba(238, 255, 135, 0.66);
+    }
+    20% {
+        background-color: rgba(171, 255, 135, 0.66);
+    }
+    30% {
+        background-color: rgba(79, 236, 12, 0.66);
+    }
+    40% {
+        background-color: rgba(171, 255, 135, 0.66);
+    }
+    50% {
+        background-color: rgba(238, 255, 135, 0.66);
+    }
+    60% {
+        background-color: rgba(238, 255, 135, 0.36);
+    }
+    70% {
+        background-color: rgba(225, 236, 12, 0.66);
+    }
+    80% {
+        background-color: rgba(225, 236, 12, 0.89);
+    }
+    90% {
+        background-color: rgba(12, 236, 99, 0.24)
+    }
+    100% {
+        background-color: rgba(26, 187, 88, 0.24);
+    }
+}
+
+@keyframes changes {
+    0% {
+        background-color: rgba(238, 255, 135, 0.36);
+    }
+    10% {
+        background-color: rgba(238, 255, 135, 0.66);
+    }
+    20% {
+        background-color: rgba(171, 255, 135, 0.66);
+    }
+    30% {
+        background-color: rgba(79, 236, 12, 0.66);
+    }
+    40% {
+        background-color: rgba(171, 255, 135, 0.66);
+    }
+    50% {
+        background-color: rgba(238, 255, 135, 0.66);
+    }
+    60% {
+        background-color: rgba(238, 255, 135, 0.36);
+    }
+    70% {
+        background-color: rgba(225, 236, 12, 0.66);
+    }
+    80% {
+        background-color: rgba(225, 236, 12, 0.89);
+    }
+    90% {
+        background-color: rgba(12, 236, 99, 0.24)
+    }
+    100% {
+        background-color: rgba(26, 187, 88, 0.24);
+    }
+}
+
+.highlight-gold {
+    -webkit-animation-name: changes;
+    -webkit-animation-duration: 10s;
+    -webkit-transition-timing-function: ease;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: changes;
+    animation-duration: 10s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+table {
+    padding-bottom: 25px;
+}
+
+caption {
+    text-align: center;
+}

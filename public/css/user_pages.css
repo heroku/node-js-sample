@@ -1,0 +1,118 @@
+body {
+    padding-top: 80px;
+    word-wrap: break-word;
+}
+
+.well-info {
+    background: #5BC0DE;
+}
+
+.well-data-list {
+    background-color: darkturquoise;
+}
+
+.well-profile {
+    background-color: powderblue;
+}
+
+.twitter-photo {
+    position: relative;
+    float: right;
+}
+
+input.form-control, button.form-control {
+    margin-bottom: 12px;
+}
+
+.quiz-question {
+    margin-top: 15px;
+}
+
+button {
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.modal-body .panel-heading {
+    padding-top: 0;
+    padding-right: 0;
+}
+
+.modal-body button.toggle-questions {
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-right: 0;
+}
+
+.new-quiz-title {
+    position: relative;
+    top: 5px;
+}
+
+.save {
+    margin-right: 0;
+}
+
+.grey {
+    background-color: rgba(201, 199, 255, 0.32);
+}
+
+.green {
+    background-color: rgba(40, 247, 72, 0.45);
+}
+
+.blue {
+    background-color: rgba(59, 209, 247, 0.45);
+}
+
+.red {
+    background-color: rgba(247, 35, 29, 0.45);
+}
+
+.yellow {
+    background-color: rgba(255, 255, 0, 0.38);
+}
+
+
+.orange {
+    background-color: rgba(239, 98, 0, 0.32);
+}
+
+.lg {
+    width: 34px;
+    height: 34px;
+}
+
+#fastAnswer {
+    float: right;
+}
+.fast-answers-label {
+    line-height: 36px;
+}
+
+.float-right {
+    float: right;
+}
+
+.users li {
+    width: 50%;
+    height: 32px;
+}
+
+.users li span, .users li input[type=text] {
+    float: right;
+}
+
+.select-user {
+    position: relative;
+    top: 40px;
+    left: -180px;
+    height: 40px;
+    width: 40px;
+    float: right;
+}
+
+.alert {
+    z-index: 500;
+}

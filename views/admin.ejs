@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+    <title>Admin</title>
+    <% include common_css_includes.ejs %>
+    <link rel="stylesheet" href="/css/user_pages.css" type="text/css">
+</head>
+<body>
+<div class="container">
+
+    <% include network_error %>
+    <% include common_error_template %>
+
+    <% include manage_saved_quiz_modal_template %>
+
+    <div class="successful-update alert alert-success hidden">
+        <a href="#" class="close" data-dismiss="alert">×</a>
+        Profile was updated Succefully!
+    </div>
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Admin Page</h1>
+        <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        <a href="/profile" class="btn btn-primary btn-sm">Profile</a>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="well well-profile">
+                <h3><span class="fa fa-file-text"></span> Quizzes</h3>
+                <button type="button" class="form-control create-quiz btn btn-primary">Create quiz</button>
+                <!--select class="form-control manage-quiz-select">
+                    <option selected="selected" disabled="true">Choose quiz to manage</option>
+                    <% Object.keys(quizzes).forEach(function(quiz) { %>
+                    <option><%= quizzes[quiz].name %></option>
+                    <% }); %>
+                </select>
+                <button type="button" class="form-control manage-quiz btn btn-primary">Manage selected quiz</button-->
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="well well-profile">
+                <h3><span class="fa fa-users"></span> Users</h3>
+                <button type="button" class="form-control list-users btn btn-info">List users</button>
+                <button type="button" class="form-control manage-users btn btn-primary">Manage users</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modal-template" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="new-quiz-modal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <% include network_error %>
+                <% include successful_quiz_save %>
+                <% include common_error_template %>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"><span class="fa fa-paw"></span> Create new quiz</h4>
+            </div>
+            <div class="modal-body">
+                <% include create_quiz_template %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmChanges" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Apply confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-warning">Are you sure to apply the changes (all changes, not just the ones selected by checkboxes)?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success apply-confirm" data-dismiss="modal">Sure</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Nope</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmDelete" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Delete confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-warning">Are you sure to Delete the users selected by he checkboxes?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger delete-confirm" data-dismiss="modal">Sure, Delete!</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Nope</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmAdmin" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Admin privileges confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-warning">Are you sure to add admin role to the users selected by checkboxes?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success admin-confirm" data-dismiss="modal">Sure, give them admin rights</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Nope</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmDeadpool" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Deadpool confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-warning">Are you sure to add the selected users to Deadpool team?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success deadpool-confirmation" data-dismiss="modal">Deadpool, Deadpool, Deadpool</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Nope, No way, Nada</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include common_javascript_includes %>
+<script src="/js/admin.js"></script>
+
+</body>
+</html>

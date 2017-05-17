@@ -1,0 +1,192 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title><%= team %> Challenges</title>
+    <% include common_css_includes.ejs %>
+    <link rel="stylesheet" href="/css/challenges.css" type="text/css">
+</head>
+<body data-team="<%= team %>" onload="for(s=window.screen,w=matrixCanvas.width=s.width,h=matrixCanvas.height=s.height,m=Math.random,p=[],i=0;i<256;p[i++]=1);setInterval('9Style=\'rgba(0,0,0,.05)\'9Rect(0,0,w,h)9Style=\'#F00\';p.map(function(v,i){9Text(String.fromCharCode(3e4+m()*33),i*10,v);p[i]=v>758+m()*1e4?0:v+10})'.split(9).join(';matrixCanvas.getContext(\'2d\').fill'),33)">
+<canvas id=matrixCanvas></canvas>
+<audio class="menu-step-up">
+    <source src="/audio/flute/up.ogg" type="audio/ogg">
+    <source src="/audio/flute/up.mp3" type="audio/mpeg">
+</audio>
+<audio class="menu-step-down">
+    <source src="/audio/flute/down.ogg" type="audio/ogg">
+    <source src="/audio/flute/down.mp3" type="audio/mpeg">
+</audio>
+<div class="menu">
+    <div class="row">
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel sprint">
+            <div class="hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel code-challenges">
+            <div class="hover"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel personal">
+            <div class="hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel">
+            <div class="no-hover"></div>
+        </div>
+        <div class="panel history">
+            <div class="hover"></div>
+        </div>
+    </div>
+</div>
+
+<% include common_javascript_includes %>
+<script src="/js/challenges.js"></script>
+
+</body>
+</html>

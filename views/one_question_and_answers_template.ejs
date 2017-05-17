@@ -1,0 +1,27 @@
+<% if (!question_index) { %>
+<% var question_index = 1; %>
+<% } %>
+
+<div class="panel panel-primary">
+    <div class="panel-heading well-data-list">
+        <h4 class="panel-title"><span class="new-quiz-title">Question <%= question_index %></span>
+            <button class="toggle-questions pull-right btn btn-info btn-lg" type="button" data-toggle="collapse"
+                    data-target="#collapse<%= question_index %>" aria-expanded="false" aria-controls="collapseExample">
+                <span class="fa fa-chevron-up"></span> Close
+            </button>
+        </h4>
+    </div>
+    <div id="collapse<%= question_index %>" class="panel-collapse panel-body collapse in">
+        <div class="form-group">
+            <textarea type="text" name="question_<%= question_index %>" class="grey quiz-question form-control col-sm-5" placeholder="Quiz question"></textarea>
+            <textarea type="text" name="answer_<%= question_index %>[0]" class="green quiz-answer form-control col-sm-5" placeholder="Quiz answer A"></textarea>
+            <input type="tel" name="points_<%= question_index %>[0]" class="green quiz-point form-control col-sm-5" placeholder="Points for A" />
+            <textarea type="text" name="answer_<%= question_index %>[1]" class="blue quiz-answer form-control col-sm-5" placeholder="Quiz answer B"></textarea>
+            <input type="tel" name="points_<%= question_index %>[1]" class="blue quiz-point form-control col-sm-5" placeholder="Points for B" />
+            <textarea type="text" name="answer_<%= question_index %>[2]" class="yellow quiz-answer form-control col-sm-5" placeholder="Quiz answer C"></textarea>
+            <input type="tel" name="points_<%= question_index %>[2]" class="yellow quiz-point form-control col-sm-5" placeholder="Points for C" />
+            <textarea type="text" name="answer_<%= question_index %>[3]" class="orange quiz-answer form-control col-sm-5" placeholder="Quiz answer D"></textarea>
+            <input type="tel" name="points_<%= question_index %>[3]" class="orange quiz-point form-control col-sm-5" placeholder="Points for D" />
+        </div>
+    </div>
+</div>

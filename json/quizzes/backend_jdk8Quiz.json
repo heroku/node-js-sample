@@ -1,0 +1,12 @@
+{
+	"name": "jdk8 quizzes",
+	"questions": {
+		"0": {
+			"question": "What is the significance, and what are the benefits, of including 'use strict' at the beginning of a JavaScript source file?",
+			"a": "nothing",
+			"b": "use stric makes js coding idiot-proof",
+			"c": "use strict is for only nodejs experts",
+			"d": "using it will makes js strongly typed"
+		}
+	}
+}

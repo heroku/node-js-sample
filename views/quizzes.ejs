@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Quizzes</title>
+
+    <% include common_css_includes.ejs %>
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/creative.css" type="text/css">
+    <link rel="stylesheet" href="css/quiz.css" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top">
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '675122215960457',
+            xfbml: true,
+            version: 'v2.5'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<!--div
+        class="fb-like"
+        data-share="true"
+        data-width="450"
+        data-show-faces="true">
+</div-->
+
+<nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/profile" target="_blank">Logged in as:
+                <span class="user-name" data-should-use-fast-answers="<% if (user.shouldUseFastAnswers) { %>true<% } %>"><%= user.displayName %>
+                    <% if (user.group == "admin") { %>
+                    admin
+                    <% } %>
+                </span></a>
+
+            <p class="latest-achievement"><a>Latest Achievement: <span
+                            class="latest-achievement"><%= achievements[achievements.length - 1] %></span></a></p>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <p><a>Score: <span class="user-score">0</span></a></p>
+                </li>
+                <li>
+                    <p><a class="show-high-score btn btn-info" href="#high-score">Show Highscore</a></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<hr>
+
+<section id="quizSelection">
+    <div class="container-fluid">
+        <div class="row no-gutter">
+            <% Object.keys(quizzes).forEach(function(quiz) { %>
+            <div class="col-lg-<%= Math.floor(12 / Object.keys(quizzes).length) %> col-sm-<%= Math.floor(12 / Object.keys(quizzes).length) %>">
+                <a href="#" class="quiz-select" data-quiz="<%= quizzes[quiz].name %>">
+                    <img src="img/quizzes/<%= quizzes[quiz].imageName %>" class="img-responsive" alt="">
+
+                    <div class="quiz-select-caption">
+                        <div class="quiz-select-caption-content">
+                            <div class="project-category text-faded">
+                                <%= quizzes[quiz].category %>
+                            </div>
+                            <div class="project-name">
+                                <%= quizzes[quiz].name %>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<section id="quizBox" class="hidden">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading question">Question</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center well" data-answer-index="0">
+                <div class="service-box">
+                    <h3 class="answer answer-a">A</h3>
+
+                    <p class="text-muted"></p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center well" data-answer-index="1">
+                <div class="service-box">
+                    <h3 class="answer answer-b">B</h3>
+
+                    <p class="text-muted"></p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center well" data-answer-index="2">
+                <div class="service-box">
+                    <h3 class="answer answer-c">C</h3>
+
+                    <p class="text-muted"></p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center well" data-answer-index="3">
+                <div class="service-box">
+                    <h3 class="answer answer-d">D</h3>
+
+                    <p class="text-muted"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <button type="button" class="btn btn-success btn-lg submit<% if (user.shouldUseFastAnswers) { %> hidden<% } %>">Submit</button>
+                <button type="button" class="btn btn-primary btn-lg give-up">No idea, next</button>
+                <a href="#confirmExit" class="btn btn-danger btn-lg exit" data-toggle="modal">Exit</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="confirmExit" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to exit before finishing this quiz?</p>
+
+                <p class="text-warning">
+                    <small>If you exit now, your score won't be complete.</small>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning exit-anyway" data-dismiss="modal">Exit anyway</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Get back to the quiz</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<span class="volatile-score" class="hidden"></span>
+
+<% include common_javascript_includes %>
+<% include modal_template %>
+<% include highscore_container %>
+<% include network_error %>
+<% include interstitials %>
+
+<script src="js/quiz.js"></script>
+</body>
+
+</html>

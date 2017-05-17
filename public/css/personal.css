@@ -1,0 +1,54 @@
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    overflow: hidden;
+}
+
+#matrixCanvas {
+    position: absolute;
+}
+
+.container {
+    position: relative;
+}
+
+.right {
+    float: right;
+}
+
+.well-info {
+    background: rgba(74, 32, 32, 0.42);
+    color: greenyellow;
+}
+
+.well-info span::first-letter {
+    text-transform:capitalize;
+}
+
+.well-info span {
+    display: inline-block;
+}
+
+.well-info h3 {
+    color: rgba(8, 10, 66, 0.91);
+    text-shadow: 1px 0 0 hsla(183, 89%, 57%, 0.3), 0 2px 0 hsl(233, 78%, 38%), 0 3px 0 hsl(0, 0%, 73%), 0 4px 0 hsl(216, 78%, 15%), 3px 3px 7px #65ffdb;
+}
+
+.btn-primary {
+    color: greenyellow;
+}
+
+.audio-opt{
+    background-color: black !important;
+    color: white !important;
+    text-shadow: none !important;
+}
+
+.row {
+    margin-top: 15px;
+}

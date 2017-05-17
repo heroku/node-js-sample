@@ -1,0 +1,22 @@
+{
+  "Account Created": {
+    "description": "First achievement to get... just login (how beautiful it is, that you don't need to create an account before... just login :) or use your other credentials like facebook, or twitter",
+    "point": 1,
+    "group": "profile",
+    "type": "authentication",
+    "subType": "creation",
+    "color": "metal",
+    "title": "",
+    "pictureURI": "/img/achievements/first_achievement.png"
+  },
+  "Twitter Account linked": {
+    "description": "",
+    "point": 10,
+    "group": "profile",
+    "type": "authentication",
+    "subType": "creation",
+    "color": "bronze",
+    "title": "",
+    "pictureURI": "/img/achievements/first_achievement.png"
+  }
+}

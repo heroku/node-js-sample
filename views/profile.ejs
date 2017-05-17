@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+    <title>Profile</title>
+    <% include common_css_includes.ejs %>
+    <link rel="stylesheet" href="css/user_pages.css" type="text/css">
+</head>
+<body>
+<div class="container">
+
+    <% include network_error %>
+
+    <div class="successful-update alert alert-success hidden">
+        <a href="#" class="close" data-dismiss="alert">×</a>
+        Profile was updated Succefully!
+    </div>
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        <% if (admin === "admin" ) { %>
+        <a href="/admin/home" class="btn btn-warning btn-sm">Admin</a>
+        <% } %>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="well well-info">
+                <h3><span class="fa fa-angle-double-right"></span> Display Name:
+                    <strong class="display-name"><%= user.displayName %></strong></h3>
+                <select class="form-control display-name-change">
+                    <% if (user.local.name) { %>
+                    <option><%= user.local.name %></option>
+                    <% } %>
+                    <% if (user.facebook.token) { %>
+                    <option><%= user.facebook.name %></option>
+                    <% } %>
+                    <% if (user.twitter.token) { %>
+                    <option><%= user.twitter.username %></option>
+                    <% } %>
+                    <option>New</option>
+                </select>
+                <hr/>
+
+                <label class="fast-answers-label" for="fastAnswer">Fast Answers (click for submit):</label>
+                <input type="checkbox" id="fastAnswer" class="lg" <% if (user.shouldUseFastAnswers) { %>checked checked="checked" <% } %>>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="well well-info">
+                <h3><span class="fa fa-gamepad"></span> Play now</h3>
+                <a href="/quizzes" class="btn btn-lg btn-success">Play</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Local Information -->
+        <div class="col-sm-6">
+            <div class="well well-profile">
+                <h3><span class="fa fa-user"></span> Quizzes</h3>
+
+                <% if (user.local.name) { %>
+                <p>
+                    <strong>name</strong>: <%= user.local.name %><br>
+                </p>
+
+                <a href="/unlink/local" class="btn btn-danger">Unlink</a>
+                <% } else { %>
+                <a href="/" class="btn btn-success">Connect Local</a>
+                <% } %>
+
+            </div>
+        </div>
+        <!-- FACEBOOK INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well well-profile">
+                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
+
+                <!-- check if the user has this token (is the user authenticated with this social account) -->
+                <% if (user.facebook.token) { %>
+                <p>
+                    <strong>name</strong>: <%= user.facebook.name %><br>
+                </p>
+
+                <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
+                <% } else { %>
+                <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+                <% } %>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- TWITTER INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well well-profile">
+                <% if (user.twitter.profilePhoto) { %>
+                <img src="<%= user.twitter.profilePhoto %>" alt="profilePhoto" class="twitter-photo"/>
+                <% } %>
+                <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
+
+                <!-- check if the user has this token (is the user authenticated with this social account) -->
+                <% if (user.twitter.token) { %>
+                <p>
+                    <strong>display name</strong>: <%= user.twitter.displayName %><br>
+                    <strong>username</strong>: <%= user.twitter.username %>
+                </p>
+                <a href="/unlink/twitter" class="btn btn-info">Unlink</a>
+                <% } else { %>
+                <a href="/connect/twitter" class="btn btn-info">Connect Twitter</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="well well-data-list">
+                <h3><span class="fa fa-shield"></span> Achievements</h3>
+                <% achievements.forEach(function(achievement, index) { %>
+                <p><%= achievement %></p>
+                <% }); %>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="well well-data-list">
+                <h3><span class="fa fa-star"></span> Highscores</h3>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modal-template" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="new-display-name-modal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title"><span class="fa fa-paw"></span> Change Display Name</h4>
+            </div>
+            <div class="modal-body form-group">
+                <div class="">
+                    <input type="text" class="update-display-name-text form-control col-sm-5"
+                           placeholder="New Display Name">
+                    <button type="button" class="update-display-name-button form-control btn btn-success">Update Display
+                        Name
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include common_javascript_includes %>
+<script src="js/profile.js"></script>
+
+</body>
+</html>

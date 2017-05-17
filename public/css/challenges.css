@@ -1,0 +1,140 @@
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    overflow: hidden;
+}
+
+#matrixCanvas {
+    position: absolute;
+}
+
+.menu {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+    background: #45484d; /* Old browsers */
+    background: -moz-linear-gradient(top, #45484d 0%, #000000 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #45484d 0%,#000000 300%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+/*.menu {*/
+    /*width: 80rem;*/
+    /*height: 40rem;*/
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin-left: -40rem;*/
+    /*margin-top: -20rem;*/
+    /*font-size: 0;*/
+/*}*/
+
+/*.menu div {*/
+    /*position: static;*/
+    /*display: inline-block;*/
+    /*width: 40%;*/
+    /*height: 40%;*/
+    /*border: #444444 double 2px;*/
+    /*margin: 0;*/
+    /*font-size: 16px; !* some value *!*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*line-height: 20rem;*/
+/*}*/
+
+/*
+ * mosaic menu
+ */
+.panel {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel .no-hover {
+    float: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(91, 8, 8, 1);
+    background: url('/img/challenges/background.png') no-repeat 0 -70px fixed;
+    box-shadow: -1px -1px 9px rgba(0, 9, 245, 0.9);
+}
+
+.panel .hover {
+    float: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100px;
+    height: 100px;
+    background: url('/img/challenges/background.png') no-repeat 0 -70px fixed;
+    border: 1px solid rgba(200,205,205,.1);
+    box-shadow: 0 1px 90px rgba(255,0,0,.3);
+
+    /* -- transition is the magic sauce for animation -- */
+    -webkit-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+
+.panel.sprint{
+    width: 820px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel.sprint .hover{
+    width: 820px;
+}
+
+.panel.code-challenges {
+    width: 940px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel.code-challenges .hover {
+    width: 940px;
+}
+
+.panel.personal {
+    width: 580px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel.personal .hover {
+    width: 580px;
+}
+
+.panel.history {
+    float: left;
+    width: 580px;
+    margin: 10px;
+    position: relative;
+}
+
+.panel.history .hover {
+    width: 580px;
+}
+.hover {
+    cursor: pointer;
+}
+
+.menu .row {
+    min-width: 1450px;
+    margin: 0;
+}
+
+.panel {
+    border: 0 solid transparent;
+}
