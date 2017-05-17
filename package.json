@@ -4,11 +4,17 @@
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "mystart": "node index.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "checkstyle-formatter": "^1.0.0",
+    "xml-writer": "latest"
+
   },
+
+
   "engines": {
     "node": "4.0.0"
   },
@@ -21,6 +27,9 @@
     "heroku",
     "express"
   ],
+  
+  
+  
   "author": "Mark Pundsack",
   "contributors": [
     "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
