@@ -7,6 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "ejs": "^2.5.7",
     "express": "^4.13.3"
   },
   "engines": {
