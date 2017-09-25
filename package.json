@@ -10,7 +10,12 @@
     "author": "Aaron McCall <aaron@andyet.net> (https://github.com/aaronmccall)",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.13.3",
+        "body-parser": "^1.17.2",
+        "express": "^4.15.3",
+        "mongodb": "^2.2.31",
         "jade": "^1.11.0"
+    },    
+    "engines": {
+        "node": "6.9.3"
     }
 }
