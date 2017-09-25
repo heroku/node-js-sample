@@ -11,7 +11,10 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 app.get('/', function(request, response) {
-  response.render('index');
+  response.render('index', {
+    pageTitle: 'NodeJS & Heroku',
+    header: '\u2744Hello, Wintry World!\u2744'
+  });
 });
 
 app.listen(app.get('port'), function() {
