@@ -1,0 +1,19 @@
+branches:
+  only:
+  - master
+
+before_install:
+- echo $FILES_CHANGED
+- swift -version
+- cd ios
+
+cd node-js-sample
+
+
+cache:
+  directories:
+    - node_modules
+
+script:
+- ./build_project.sh
+npm install
