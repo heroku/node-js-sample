@@ -1,0 +1,6 @@
+pipeline:
+  backend:
+    image: node:latest
+    commands:
+      - npm install
+      
