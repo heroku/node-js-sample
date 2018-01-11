@@ -1,6 +1,16 @@
 pipeline:
-  backend:
+  build:
     image: node:latest
     commands:
       - npm install
-      
+      - npm build
+    when:
+      branch: master
+
+services:
+  database:
+    image: mysql
+
+  cache:
+    image: redis
+
