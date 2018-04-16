@@ -7,7 +7,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "procstreams": "^0.3.0"
   },
   "engines": {
     "node": "4.0.0"
