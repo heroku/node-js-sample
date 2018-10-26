@@ -7,10 +7,10 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.16.4"
   },
   "engines": {
-    "node": "4.0.0"
+    "node": "8.9.3"
   },
   "repository": {
     "type": "git",
