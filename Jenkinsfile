@@ -1,1 +1,3 @@
-echo 'Hello World'
+stage('Print a Hello World Message') {
+  echo 'Hello World'
+}
