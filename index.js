@@ -76,7 +76,7 @@ app.use(bodyparser.json())
 }   */
  const activities = [
  {
-    "startTime": "2019-02-09",
+    "startTime": "2019-02-09:13:10",
     "calories": "300",
   }
 ];
