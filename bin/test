@@ -1,6 +1,11 @@
 #!/bin/bash
-echo "Running Tests"
-for i in {0..1000000..1}
+echo "Running Tests..."
+for i in {1..100000}
   do
-    echo "ok $i - test passed 🤖"
+    echo "ok $((i*10)) - test passed 🤖"
+    echo "not ok $((i*10+1)) - Something broke"
+    echo " # It's really borked"
+    echo "[Object object] { 💥 🤯 }"
+    echo "ok $((i*10+2))"
+    echo "pending $((i*10+3)) - stop faking tests"
  done
