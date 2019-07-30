@@ -10,7 +10,7 @@
     "express": "^4.13.3"
   },
   "engines": {
-    "node": "12.7.0"
+    "node": "12.4.0"
   },
   "repository": {
     "type": "git",
